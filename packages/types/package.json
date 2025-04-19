@@ -1,0 +1,10 @@
+{
+  "name": "@workspace/types",
+  "version": "0.0.1",
+  "description": "Types for the repo",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.ts"
+  ]
+}
