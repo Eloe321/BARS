@@ -6,7 +6,7 @@ import EditorHeader from "@workspace/ui/components/editor/editor-header";
 import TimelineSidebar from "@workspace/ui/components/editor/timeline-sidebar";
 import EditorTopBar from "@workspace/ui/components/editor/editor-topbar";
 import MediaControls from "@workspace/ui/components/editor/media-control";
-import LyricsEditor from "@workspace/ui/components/editor/editor-canvas";
+import Notebook from "@workspace/ui/components/editor/notebook-canvas";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
 
 export default function EditorPage() {
@@ -15,6 +15,7 @@ export default function EditorPage() {
   const [duration, setDuration] = useState(156); // 2:36 in seconds
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [lyricCells, setLyricCells] = useState([]);
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -51,18 +52,15 @@ export default function EditorPage() {
       audioRef.current.currentTime = newTime;
     }
   };
-
+  
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="flex h-screen flex-col bg-[#0a192f] text-white">
-        <EditorHeader />
+      <div className="flex h-screen flex-col bg-[#2E3449] text-white">
+        <EditorTopBar />
 
-        <div className="flex flex-1 overflow-hidden">
-          <TimelineSidebar />
+        <div className="flex flex-1  overflow-hidden">
 
           <div className="flex flex-1 flex-col overflow-hidden">
-            <EditorTopBar />
-
             <MediaControls
               isPlaying={isPlaying}
               togglePlay={togglePlay}
@@ -72,7 +70,14 @@ export default function EditorPage() {
               handleSliderChange={handleSliderChange}
             />
 
-            <LyricsEditor />
+            <div className="flex flex-row h-screen items-stretch overflow-auto">
+              <TimelineSidebar lyricCells={lyricCells} />
+
+                <div className="flex-1 overflow-auto">
+                  <Notebook onLyricCellsChange={setLyricCells}/>
+                </div>
+            </div>
+            
           </div>
 
           <ThesaurusSidebar />
