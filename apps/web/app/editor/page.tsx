@@ -12,7 +12,7 @@ import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar"
 export default function EditorPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(156); // 2:36 in seconds
+  const [duration, setDuration] = useState(0); 
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [lyricCells, setLyricCells] = useState([]);
@@ -61,14 +61,14 @@ export default function EditorPage() {
         <div className="flex flex-1  overflow-hidden">
 
           <div className="flex flex-1 flex-col overflow-hidden">
-            <MediaControls
-              isPlaying={isPlaying}
-              togglePlay={togglePlay}
-              currentTime={currentTime}
-              duration={duration}
-              progress={progress}
-              handleSliderChange={handleSliderChange}
-            />
+          <MediaControls
+            isPlaying={isPlaying}
+            currentTime={currentTime}
+            duration={duration}
+            setIsPlaying={setIsPlaying}
+            setCurrentTime={setCurrentTime}
+            setDuration={setDuration}
+          />
 
             <div className="flex flex-row h-screen items-stretch overflow-auto">
               <TimelineSidebar lyricCells={lyricCells} />
