@@ -8,6 +8,6 @@ export class AuthController {
   @Post('login')
   async login() {
     // Implement your login logic here
-    // return this.authService.login();
+    return this.authService.login();
   }
 }

@@ -1,9 +1,0 @@
-react-audio-player
-react-slider
-axios
-fastapi 
-uvicorn 
-aiofiles 
-pydantic
-uuid
-@nestjs/platform-express multer

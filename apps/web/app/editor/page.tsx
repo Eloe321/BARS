@@ -6,22 +6,15 @@ import EditorHeader from "@workspace/ui/components/editor/editor-header";
 import TimelineSidebar from "@workspace/ui/components/editor/timeline-sidebar";
 import EditorTopBar from "@workspace/ui/components/editor/editor-topbar";
 import MediaControls from "@workspace/ui/components/editor/media-control";
-import Notebook from "@workspace/ui/components/editor/notebook-canvas";
+import LyricsEditor from "@workspace/ui/components/editor/editor-canvas";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
 
 export default function EditorPage() {
-  // Sample lyric cells data
-  const [lyricCells, setLyricCells] = useState<{ id: number; type: string; content: string; timeStart?: string; timeEnd?: string }[]>([]);
-
-  // State variables for audio playback simulation
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0); 
+  const [duration, setDuration] = useState(156); // 2:36 in seconds
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  // State variables for thesaurus sidebar
-  const [selectedWord, setSelectedWord] = useState<string | null>(null);
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -59,45 +52,37 @@ export default function EditorPage() {
     }
   };
 
-  const handleWordSelect = (word: string) => {
-    setSelectedWord(word);
-  };
-  
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="flex h-screen flex-col bg-[#2E3449] text-white">
-        <EditorTopBar />
+      <div className="flex h-screen flex-col bg-[#0a192f] text-white">
+        <EditorHeader />
 
-        <div className="flex flex-1  overflow-hidden">
+        <div className="flex flex-1 overflow-hidden">
+          <TimelineSidebar />
 
           <div className="flex flex-1 flex-col overflow-hidden">
-          <MediaControls
-            isPlaying={isPlaying}
-            currentTime={currentTime}
-            duration={duration}
-            setIsPlaying={setIsPlaying}
-            setCurrentTime={setCurrentTime}
-            setDuration={setDuration}
-          />
+            <EditorTopBar />
 
-            <div className="flex flex-row h-screen items-stretch overflow-auto">
-              <TimelineSidebar lyricCells={lyricCells}/>
+            <MediaControls
+              isPlaying={isPlaying}
+              togglePlay={togglePlay}
+              currentTime={currentTime}
+              duration={duration}
+              progress={progress}
+              handleSliderChange={handleSliderChange}
+            />
 
-                <div className="flex-1 overflow-auto">
-                  <Notebook onLyricCellsChange={setLyricCells} onWordSelect={handleWordSelect}/>
-                </div>
-            </div>
-            
+            <LyricsEditor />
           </div>
 
-          <ThesaurusSidebar word={selectedWord}/>
+          <ThesaurusSidebar />
         </div>
 
         {/* Hidden audio element for playback simulation */}
-        {/* <audio ref={audioRef} className="hidden">
+        <audio ref={audioRef} className="hidden">
           <source src="/placeholder.mp3" type="audio/mpeg" />
           Your browser does not support the audio element.
-        </audio> */}
+        </audio>
       </div>
     </ThemeProvider>
   );

@@ -1,77 +1,26 @@
 "use client";
-import React, { useRef, useEffect, useState } from 'react';
+
 import { Play, Pause, SkipBack, SkipForward, Download } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
+import { Slider } from "@workspace/ui/components/slider";
 
 interface MediaControlsProps {
   isPlaying: boolean;
+  togglePlay: () => void;
   currentTime: number;
   duration: number;
-  setIsPlaying: (playing: boolean) => void;
-  setCurrentTime: (time: number) => void;
-  setDuration: (duration: number) => void;
+  progress: number;
+  handleSliderChange: (value: number[]) => void;
 }
 
 export default function MediaControls({
   isPlaying,
+  togglePlay,
   currentTime,
   duration,
-  setIsPlaying,
-  setCurrentTime,
-  setDuration,
+  progress,
+  handleSliderChange,
 }: MediaControlsProps) {
-  const [file, setFile] = useState<File | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  // TO DO: Handle file upload and playback when backend is ready
-  const handleUpload = async () => {
-    console.log('File to upload:', file);
-  };
-
-  useEffect(() => {
-    // Static import of the audio file for now
-    audioRef.current = new Audio('/music/test-beat.mp3');
-
-    const audio = audioRef.current;
-
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-    };
-
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-    audio.addEventListener('timeupdate', handleTimeUpdate);
-
-    return () => {
-      audio.pause();
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
-    };
-  }, [setDuration, setCurrentTime]);
-
-  const togglePlayPause = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTime = parseFloat(e.target.value);
-    if (audioRef.current) {
-      audioRef.current.currentTime = newTime;
-    }
-    setCurrentTime(newTime);
-  };
-
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -88,7 +37,7 @@ export default function MediaControls({
             </button>
             <button
               className="rounded-full bg-[#64ffda] p-2 text-[#0a192f] hover:bg-[#5ae6c4]"
-              onClick={togglePlayPause}
+              onClick={togglePlay}
             >
               {isPlaying ? (
                 <Pause className="h-5 w-5" />
@@ -100,28 +49,25 @@ export default function MediaControls({
               <SkipForward className="h-5 w-5" />
             </button>
           </div>
-          {file && (
-            <span className="text-sm text-gray-300">{file.name}</span>
-          )}
-          <input id='file-upload' type="file" onChange={(e) => setFile(e.target.files?.[0] || null)} className='hidden' />
-          <label htmlFor="file-upload" className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f]-20 hover:text-white">
-              <Download className="h-5 w-5" />
-          </label>
+          <div className="text-sm text-gray-300">track.mp4</div>
+          <button className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f]-20 hover:text-white">
+            <Download className="h-5 w-5" />
+          </button>
           <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">110 BPM</div>
         </div>
         <div className="flex w-1/2 items-center space-x-4">
           <span className="text-xs text-gray-400">
-            {formatTime(Math.floor(currentTime))}
+            {formatTime(currentTime)}
           </span>
-          <input
-            type="range"
-            value={currentTime}
-            max={duration || 0}
-            onChange={handleSeek}
+          <Slider
+            value={[progress]}
+            min={0}
+            max={100}
+            step={0.1}
+            className="w-full"
+            onValueChange={handleSliderChange}
           />
-          <span className="text-xs text-gray-400">
-            {formatTime(Math.floor(duration))}
-          </span>
+          <span className="text-xs text-gray-400">{formatTime(duration)}</span>
           <Button
             variant="outline"
             size="sm"

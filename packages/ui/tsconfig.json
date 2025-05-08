@@ -6,6 +6,6 @@
       "@workspace/ui/*": ["./src/*"]
     }
   },
-  "include": [".", "../../next.config.js"],
+  "include": ["."],
   "exclude": ["node_modules", "dist"]
 }
