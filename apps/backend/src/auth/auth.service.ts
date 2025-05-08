@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User } from 'generated/prisma';
+import { UserService } from 'src/user/user.service';
 
 type AuthInput = { username: string; password: string };
 

@@ -123,7 +123,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/eloe/monorepo/bars/apps/backend/generated/prisma",
+      "value": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\0_BARS\\MusicPlayer\\BARS\\apps\\backend\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -132,17 +132,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/eloe/monorepo/bars/apps/backend/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\0_BARS\\MusicPlayer\\BARS\\apps\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../prisma",
   "clientVersion": "6.6.0",
@@ -151,11 +150,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://neondb_owner:npg_c4JgStph6MDZ@ep-noisy-sun-a1mvq6vh-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+        "value": null
       }
     }
   },
