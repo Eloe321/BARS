@@ -17,6 +17,7 @@ import { AutocompleteTextbox } from 'react-ghost-text';
   }, [value]);
 
   const getSuggestion = async (precedingText: string) => {
+    console.log('Fetching suggestion for:', precedingText);
     // Fetch suggestion from a backend API
     return precedingText;
   };

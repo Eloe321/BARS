@@ -4,16 +4,38 @@ import React, { useState, useRef, useEffect } from 'react';
 import Cell from '@workspace/ui/components/editor/notebook-cell';
 
 interface NotebookProps {
+  onWordSelect: (word: string) => void;
   onLyricCellsChange?: (lyricCells: { id: number; type: string; content: string; timeStart?: string; timeEnd?: string }[]) => void;
 }
 
-const Notebook: React.FC<NotebookProps> = ({ onLyricCellsChange }) => {
+const Notebook: React.FC<NotebookProps> = ({ onLyricCellsChange, onWordSelect }) => {
   const notebookRef = useRef<HTMLDivElement>(null);
   const [cells, setCells] = useState([
     {id: 1, type: 'note', content: ''} 
   ]);
   const [nextId, setNextId] = useState(2);
   const [selectedCellId, setSelectedCellId] = useState<number | null>(null);
+
+  // Function to update the Thesaurus with the selected word
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === "Enter") {
+      const selection = window.getSelection();
+      if (selection && selection.toString().trim()) {
+        const selectedText = selection.toString().trim();
+        const firstWord = selectedText.split(/\s+/)[0];
+        if (firstWord) {
+          onWordSelect(firstWord);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   // Handle click outside to deselect cell
   useEffect(() => {

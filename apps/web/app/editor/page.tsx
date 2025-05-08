@@ -10,12 +10,18 @@ import Notebook from "@workspace/ui/components/editor/notebook-canvas";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
 
 export default function EditorPage() {
+  // Sample lyric cells data
+  const [lyricCells, setLyricCells] = useState<{ id: number; type: string; content: string; timeStart?: string; timeEnd?: string }[]>([]);
+
+  // State variables for audio playback simulation
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0); 
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [lyricCells, setLyricCells] = useState([]);
+
+  // State variables for thesaurus sidebar
+  const [selectedWord, setSelectedWord] = useState<string | null>(null);
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -52,6 +58,10 @@ export default function EditorPage() {
       audioRef.current.currentTime = newTime;
     }
   };
+
+  const handleWordSelect = (word: string) => {
+    setSelectedWord(word);
+  };
   
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
@@ -71,23 +81,23 @@ export default function EditorPage() {
           />
 
             <div className="flex flex-row h-screen items-stretch overflow-auto">
-              <TimelineSidebar lyricCells={lyricCells} />
+              <TimelineSidebar lyricCells={lyricCells}/>
 
                 <div className="flex-1 overflow-auto">
-                  <Notebook onLyricCellsChange={setLyricCells}/>
+                  <Notebook onLyricCellsChange={setLyricCells} onWordSelect={handleWordSelect}/>
                 </div>
             </div>
             
           </div>
 
-          <ThesaurusSidebar />
+          <ThesaurusSidebar word={selectedWord}/>
         </div>
 
         {/* Hidden audio element for playback simulation */}
-        <audio ref={audioRef} className="hidden">
+        {/* <audio ref={audioRef} className="hidden">
           <source src="/placeholder.mp3" type="audio/mpeg" />
           Your browser does not support the audio element.
-        </audio>
+        </audio> */}
       </div>
     </ThemeProvider>
   );

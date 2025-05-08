@@ -1,92 +1,58 @@
+"use client";
+import { useState, useEffect  } from "react";
 import { RefreshCw } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 
-export default function ThesaurusSidebar() {
+interface ThesaurusSidebarProps {
+  word: string | null;
+}
+
+export default function ThesaurusSidebar({ word }: ThesaurusSidebarProps) {
+  const [headword, setHeadword] = useState<string[]>([word ?? "paningkamot", "verb", "to exert effort in order to do, make, or perform something."]);
+  const [synonyms, setSynonyms] = useState<string[]>(["singkamot", "pag-usab", "proseso", "porma", "pagtrabaho", "agup-op", "pagtrabaho sa", "panday", "pagbag-o", "trabaho", "pagtrabaho usab", "sobra nga trabaho"]);
+  const [metaphors, setMetaphors] = useState<string[]>(["paningkamotan nako nga musaka", "paningkamotan tika hangtod sa kahangturan", "paningkamotan nga di mapukan"]);
+
+  useEffect(() => {
+    // TO DO: Update the headword when the word prop changes (when API is ready)
+    if (word) {
+      setHeadword([word, "verb", "to exert effort in order to do, make, or perform something."]);
+    }
+  }, [word]);
+
   return (
     <div className="w-72 flex-shrink-0 overflow-y-auto border-l border-[#1e3a5f] bg-[#0a192f]">
       <div className="border-b border-[#1e3a5f] p-4">
         <h2 className="text-2xl font-bold">Thesaurus</h2>
       </div>
       <div className="p-4">
-        <h3 className="text-xl font-medium text-[#64ffda]">paningkamotan</h3>
-        <p className="text-sm text-gray-400">verb</p>
+        <h3 className="text-xl font-medium text-[#64ffda]">{headword[0]}</h3>
+        <p className="text-sm text-gray-400">{headword[1]}</p>
 
         <p className="mt-4 text-sm text-gray-300">
-          to exert effort in order to do, make, or perform something.
+          {headword[2]}
         </p>
 
         <div className="mt-6">
-          <h4 className="mb-2 text-lg font-medium">synonyms:</h4>
-          <ul className="space-y-1 text-sm">
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>singkamot</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>proseso</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>pagtrabaho</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>pagtrabaho sa</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>pagbag-o</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>pagtrabaho usab</span>
-            </li>
-          </ul>
-
-          <ul className="mt-2 space-y-1 text-sm">
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>pag-usab</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>porma</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>agup-op</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>panday</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>trabaho</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>sobra nga trabaho</span>
-            </li>
+          <h4 className="mb-2 text-lg font-medium">Synonyms:</h4>
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+            {synonyms.map((synonym, index) => (
+              <div key={index} className="flex items-center">
+                <span className="mr-2 text-[#64ffda]">•</span>
+                <span>{synonym}</span>
+              </div>
+            ))}
           </ul>
         </div>
 
         <div className="mt-6">
           <h4 className="mb-2 text-lg font-medium">suggested metaphors:</h4>
           <ul className="space-y-2 text-sm">
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>Paningkamotan nako nga musaka</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>Paningkamotan tika hangtod sa kahangturan</span>
-            </li>
-            <li className="flex items-start">
-              <span className="mr-2 text-[#64ffda]">•</span>
-              <span>Paningkamotan nga di mapukan</span>
-            </li>
+            {metaphors.map((metaphor, index) => (
+              <li key={index} className="flex items-center">
+                <span className="mr-2 text-[#64ffda]">•</span>
+                <span>{metaphor}</span>
+              </li>
+            ))}
           </ul>
 
           <Button
