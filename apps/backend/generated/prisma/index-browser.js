@@ -126,6 +126,37 @@ exports.Prisma.UserScalarFieldEnum = {
   updateAt: 'updateAt'
 };
 
+exports.Prisma.SongScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  music_id: 'music_id',
+  file_path: 'file_path',
+  creation_date: 'creation_date'
+};
+
+exports.Prisma.LinkScalarFieldEnum = {
+  link_id: 'link_id',
+  song_id: 'song_id',
+  created_by: 'created_by',
+  is_public: 'is_public',
+  created_at: 'created_at',
+  expires_at: 'expires_at'
+};
+
+exports.Prisma.LinkPermissionScalarFieldEnum = {
+  link_permission_id: 'link_permission_id',
+  link_id: 'link_id',
+  user_id: 'user_id',
+  can_view: 'can_view'
+};
+
+exports.Prisma.MusicScalarFieldEnum = {
+  music_id: 'music_id',
+  bpm: 'bpm',
+  file_path: 'file_path',
+  uploaded_date: 'uploaded_date'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -138,7 +169,11 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Song: 'Song',
+  Link: 'Link',
+  LinkPermission: 'LinkPermission',
+  Music: 'Music'
 };
 
 /**
