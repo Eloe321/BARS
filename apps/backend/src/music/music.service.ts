@@ -52,8 +52,8 @@ export class MusicService {
     });
   }
 
-  async remove(id: string) {
-    return await this.db.music.delete({
+  async removeUploadedMusic(id: string) {
+    return await this.db.uploadedMusic.delete({
       where: {
         music_id: id,
       },

@@ -49,26 +49,27 @@ export class MusicController {
     }
   }
 
-  @Get()
-  findAll() {
-    return this.musicService.findAll();
+  @Get('uploaded')
+  findAllUploadedMusic() {
+    return this.musicService.findAlluploadedMusicByUserId(' ');
+  }
+  @Get('premade')
+  findAllPremadeMusic() {
+    return this.musicService.findAllPremadeMusic();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.musicService.findOne(id);
+  @Get('premade/:id')
+  findOnePremadeMusic(@Param('id') id: string) {
+    return this.musicService.findOnePremadeMusic(id);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateMusicDto: Prisma.MusicUpdateInput,
-  ) {
-    return this.musicService.update(id, updateMusicDto);
+  @Get('uploaded/:id')
+  findOneUploadedMusic(@Param('id') id: string) {
+    return this.musicService.findOneUploadeddMusic(id);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.musicService.remove(id);
+  @Delete('uploaded/:id')
+  removeUploadedMusic(@Param('id') id: string) {
+    return this.musicService.removeUploadedMusic(id);
   }
 }
