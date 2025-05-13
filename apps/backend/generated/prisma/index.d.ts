@@ -34,10 +34,32 @@ export type Link = $Result.DefaultSelection<Prisma.$LinkPayload>
  */
 export type LinkPermission = $Result.DefaultSelection<Prisma.$LinkPermissionPayload>
 /**
- * Model Music
+ * Model PremadeMusic
  * 
  */
-export type Music = $Result.DefaultSelection<Prisma.$MusicPayload>
+export type PremadeMusic = $Result.DefaultSelection<Prisma.$PremadeMusicPayload>
+/**
+ * Model UploadedMusic
+ * 
+ */
+export type UploadedMusic = $Result.DefaultSelection<Prisma.$UploadedMusicPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const MusicSource: {
+  PREMADE: 'PREMADE',
+  UPLOADED: 'UPLOADED'
+};
+
+export type MusicSource = (typeof MusicSource)[keyof typeof MusicSource]
+
+}
+
+export type MusicSource = $Enums.MusicSource
+
+export const MusicSource: typeof $Enums.MusicSource
 
 /**
  * ##  Prisma Client ʲˢ
@@ -205,14 +227,24 @@ export class PrismaClient<
   get linkPermission(): Prisma.LinkPermissionDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.music`: Exposes CRUD operations for the **Music** model.
+   * `prisma.premadeMusic`: Exposes CRUD operations for the **PremadeMusic** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Music
-    * const music = await prisma.music.findMany()
+    * // Fetch zero or more PremadeMusics
+    * const premadeMusics = await prisma.premadeMusic.findMany()
     * ```
     */
-  get music(): Prisma.MusicDelegate<ExtArgs, ClientOptions>;
+  get premadeMusic(): Prisma.PremadeMusicDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.uploadedMusic`: Exposes CRUD operations for the **UploadedMusic** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UploadedMusics
+    * const uploadedMusics = await prisma.uploadedMusic.findMany()
+    * ```
+    */
+  get uploadedMusic(): Prisma.UploadedMusicDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +689,8 @@ export namespace Prisma {
     Song: 'Song',
     Link: 'Link',
     LinkPermission: 'LinkPermission',
-    Music: 'Music'
+    PremadeMusic: 'PremadeMusic',
+    UploadedMusic: 'UploadedMusic'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +709,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "song" | "link" | "linkPermission" | "music"
+      modelProps: "user" | "song" | "link" | "linkPermission" | "premadeMusic" | "uploadedMusic"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -976,77 +1009,151 @@ export namespace Prisma {
           }
         }
       }
-      Music: {
-        payload: Prisma.$MusicPayload<ExtArgs>
-        fields: Prisma.MusicFieldRefs
+      PremadeMusic: {
+        payload: Prisma.$PremadeMusicPayload<ExtArgs>
+        fields: Prisma.PremadeMusicFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.MusicFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload> | null
+            args: Prisma.PremadeMusicFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.MusicFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>
+            args: Prisma.PremadeMusicFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
           }
           findFirst: {
-            args: Prisma.MusicFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload> | null
+            args: Prisma.PremadeMusicFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.MusicFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>
+            args: Prisma.PremadeMusicFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
           }
           findMany: {
-            args: Prisma.MusicFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>[]
+            args: Prisma.PremadeMusicFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>[]
           }
           create: {
-            args: Prisma.MusicCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>
+            args: Prisma.PremadeMusicCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
           }
           createMany: {
-            args: Prisma.MusicCreateManyArgs<ExtArgs>
+            args: Prisma.PremadeMusicCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.MusicCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>[]
+            args: Prisma.PremadeMusicCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>[]
           }
           delete: {
-            args: Prisma.MusicDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>
+            args: Prisma.PremadeMusicDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
           }
           update: {
-            args: Prisma.MusicUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>
+            args: Prisma.PremadeMusicUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
           }
           deleteMany: {
-            args: Prisma.MusicDeleteManyArgs<ExtArgs>
+            args: Prisma.PremadeMusicDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.MusicUpdateManyArgs<ExtArgs>
+            args: Prisma.PremadeMusicUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.MusicUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>[]
+            args: Prisma.PremadeMusicUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>[]
           }
           upsert: {
-            args: Prisma.MusicUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MusicPayload>
+            args: Prisma.PremadeMusicUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
           }
           aggregate: {
-            args: Prisma.MusicAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateMusic>
+            args: Prisma.PremadeMusicAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePremadeMusic>
           }
           groupBy: {
-            args: Prisma.MusicGroupByArgs<ExtArgs>
-            result: $Utils.Optional<MusicGroupByOutputType>[]
+            args: Prisma.PremadeMusicGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PremadeMusicGroupByOutputType>[]
           }
           count: {
-            args: Prisma.MusicCountArgs<ExtArgs>
-            result: $Utils.Optional<MusicCountAggregateOutputType> | number
+            args: Prisma.PremadeMusicCountArgs<ExtArgs>
+            result: $Utils.Optional<PremadeMusicCountAggregateOutputType> | number
+          }
+        }
+      }
+      UploadedMusic: {
+        payload: Prisma.$UploadedMusicPayload<ExtArgs>
+        fields: Prisma.UploadedMusicFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UploadedMusicFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UploadedMusicFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          findFirst: {
+            args: Prisma.UploadedMusicFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UploadedMusicFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          findMany: {
+            args: Prisma.UploadedMusicFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>[]
+          }
+          create: {
+            args: Prisma.UploadedMusicCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          createMany: {
+            args: Prisma.UploadedMusicCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UploadedMusicCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>[]
+          }
+          delete: {
+            args: Prisma.UploadedMusicDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          update: {
+            args: Prisma.UploadedMusicUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          deleteMany: {
+            args: Prisma.UploadedMusicDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UploadedMusicUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UploadedMusicUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>[]
+          }
+          upsert: {
+            args: Prisma.UploadedMusicUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          aggregate: {
+            args: Prisma.UploadedMusicAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUploadedMusic>
+          }
+          groupBy: {
+            args: Prisma.UploadedMusicGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UploadedMusicGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UploadedMusicCountArgs<ExtArgs>
+            result: $Utils.Optional<UploadedMusicCountAggregateOutputType> | number
           }
         }
       }
@@ -1138,7 +1245,8 @@ export namespace Prisma {
     song?: SongOmit
     link?: LinkOmit
     linkPermission?: LinkPermissionOmit
-    music?: MusicOmit
+    premadeMusic?: PremadeMusicOmit
+    uploadedMusic?: UploadedMusicOmit
   }
 
   /* Types for Logging */
@@ -1340,32 +1448,63 @@ export namespace Prisma {
 
 
   /**
-   * Count Type MusicCountOutputType
+   * Count Type PremadeMusicCountOutputType
    */
 
-  export type MusicCountOutputType = {
+  export type PremadeMusicCountOutputType = {
     songs: number
   }
 
-  export type MusicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | MusicCountOutputTypeCountSongsArgs
+  export type PremadeMusicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | PremadeMusicCountOutputTypeCountSongsArgs
   }
 
   // Custom InputTypes
   /**
-   * MusicCountOutputType without action
+   * PremadeMusicCountOutputType without action
    */
-  export type MusicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the MusicCountOutputType
+     * Select specific fields to fetch from the PremadeMusicCountOutputType
      */
-    select?: MusicCountOutputTypeSelect<ExtArgs> | null
+    select?: PremadeMusicCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * MusicCountOutputType without action
+   * PremadeMusicCountOutputType without action
    */
-  export type MusicCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SongWhereInput
+  }
+
+
+  /**
+   * Count Type UploadedMusicCountOutputType
+   */
+
+  export type UploadedMusicCountOutputType = {
+    songs: number
+  }
+
+  export type UploadedMusicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | UploadedMusicCountOutputTypeCountSongsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UploadedMusicCountOutputType without action
+   */
+  export type UploadedMusicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusicCountOutputType
+     */
+    select?: UploadedMusicCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UploadedMusicCountOutputType without action
+   */
+  export type UploadedMusicCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SongWhereInput
   }
 
@@ -2526,7 +2665,9 @@ export namespace Prisma {
   export type SongMinAggregateOutputType = {
     id: string | null
     user_id: string | null
-    music_id: string | null
+    musicSource: $Enums.MusicSource | null
+    premade_music_id: string | null
+    uploaded_music_id: string | null
     file_path: string | null
     creation_date: Date | null
   }
@@ -2534,7 +2675,9 @@ export namespace Prisma {
   export type SongMaxAggregateOutputType = {
     id: string | null
     user_id: string | null
-    music_id: string | null
+    musicSource: $Enums.MusicSource | null
+    premade_music_id: string | null
+    uploaded_music_id: string | null
     file_path: string | null
     creation_date: Date | null
   }
@@ -2542,7 +2685,9 @@ export namespace Prisma {
   export type SongCountAggregateOutputType = {
     id: number
     user_id: number
-    music_id: number
+    musicSource: number
+    premade_music_id: number
+    uploaded_music_id: number
     file_path: number
     creation_date: number
     _all: number
@@ -2552,7 +2697,9 @@ export namespace Prisma {
   export type SongMinAggregateInputType = {
     id?: true
     user_id?: true
-    music_id?: true
+    musicSource?: true
+    premade_music_id?: true
+    uploaded_music_id?: true
     file_path?: true
     creation_date?: true
   }
@@ -2560,7 +2707,9 @@ export namespace Prisma {
   export type SongMaxAggregateInputType = {
     id?: true
     user_id?: true
-    music_id?: true
+    musicSource?: true
+    premade_music_id?: true
+    uploaded_music_id?: true
     file_path?: true
     creation_date?: true
   }
@@ -2568,7 +2717,9 @@ export namespace Prisma {
   export type SongCountAggregateInputType = {
     id?: true
     user_id?: true
-    music_id?: true
+    musicSource?: true
+    premade_music_id?: true
+    uploaded_music_id?: true
     file_path?: true
     creation_date?: true
     _all?: true
@@ -2649,7 +2800,9 @@ export namespace Prisma {
   export type SongGroupByOutputType = {
     id: string
     user_id: string
-    music_id: string
+    musicSource: $Enums.MusicSource
+    premade_music_id: string | null
+    uploaded_music_id: string | null
     file_path: string
     creation_date: Date
     _count: SongCountAggregateOutputType | null
@@ -2674,57 +2827,71 @@ export namespace Prisma {
   export type SongSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    music_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
     file_path?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     links?: boolean | Song$linksArgs<ExtArgs>
-    music?: boolean | MusicDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
     _count?: boolean | SongCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["song"]>
 
   export type SongSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    music_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
     file_path?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    music?: boolean | MusicDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
   }, ExtArgs["result"]["song"]>
 
   export type SongSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    music_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
     file_path?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    music?: boolean | MusicDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
   }, ExtArgs["result"]["song"]>
 
   export type SongSelectScalar = {
     id?: boolean
     user_id?: boolean
-    music_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
     file_path?: boolean
     creation_date?: boolean
   }
 
-  export type SongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "music_id" | "file_path" | "creation_date", ExtArgs["result"]["song"]>
+  export type SongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "musicSource" | "premade_music_id" | "uploaded_music_id" | "file_path" | "creation_date", ExtArgs["result"]["song"]>
   export type SongInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     links?: boolean | Song$linksArgs<ExtArgs>
-    music?: boolean | MusicDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
     _count?: boolean | SongCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SongIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    music?: boolean | MusicDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
   }
   export type SongIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    music?: boolean | MusicDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
   }
 
   export type $SongPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2732,12 +2899,15 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       links: Prisma.$LinkPayload<ExtArgs>[]
-      music: Prisma.$MusicPayload<ExtArgs>
+      premadeMusic: Prisma.$PremadeMusicPayload<ExtArgs> | null
+      uploadedMusic: Prisma.$UploadedMusicPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       user_id: string
-      music_id: string
+      musicSource: $Enums.MusicSource
+      premade_music_id: string | null
+      uploaded_music_id: string | null
       file_path: string
       creation_date: Date
     }, ExtArgs["result"]["song"]>
@@ -3136,7 +3306,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     links<T extends Song$linksArgs<ExtArgs> = {}>(args?: Subset<T, Song$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    music<T extends MusicDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MusicDefaultArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    premadeMusic<T extends Song$premadeMusicArgs<ExtArgs> = {}>(args?: Subset<T, Song$premadeMusicArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    uploadedMusic<T extends Song$uploadedMusicArgs<ExtArgs> = {}>(args?: Subset<T, Song$uploadedMusicArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3168,7 +3339,9 @@ export namespace Prisma {
   interface SongFieldRefs {
     readonly id: FieldRef<"Song", 'String'>
     readonly user_id: FieldRef<"Song", 'String'>
-    readonly music_id: FieldRef<"Song", 'String'>
+    readonly musicSource: FieldRef<"Song", 'MusicSource'>
+    readonly premade_music_id: FieldRef<"Song", 'String'>
+    readonly uploaded_music_id: FieldRef<"Song", 'String'>
     readonly file_path: FieldRef<"Song", 'String'>
     readonly creation_date: FieldRef<"Song", 'DateTime'>
   }
@@ -3588,6 +3761,44 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
+  }
+
+  /**
+   * Song.premadeMusic
+   */
+  export type Song$premadeMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    where?: PremadeMusicWhereInput
+  }
+
+  /**
+   * Song.uploadedMusic
+   */
+  export type Song$uploadedMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    where?: UploadedMusicWhereInput
   }
 
   /**
@@ -5772,368 +5983,356 @@ export namespace Prisma {
 
 
   /**
-   * Model Music
+   * Model PremadeMusic
    */
 
-  export type AggregateMusic = {
-    _count: MusicCountAggregateOutputType | null
-    _avg: MusicAvgAggregateOutputType | null
-    _sum: MusicSumAggregateOutputType | null
-    _min: MusicMinAggregateOutputType | null
-    _max: MusicMaxAggregateOutputType | null
+  export type AggregatePremadeMusic = {
+    _count: PremadeMusicCountAggregateOutputType | null
+    _avg: PremadeMusicAvgAggregateOutputType | null
+    _sum: PremadeMusicSumAggregateOutputType | null
+    _min: PremadeMusicMinAggregateOutputType | null
+    _max: PremadeMusicMaxAggregateOutputType | null
   }
 
-  export type MusicAvgAggregateOutputType = {
+  export type PremadeMusicAvgAggregateOutputType = {
     bpm: number | null
   }
 
-  export type MusicSumAggregateOutputType = {
+  export type PremadeMusicSumAggregateOutputType = {
     bpm: number | null
   }
 
-  export type MusicMinAggregateOutputType = {
+  export type PremadeMusicMinAggregateOutputType = {
     music_id: string | null
     bpm: number | null
-    file_path: string | null
     uploaded_date: Date | null
   }
 
-  export type MusicMaxAggregateOutputType = {
+  export type PremadeMusicMaxAggregateOutputType = {
     music_id: string | null
     bpm: number | null
-    file_path: string | null
     uploaded_date: Date | null
   }
 
-  export type MusicCountAggregateOutputType = {
+  export type PremadeMusicCountAggregateOutputType = {
     music_id: number
     bpm: number
-    file_path: number
     uploaded_date: number
     _all: number
   }
 
 
-  export type MusicAvgAggregateInputType = {
+  export type PremadeMusicAvgAggregateInputType = {
     bpm?: true
   }
 
-  export type MusicSumAggregateInputType = {
+  export type PremadeMusicSumAggregateInputType = {
     bpm?: true
   }
 
-  export type MusicMinAggregateInputType = {
+  export type PremadeMusicMinAggregateInputType = {
     music_id?: true
     bpm?: true
-    file_path?: true
     uploaded_date?: true
   }
 
-  export type MusicMaxAggregateInputType = {
+  export type PremadeMusicMaxAggregateInputType = {
     music_id?: true
     bpm?: true
-    file_path?: true
     uploaded_date?: true
   }
 
-  export type MusicCountAggregateInputType = {
+  export type PremadeMusicCountAggregateInputType = {
     music_id?: true
     bpm?: true
-    file_path?: true
     uploaded_date?: true
     _all?: true
   }
 
-  export type MusicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Music to aggregate.
+     * Filter which PremadeMusic to aggregate.
      */
-    where?: MusicWhereInput
+    where?: PremadeMusicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Music to fetch.
+     * Determine the order of PremadeMusics to fetch.
      */
-    orderBy?: MusicOrderByWithRelationInput | MusicOrderByWithRelationInput[]
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: MusicWhereUniqueInput
+    cursor?: PremadeMusicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Music from the position of the cursor.
+     * Take `±n` PremadeMusics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Music.
+     * Skip the first `n` PremadeMusics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Music
+     * Count returned PremadeMusics
     **/
-    _count?: true | MusicCountAggregateInputType
+    _count?: true | PremadeMusicCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: MusicAvgAggregateInputType
+    _avg?: PremadeMusicAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: MusicSumAggregateInputType
+    _sum?: PremadeMusicSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: MusicMinAggregateInputType
+    _min?: PremadeMusicMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: MusicMaxAggregateInputType
+    _max?: PremadeMusicMaxAggregateInputType
   }
 
-  export type GetMusicAggregateType<T extends MusicAggregateArgs> = {
-        [P in keyof T & keyof AggregateMusic]: P extends '_count' | 'count'
+  export type GetPremadeMusicAggregateType<T extends PremadeMusicAggregateArgs> = {
+        [P in keyof T & keyof AggregatePremadeMusic]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateMusic[P]>
-      : GetScalarType<T[P], AggregateMusic[P]>
+        : GetScalarType<T[P], AggregatePremadeMusic[P]>
+      : GetScalarType<T[P], AggregatePremadeMusic[P]>
   }
 
 
 
 
-  export type MusicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MusicWhereInput
-    orderBy?: MusicOrderByWithAggregationInput | MusicOrderByWithAggregationInput[]
-    by: MusicScalarFieldEnum[] | MusicScalarFieldEnum
-    having?: MusicScalarWhereWithAggregatesInput
+  export type PremadeMusicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PremadeMusicWhereInput
+    orderBy?: PremadeMusicOrderByWithAggregationInput | PremadeMusicOrderByWithAggregationInput[]
+    by: PremadeMusicScalarFieldEnum[] | PremadeMusicScalarFieldEnum
+    having?: PremadeMusicScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: MusicCountAggregateInputType | true
-    _avg?: MusicAvgAggregateInputType
-    _sum?: MusicSumAggregateInputType
-    _min?: MusicMinAggregateInputType
-    _max?: MusicMaxAggregateInputType
+    _count?: PremadeMusicCountAggregateInputType | true
+    _avg?: PremadeMusicAvgAggregateInputType
+    _sum?: PremadeMusicSumAggregateInputType
+    _min?: PremadeMusicMinAggregateInputType
+    _max?: PremadeMusicMaxAggregateInputType
   }
 
-  export type MusicGroupByOutputType = {
+  export type PremadeMusicGroupByOutputType = {
     music_id: string
     bpm: number
-    file_path: string
     uploaded_date: Date
-    _count: MusicCountAggregateOutputType | null
-    _avg: MusicAvgAggregateOutputType | null
-    _sum: MusicSumAggregateOutputType | null
-    _min: MusicMinAggregateOutputType | null
-    _max: MusicMaxAggregateOutputType | null
+    _count: PremadeMusicCountAggregateOutputType | null
+    _avg: PremadeMusicAvgAggregateOutputType | null
+    _sum: PremadeMusicSumAggregateOutputType | null
+    _min: PremadeMusicMinAggregateOutputType | null
+    _max: PremadeMusicMaxAggregateOutputType | null
   }
 
-  type GetMusicGroupByPayload<T extends MusicGroupByArgs> = Prisma.PrismaPromise<
+  type GetPremadeMusicGroupByPayload<T extends PremadeMusicGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<MusicGroupByOutputType, T['by']> &
+      PickEnumerable<PremadeMusicGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof MusicGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PremadeMusicGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], MusicGroupByOutputType[P]>
-            : GetScalarType<T[P], MusicGroupByOutputType[P]>
+              : GetScalarType<T[P], PremadeMusicGroupByOutputType[P]>
+            : GetScalarType<T[P], PremadeMusicGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type MusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PremadeMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
     bpm?: boolean
-    file_path?: boolean
     uploaded_date?: boolean
-    songs?: boolean | Music$songsArgs<ExtArgs>
-    _count?: boolean | MusicCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["music"]>
+    songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
+    _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["premadeMusic"]>
 
-  export type MusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PremadeMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
     bpm?: boolean
-    file_path?: boolean
     uploaded_date?: boolean
-  }, ExtArgs["result"]["music"]>
+  }, ExtArgs["result"]["premadeMusic"]>
 
-  export type MusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PremadeMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
     bpm?: boolean
-    file_path?: boolean
     uploaded_date?: boolean
-  }, ExtArgs["result"]["music"]>
+  }, ExtArgs["result"]["premadeMusic"]>
 
-  export type MusicSelectScalar = {
+  export type PremadeMusicSelectScalar = {
     music_id?: boolean
     bpm?: boolean
-    file_path?: boolean
     uploaded_date?: boolean
   }
 
-  export type MusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "bpm" | "file_path" | "uploaded_date", ExtArgs["result"]["music"]>
-  export type MusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | Music$songsArgs<ExtArgs>
-    _count?: boolean | MusicCountOutputTypeDefaultArgs<ExtArgs>
+  export type PremadeMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "bpm" | "uploaded_date", ExtArgs["result"]["premadeMusic"]>
+  export type PremadeMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
+    _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type MusicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type MusicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PremadeMusicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PremadeMusicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $MusicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Music"
+  export type $PremadeMusicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PremadeMusic"
     objects: {
       songs: Prisma.$SongPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       music_id: string
       bpm: number
-      file_path: string
       uploaded_date: Date
-    }, ExtArgs["result"]["music"]>
+    }, ExtArgs["result"]["premadeMusic"]>
     composites: {}
   }
 
-  type MusicGetPayload<S extends boolean | null | undefined | MusicDefaultArgs> = $Result.GetResult<Prisma.$MusicPayload, S>
+  type PremadeMusicGetPayload<S extends boolean | null | undefined | PremadeMusicDefaultArgs> = $Result.GetResult<Prisma.$PremadeMusicPayload, S>
 
-  type MusicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<MusicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: MusicCountAggregateInputType | true
+  type PremadeMusicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PremadeMusicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PremadeMusicCountAggregateInputType | true
     }
 
-  export interface MusicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Music'], meta: { name: 'Music' } }
+  export interface PremadeMusicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PremadeMusic'], meta: { name: 'PremadeMusic' } }
     /**
-     * Find zero or one Music that matches the filter.
-     * @param {MusicFindUniqueArgs} args - Arguments to find a Music
+     * Find zero or one PremadeMusic that matches the filter.
+     * @param {PremadeMusicFindUniqueArgs} args - Arguments to find a PremadeMusic
      * @example
-     * // Get one Music
-     * const music = await prisma.music.findUnique({
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends MusicFindUniqueArgs>(args: SelectSubset<T, MusicFindUniqueArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PremadeMusicFindUniqueArgs>(args: SelectSubset<T, PremadeMusicFindUniqueArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Music that matches the filter or throw an error with `error.code='P2025'`
+     * Find one PremadeMusic that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {MusicFindUniqueOrThrowArgs} args - Arguments to find a Music
+     * @param {PremadeMusicFindUniqueOrThrowArgs} args - Arguments to find a PremadeMusic
      * @example
-     * // Get one Music
-     * const music = await prisma.music.findUniqueOrThrow({
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends MusicFindUniqueOrThrowArgs>(args: SelectSubset<T, MusicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PremadeMusicFindUniqueOrThrowArgs>(args: SelectSubset<T, PremadeMusicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Music that matches the filter.
+     * Find the first PremadeMusic that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MusicFindFirstArgs} args - Arguments to find a Music
+     * @param {PremadeMusicFindFirstArgs} args - Arguments to find a PremadeMusic
      * @example
-     * // Get one Music
-     * const music = await prisma.music.findFirst({
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends MusicFindFirstArgs>(args?: SelectSubset<T, MusicFindFirstArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PremadeMusicFindFirstArgs>(args?: SelectSubset<T, PremadeMusicFindFirstArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Music that matches the filter or
+     * Find the first PremadeMusic that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MusicFindFirstOrThrowArgs} args - Arguments to find a Music
+     * @param {PremadeMusicFindFirstOrThrowArgs} args - Arguments to find a PremadeMusic
      * @example
-     * // Get one Music
-     * const music = await prisma.music.findFirstOrThrow({
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends MusicFindFirstOrThrowArgs>(args?: SelectSubset<T, MusicFindFirstOrThrowArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PremadeMusicFindFirstOrThrowArgs>(args?: SelectSubset<T, PremadeMusicFindFirstOrThrowArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Music that matches the filter.
+     * Find zero or more PremadeMusics that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MusicFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {PremadeMusicFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Music
-     * const music = await prisma.music.findMany()
+     * // Get all PremadeMusics
+     * const premadeMusics = await prisma.premadeMusic.findMany()
      * 
-     * // Get first 10 Music
-     * const music = await prisma.music.findMany({ take: 10 })
+     * // Get first 10 PremadeMusics
+     * const premadeMusics = await prisma.premadeMusic.findMany({ take: 10 })
      * 
      * // Only select the `music_id`
-     * const musicWithMusic_idOnly = await prisma.music.findMany({ select: { music_id: true } })
+     * const premadeMusicWithMusic_idOnly = await prisma.premadeMusic.findMany({ select: { music_id: true } })
      * 
      */
-    findMany<T extends MusicFindManyArgs>(args?: SelectSubset<T, MusicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PremadeMusicFindManyArgs>(args?: SelectSubset<T, PremadeMusicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Music.
-     * @param {MusicCreateArgs} args - Arguments to create a Music.
+     * Create a PremadeMusic.
+     * @param {PremadeMusicCreateArgs} args - Arguments to create a PremadeMusic.
      * @example
-     * // Create one Music
-     * const Music = await prisma.music.create({
+     * // Create one PremadeMusic
+     * const PremadeMusic = await prisma.premadeMusic.create({
      *   data: {
-     *     // ... data to create a Music
+     *     // ... data to create a PremadeMusic
      *   }
      * })
      * 
      */
-    create<T extends MusicCreateArgs>(args: SelectSubset<T, MusicCreateArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PremadeMusicCreateArgs>(args: SelectSubset<T, PremadeMusicCreateArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Music.
-     * @param {MusicCreateManyArgs} args - Arguments to create many Music.
+     * Create many PremadeMusics.
+     * @param {PremadeMusicCreateManyArgs} args - Arguments to create many PremadeMusics.
      * @example
-     * // Create many Music
-     * const music = await prisma.music.createMany({
+     * // Create many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends MusicCreateManyArgs>(args?: SelectSubset<T, MusicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PremadeMusicCreateManyArgs>(args?: SelectSubset<T, PremadeMusicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Music and returns the data saved in the database.
-     * @param {MusicCreateManyAndReturnArgs} args - Arguments to create many Music.
+     * Create many PremadeMusics and returns the data saved in the database.
+     * @param {PremadeMusicCreateManyAndReturnArgs} args - Arguments to create many PremadeMusics.
      * @example
-     * // Create many Music
-     * const music = await prisma.music.createManyAndReturn({
+     * // Create many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Music and only return the `music_id`
-     * const musicWithMusic_idOnly = await prisma.music.createManyAndReturn({
+     * // Create many PremadeMusics and only return the `music_id`
+     * const premadeMusicWithMusic_idOnly = await prisma.premadeMusic.createManyAndReturn({
      *   select: { music_id: true },
      *   data: [
      *     // ... provide data here
@@ -6143,28 +6342,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends MusicCreateManyAndReturnArgs>(args?: SelectSubset<T, MusicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PremadeMusicCreateManyAndReturnArgs>(args?: SelectSubset<T, PremadeMusicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Music.
-     * @param {MusicDeleteArgs} args - Arguments to delete one Music.
+     * Delete a PremadeMusic.
+     * @param {PremadeMusicDeleteArgs} args - Arguments to delete one PremadeMusic.
      * @example
-     * // Delete one Music
-     * const Music = await prisma.music.delete({
+     * // Delete one PremadeMusic
+     * const PremadeMusic = await prisma.premadeMusic.delete({
      *   where: {
-     *     // ... filter to delete one Music
+     *     // ... filter to delete one PremadeMusic
      *   }
      * })
      * 
      */
-    delete<T extends MusicDeleteArgs>(args: SelectSubset<T, MusicDeleteArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PremadeMusicDeleteArgs>(args: SelectSubset<T, PremadeMusicDeleteArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Music.
-     * @param {MusicUpdateArgs} args - Arguments to update one Music.
+     * Update one PremadeMusic.
+     * @param {PremadeMusicUpdateArgs} args - Arguments to update one PremadeMusic.
      * @example
-     * // Update one Music
-     * const music = await prisma.music.update({
+     * // Update one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6174,30 +6373,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends MusicUpdateArgs>(args: SelectSubset<T, MusicUpdateArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PremadeMusicUpdateArgs>(args: SelectSubset<T, PremadeMusicUpdateArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Music.
-     * @param {MusicDeleteManyArgs} args - Arguments to filter Music to delete.
+     * Delete zero or more PremadeMusics.
+     * @param {PremadeMusicDeleteManyArgs} args - Arguments to filter PremadeMusics to delete.
      * @example
-     * // Delete a few Music
-     * const { count } = await prisma.music.deleteMany({
+     * // Delete a few PremadeMusics
+     * const { count } = await prisma.premadeMusic.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends MusicDeleteManyArgs>(args?: SelectSubset<T, MusicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PremadeMusicDeleteManyArgs>(args?: SelectSubset<T, PremadeMusicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Music.
+     * Update zero or more PremadeMusics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MusicUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {PremadeMusicUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Music
-     * const music = await prisma.music.updateMany({
+     * // Update many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6207,14 +6406,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends MusicUpdateManyArgs>(args: SelectSubset<T, MusicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PremadeMusicUpdateManyArgs>(args: SelectSubset<T, PremadeMusicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Music and returns the data updated in the database.
-     * @param {MusicUpdateManyAndReturnArgs} args - Arguments to update many Music.
+     * Update zero or more PremadeMusics and returns the data updated in the database.
+     * @param {PremadeMusicUpdateManyAndReturnArgs} args - Arguments to update many PremadeMusics.
      * @example
-     * // Update many Music
-     * const music = await prisma.music.updateManyAndReturn({
+     * // Update many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6223,8 +6422,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Music and only return the `music_id`
-     * const musicWithMusic_idOnly = await prisma.music.updateManyAndReturn({
+     * // Update zero or more PremadeMusics and only return the `music_id`
+     * const premadeMusicWithMusic_idOnly = await prisma.premadeMusic.updateManyAndReturn({
      *   select: { music_id: true },
      *   where: {
      *     // ... provide filter here
@@ -6237,56 +6436,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends MusicUpdateManyAndReturnArgs>(args: SelectSubset<T, MusicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PremadeMusicUpdateManyAndReturnArgs>(args: SelectSubset<T, PremadeMusicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Music.
-     * @param {MusicUpsertArgs} args - Arguments to update or create a Music.
+     * Create or update one PremadeMusic.
+     * @param {PremadeMusicUpsertArgs} args - Arguments to update or create a PremadeMusic.
      * @example
-     * // Update or create a Music
-     * const music = await prisma.music.upsert({
+     * // Update or create a PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.upsert({
      *   create: {
-     *     // ... data to create a Music
+     *     // ... data to create a PremadeMusic
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Music we want to update
+     *     // ... the filter for the PremadeMusic we want to update
      *   }
      * })
      */
-    upsert<T extends MusicUpsertArgs>(args: SelectSubset<T, MusicUpsertArgs<ExtArgs>>): Prisma__MusicClient<$Result.GetResult<Prisma.$MusicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends PremadeMusicUpsertArgs>(args: SelectSubset<T, PremadeMusicUpsertArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Music.
+     * Count the number of PremadeMusics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MusicCountArgs} args - Arguments to filter Music to count.
+     * @param {PremadeMusicCountArgs} args - Arguments to filter PremadeMusics to count.
      * @example
-     * // Count the number of Music
-     * const count = await prisma.music.count({
+     * // Count the number of PremadeMusics
+     * const count = await prisma.premadeMusic.count({
      *   where: {
-     *     // ... the filter for the Music we want to count
+     *     // ... the filter for the PremadeMusics we want to count
      *   }
      * })
     **/
-    count<T extends MusicCountArgs>(
-      args?: Subset<T, MusicCountArgs>,
+    count<T extends PremadeMusicCountArgs>(
+      args?: Subset<T, PremadeMusicCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], MusicCountAggregateOutputType>
+          : GetScalarType<T['select'], PremadeMusicCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Music.
+     * Allows you to perform aggregations operations on a PremadeMusic.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MusicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PremadeMusicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -6306,13 +6505,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends MusicAggregateArgs>(args: Subset<T, MusicAggregateArgs>): Prisma.PrismaPromise<GetMusicAggregateType<T>>
+    aggregate<T extends PremadeMusicAggregateArgs>(args: Subset<T, PremadeMusicAggregateArgs>): Prisma.PrismaPromise<GetPremadeMusicAggregateType<T>>
 
     /**
-     * Group by Music.
+     * Group by PremadeMusic.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MusicGroupByArgs} args - Group by arguments.
+     * @param {PremadeMusicGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -6327,14 +6526,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends MusicGroupByArgs,
+      T extends PremadeMusicGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: MusicGroupByArgs['orderBy'] }
-        : { orderBy?: MusicGroupByArgs['orderBy'] },
+        ? { orderBy: PremadeMusicGroupByArgs['orderBy'] }
+        : { orderBy?: PremadeMusicGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -6383,22 +6582,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, MusicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMusicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, PremadeMusicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPremadeMusicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Music model
+   * Fields of the PremadeMusic model
    */
-  readonly fields: MusicFieldRefs;
+  readonly fields: PremadeMusicFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Music.
+   * The delegate class that acts as a "Promise-like" for PremadeMusic.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__MusicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PremadeMusicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    songs<T extends Music$songsArgs<ExtArgs> = {}>(args?: Subset<T, Music$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    songs<T extends PremadeMusic$songsArgs<ExtArgs> = {}>(args?: Subset<T, PremadeMusic$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6425,404 +6624,403 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Music model
+   * Fields of the PremadeMusic model
    */
-  interface MusicFieldRefs {
-    readonly music_id: FieldRef<"Music", 'String'>
-    readonly bpm: FieldRef<"Music", 'Int'>
-    readonly file_path: FieldRef<"Music", 'String'>
-    readonly uploaded_date: FieldRef<"Music", 'DateTime'>
+  interface PremadeMusicFieldRefs {
+    readonly music_id: FieldRef<"PremadeMusic", 'String'>
+    readonly bpm: FieldRef<"PremadeMusic", 'Int'>
+    readonly uploaded_date: FieldRef<"PremadeMusic", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Music findUnique
+   * PremadeMusic findUnique
    */
-  export type MusicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * Filter, which Music to fetch.
+     * Filter, which PremadeMusic to fetch.
      */
-    where: MusicWhereUniqueInput
+    where: PremadeMusicWhereUniqueInput
   }
 
   /**
-   * Music findUniqueOrThrow
+   * PremadeMusic findUniqueOrThrow
    */
-  export type MusicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * Filter, which Music to fetch.
+     * Filter, which PremadeMusic to fetch.
      */
-    where: MusicWhereUniqueInput
+    where: PremadeMusicWhereUniqueInput
   }
 
   /**
-   * Music findFirst
+   * PremadeMusic findFirst
    */
-  export type MusicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * Filter, which Music to fetch.
+     * Filter, which PremadeMusic to fetch.
      */
-    where?: MusicWhereInput
+    where?: PremadeMusicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Music to fetch.
+     * Determine the order of PremadeMusics to fetch.
      */
-    orderBy?: MusicOrderByWithRelationInput | MusicOrderByWithRelationInput[]
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Music.
+     * Sets the position for searching for PremadeMusics.
      */
-    cursor?: MusicWhereUniqueInput
+    cursor?: PremadeMusicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Music from the position of the cursor.
+     * Take `±n` PremadeMusics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Music.
+     * Skip the first `n` PremadeMusics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Music.
+     * Filter by unique combinations of PremadeMusics.
      */
-    distinct?: MusicScalarFieldEnum | MusicScalarFieldEnum[]
+    distinct?: PremadeMusicScalarFieldEnum | PremadeMusicScalarFieldEnum[]
   }
 
   /**
-   * Music findFirstOrThrow
+   * PremadeMusic findFirstOrThrow
    */
-  export type MusicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * Filter, which Music to fetch.
+     * Filter, which PremadeMusic to fetch.
      */
-    where?: MusicWhereInput
+    where?: PremadeMusicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Music to fetch.
+     * Determine the order of PremadeMusics to fetch.
      */
-    orderBy?: MusicOrderByWithRelationInput | MusicOrderByWithRelationInput[]
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Music.
+     * Sets the position for searching for PremadeMusics.
      */
-    cursor?: MusicWhereUniqueInput
+    cursor?: PremadeMusicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Music from the position of the cursor.
+     * Take `±n` PremadeMusics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Music.
+     * Skip the first `n` PremadeMusics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Music.
+     * Filter by unique combinations of PremadeMusics.
      */
-    distinct?: MusicScalarFieldEnum | MusicScalarFieldEnum[]
+    distinct?: PremadeMusicScalarFieldEnum | PremadeMusicScalarFieldEnum[]
   }
 
   /**
-   * Music findMany
+   * PremadeMusic findMany
    */
-  export type MusicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * Filter, which Music to fetch.
+     * Filter, which PremadeMusics to fetch.
      */
-    where?: MusicWhereInput
+    where?: PremadeMusicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Music to fetch.
+     * Determine the order of PremadeMusics to fetch.
      */
-    orderBy?: MusicOrderByWithRelationInput | MusicOrderByWithRelationInput[]
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Music.
+     * Sets the position for listing PremadeMusics.
      */
-    cursor?: MusicWhereUniqueInput
+    cursor?: PremadeMusicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Music from the position of the cursor.
+     * Take `±n` PremadeMusics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Music.
+     * Skip the first `n` PremadeMusics.
      */
     skip?: number
-    distinct?: MusicScalarFieldEnum | MusicScalarFieldEnum[]
+    distinct?: PremadeMusicScalarFieldEnum | PremadeMusicScalarFieldEnum[]
   }
 
   /**
-   * Music create
+   * PremadeMusic create
    */
-  export type MusicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * The data needed to create a Music.
+     * The data needed to create a PremadeMusic.
      */
-    data: XOR<MusicCreateInput, MusicUncheckedCreateInput>
+    data: XOR<PremadeMusicCreateInput, PremadeMusicUncheckedCreateInput>
   }
 
   /**
-   * Music createMany
+   * PremadeMusic createMany
    */
-  export type MusicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Music.
+     * The data used to create many PremadeMusics.
      */
-    data: MusicCreateManyInput | MusicCreateManyInput[]
+    data: PremadeMusicCreateManyInput | PremadeMusicCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Music createManyAndReturn
+   * PremadeMusic createManyAndReturn
    */
-  export type MusicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelectCreateManyAndReturn<ExtArgs> | null
+    select?: PremadeMusicSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
-     * The data used to create many Music.
+     * The data used to create many PremadeMusics.
      */
-    data: MusicCreateManyInput | MusicCreateManyInput[]
+    data: PremadeMusicCreateManyInput | PremadeMusicCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Music update
+   * PremadeMusic update
    */
-  export type MusicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * The data needed to update a Music.
+     * The data needed to update a PremadeMusic.
      */
-    data: XOR<MusicUpdateInput, MusicUncheckedUpdateInput>
+    data: XOR<PremadeMusicUpdateInput, PremadeMusicUncheckedUpdateInput>
     /**
-     * Choose, which Music to update.
+     * Choose, which PremadeMusic to update.
      */
-    where: MusicWhereUniqueInput
+    where: PremadeMusicWhereUniqueInput
   }
 
   /**
-   * Music updateMany
+   * PremadeMusic updateMany
    */
-  export type MusicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Music.
+     * The data used to update PremadeMusics.
      */
-    data: XOR<MusicUpdateManyMutationInput, MusicUncheckedUpdateManyInput>
+    data: XOR<PremadeMusicUpdateManyMutationInput, PremadeMusicUncheckedUpdateManyInput>
     /**
-     * Filter which Music to update
+     * Filter which PremadeMusics to update
      */
-    where?: MusicWhereInput
+    where?: PremadeMusicWhereInput
     /**
-     * Limit how many Music to update.
+     * Limit how many PremadeMusics to update.
      */
     limit?: number
   }
 
   /**
-   * Music updateManyAndReturn
+   * PremadeMusic updateManyAndReturn
    */
-  export type MusicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: PremadeMusicSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
-     * The data used to update Music.
+     * The data used to update PremadeMusics.
      */
-    data: XOR<MusicUpdateManyMutationInput, MusicUncheckedUpdateManyInput>
+    data: XOR<PremadeMusicUpdateManyMutationInput, PremadeMusicUncheckedUpdateManyInput>
     /**
-     * Filter which Music to update
+     * Filter which PremadeMusics to update
      */
-    where?: MusicWhereInput
+    where?: PremadeMusicWhereInput
     /**
-     * Limit how many Music to update.
+     * Limit how many PremadeMusics to update.
      */
     limit?: number
   }
 
   /**
-   * Music upsert
+   * PremadeMusic upsert
    */
-  export type MusicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * The filter to search for the Music to update in case it exists.
+     * The filter to search for the PremadeMusic to update in case it exists.
      */
-    where: MusicWhereUniqueInput
+    where: PremadeMusicWhereUniqueInput
     /**
-     * In case the Music found by the `where` argument doesn't exist, create a new Music with this data.
+     * In case the PremadeMusic found by the `where` argument doesn't exist, create a new PremadeMusic with this data.
      */
-    create: XOR<MusicCreateInput, MusicUncheckedCreateInput>
+    create: XOR<PremadeMusicCreateInput, PremadeMusicUncheckedCreateInput>
     /**
-     * In case the Music was found with the provided `where` argument, update it with this data.
+     * In case the PremadeMusic was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<MusicUpdateInput, MusicUncheckedUpdateInput>
+    update: XOR<PremadeMusicUpdateInput, PremadeMusicUncheckedUpdateInput>
   }
 
   /**
-   * Music delete
+   * PremadeMusic delete
    */
-  export type MusicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
     /**
-     * Filter which Music to delete.
+     * Filter which PremadeMusic to delete.
      */
-    where: MusicWhereUniqueInput
+    where: PremadeMusicWhereUniqueInput
   }
 
   /**
-   * Music deleteMany
+   * PremadeMusic deleteMany
    */
-  export type MusicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Music to delete
+     * Filter which PremadeMusics to delete
      */
-    where?: MusicWhereInput
+    where?: PremadeMusicWhereInput
     /**
-     * Limit how many Music to delete.
+     * Limit how many PremadeMusics to delete.
      */
     limit?: number
   }
 
   /**
-   * Music.songs
+   * PremadeMusic.songs
    */
-  export type Music$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusic$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Song
      */
@@ -6844,21 +7042,1052 @@ export namespace Prisma {
   }
 
   /**
-   * Music without action
+   * PremadeMusic without action
    */
-  export type MusicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Music
+     * Select specific fields to fetch from the PremadeMusic
      */
-    select?: MusicSelect<ExtArgs> | null
+    select?: PremadeMusicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Music
+     * Omit specific fields from the PremadeMusic
      */
-    omit?: MusicOmit<ExtArgs> | null
+    omit?: PremadeMusicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MusicInclude<ExtArgs> | null
+    include?: PremadeMusicInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UploadedMusic
+   */
+
+  export type AggregateUploadedMusic = {
+    _count: UploadedMusicCountAggregateOutputType | null
+    _min: UploadedMusicMinAggregateOutputType | null
+    _max: UploadedMusicMaxAggregateOutputType | null
+  }
+
+  export type UploadedMusicMinAggregateOutputType = {
+    music_id: string | null
+    uploaded_by: string | null
+  }
+
+  export type UploadedMusicMaxAggregateOutputType = {
+    music_id: string | null
+    uploaded_by: string | null
+  }
+
+  export type UploadedMusicCountAggregateOutputType = {
+    music_id: number
+    uploaded_by: number
+    _all: number
+  }
+
+
+  export type UploadedMusicMinAggregateInputType = {
+    music_id?: true
+    uploaded_by?: true
+  }
+
+  export type UploadedMusicMaxAggregateInputType = {
+    music_id?: true
+    uploaded_by?: true
+  }
+
+  export type UploadedMusicCountAggregateInputType = {
+    music_id?: true
+    uploaded_by?: true
+    _all?: true
+  }
+
+  export type UploadedMusicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UploadedMusic to aggregate.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UploadedMusics
+    **/
+    _count?: true | UploadedMusicCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UploadedMusicMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UploadedMusicMaxAggregateInputType
+  }
+
+  export type GetUploadedMusicAggregateType<T extends UploadedMusicAggregateArgs> = {
+        [P in keyof T & keyof AggregateUploadedMusic]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUploadedMusic[P]>
+      : GetScalarType<T[P], AggregateUploadedMusic[P]>
+  }
+
+
+
+
+  export type UploadedMusicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UploadedMusicWhereInput
+    orderBy?: UploadedMusicOrderByWithAggregationInput | UploadedMusicOrderByWithAggregationInput[]
+    by: UploadedMusicScalarFieldEnum[] | UploadedMusicScalarFieldEnum
+    having?: UploadedMusicScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UploadedMusicCountAggregateInputType | true
+    _min?: UploadedMusicMinAggregateInputType
+    _max?: UploadedMusicMaxAggregateInputType
+  }
+
+  export type UploadedMusicGroupByOutputType = {
+    music_id: string
+    uploaded_by: string
+    _count: UploadedMusicCountAggregateOutputType | null
+    _min: UploadedMusicMinAggregateOutputType | null
+    _max: UploadedMusicMaxAggregateOutputType | null
+  }
+
+  type GetUploadedMusicGroupByPayload<T extends UploadedMusicGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UploadedMusicGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UploadedMusicGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UploadedMusicGroupByOutputType[P]>
+            : GetScalarType<T[P], UploadedMusicGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UploadedMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    uploaded_by?: boolean
+    songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
+    _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["uploadedMusic"]>
+
+  export type UploadedMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    uploaded_by?: boolean
+  }, ExtArgs["result"]["uploadedMusic"]>
+
+  export type UploadedMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    uploaded_by?: boolean
+  }, ExtArgs["result"]["uploadedMusic"]>
+
+  export type UploadedMusicSelectScalar = {
+    music_id?: boolean
+    uploaded_by?: boolean
+  }
+
+  export type UploadedMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "uploaded_by", ExtArgs["result"]["uploadedMusic"]>
+  export type UploadedMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
+    _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UploadedMusicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UploadedMusicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $UploadedMusicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UploadedMusic"
+    objects: {
+      songs: Prisma.$SongPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      music_id: string
+      uploaded_by: string
+    }, ExtArgs["result"]["uploadedMusic"]>
+    composites: {}
+  }
+
+  type UploadedMusicGetPayload<S extends boolean | null | undefined | UploadedMusicDefaultArgs> = $Result.GetResult<Prisma.$UploadedMusicPayload, S>
+
+  type UploadedMusicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UploadedMusicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UploadedMusicCountAggregateInputType | true
+    }
+
+  export interface UploadedMusicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UploadedMusic'], meta: { name: 'UploadedMusic' } }
+    /**
+     * Find zero or one UploadedMusic that matches the filter.
+     * @param {UploadedMusicFindUniqueArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UploadedMusicFindUniqueArgs>(args: SelectSubset<T, UploadedMusicFindUniqueArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UploadedMusic that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UploadedMusicFindUniqueOrThrowArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UploadedMusicFindUniqueOrThrowArgs>(args: SelectSubset<T, UploadedMusicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UploadedMusic that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicFindFirstArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UploadedMusicFindFirstArgs>(args?: SelectSubset<T, UploadedMusicFindFirstArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UploadedMusic that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicFindFirstOrThrowArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UploadedMusicFindFirstOrThrowArgs>(args?: SelectSubset<T, UploadedMusicFindFirstOrThrowArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UploadedMusics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UploadedMusics
+     * const uploadedMusics = await prisma.uploadedMusic.findMany()
+     * 
+     * // Get first 10 UploadedMusics
+     * const uploadedMusics = await prisma.uploadedMusic.findMany({ take: 10 })
+     * 
+     * // Only select the `music_id`
+     * const uploadedMusicWithMusic_idOnly = await prisma.uploadedMusic.findMany({ select: { music_id: true } })
+     * 
+     */
+    findMany<T extends UploadedMusicFindManyArgs>(args?: SelectSubset<T, UploadedMusicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UploadedMusic.
+     * @param {UploadedMusicCreateArgs} args - Arguments to create a UploadedMusic.
+     * @example
+     * // Create one UploadedMusic
+     * const UploadedMusic = await prisma.uploadedMusic.create({
+     *   data: {
+     *     // ... data to create a UploadedMusic
+     *   }
+     * })
+     * 
+     */
+    create<T extends UploadedMusicCreateArgs>(args: SelectSubset<T, UploadedMusicCreateArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UploadedMusics.
+     * @param {UploadedMusicCreateManyArgs} args - Arguments to create many UploadedMusics.
+     * @example
+     * // Create many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UploadedMusicCreateManyArgs>(args?: SelectSubset<T, UploadedMusicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UploadedMusics and returns the data saved in the database.
+     * @param {UploadedMusicCreateManyAndReturnArgs} args - Arguments to create many UploadedMusics.
+     * @example
+     * // Create many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UploadedMusics and only return the `music_id`
+     * const uploadedMusicWithMusic_idOnly = await prisma.uploadedMusic.createManyAndReturn({
+     *   select: { music_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UploadedMusicCreateManyAndReturnArgs>(args?: SelectSubset<T, UploadedMusicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UploadedMusic.
+     * @param {UploadedMusicDeleteArgs} args - Arguments to delete one UploadedMusic.
+     * @example
+     * // Delete one UploadedMusic
+     * const UploadedMusic = await prisma.uploadedMusic.delete({
+     *   where: {
+     *     // ... filter to delete one UploadedMusic
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UploadedMusicDeleteArgs>(args: SelectSubset<T, UploadedMusicDeleteArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UploadedMusic.
+     * @param {UploadedMusicUpdateArgs} args - Arguments to update one UploadedMusic.
+     * @example
+     * // Update one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UploadedMusicUpdateArgs>(args: SelectSubset<T, UploadedMusicUpdateArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UploadedMusics.
+     * @param {UploadedMusicDeleteManyArgs} args - Arguments to filter UploadedMusics to delete.
+     * @example
+     * // Delete a few UploadedMusics
+     * const { count } = await prisma.uploadedMusic.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UploadedMusicDeleteManyArgs>(args?: SelectSubset<T, UploadedMusicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UploadedMusics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UploadedMusicUpdateManyArgs>(args: SelectSubset<T, UploadedMusicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UploadedMusics and returns the data updated in the database.
+     * @param {UploadedMusicUpdateManyAndReturnArgs} args - Arguments to update many UploadedMusics.
+     * @example
+     * // Update many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UploadedMusics and only return the `music_id`
+     * const uploadedMusicWithMusic_idOnly = await prisma.uploadedMusic.updateManyAndReturn({
+     *   select: { music_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UploadedMusicUpdateManyAndReturnArgs>(args: SelectSubset<T, UploadedMusicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UploadedMusic.
+     * @param {UploadedMusicUpsertArgs} args - Arguments to update or create a UploadedMusic.
+     * @example
+     * // Update or create a UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.upsert({
+     *   create: {
+     *     // ... data to create a UploadedMusic
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UploadedMusic we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UploadedMusicUpsertArgs>(args: SelectSubset<T, UploadedMusicUpsertArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UploadedMusics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicCountArgs} args - Arguments to filter UploadedMusics to count.
+     * @example
+     * // Count the number of UploadedMusics
+     * const count = await prisma.uploadedMusic.count({
+     *   where: {
+     *     // ... the filter for the UploadedMusics we want to count
+     *   }
+     * })
+    **/
+    count<T extends UploadedMusicCountArgs>(
+      args?: Subset<T, UploadedMusicCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UploadedMusicCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UploadedMusic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UploadedMusicAggregateArgs>(args: Subset<T, UploadedMusicAggregateArgs>): Prisma.PrismaPromise<GetUploadedMusicAggregateType<T>>
+
+    /**
+     * Group by UploadedMusic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UploadedMusicGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UploadedMusicGroupByArgs['orderBy'] }
+        : { orderBy?: UploadedMusicGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UploadedMusicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUploadedMusicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UploadedMusic model
+   */
+  readonly fields: UploadedMusicFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UploadedMusic.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UploadedMusicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    songs<T extends UploadedMusic$songsArgs<ExtArgs> = {}>(args?: Subset<T, UploadedMusic$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UploadedMusic model
+   */
+  interface UploadedMusicFieldRefs {
+    readonly music_id: FieldRef<"UploadedMusic", 'String'>
+    readonly uploaded_by: FieldRef<"UploadedMusic", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UploadedMusic findUnique
+   */
+  export type UploadedMusicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic findUniqueOrThrow
+   */
+  export type UploadedMusicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic findFirst
+   */
+  export type UploadedMusicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UploadedMusics.
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UploadedMusics.
+     */
+    distinct?: UploadedMusicScalarFieldEnum | UploadedMusicScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic findFirstOrThrow
+   */
+  export type UploadedMusicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UploadedMusics.
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UploadedMusics.
+     */
+    distinct?: UploadedMusicScalarFieldEnum | UploadedMusicScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic findMany
+   */
+  export type UploadedMusicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusics to fetch.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UploadedMusics.
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    distinct?: UploadedMusicScalarFieldEnum | UploadedMusicScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic create
+   */
+  export type UploadedMusicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UploadedMusic.
+     */
+    data: XOR<UploadedMusicCreateInput, UploadedMusicUncheckedCreateInput>
+  }
+
+  /**
+   * UploadedMusic createMany
+   */
+  export type UploadedMusicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UploadedMusics.
+     */
+    data: UploadedMusicCreateManyInput | UploadedMusicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UploadedMusic createManyAndReturn
+   */
+  export type UploadedMusicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * The data used to create many UploadedMusics.
+     */
+    data: UploadedMusicCreateManyInput | UploadedMusicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UploadedMusic update
+   */
+  export type UploadedMusicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UploadedMusic.
+     */
+    data: XOR<UploadedMusicUpdateInput, UploadedMusicUncheckedUpdateInput>
+    /**
+     * Choose, which UploadedMusic to update.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic updateMany
+   */
+  export type UploadedMusicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UploadedMusics.
+     */
+    data: XOR<UploadedMusicUpdateManyMutationInput, UploadedMusicUncheckedUpdateManyInput>
+    /**
+     * Filter which UploadedMusics to update
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * Limit how many UploadedMusics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UploadedMusic updateManyAndReturn
+   */
+  export type UploadedMusicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * The data used to update UploadedMusics.
+     */
+    data: XOR<UploadedMusicUpdateManyMutationInput, UploadedMusicUncheckedUpdateManyInput>
+    /**
+     * Filter which UploadedMusics to update
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * Limit how many UploadedMusics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UploadedMusic upsert
+   */
+  export type UploadedMusicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UploadedMusic to update in case it exists.
+     */
+    where: UploadedMusicWhereUniqueInput
+    /**
+     * In case the UploadedMusic found by the `where` argument doesn't exist, create a new UploadedMusic with this data.
+     */
+    create: XOR<UploadedMusicCreateInput, UploadedMusicUncheckedCreateInput>
+    /**
+     * In case the UploadedMusic was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UploadedMusicUpdateInput, UploadedMusicUncheckedUpdateInput>
+  }
+
+  /**
+   * UploadedMusic delete
+   */
+  export type UploadedMusicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter which UploadedMusic to delete.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic deleteMany
+   */
+  export type UploadedMusicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UploadedMusics to delete
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * Limit how many UploadedMusics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UploadedMusic.songs
+   */
+  export type UploadedMusic$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    where?: SongWhereInput
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    cursor?: SongWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic without action
+   */
+  export type UploadedMusicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
   }
 
 
@@ -6891,7 +8120,9 @@ export namespace Prisma {
   export const SongScalarFieldEnum: {
     id: 'id',
     user_id: 'user_id',
-    music_id: 'music_id',
+    musicSource: 'musicSource',
+    premade_music_id: 'premade_music_id',
+    uploaded_music_id: 'uploaded_music_id',
     file_path: 'file_path',
     creation_date: 'creation_date'
   };
@@ -6921,14 +8152,21 @@ export namespace Prisma {
   export type LinkPermissionScalarFieldEnum = (typeof LinkPermissionScalarFieldEnum)[keyof typeof LinkPermissionScalarFieldEnum]
 
 
-  export const MusicScalarFieldEnum: {
+  export const PremadeMusicScalarFieldEnum: {
     music_id: 'music_id',
     bpm: 'bpm',
-    file_path: 'file_path',
     uploaded_date: 'uploaded_date'
   };
 
-  export type MusicScalarFieldEnum = (typeof MusicScalarFieldEnum)[keyof typeof MusicScalarFieldEnum]
+  export type PremadeMusicScalarFieldEnum = (typeof PremadeMusicScalarFieldEnum)[keyof typeof PremadeMusicScalarFieldEnum]
+
+
+  export const UploadedMusicScalarFieldEnum: {
+    music_id: 'music_id',
+    uploaded_by: 'uploaded_by'
+  };
+
+  export type UploadedMusicScalarFieldEnum = (typeof UploadedMusicScalarFieldEnum)[keyof typeof UploadedMusicScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6945,6 +8183,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -6977,6 +8223,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MusicSource'
+   */
+  export type EnumMusicSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MusicSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'MusicSource[]'
+   */
+  export type ListEnumMusicSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MusicSource[]'>
     
 
 
@@ -7090,23 +8350,29 @@ export namespace Prisma {
     NOT?: SongWhereInput | SongWhereInput[]
     id?: StringFilter<"Song"> | string
     user_id?: StringFilter<"Song"> | string
-    music_id?: StringFilter<"Song"> | string
+    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
     file_path?: StringFilter<"Song"> | string
     creation_date?: DateTimeFilter<"Song"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
-    music?: XOR<MusicScalarRelationFilter, MusicWhereInput>
+    premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
+    uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
   }
 
   export type SongOrderByWithRelationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    music_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrderInput | SortOrder
+    uploaded_music_id?: SortOrderInput | SortOrder
     file_path?: SortOrder
     creation_date?: SortOrder
     user?: UserOrderByWithRelationInput
     links?: LinkOrderByRelationAggregateInput
-    music?: MusicOrderByWithRelationInput
+    premadeMusic?: PremadeMusicOrderByWithRelationInput
+    uploadedMusic?: UploadedMusicOrderByWithRelationInput
   }
 
   export type SongWhereUniqueInput = Prisma.AtLeast<{
@@ -7115,18 +8381,23 @@ export namespace Prisma {
     OR?: SongWhereInput[]
     NOT?: SongWhereInput | SongWhereInput[]
     user_id?: StringFilter<"Song"> | string
-    music_id?: StringFilter<"Song"> | string
+    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
     file_path?: StringFilter<"Song"> | string
     creation_date?: DateTimeFilter<"Song"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
-    music?: XOR<MusicScalarRelationFilter, MusicWhereInput>
+    premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
+    uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
   }, "id">
 
   export type SongOrderByWithAggregationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    music_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrderInput | SortOrder
+    uploaded_music_id?: SortOrderInput | SortOrder
     file_path?: SortOrder
     creation_date?: SortOrder
     _count?: SongCountOrderByAggregateInput
@@ -7140,7 +8411,9 @@ export namespace Prisma {
     NOT?: SongScalarWhereWithAggregatesInput | SongScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Song"> | string
     user_id?: StringWithAggregatesFilter<"Song"> | string
-    music_id?: StringWithAggregatesFilter<"Song"> | string
+    musicSource?: EnumMusicSourceWithAggregatesFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
     file_path?: StringWithAggregatesFilter<"Song"> | string
     creation_date?: DateTimeWithAggregatesFilter<"Song"> | Date | string
   }
@@ -7264,56 +8537,91 @@ export namespace Prisma {
     can_view?: BoolWithAggregatesFilter<"LinkPermission"> | boolean
   }
 
-  export type MusicWhereInput = {
-    AND?: MusicWhereInput | MusicWhereInput[]
-    OR?: MusicWhereInput[]
-    NOT?: MusicWhereInput | MusicWhereInput[]
-    music_id?: StringFilter<"Music"> | string
-    bpm?: IntFilter<"Music"> | number
-    file_path?: StringFilter<"Music"> | string
-    uploaded_date?: DateTimeFilter<"Music"> | Date | string
+  export type PremadeMusicWhereInput = {
+    AND?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    OR?: PremadeMusicWhereInput[]
+    NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    music_id?: StringFilter<"PremadeMusic"> | string
+    bpm?: IntFilter<"PremadeMusic"> | number
+    uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
     songs?: SongListRelationFilter
   }
 
-  export type MusicOrderByWithRelationInput = {
+  export type PremadeMusicOrderByWithRelationInput = {
     music_id?: SortOrder
     bpm?: SortOrder
-    file_path?: SortOrder
     uploaded_date?: SortOrder
     songs?: SongOrderByRelationAggregateInput
   }
 
-  export type MusicWhereUniqueInput = Prisma.AtLeast<{
+  export type PremadeMusicWhereUniqueInput = Prisma.AtLeast<{
     music_id?: string
-    AND?: MusicWhereInput | MusicWhereInput[]
-    OR?: MusicWhereInput[]
-    NOT?: MusicWhereInput | MusicWhereInput[]
-    bpm?: IntFilter<"Music"> | number
-    file_path?: StringFilter<"Music"> | string
-    uploaded_date?: DateTimeFilter<"Music"> | Date | string
+    AND?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    OR?: PremadeMusicWhereInput[]
+    NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    bpm?: IntFilter<"PremadeMusic"> | number
+    uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
     songs?: SongListRelationFilter
   }, "music_id">
 
-  export type MusicOrderByWithAggregationInput = {
+  export type PremadeMusicOrderByWithAggregationInput = {
     music_id?: SortOrder
     bpm?: SortOrder
-    file_path?: SortOrder
     uploaded_date?: SortOrder
-    _count?: MusicCountOrderByAggregateInput
-    _avg?: MusicAvgOrderByAggregateInput
-    _max?: MusicMaxOrderByAggregateInput
-    _min?: MusicMinOrderByAggregateInput
-    _sum?: MusicSumOrderByAggregateInput
+    _count?: PremadeMusicCountOrderByAggregateInput
+    _avg?: PremadeMusicAvgOrderByAggregateInput
+    _max?: PremadeMusicMaxOrderByAggregateInput
+    _min?: PremadeMusicMinOrderByAggregateInput
+    _sum?: PremadeMusicSumOrderByAggregateInput
   }
 
-  export type MusicScalarWhereWithAggregatesInput = {
-    AND?: MusicScalarWhereWithAggregatesInput | MusicScalarWhereWithAggregatesInput[]
-    OR?: MusicScalarWhereWithAggregatesInput[]
-    NOT?: MusicScalarWhereWithAggregatesInput | MusicScalarWhereWithAggregatesInput[]
-    music_id?: StringWithAggregatesFilter<"Music"> | string
-    bpm?: IntWithAggregatesFilter<"Music"> | number
-    file_path?: StringWithAggregatesFilter<"Music"> | string
-    uploaded_date?: DateTimeWithAggregatesFilter<"Music"> | Date | string
+  export type PremadeMusicScalarWhereWithAggregatesInput = {
+    AND?: PremadeMusicScalarWhereWithAggregatesInput | PremadeMusicScalarWhereWithAggregatesInput[]
+    OR?: PremadeMusicScalarWhereWithAggregatesInput[]
+    NOT?: PremadeMusicScalarWhereWithAggregatesInput | PremadeMusicScalarWhereWithAggregatesInput[]
+    music_id?: StringWithAggregatesFilter<"PremadeMusic"> | string
+    bpm?: IntWithAggregatesFilter<"PremadeMusic"> | number
+    uploaded_date?: DateTimeWithAggregatesFilter<"PremadeMusic"> | Date | string
+  }
+
+  export type UploadedMusicWhereInput = {
+    AND?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    OR?: UploadedMusicWhereInput[]
+    NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    music_id?: StringFilter<"UploadedMusic"> | string
+    uploaded_by?: StringFilter<"UploadedMusic"> | string
+    songs?: SongListRelationFilter
+  }
+
+  export type UploadedMusicOrderByWithRelationInput = {
+    music_id?: SortOrder
+    uploaded_by?: SortOrder
+    songs?: SongOrderByRelationAggregateInput
+  }
+
+  export type UploadedMusicWhereUniqueInput = Prisma.AtLeast<{
+    music_id?: string
+    AND?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    OR?: UploadedMusicWhereInput[]
+    NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    uploaded_by?: StringFilter<"UploadedMusic"> | string
+    songs?: SongListRelationFilter
+  }, "music_id">
+
+  export type UploadedMusicOrderByWithAggregationInput = {
+    music_id?: SortOrder
+    uploaded_by?: SortOrder
+    _count?: UploadedMusicCountOrderByAggregateInput
+    _max?: UploadedMusicMaxOrderByAggregateInput
+    _min?: UploadedMusicMinOrderByAggregateInput
+  }
+
+  export type UploadedMusicScalarWhereWithAggregatesInput = {
+    AND?: UploadedMusicScalarWhereWithAggregatesInput | UploadedMusicScalarWhereWithAggregatesInput[]
+    OR?: UploadedMusicScalarWhereWithAggregatesInput[]
+    NOT?: UploadedMusicScalarWhereWithAggregatesInput | UploadedMusicScalarWhereWithAggregatesInput[]
+    music_id?: StringWithAggregatesFilter<"UploadedMusic"> | string
+    uploaded_by?: StringWithAggregatesFilter<"UploadedMusic"> | string
   }
 
   export type UserCreateInput = {
@@ -7393,17 +8701,21 @@ export namespace Prisma {
 
   export type SongCreateInput = {
     id?: string
+    musicSource?: $Enums.MusicSource
     file_path: string
     creation_date?: Date | string
     user: UserCreateNestedOneWithoutSongsInput
     links?: LinkCreateNestedManyWithoutSongInput
-    music: MusicCreateNestedOneWithoutSongsInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
   }
 
   export type SongUncheckedCreateInput = {
     id?: string
     user_id: string
-    music_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
     file_path: string
     creation_date?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutSongInput
@@ -7411,17 +8723,21 @@ export namespace Prisma {
 
   export type SongUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSongsNestedInput
     links?: LinkUpdateManyWithoutSongNestedInput
-    music?: MusicUpdateOneRequiredWithoutSongsNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
   }
 
   export type SongUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    music_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutSongNestedInput
@@ -7430,13 +8746,16 @@ export namespace Prisma {
   export type SongCreateManyInput = {
     id?: string
     user_id: string
-    music_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
     file_path: string
     creation_date?: Date | string
   }
 
   export type SongUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7444,7 +8763,9 @@ export namespace Prisma {
   export type SongUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    music_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7561,57 +8882,89 @@ export namespace Prisma {
     can_view?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type MusicCreateInput = {
+  export type PremadeMusicCreateInput = {
     music_id?: string
     bpm: number
-    file_path: string
     uploaded_date?: Date | string
-    songs?: SongCreateNestedManyWithoutMusicInput
+    songs?: SongCreateNestedManyWithoutPremadeMusicInput
   }
 
-  export type MusicUncheckedCreateInput = {
+  export type PremadeMusicUncheckedCreateInput = {
     music_id?: string
     bpm: number
-    file_path: string
     uploaded_date?: Date | string
-    songs?: SongUncheckedCreateNestedManyWithoutMusicInput
+    songs?: SongUncheckedCreateNestedManyWithoutPremadeMusicInput
   }
 
-  export type MusicUpdateInput = {
+  export type PremadeMusicUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
-    file_path?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUpdateManyWithoutMusicNestedInput
+    songs?: SongUpdateManyWithoutPremadeMusicNestedInput
   }
 
-  export type MusicUncheckedUpdateInput = {
+  export type PremadeMusicUncheckedUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
-    file_path?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUncheckedUpdateManyWithoutMusicNestedInput
+    songs?: SongUncheckedUpdateManyWithoutPremadeMusicNestedInput
   }
 
-  export type MusicCreateManyInput = {
+  export type PremadeMusicCreateManyInput = {
     music_id?: string
     bpm: number
-    file_path: string
     uploaded_date?: Date | string
   }
 
-  export type MusicUpdateManyMutationInput = {
+  export type PremadeMusicUpdateManyMutationInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
-    file_path?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MusicUncheckedUpdateManyInput = {
+  export type PremadeMusicUncheckedUpdateManyInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
-    file_path?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UploadedMusicCreateInput = {
+    music_id?: string
+    uploaded_by: string
+    songs?: SongCreateNestedManyWithoutUploadedMusicInput
+  }
+
+  export type UploadedMusicUncheckedCreateInput = {
+    music_id?: string
+    uploaded_by: string
+    songs?: SongUncheckedCreateNestedManyWithoutUploadedMusicInput
+  }
+
+  export type UploadedMusicUpdateInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    songs?: SongUpdateManyWithoutUploadedMusicNestedInput
+  }
+
+  export type UploadedMusicUncheckedUpdateInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    songs?: SongUncheckedUpdateManyWithoutUploadedMusicNestedInput
+  }
+
+  export type UploadedMusicCreateManyInput = {
+    music_id?: string
+    uploaded_by: string
+  }
+
+  export type UploadedMusicUpdateManyMutationInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UploadedMusicUncheckedUpdateManyInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -7729,20 +9082,54 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumMusicSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceFilter<$PrismaModel> | $Enums.MusicSource
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
   }
 
-  export type MusicScalarRelationFilter = {
-    is?: MusicWhereInput
-    isNot?: MusicWhereInput
+  export type PremadeMusicNullableScalarRelationFilter = {
+    is?: PremadeMusicWhereInput | null
+    isNot?: PremadeMusicWhereInput | null
+  }
+
+  export type UploadedMusicNullableScalarRelationFilter = {
+    is?: UploadedMusicWhereInput | null
+    isNot?: UploadedMusicWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type SongCountOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    music_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrder
+    uploaded_music_id?: SortOrder
     file_path?: SortOrder
     creation_date?: SortOrder
   }
@@ -7750,7 +9137,9 @@ export namespace Prisma {
   export type SongMaxOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    music_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrder
+    uploaded_music_id?: SortOrder
     file_path?: SortOrder
     creation_date?: SortOrder
   }
@@ -7758,9 +9147,39 @@ export namespace Prisma {
   export type SongMinOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    music_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrder
+    uploaded_music_id?: SortOrder
     file_path?: SortOrder
     creation_date?: SortOrder
+  }
+
+  export type EnumMusicSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceWithAggregatesFilter<$PrismaModel> | $Enums.MusicSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMusicSourceFilter<$PrismaModel>
+    _max?: NestedEnumMusicSourceFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -7845,32 +9264,29 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type MusicCountOrderByAggregateInput = {
+  export type PremadeMusicCountOrderByAggregateInput = {
     music_id?: SortOrder
     bpm?: SortOrder
-    file_path?: SortOrder
     uploaded_date?: SortOrder
   }
 
-  export type MusicAvgOrderByAggregateInput = {
+  export type PremadeMusicAvgOrderByAggregateInput = {
     bpm?: SortOrder
   }
 
-  export type MusicMaxOrderByAggregateInput = {
+  export type PremadeMusicMaxOrderByAggregateInput = {
     music_id?: SortOrder
     bpm?: SortOrder
-    file_path?: SortOrder
     uploaded_date?: SortOrder
   }
 
-  export type MusicMinOrderByAggregateInput = {
+  export type PremadeMusicMinOrderByAggregateInput = {
     music_id?: SortOrder
     bpm?: SortOrder
-    file_path?: SortOrder
     uploaded_date?: SortOrder
   }
 
-  export type MusicSumOrderByAggregateInput = {
+  export type PremadeMusicSumOrderByAggregateInput = {
     bpm?: SortOrder
   }
 
@@ -7888,6 +9304,21 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type UploadedMusicCountOrderByAggregateInput = {
+    music_id?: SortOrder
+    uploaded_by?: SortOrder
+  }
+
+  export type UploadedMusicMaxOrderByAggregateInput = {
+    music_id?: SortOrder
+    uploaded_by?: SortOrder
+  }
+
+  export type UploadedMusicMinOrderByAggregateInput = {
+    music_id?: SortOrder
+    uploaded_by?: SortOrder
   }
 
   export type SongCreateNestedManyWithoutUserInput = {
@@ -8037,10 +9468,16 @@ export namespace Prisma {
     connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
   }
 
-  export type MusicCreateNestedOneWithoutSongsInput = {
-    create?: XOR<MusicCreateWithoutSongsInput, MusicUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: MusicCreateOrConnectWithoutSongsInput
-    connect?: MusicWhereUniqueInput
+  export type PremadeMusicCreateNestedOneWithoutSongsInput = {
+    create?: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSongsInput
+    connect?: PremadeMusicWhereUniqueInput
+  }
+
+  export type UploadedMusicCreateNestedOneWithoutSongsInput = {
+    create?: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSongsInput
+    connect?: UploadedMusicWhereUniqueInput
   }
 
   export type LinkUncheckedCreateNestedManyWithoutSongInput = {
@@ -8048,6 +9485,10 @@ export namespace Prisma {
     connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
     createMany?: LinkCreateManySongInputEnvelope
     connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  }
+
+  export type EnumMusicSourceFieldUpdateOperationsInput = {
+    set?: $Enums.MusicSource
   }
 
   export type UserUpdateOneRequiredWithoutSongsNestedInput = {
@@ -8072,12 +9513,28 @@ export namespace Prisma {
     deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
   }
 
-  export type MusicUpdateOneRequiredWithoutSongsNestedInput = {
-    create?: XOR<MusicCreateWithoutSongsInput, MusicUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: MusicCreateOrConnectWithoutSongsInput
-    upsert?: MusicUpsertWithoutSongsInput
-    connect?: MusicWhereUniqueInput
-    update?: XOR<XOR<MusicUpdateToOneWithWhereWithoutSongsInput, MusicUpdateWithoutSongsInput>, MusicUncheckedUpdateWithoutSongsInput>
+  export type PremadeMusicUpdateOneWithoutSongsNestedInput = {
+    create?: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSongsInput
+    upsert?: PremadeMusicUpsertWithoutSongsInput
+    disconnect?: PremadeMusicWhereInput | boolean
+    delete?: PremadeMusicWhereInput | boolean
+    connect?: PremadeMusicWhereUniqueInput
+    update?: XOR<XOR<PremadeMusicUpdateToOneWithWhereWithoutSongsInput, PremadeMusicUpdateWithoutSongsInput>, PremadeMusicUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type UploadedMusicUpdateOneWithoutSongsNestedInput = {
+    create?: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSongsInput
+    upsert?: UploadedMusicUpsertWithoutSongsInput
+    disconnect?: UploadedMusicWhereInput | boolean
+    delete?: UploadedMusicWhereInput | boolean
+    connect?: UploadedMusicWhereUniqueInput
+    update?: XOR<XOR<UploadedMusicUpdateToOneWithWhereWithoutSongsInput, UploadedMusicUpdateWithoutSongsInput>, UploadedMusicUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type LinkUncheckedUpdateManyWithoutSongNestedInput = {
@@ -8196,17 +9653,17 @@ export namespace Prisma {
     update?: XOR<XOR<LinkUpdateToOneWithWhereWithoutLinkPermissionsInput, LinkUpdateWithoutLinkPermissionsInput>, LinkUncheckedUpdateWithoutLinkPermissionsInput>
   }
 
-  export type SongCreateNestedManyWithoutMusicInput = {
-    create?: XOR<SongCreateWithoutMusicInput, SongUncheckedCreateWithoutMusicInput> | SongCreateWithoutMusicInput[] | SongUncheckedCreateWithoutMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutMusicInput | SongCreateOrConnectWithoutMusicInput[]
-    createMany?: SongCreateManyMusicInputEnvelope
+  export type SongCreateNestedManyWithoutPremadeMusicInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
     connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
   }
 
-  export type SongUncheckedCreateNestedManyWithoutMusicInput = {
-    create?: XOR<SongCreateWithoutMusicInput, SongUncheckedCreateWithoutMusicInput> | SongCreateWithoutMusicInput[] | SongUncheckedCreateWithoutMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutMusicInput | SongCreateOrConnectWithoutMusicInput[]
-    createMany?: SongCreateManyMusicInputEnvelope
+  export type SongUncheckedCreateNestedManyWithoutPremadeMusicInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
     connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
   }
 
@@ -8218,31 +9675,73 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type SongUpdateManyWithoutMusicNestedInput = {
-    create?: XOR<SongCreateWithoutMusicInput, SongUncheckedCreateWithoutMusicInput> | SongCreateWithoutMusicInput[] | SongUncheckedCreateWithoutMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutMusicInput | SongCreateOrConnectWithoutMusicInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutMusicInput | SongUpsertWithWhereUniqueWithoutMusicInput[]
-    createMany?: SongCreateManyMusicInputEnvelope
+  export type SongUpdateManyWithoutPremadeMusicNestedInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutPremadeMusicInput | SongUpsertWithWhereUniqueWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
     set?: SongWhereUniqueInput | SongWhereUniqueInput[]
     disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
     delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
     connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutMusicInput | SongUpdateWithWhereUniqueWithoutMusicInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutMusicInput | SongUpdateManyWithWhereWithoutMusicInput[]
+    update?: SongUpdateWithWhereUniqueWithoutPremadeMusicInput | SongUpdateWithWhereUniqueWithoutPremadeMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutPremadeMusicInput | SongUpdateManyWithWhereWithoutPremadeMusicInput[]
     deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
   }
 
-  export type SongUncheckedUpdateManyWithoutMusicNestedInput = {
-    create?: XOR<SongCreateWithoutMusicInput, SongUncheckedCreateWithoutMusicInput> | SongCreateWithoutMusicInput[] | SongUncheckedCreateWithoutMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutMusicInput | SongCreateOrConnectWithoutMusicInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutMusicInput | SongUpsertWithWhereUniqueWithoutMusicInput[]
-    createMany?: SongCreateManyMusicInputEnvelope
+  export type SongUncheckedUpdateManyWithoutPremadeMusicNestedInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutPremadeMusicInput | SongUpsertWithWhereUniqueWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
     set?: SongWhereUniqueInput | SongWhereUniqueInput[]
     disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
     delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
     connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutMusicInput | SongUpdateWithWhereUniqueWithoutMusicInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutMusicInput | SongUpdateManyWithWhereWithoutMusicInput[]
+    update?: SongUpdateWithWhereUniqueWithoutPremadeMusicInput | SongUpdateWithWhereUniqueWithoutPremadeMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutPremadeMusicInput | SongUpdateManyWithWhereWithoutPremadeMusicInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  }
+
+  export type SongCreateNestedManyWithoutUploadedMusicInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type SongUncheckedCreateNestedManyWithoutUploadedMusicInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type SongUpdateManyWithoutUploadedMusicNestedInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutUploadedMusicInput | SongUpsertWithWhereUniqueWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutUploadedMusicInput | SongUpdateWithWhereUniqueWithoutUploadedMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutUploadedMusicInput | SongUpdateManyWithWhereWithoutUploadedMusicInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  }
+
+  export type SongUncheckedUpdateManyWithoutUploadedMusicNestedInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutUploadedMusicInput | SongUpsertWithWhereUniqueWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutUploadedMusicInput | SongUpdateWithWhereUniqueWithoutUploadedMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutUploadedMusicInput | SongUpdateManyWithWhereWithoutUploadedMusicInput[]
     deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
   }
 
@@ -8313,6 +9812,65 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumMusicSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceFilter<$PrismaModel> | $Enums.MusicSource
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumMusicSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceWithAggregatesFilter<$PrismaModel> | $Enums.MusicSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMusicSourceFilter<$PrismaModel>
+    _max?: NestedEnumMusicSourceFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -8355,15 +9913,19 @@ export namespace Prisma {
 
   export type SongCreateWithoutUserInput = {
     id?: string
+    musicSource?: $Enums.MusicSource
     file_path: string
     creation_date?: Date | string
     links?: LinkCreateNestedManyWithoutSongInput
-    music: MusicCreateNestedOneWithoutSongsInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
   }
 
   export type SongUncheckedCreateWithoutUserInput = {
     id?: string
-    music_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
     file_path: string
     creation_date?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutSongInput
@@ -8451,7 +10013,9 @@ export namespace Prisma {
     NOT?: SongScalarWhereInput | SongScalarWhereInput[]
     id?: StringFilter<"Song"> | string
     user_id?: StringFilter<"Song"> | string
-    music_id?: StringFilter<"Song"> | string
+    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
     file_path?: StringFilter<"Song"> | string
     creation_date?: DateTimeFilter<"Song"> | Date | string
   }
@@ -8565,23 +10129,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type MusicCreateWithoutSongsInput = {
+  export type PremadeMusicCreateWithoutSongsInput = {
     music_id?: string
     bpm: number
-    file_path: string
     uploaded_date?: Date | string
   }
 
-  export type MusicUncheckedCreateWithoutSongsInput = {
+  export type PremadeMusicUncheckedCreateWithoutSongsInput = {
     music_id?: string
     bpm: number
-    file_path: string
     uploaded_date?: Date | string
   }
 
-  export type MusicCreateOrConnectWithoutSongsInput = {
-    where: MusicWhereUniqueInput
-    create: XOR<MusicCreateWithoutSongsInput, MusicUncheckedCreateWithoutSongsInput>
+  export type PremadeMusicCreateOrConnectWithoutSongsInput = {
+    where: PremadeMusicWhereUniqueInput
+    create: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+  }
+
+  export type UploadedMusicCreateWithoutSongsInput = {
+    music_id?: string
+    uploaded_by: string
+  }
+
+  export type UploadedMusicUncheckedCreateWithoutSongsInput = {
+    music_id?: string
+    uploaded_by: string
+  }
+
+  export type UploadedMusicCreateOrConnectWithoutSongsInput = {
+    where: UploadedMusicWhereUniqueInput
+    create: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
   }
 
   export type UserUpsertWithoutSongsInput = {
@@ -8633,43 +10210,66 @@ export namespace Prisma {
     data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutSongInput>
   }
 
-  export type MusicUpsertWithoutSongsInput = {
-    update: XOR<MusicUpdateWithoutSongsInput, MusicUncheckedUpdateWithoutSongsInput>
-    create: XOR<MusicCreateWithoutSongsInput, MusicUncheckedCreateWithoutSongsInput>
-    where?: MusicWhereInput
+  export type PremadeMusicUpsertWithoutSongsInput = {
+    update: XOR<PremadeMusicUpdateWithoutSongsInput, PremadeMusicUncheckedUpdateWithoutSongsInput>
+    create: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+    where?: PremadeMusicWhereInput
   }
 
-  export type MusicUpdateToOneWithWhereWithoutSongsInput = {
-    where?: MusicWhereInput
-    data: XOR<MusicUpdateWithoutSongsInput, MusicUncheckedUpdateWithoutSongsInput>
+  export type PremadeMusicUpdateToOneWithWhereWithoutSongsInput = {
+    where?: PremadeMusicWhereInput
+    data: XOR<PremadeMusicUpdateWithoutSongsInput, PremadeMusicUncheckedUpdateWithoutSongsInput>
   }
 
-  export type MusicUpdateWithoutSongsInput = {
+  export type PremadeMusicUpdateWithoutSongsInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
-    file_path?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MusicUncheckedUpdateWithoutSongsInput = {
+  export type PremadeMusicUncheckedUpdateWithoutSongsInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
-    file_path?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UploadedMusicUpsertWithoutSongsInput = {
+    update: XOR<UploadedMusicUpdateWithoutSongsInput, UploadedMusicUncheckedUpdateWithoutSongsInput>
+    create: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+    where?: UploadedMusicWhereInput
+  }
+
+  export type UploadedMusicUpdateToOneWithWhereWithoutSongsInput = {
+    where?: UploadedMusicWhereInput
+    data: XOR<UploadedMusicUpdateWithoutSongsInput, UploadedMusicUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type UploadedMusicUpdateWithoutSongsInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UploadedMusicUncheckedUpdateWithoutSongsInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
   }
 
   export type SongCreateWithoutLinksInput = {
     id?: string
+    musicSource?: $Enums.MusicSource
     file_path: string
     creation_date?: Date | string
     user: UserCreateNestedOneWithoutSongsInput
-    music: MusicCreateNestedOneWithoutSongsInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
   }
 
   export type SongUncheckedCreateWithoutLinksInput = {
     id?: string
     user_id: string
-    music_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
     file_path: string
     creation_date?: Date | string
   }
@@ -8741,16 +10341,20 @@ export namespace Prisma {
 
   export type SongUpdateWithoutLinksInput = {
     id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSongsNestedInput
-    music?: MusicUpdateOneRequiredWithoutSongsNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
   }
 
   export type SongUncheckedUpdateWithoutLinksInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    music_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8916,51 +10520,103 @@ export namespace Prisma {
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SongCreateWithoutMusicInput = {
+  export type SongCreateWithoutPremadeMusicInput = {
     id?: string
+    musicSource?: $Enums.MusicSource
     file_path: string
     creation_date?: Date | string
     user: UserCreateNestedOneWithoutSongsInput
     links?: LinkCreateNestedManyWithoutSongInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
   }
 
-  export type SongUncheckedCreateWithoutMusicInput = {
+  export type SongUncheckedCreateWithoutPremadeMusicInput = {
     id?: string
     user_id: string
+    musicSource?: $Enums.MusicSource
+    uploaded_music_id?: string | null
     file_path: string
     creation_date?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutSongInput
   }
 
-  export type SongCreateOrConnectWithoutMusicInput = {
+  export type SongCreateOrConnectWithoutPremadeMusicInput = {
     where: SongWhereUniqueInput
-    create: XOR<SongCreateWithoutMusicInput, SongUncheckedCreateWithoutMusicInput>
+    create: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput>
   }
 
-  export type SongCreateManyMusicInputEnvelope = {
-    data: SongCreateManyMusicInput | SongCreateManyMusicInput[]
+  export type SongCreateManyPremadeMusicInputEnvelope = {
+    data: SongCreateManyPremadeMusicInput | SongCreateManyPremadeMusicInput[]
     skipDuplicates?: boolean
   }
 
-  export type SongUpsertWithWhereUniqueWithoutMusicInput = {
+  export type SongUpsertWithWhereUniqueWithoutPremadeMusicInput = {
     where: SongWhereUniqueInput
-    update: XOR<SongUpdateWithoutMusicInput, SongUncheckedUpdateWithoutMusicInput>
-    create: XOR<SongCreateWithoutMusicInput, SongUncheckedCreateWithoutMusicInput>
+    update: XOR<SongUpdateWithoutPremadeMusicInput, SongUncheckedUpdateWithoutPremadeMusicInput>
+    create: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput>
   }
 
-  export type SongUpdateWithWhereUniqueWithoutMusicInput = {
+  export type SongUpdateWithWhereUniqueWithoutPremadeMusicInput = {
     where: SongWhereUniqueInput
-    data: XOR<SongUpdateWithoutMusicInput, SongUncheckedUpdateWithoutMusicInput>
+    data: XOR<SongUpdateWithoutPremadeMusicInput, SongUncheckedUpdateWithoutPremadeMusicInput>
   }
 
-  export type SongUpdateManyWithWhereWithoutMusicInput = {
+  export type SongUpdateManyWithWhereWithoutPremadeMusicInput = {
     where: SongScalarWhereInput
-    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutMusicInput>
+    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutPremadeMusicInput>
+  }
+
+  export type SongCreateWithoutUploadedMusicInput = {
+    id?: string
+    musicSource?: $Enums.MusicSource
+    file_path: string
+    creation_date?: Date | string
+    user: UserCreateNestedOneWithoutSongsInput
+    links?: LinkCreateNestedManyWithoutSongInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+  }
+
+  export type SongUncheckedCreateWithoutUploadedMusicInput = {
+    id?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    file_path: string
+    creation_date?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+  }
+
+  export type SongCreateOrConnectWithoutUploadedMusicInput = {
+    where: SongWhereUniqueInput
+    create: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput>
+  }
+
+  export type SongCreateManyUploadedMusicInputEnvelope = {
+    data: SongCreateManyUploadedMusicInput | SongCreateManyUploadedMusicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SongUpsertWithWhereUniqueWithoutUploadedMusicInput = {
+    where: SongWhereUniqueInput
+    update: XOR<SongUpdateWithoutUploadedMusicInput, SongUncheckedUpdateWithoutUploadedMusicInput>
+    create: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput>
+  }
+
+  export type SongUpdateWithWhereUniqueWithoutUploadedMusicInput = {
+    where: SongWhereUniqueInput
+    data: XOR<SongUpdateWithoutUploadedMusicInput, SongUncheckedUpdateWithoutUploadedMusicInput>
+  }
+
+  export type SongUpdateManyWithWhereWithoutUploadedMusicInput = {
+    where: SongScalarWhereInput
+    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutUploadedMusicInput>
   }
 
   export type SongCreateManyUserInput = {
     id?: string
-    music_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
     file_path: string
     creation_date?: Date | string
   }
@@ -8981,15 +10637,19 @@ export namespace Prisma {
 
   export type SongUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUpdateManyWithoutSongNestedInput
-    music?: MusicUpdateOneRequiredWithoutSongsNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
   }
 
   export type SongUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    music_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutSongNestedInput
@@ -8997,7 +10657,9 @@ export namespace Prisma {
 
   export type SongUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    music_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9104,32 +10766,78 @@ export namespace Prisma {
     can_view?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type SongCreateManyMusicInput = {
+  export type SongCreateManyPremadeMusicInput = {
     id?: string
     user_id: string
+    musicSource?: $Enums.MusicSource
+    uploaded_music_id?: string | null
     file_path: string
     creation_date?: Date | string
   }
 
-  export type SongUpdateWithoutMusicInput = {
+  export type SongUpdateWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSongsNestedInput
     links?: LinkUpdateManyWithoutSongNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
   }
 
-  export type SongUncheckedUpdateWithoutMusicInput = {
+  export type SongUncheckedUpdateWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutSongNestedInput
   }
 
-  export type SongUncheckedUpdateManyWithoutMusicInput = {
+  export type SongUncheckedUpdateManyWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    file_path?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SongCreateManyUploadedMusicInput = {
+    id?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    file_path: string
+    creation_date?: Date | string
+  }
+
+  export type SongUpdateWithoutUploadedMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    file_path?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSongsNestedInput
+    links?: LinkUpdateManyWithoutSongNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+  }
+
+  export type SongUncheckedUpdateWithoutUploadedMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    file_path?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
+  }
+
+  export type SongUncheckedUpdateManyWithoutUploadedMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }

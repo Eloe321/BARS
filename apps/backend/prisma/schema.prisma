@@ -14,6 +14,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum MusicSource {
+  PREMADE
+  UPLOADED
+}
+
 model User {
   id         String   @id @default(cuid())
   username   String   @unique
@@ -31,13 +36,16 @@ model User {
 model Song {
   id            String   @id @default(cuid())
   user_id       String
-  music_id      String
+  musicSource   MusicSource       @default(PREMADE)
+  premade_music_id   String?
+  uploaded_music_id  String?
   file_path     String   // for lyrics & notes
   creation_date DateTime @default(now())
   
   user           User            @relation(fields: [user_id], references: [id])
   links          Link[]
-  music          Music           @relation(fields: [music_id], references: [music_id])
+  premadeMusic   PremadeMusic?        @relation(fields: [premade_music_id], references: [music_id])
+  uploadedMusic  UploadedMusic?       @relation(fields: [uploaded_music_id], references: [music_id])
 }
 
 model Link {
@@ -65,12 +73,18 @@ model LinkPermission {
   userLink Link @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
 }
 
-model Music {
+model PremadeMusic {
   music_id      String   @id @default(cuid())
   bpm           Int
-  file_path     String   // for beat
   uploaded_date DateTime @default(now())
   
+  // Relations
+  songs         Song[]
+}
+model UploadedMusic{
+  music_id      String   @id @default(cuid())
+  uploaded_by   String
+
   // Relations
   songs         Song[]
 }

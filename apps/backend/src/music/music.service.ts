@@ -1,34 +1,54 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Injectable } from '@nestjs/common';
 import { Prisma } from 'generated/prisma';
 import { DatabaseService } from 'src/database/database.service';
+import * as filenAPI from '../storageScripts/access';
 
 @Injectable()
 export class MusicService {
   constructor(private readonly db: DatabaseService) {}
-  async create(createMusicDto: Prisma.MusicCreateInput) {
-    return await this.db.music.create({
+
+  async createMusicPremade(createMusicDto: Prisma.PremadeMusicCreateInput) {
+    await filenAPI.uploadFile(
+      `/Premade Music/${createMusicDto.music_id}`,
+      createMusicDto.file_path,
+    );
+    return await this.db.premadeMusic.create({
+      data: createMusicDto,
+    });
+  }
+  async createMusicUpload(createMusicDto: Prisma.UploadedMusicCreateInput) {
+    return await this.db.uploadedMusic.create({
       data: createMusicDto,
     });
   }
 
-  async findAll() {
-    return await this.db.music.findMany();
+  async findAllPremadeMusic() {
+    return await this.db.premadeMusic.findMany();
+  }
+  async findAlluploadedMusicByUserId(userId: string) {
+    return await this.db.uploadedMusic.findMany({
+      where: {
+        uploaded_by: userId,
+      },
+    });
   }
 
-  async findOne(id: string) {
-    return await this.db.music.findUnique({
+  async findOnePremadeMusic(id: string) {
+    return await this.db.premadeMusic.findUnique({
       where: {
         music_id: id,
       },
     });
   }
-
-  async update(id: string, updateMusicDto: Prisma.MusicUpdateInput) {
-    return await this.db.music.update({
+  async findOneUploadeddMusic(id: string) {
+    return await this.db.uploadedMusic.findUnique({
       where: {
         music_id: id,
       },
-      data: updateMusicDto,
     });
   }
 
