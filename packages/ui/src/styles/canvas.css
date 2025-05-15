@@ -1,0 +1,53 @@
+.notebook {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .cell {
+    margin: 1px 0;
+    padding: 1px;
+    border-radius: 4px;
+  }
+  
+  .cell.selected {
+    border: 2px solid #64ffda;
+    background-color: #2E3449;
+  }
+  
+  .txt-lyric.selected {
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  
+
+  textarea {
+    width: 100%;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  
+  .txt-lyric {
+    padding-left: 10px;
+    font-size: large;
+    font-family: monospace;
+    background-color: #0a182e;
+  }
+  
+  .txt-note {
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  
+  pre {
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+.cell.highlight {
+  background-color: #64ffda;  
+  transition: background-color 0.3s ease;
+}
