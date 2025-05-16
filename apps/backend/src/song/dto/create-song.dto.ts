@@ -1,13 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { MusicSource } from 'generated/prisma';
 
 export class CreateSongDto {
-  @ApiProperty({
-    description: 'Path to the song lyrics and notes file',
-    example: '/lyrics/my-new-song.txt',
-  })
-  @IsString()
   @IsNotEmpty()
+  @IsString()
+  user_id: string;
+
+  @IsEnum(MusicSource)
+  musicSource: MusicSource;
+
+  @IsOptional()
+  @IsString()
+  premade_music_id?: string;
+
+  @IsOptional()
+  @IsString()
+  uploaded_music_id?: string;
+
+  @IsNotEmpty()
+  @IsString()
   file_path: string;
 }

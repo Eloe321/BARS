@@ -1,26 +1,71 @@
 import { Injectable } from '@nestjs/common';
+import { DatabaseService } from '../database/database.service';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
+import { Song } from './entities/song.entity';
 
 @Injectable()
 export class SongService {
-  create(createSongDto: CreateSongDto) {
-    return 'This action adds a new song';
+  constructor(private prisma: DatabaseService) {}
+
+  async create(createSongDto: CreateSongDto): Promise<Song> {
+    const song = await this.prisma.song.create({
+      data: createSongDto,
+    });
+    return this.mapToEntity(song);
   }
 
-  findAll() {
-    return `This action returns all song`;
+  async findAll(filters = {}): Promise<Song[]> {
+    const songs = await this.prisma.song.findMany({
+      where: filters,
+      include: {
+        premadeMusic: true,
+        uploadedMusic: true,
+      },
+    });
+    return songs.map((song) => this.mapToEntity(song));
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} song`;
+  async findOne(id: string): Promise<Song> {
+    const song = await this.prisma.song.findUnique({
+      where: { id },
+      include: {
+        premadeMusic: true,
+        uploadedMusic: true,
+      },
+    });
+    if (!song) {
+      throw new Error('Song not found');
+    }
+    return this.mapToEntity(song);
   }
 
-  update(id: number, updateSongDto: UpdateSongDto) {
-    return `This action updates a #${id} song`;
+  async update(id: string, updateSongDto: UpdateSongDto): Promise<Song> {
+    const song = await this.prisma.song.update({
+      where: { id },
+      data: updateSongDto,
+      include: {
+        premadeMusic: true,
+        uploadedMusic: true,
+      },
+    });
+    return this.mapToEntity(song);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} song`;
+  async remove(id: string): Promise<Song> {
+    const song = await this.prisma.song.delete({
+      where: { id },
+      include: {
+        premadeMusic: true,
+        uploadedMusic: true,
+      },
+    });
+    return this.mapToEntity(song);
+  }
+
+  private mapToEntity(prismaData: any): Song {
+    const song = new Song();
+    Object.assign(song, prismaData);
+    return song;
   }
 }
