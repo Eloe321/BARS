@@ -16,16 +16,14 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(emailOrUsername: string, password: string): Promise<AuthEntity> {
+  async login(email: string, password: string): Promise<AuthEntity> {
     const user = await this.prisma.user.findFirst({
       where: {
-        OR: [{ email: emailOrUsername }, { username: emailOrUsername }],
+        email,
       },
     });
     if (!user) {
-      throw new NotFoundException(
-        `No user found for email or username: ${emailOrUsername}`,
-      );
+      throw new NotFoundException(`No user found for email: ${email}`);
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);

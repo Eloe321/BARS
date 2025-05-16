@@ -5,21 +5,9 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from 'generated/prisma';
 import { DatabaseService } from 'src/database/database.service';
-import * as filenAPI from '../storageScripts/access';
-
 @Injectable()
 export class MusicService {
   constructor(private readonly db: DatabaseService) {}
-
-  async createMusicPremade(createMusicDto: Prisma.PremadeMusicCreateInput) {
-    await filenAPI.uploadFile(
-      `/Premade Music/${createMusicDto.music_id}`,
-      createMusicDto.file_path,
-    );
-    return await this.db.premadeMusic.create({
-      data: createMusicDto,
-    });
-  }
   async createMusicUpload(createMusicDto: Prisma.UploadedMusicCreateInput) {
     return await this.db.uploadedMusic.create({
       data: createMusicDto,

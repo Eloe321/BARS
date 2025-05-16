@@ -5,7 +5,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import * as path from 'path';
-import * as fileType from 'file-type';
+import { fileTypeFromBuffer } from 'file-type';
 
 @Injectable()
 export class MP3ValidationPipe implements PipeTransform {
@@ -29,7 +29,7 @@ export class MP3ValidationPipe implements PipeTransform {
     // Validate MIME type
     try {
       // Check buffer's magic numbers to verify it's really an MP3
-      const fileInfo = await fileType.fromBuffer(value.buffer);
+      const fileInfo = await fileTypeFromBuffer(value.buffer);
       if (!fileInfo || fileInfo.mime !== 'audio/mpeg') {
         throw new BadRequestException(
           'Invalid file format. Only MP3 files are allowed.',

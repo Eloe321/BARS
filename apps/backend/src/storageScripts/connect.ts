@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { FilenSDK } from '@filen/sdk';
-import os from 'os';
-import path from 'path';
-import dotenv from 'dotenv';
+import * as os from 'os';
+import * as path from 'path';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -33,6 +33,7 @@ class FilenConnection {
 
         this.instance = filen;
       } catch (error) {
+        console.error('Error details: ', error);
         throw new Error('Failed to initialize Filen SDK: ' + error);
       }
     }
