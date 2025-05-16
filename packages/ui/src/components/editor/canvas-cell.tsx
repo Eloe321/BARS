@@ -89,6 +89,14 @@ const Cell = ({
   const [inputContent, setInputContent] = useState(content);
   const [startTime, setStartTime] = useState(timeStart);
   const [endTime, setEndTime] = useState(timeEnd);
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    const milliseconds = Math.floor((time % 1) * 1000);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(3, "0")}`;
+  };
+
   
   const isHighlighted = 
     timeStart != null && timeEnd != null &&
@@ -105,8 +113,8 @@ const Cell = ({
       {/* Display the times */}
       {cellType === 'lyric' && (
         <div className="time-info" style={{ marginRight: '10px', minWidth: '80px' }}>
-          <div>Start: {timeStart ?? '--:--'}</div>
-          <div>End: {timeEnd ?? '--:--'}</div>
+          <div>Start: {timeStart !== undefined ? formatTime(timeStart) : '--:--:---'}</div>
+          <div>End: {timeEnd !== undefined ? formatTime(timeEnd) : '--:--:---'}</div>
         </div>
       )}
 

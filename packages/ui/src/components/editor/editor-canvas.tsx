@@ -41,6 +41,13 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
   // }, []);
 
   // Handle click outside to deselect cell
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    const milliseconds = Math.floor((time % 1) * 1000);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(3, "0")}`;
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -119,7 +126,7 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
               />
             {selectedCellId === cell.id && (
               <div>
-                {/* <p>Current Time: {currentTime}</p> */}
+                <p>Current Time: {formatTime(currentTime)}</p>
                 <button className="px-2" onClick={() => insertCell(index, 'lyric')}>Insert Lyrics</button>
                 <button className="px-2" onClick={() => insertCell(index, 'note')}>Insert Notes</button>
                 <button className="px-2" onClick={() => deleteCell(cell.id)}>Delete</button>
