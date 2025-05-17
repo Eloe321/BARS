@@ -8,9 +8,71 @@ import { Input } from "@workspace/ui/components/input";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setError("");
+
+    // Simple validation
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const response = await fetch("http://localhost:3306/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          // Note: fullName isn't in your DTO, so it's not included
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Registration failed");
+      }
+
+      const userData = await response.json();
+
+      // After successful registration, redirect to login page
+      router.push("/");
+    } catch (err: any) {
+      setError(err.message || "Registration failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -164,7 +226,14 @@ export default function RegisterPage() {
                   </motion.h1>
                 </div>
 
-                <motion.div
+                {error && (
+                  <div className="mt-4 rounded-md bg-red-500 bg-opacity-20 p-3 text-center text-sm text-red-300">
+                    {error}
+                  </div>
+                )}
+
+                <motion.form
+                  onSubmit={handleSubmit}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -174,6 +243,9 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="text"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleChange}
                         placeholder="Full Name"
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
                       />
@@ -191,8 +263,12 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="text"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
                         placeholder="Username"
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
+                        required
                       />
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg
@@ -212,8 +288,12 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder="Email Address"
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
+                        required
                       />
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg
@@ -230,8 +310,12 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
                         placeholder="Password"
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
+                        required
                       />
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg
@@ -251,8 +335,12 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="password"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
                         placeholder="Confirm Password"
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
+                        required
                       />
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg
@@ -278,6 +366,7 @@ export default function RegisterPage() {
                       </span>
                       <div className="flex space-x-4">
                         <motion.button
+                          type="button"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
@@ -286,6 +375,7 @@ export default function RegisterPage() {
                           <FaGoogle className="h-5 w-5 text-red-500" />
                         </motion.button>
                         <motion.button
+                          type="button"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
@@ -318,8 +408,14 @@ export default function RegisterPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button className="relative w-full overflow-hidden bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] py-6 text-lg font-semibold text-white transition-all hover:shadow-[0_0_20px_rgba(100,255,218,0.4)]">
-                      <span className="relative z-10">Create Account</span>
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="relative w-full overflow-hidden bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] py-6 text-lg font-semibold text-white transition-all hover:shadow-[0_0_20px_rgba(100,255,218,0.4)]"
+                    >
+                      <span className="relative z-10">
+                        {loading ? "Creating Account..." : "Create Account"}
+                      </span>
                       <span className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] opacity-0 transition-opacity hover:opacity-100"></span>
                     </Button>
                   </motion.div>
@@ -333,7 +429,7 @@ export default function RegisterPage() {
                       Login
                     </Link>
                   </div>
-                </motion.div>
+                </motion.form>
               </div>
             </motion.div>
           </div>

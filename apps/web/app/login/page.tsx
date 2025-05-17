@@ -8,13 +8,37 @@ import { Input } from "@workspace/ui/components/input";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";
 import { motion } from "framer-motion";
+import { useAuth } from "@workspace/ui/components/context/authContext";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [mounted, setMounted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { login } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const success = await login(email, password);
+      if (success) {
+        router.push("/home");
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (err) {
+      setError("An error occurred during login");
+      console.error(err);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -91,18 +115,28 @@ export default function LoginPage() {
                   </motion.h1>
                 </div>
 
-                <motion.div
+                <motion.form
+                  onSubmit={handleSubmit}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                   className="mt-8 space-y-5"
                 >
+                  {error && (
+                    <div className="rounded-md bg-red-500/20 p-3 text-center text-sm text-red-300">
+                      {error}
+                    </div>
+                  )}
+
                   <div className="space-y-3">
                     <div className="relative">
                       <Input
                         type="text"
                         placeholder="Email/Username"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
+                        required
                       />
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg
@@ -119,7 +153,10 @@ export default function LoginPage() {
                       <Input
                         type="password"
                         placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
+                        required
                       />
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg
@@ -145,6 +182,7 @@ export default function LoginPage() {
                       </span>
                       <div className="flex space-x-4">
                         <motion.button
+                          type="button"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
@@ -153,6 +191,7 @@ export default function LoginPage() {
                           <FaGoogle className="h-5 w-5 text-red-500" />
                         </motion.button>
                         <motion.button
+                          type="button"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
@@ -178,12 +217,15 @@ export default function LoginPage() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button className="relative w-full overflow-hidden bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] py-6 text-lg font-semibold text-white transition-all hover:shadow-[0_0_20px_rgba(100,255,218,0.4)]">
+                    <Button
+                      type="submit"
+                      className="relative w-full overflow-hidden bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] py-6 text-lg font-semibold text-white transition-all hover:shadow-[0_0_20px_rgba(100,255,218,0.4)]"
+                    >
                       <span className="relative z-10">Login</span>
                       <span className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] opacity-0 transition-opacity hover:opacity-100"></span>
                     </Button>
                   </motion.div>
-                </motion.div>
+                </motion.form>
               </div>
             </motion.div>
           </div>

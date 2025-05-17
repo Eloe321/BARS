@@ -8,6 +8,7 @@ import EditorTopBar from "@workspace/ui/components/editor/editor-topbar";
 import MediaControls from "@workspace/ui/components/editor/media-control";
 import LyricsEditor from "@workspace/ui/components/editor/editor-canvas";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
+import ProtectedRoute from "../../components/auth/protected-route";
 
 export default function EditorPage() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -53,37 +54,39 @@ export default function EditorPage() {
   };
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="flex h-screen flex-col bg-[#0a192f] text-white">
-        <EditorHeader />
+    <ProtectedRoute>
+      <ThemeProvider attribute="class" defaultTheme="dark">
+        <div className="flex h-screen flex-col bg-[#0a192f] text-white">
+          <EditorHeader />
 
-        <div className="flex flex-1 overflow-hidden">
-          <TimelineSidebar />
+          <div className="flex flex-1 overflow-hidden">
+            <TimelineSidebar />
 
-          <div className="flex flex-1 flex-col overflow-hidden">
-            <EditorTopBar />
+            <div className="flex flex-1 flex-col overflow-hidden">
+              <EditorTopBar />
 
-            <MediaControls
-              isPlaying={isPlaying}
-              togglePlay={togglePlay}
-              currentTime={currentTime}
-              duration={duration}
-              progress={progress}
-              handleSliderChange={handleSliderChange}
-            />
+              <MediaControls
+                isPlaying={isPlaying}
+                togglePlay={togglePlay}
+                currentTime={currentTime}
+                duration={duration}
+                progress={progress}
+                handleSliderChange={handleSliderChange}
+              />
 
-            <LyricsEditor />
+              <LyricsEditor />
+            </div>
+
+            <ThesaurusSidebar />
           </div>
 
-          <ThesaurusSidebar />
+          {/* Hidden audio element for playback simulation */}
+          <audio ref={audioRef} className="hidden">
+            <source src="/placeholder.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
         </div>
-
-        {/* Hidden audio element for playback simulation */}
-        <audio ref={audioRef} className="hidden">
-          <source src="/placeholder.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ProtectedRoute>
   );
 }
