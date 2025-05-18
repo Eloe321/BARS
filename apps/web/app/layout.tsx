@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@workspace/ui/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";

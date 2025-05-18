@@ -8,75 +8,69 @@ import { Input } from "@workspace/ui/components/input";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";
 import { motion } from "framer-motion";
+import { useAuth } from "@workspace/ui/components/context/authContext";
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const [mounted, setMounted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { register, isAuthenticated } = useAuth();
   const router = useRouter();
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  useEffect(() => {
+    setMounted(true);
+    if (isAuthenticated) {
+      router.push("/home");
+    }
+  }, [isAuthenticated, router]);
 
-  const handleChange = (e: { target: { name: any; value: any } }) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    // Simple validation
-    if (formData.password !== formData.confirmPassword) {
+    // Basic validation
+    if (!username || !email || !password) {
+      setError("All fields are required");
+      return;
+    }
+
+    if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
-    try {
-      setLoading(true);
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return;
+    }
 
-      const response = await fetch("http://localhost:3306/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-          // Note: fullName isn't in your DTO, so it's not included
-        }),
+    setIsSubmitting(true);
+
+    try {
+      const success = await register({
+        username,
+        email,
+        password,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Registration failed");
+      if (success) {
+        router.push("/home");
+      } else {
+        setError("Registration failed. Please try again.");
       }
-
-      const userData = await response.json();
-
-      // After successful registration, redirect to login page
-      router.push("/");
-    } catch (err: any) {
-      setError(err.message || "Registration failed. Please try again.");
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError("An error occurred during registration");
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) return null;
 
@@ -226,12 +220,6 @@ export default function RegisterPage() {
                   </motion.h1>
                 </div>
 
-                {error && (
-                  <div className="mt-4 rounded-md bg-red-500 bg-opacity-20 p-3 text-center text-sm text-red-300">
-                    {error}
-                  </div>
-                )}
-
                 <motion.form
                   onSubmit={handleSubmit}
                   initial={{ opacity: 0 }}
@@ -239,34 +227,19 @@ export default function RegisterPage() {
                   transition={{ delay: 0.3 }}
                   className="mt-8 space-y-5"
                 >
+                  {error && (
+                    <div className="rounded-md bg-red-500/20 p-3 text-center text-sm text-red-300">
+                      {error}
+                    </div>
+                  )}
+
                   <div className="space-y-3">
                     <div className="relative">
                       <Input
                         type="text"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        placeholder="Full Name"
-                        className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
-                      />
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <svg
-                          className="h-5 w-5 text-[#64ffda]-70"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="relative">
-                      <Input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
                         placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
                         required
                       />
@@ -288,10 +261,9 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
                         placeholder="Email Address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
                         required
                       />
@@ -310,10 +282,9 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
                         placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
                         required
                       />
@@ -335,10 +306,9 @@ export default function RegisterPage() {
                     <div className="relative">
                       <Input
                         type="password"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
                         placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         className="border-[#1e3a5f]-50 bg-[#112240]-50 py-6 pl-10 pr-4 text-white placeholder:text-gray-500 focus:border-[#64ffda] focus:ring-[#64ffda]-20"
                         required
                       />
@@ -410,11 +380,13 @@ export default function RegisterPage() {
                   >
                     <Button
                       type="submit"
-                      disabled={loading}
+                      disabled={isSubmitting}
                       className="relative w-full overflow-hidden bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] py-6 text-lg font-semibold text-white transition-all hover:shadow-[0_0_20px_rgba(100,255,218,0.4)]"
                     >
                       <span className="relative z-10">
-                        {loading ? "Creating Account..." : "Create Account"}
+                        {isSubmitting
+                          ? "Creating Account..."
+                          : "Create Account"}
                       </span>
                       <span className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] opacity-0 transition-opacity hover:opacity-100"></span>
                     </Button>
@@ -423,7 +395,7 @@ export default function RegisterPage() {
                   <div className="pt-2 text-center text-sm text-gray-400">
                     <span>Already have an account? </span>
                     <Link
-                      href="/"
+                      href="/login"
                       className="font-medium text-[#64ffda] transition-colors hover:text-[#8fffdf]"
                     >
                       Login

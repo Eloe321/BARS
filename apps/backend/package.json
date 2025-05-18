@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@workspace/types": "workspace:*",
     "@filen/sdk": "^0.2.8",
     "@nestjs/class-transformer": "^0.4.0",
     "@nestjs/common": "^11.0.1",

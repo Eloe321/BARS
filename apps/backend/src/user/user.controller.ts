@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import {
   Controller,
+  Req,
   Get,
   Post,
   Body,
@@ -22,6 +23,12 @@ import {
 } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/strategy/jwt-auth.guard';
+import { Request } from 'express';
+import { User } from 'generated/prisma';
+
+interface RequestWithUser extends Request {
+  user: User;
+}
 
 @Controller('users')
 @ApiTags('users')
@@ -41,6 +48,15 @@ export class UserController {
   async findAll() {
     const users = await this.usersService.findAll();
     return users.map((user) => new UserEntity(user));
+  }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: UserEntity })
+  getMe(@Req() req: RequestWithUser) {
+    // The JWT strategy already attaches the user to the request
+    return new UserEntity(req.user);
   }
 
   @Get(':id')

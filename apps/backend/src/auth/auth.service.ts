@@ -12,12 +12,12 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
-    private prisma: DatabaseService,
+    private db: DatabaseService,
     private jwtService: JwtService,
   ) {}
 
   async login(email: string, password: string): Promise<AuthEntity> {
-    const user = await this.prisma.user.findFirst({
+    const user = await this.db.user.findFirst({
       where: {
         email,
       },
@@ -33,6 +33,7 @@ export class AuthService {
 
     return {
       accessToken: this.jwtService.sign({ userId: user.id }),
+      user: user,
     };
   }
 }

@@ -1,15 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@workspace/ui/components/button";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";
 import { FaMicrophone, FaRobot, FaLanguage, FaMusic } from "react-icons/fa";
 import { HiTranslate, HiLightningBolt } from "react-icons/hi";
-import { User } from "@workspace/types";
+import { useAuth } from "@workspace/ui/components/context/authContext";
+import { FiUser, FiLogOut } from "react-icons/fi";
+import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@workspace/ui/components/dropdown-menu";
 
 export default function HomePage() {
-  const user: User = {
-    id: "1",
-    name: "John Doe",
+  const { isAuthenticated, user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
   };
+
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
       <div className="min-h-screen bg-[#0a192f] text-white">
@@ -50,16 +63,53 @@ export default function HomePage() {
                 Pricing
               </Link>
             </div>
+
+            {/* Conditional rendering based on authentication status */}
             <div className="flex items-center gap-4">
-              <Link
-                href="/login"
-                className="text-sm text-[#64ffda] hover:text-[#8fffdf]"
-              >
-                Login
-              </Link>
-              <Button className="bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]">
-                Get Started
-              </Button>
+              {isAuthenticated ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className="flex cursor-pointer items-center gap-2 rounded-full border border-[#1e3a5f] bg-[#112240] px-3 py-2 text-sm">
+                      <div className="h-8 w-8 rounded-full bg-[#1e3a5f] flex items-center justify-center">
+                        <FiUser className="h-4 w-4 text-[#64ffda]" />
+                      </div>
+                      <span className="text-gray-300">
+                        {user?.username || "User"}
+                      </span>
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="border border-[#1e3a5f] bg-[#112240] z-50">
+                    <Link href="/editor" passHref>
+                      <DropdownMenuItem className="text-gray-300 hover:bg-[#1e3a5f] hover:text-[#64ffda] cursor-pointer">
+                        <FaMusic className="mr-2 h-4 w-4" />
+                        Editor
+                      </DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuSeparator className="bg-[#1e3a5f]" />
+                    <DropdownMenuItem
+                      className="text-gray-300 hover:bg-[#1e3a5f] hover:text-[#64ffda] cursor-pointer"
+                      onClick={handleLogout}
+                    >
+                      <FiLogOut className="mr-2 h-4 w-4" />
+                      Logout
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="text-sm text-[#64ffda] hover:text-[#8fffdf]"
+                  >
+                    Login
+                  </Link>
+                  <Link href="/register">
+                    <Button className="bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]">
+                      Get Started
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </nav>
@@ -80,9 +130,19 @@ export default function HomePage() {
                   tool designed specifically for Bisaya rap artists.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button className="bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]">
-                    Try For Free
-                  </Button>
+                  {isAuthenticated ? (
+                    <Link href="/editor">
+                      <Button className="bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]">
+                        Go to Editor
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link href="/register">
+                      <Button className="bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]">
+                        Try For Free
+                      </Button>
+                    </Link>
+                  )}
                   <Button
                     variant="outline"
                     className="border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
