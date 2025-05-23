@@ -41,11 +41,20 @@ export async function searchBinisaya(word: string): Promise<any> {
   return data;
 }
 
-export async function analyzeLyrics(lyrics: string) {
+export async function analyzeLyrics(lyrics: string, audioFile: File) {
+  const formData = new FormData();
+  formData.append("audio", audioFile);
+  formData.append("lyrics", lyrics);
+  formData.append("verse_delimiter", "<VERSE>")
+
   const res = await fetch(`${BASE_URL}/analyze-lyrics`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ lyrics }),
+    body: formData,
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to analyze lyrics");
+  }
+
   return res.json();
 }

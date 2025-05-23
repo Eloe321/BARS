@@ -21,6 +21,10 @@
     background-color: rgba(0, 0, 0, 0);
   }
   
+  .time-info {
+    position: relative;
+    left: -90px;
+  }
 
   textarea {
     width: 100%;
@@ -29,10 +33,17 @@
   }
   
   .txt-lyric {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-54%);
+    z-index: 1;
+    margin-top: 10px;
     padding-left: 10px;
     font-size: large;
     font-family: monospace;
     background-color: #0a182e;
+    width: 100vw;
   }
   
   .txt-note {

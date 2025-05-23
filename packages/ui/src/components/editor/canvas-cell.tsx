@@ -3,9 +3,11 @@ import { AutocompleteTextbox } from 'react-ghost-text';
 import { BigramModel } from '@workspace/ui/components/utils/bigram.js'
 
 function LyricTextbox({ 
-  className
+  className,
+  onContentChange
  }: { 
-  className?: string 
+  className?: string;
+  onContentChange?: (content: string) => void;
 }) {
   const model = new BigramModel()
 
@@ -22,11 +24,19 @@ function LyricTextbox({
   };
 
   const handleContentChange = (content: string) => {
-    console.log('User input:', content);
+    // console.log('User input:', content);
+    if (onContentChange) {
+      onContentChange(content); // Notify parent
+    }
   };
 
   return (
     <AutocompleteTextbox
+      onPaste={(event: React.ClipboardEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        const text = event.clipboardData.getData('text/plain');
+        document.execCommand('insertText', false, text);
+      }}
       className={className}
       getSuggestion={getSuggestion}
       onContentChange={handleContentChange}
@@ -63,7 +73,7 @@ const NoteTextbox = ({
   };
 
   useEffect(() => {
-    console.log('User input:', value);
+    // console.log('User input:', value);
     handleInput({ target: { value } } as React.ChangeEvent<HTMLTextAreaElement>);
   }, [value]);
 
@@ -74,7 +84,7 @@ const NoteTextbox = ({
       value={value}
       onChange={handleInput}
       placeholder={placeholder}
-      style={{ width: '100%', overflow: 'hidden', resize: 'none' }}
+      style={{ width: '100%', overflow: 'hidden', resize: 'none'}}
       rows={1}
     />
   );
@@ -118,23 +128,23 @@ const Cell = ({
   }, [timeStart, timeEnd]);
 
   return (
-    <div className={`cell ${isHighlighted ? 'highlight' : ''}`} style={{ display: 'flex', alignItems: 'center' }}>
+    <div className={`cell ${isHighlighted ? 'highlight' : ''}`} style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
       {/* Display the times */}
       {cellType === 'lyric' && (
-        <div className="time-info" style={{ marginRight: '10px', minWidth: '80px' }}>
-          <div>Start: {timeStart !== undefined ? formatTime(timeStart) : '--:--:---'}</div>
-          <div>End: {timeEnd !== undefined ? formatTime(timeEnd) : '--:--:---'}</div>
+        <div className="time-info">
+          <div>{timeStart !== undefined ? formatTime(timeStart) : '--:--:---'}</div>
+          <div>{timeEnd !== undefined ? formatTime(timeEnd) : '--:--:---'}</div>
         </div>
       )}
 
       {/* Text input */}
-      <div style={{ flexGrow: 1 }}>
+      <div className="flex-1">
         {cellType === 'lyric' && (
-          <LyricTextbox className="txt-lyric" />
+          <LyricTextbox className="txt-lyric" onContentChange={(newContent) => onUpdateContent(newContent)}/>
         )}
         {cellType === 'note' && (
           <NoteTextbox
-            className="txt-note"
+            className="txt-note outline-none"
             value={content}
             onChange={(e) => onUpdateContent(e.target.value)}
             placeholder="Write your notes here..."

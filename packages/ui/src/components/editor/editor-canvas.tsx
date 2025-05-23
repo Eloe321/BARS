@@ -5,22 +5,35 @@ import { useState, useRef, useEffect } from "react";
 import Cell from '@workspace/ui/components/editor/canvas-cell';
 import { generateLyrics } from '@workspace/ui/components/utils/api.js';
 import LyricGenerator from './canvas-generator.js';
+import TimelineSidebar from './timeline-sidebar.js';
 
+interface EditorCell {
+  id: number;
+  type: "note" | "lyric";
+  content: string;
+  timeStart?: number;
+  timeEnd?: number;
+}
 
 interface EditorProps {
   onWordSelect: (word: string) => void;
   currentTime: number;
+  onCellsUpdate?: (cells: EditorCell[]) => void;
+  analyzedVerses: any;
 }
 
-export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps) {
-    const notebookRef = useRef<HTMLDivElement>(null);
+export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate, analyzedVerses }: EditorProps) {
+  const notebookRef = useRef<HTMLDivElement>(null);
   const [cells, setCells] = useState<{ id: number; type: "note" | "lyric"; content: string; timeStart?: number; timeEnd?: number }[]>([
-    { id: 1, type: 'note', content: '', timeStart: -1, timeEnd: -1 }
+    { id: 0, type: 'note', content: '', timeStart: -1, timeEnd: -1 }
   ]);
   const [nextId, setNextId] = useState(2);
   const [selectedCellId, setSelectedCellId] = useState<number | null>(null);
 
-  // TODO: fix this at final week
+  useEffect(() => {
+    onCellsUpdate?.(cells); // Notify parent on any change
+  }, [cells]);
+
   // Function to update the Thesaurus with the selected word
   const handleKeyPress = (event: KeyboardEvent) => {
     if (event.ctrlKey && event.key === "Enter") {
@@ -106,9 +119,51 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
     setCells(cells.map(cell => cell.id === id ? { ...cell, content } : cell));
   };
 
+  const updateCellTime = (id: number, timeStart?: number, timeEnd?: number) => {
+    console.log(id);
+
+    setCells(prevCells =>
+      prevCells.map(cell =>
+        cell.id === id
+          ? { ...cell, timeStart, timeEnd }
+          : cell
+      )
+    );
+  };
+
+  const handleAnalyzedVersesUpdate = (result: any) => {
+    // Extract verse start and end times from each group
+    const verseTimes = result.map((group: any[]) => {
+      const firstLine = group[0];
+      const lastLine = group[group.length - 1];
+      return {
+        start_time: firstLine?.start_time,
+        end_time: lastLine?.end_time,
+      };
+    });
+
+    const lyricCellIds = cells.filter(cell => cell.type === 'lyric').map(cell => cell.id);
+
+    // Now map verseTimes to lyricCellIds 1:1
+    verseTimes.forEach((verse, idx) => {
+      const id = lyricCellIds[idx];
+      if (id !== undefined) {
+        updateCellTime(id, verse.start_time, verse.end_time);
+      }
+    });
+  };
+
+
+  useEffect(() => {
+    if (analyzedVerses) {
+      handleAnalyzedVersesUpdate(analyzedVerses);
+    }
+
+  }, [analyzedVerses]);
+
   return (
     <div className='flex flex-1 overflow-hidden'>
-      {/* <TimelineSidebar/> */}
+      <TimelineSidebar/>
       <div className="notebook" ref={notebookRef}>
         <button className="px-2" onClick={() => addCell('lyric')}>Add Lyrics</button>
         <button className="px-2" onClick={() => addCell('note')}>Add Notes</button>
@@ -119,36 +174,6 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
             className={`cell ${cell.id === selectedCellId ? 'selected' : ''}`}
             onClick={() => setSelectedCellId(cell.id)}
           >
-            {cell.type === 'lyric' && selectedCellId === cell.id && (
-              <div className="flex justify-end">
-                <LyricGenerator onGenerate={async (result: string) => {
-                  console.log('Generate function called: ', result);
-
-                  try {
-                    const generated = await generateLyrics(result);
-                    console.log('Generated lyrics:', generated.generated_text);
-
-                    // creating new cell with generated content
-                    const cellContent = "Generated Verse:\n\n" + generated.generated_text 
-                    console.log(cellContent)
-
-                    const newCell: { id: number; type: "note"; content: string; timeStart: number; timeEnd: number } = { id: nextId, type: "note", content: cellContent, timeStart: -1, timeEnd: -1 };
-                    setNextId(nextId + 1);
-                    setCells(prevCells => {
-                      const insertIndex = prevCells.findIndex(c => c.id === cell.id) + 1;
-                      return [
-                        ...prevCells.slice(0, insertIndex),
-                        newCell,
-                        ...prevCells.slice(insertIndex)
-                      ];
-                    });
-
-                  } catch (error) {
-                    console.error('Failed to generate lyrics:', error);
-                  }
-                }} />
-              </div>
-            )}
               <Cell
                 key={cell.id}
                 cellType={cell.type}
@@ -158,13 +183,46 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
                 timeEnd={cell.timeEnd}
                 currentTime={currentTime}
               />
-            {selectedCellId === cell.id && (
-              <div>
-                <p>Current Time: {formatTime(currentTime)}</p>
-                <button className="px-2 rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'lyric')}>Insert Lyrics</button>
-                <button className="px-2 rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'note')}>Insert Notes</button>
-                <button className="px-2 rounded hover:bg-[#64ffda] hover:text-black" onClick={() => deleteCell(cell.id)}>Delete</button>
+
+              { selectedCellId === cell.id && (
+                <div className="flex justify-between">
+                  <div>
+                    {/* TODO: remove when not needed anymore */}
+                    <p>Current Time: {formatTime(currentTime)}</p>
+                    <button className="px-2 py-1 text-white rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'lyric')}>Insert Lyrics</button>
+                    <button className="px-2 py-1 text-white rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'note')}>Insert Notes</button>
+                    <button className="px-2 py-1 text-white rounded hover:bg-[#64ffda] hover:text-black" onClick={() => deleteCell(cell.id)}>Delete</button>
+                  </div>
+                  
+                  
+                  { cell.type === 'lyric' && (
+                    <LyricGenerator onGenerate={async (result: string) => {
+                      try {
+                        const generated = await generateLyrics(result);
+                        console.log('Generated lyrics:', generated.generated_text);
+
+                        // creating new cell with generated content
+                        const cellContent = "Generated Verse:\n\n" + generated.generated_text 
+
+                        const newCell: { id: number; type: "note"; content: string; timeStart: number; timeEnd: number } = { id: nextId, type: "note", content: cellContent, timeStart: -1, timeEnd: -1 };
+                        setNextId(nextId + 1);
+                        setCells(prevCells => {
+                          const insertIndex = prevCells.findIndex(c => c.id === cell.id) + 1;
+                          return [
+                            ...prevCells.slice(0, insertIndex),
+                            newCell,
+                            ...prevCells.slice(insertIndex)
+                          ];
+                        });
+
+                      } catch (error) {
+                        console.error('Failed to generate lyrics:', error);
+                      }
+                    }} />
+                )}
+              
               </div>
+
             )}
           </div>
         ))}

@@ -1,8 +1,11 @@
 "use client";
 
-import { Play, Pause, SkipBack, SkipForward, Download } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@workspace/ui/components/button";
+import { Play, Pause, SkipBack, SkipForward, Download } from "lucide-react";
 import { Slider } from "@workspace/ui/components/slider";
+import { analyzeLyrics } from "@workspace/ui/components/utils/api.js";
+import { urlToFile } from "@workspace/ui/components/utils/helper.js"; 
 
 interface MediaControlsProps {
   isPlaying: boolean;
@@ -11,6 +14,9 @@ interface MediaControlsProps {
   duration: number;
   progress: number;
   handleSliderChange: (value: number[]) => void;
+  audioSrc: string;
+  lyricsText: string;
+  onAnalyzedVersesUpdate: (analyzedVerses: any) => void;
 }
 
 export default function MediaControls({
@@ -20,11 +26,47 @@ export default function MediaControls({
   duration,
   progress,
   handleSliderChange,
+  audioSrc,
+  lyricsText,
+  onAnalyzedVersesUpdate,
 }: MediaControlsProps) {
+  const [analyzedLyrics, setAnalyzedLyrics] = useState<any>();
+  const [analyzedVerses, setAnalyzedVerses] = useState<any>(); 
+  const [tempo, setTempo] = useState<number>(0);
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  const handleAnalyze = async () => {
+    try {
+      if (!audioSrc || !lyricsText) {
+        console.log("audio or lyrics doesn't exist");
+        return;
+      }
+
+      // Convert the local URL to a File object
+      const audioFile = await urlToFile(audioSrc, "placeholder.mp3", "audio/mpeg");
+
+      // Now call the API with the lyrics and File
+      const result = await analyzeLyrics(lyricsText, audioFile);
+      console.log("Analysis result:", result);
+      onAnalyzedLyrics(result);
+    } catch (err) {
+      console.error("Error analyzing lyrics:", err);
+    }
+  };
+
+  const onAnalyzedLyrics = (result: any) => {
+    setAnalyzedLyrics(result);
+    setTempo(Number(result.rhythm_info.tempo.toFixed(2)));
+
+    const verses = result.aligned_lyrics;
+    setAnalyzedVerses(verses);
+
+    onAnalyzedVersesUpdate(verses);
   };
 
   return (
@@ -53,7 +95,7 @@ export default function MediaControls({
           <button className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f]-20 hover:text-white">
             <Download className="h-5 w-5" />
           </button>
-          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">110 BPM</div>
+          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">{tempo} BPM</div>
         </div>
         <div className="flex w-1/2 items-center space-x-4">
           <span className="text-xs text-gray-400">
@@ -68,13 +110,16 @@ export default function MediaControls({
             onValueChange={handleSliderChange}
           />
           <span className="text-xs text-gray-400">{formatTime(duration)}</span>
+
           <Button
             variant="outline"
             size="sm"
-            className="ml-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
+            className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
+            onClick={handleAnalyze}
           >
             Align Lyrics
           </Button>
+
         </div>
       </div>
     </div>
