@@ -1,15 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AutocompleteTextbox } from 'react-ghost-text';
+import { BigramModel } from '@workspace/ui/components/utils/bigram.js'
 
 function LyricTextbox({ 
   className
  }: { 
   className?: string 
 }) {
-  const getSuggestion = async (precedingText: string) => {
-    console.log('Fetching suggestion for:', precedingText);
-    // Fetch suggestion from a backend API
-    return precedingText;
+  const model = new BigramModel()
+
+  const getSuggestion = async (precedingText: string): Promise<string> => {
+    const words = precedingText.trim().split(/\s+/);
+    const precedingWord = words.length > 0 ? words[words.length - 1] : '';
+
+    console.log('Fetching suggestion for:', precedingWord);
+
+    const suggestions = model.getSuggestions(precedingWord || '');
+    console.log(suggestions)
+    // Always return a string, never undefined
+    return (suggestions && suggestions.length > 0 ? suggestions[0] ?? '' : '');
   };
 
   const handleContentChange = (content: string) => {

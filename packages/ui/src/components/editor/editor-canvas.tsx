@@ -3,6 +3,9 @@
 import '@workspace/ui/styles/canvas.css';
 import { useState, useRef, useEffect } from "react";
 import Cell from '@workspace/ui/components/editor/canvas-cell';
+import { generateLyrics } from '@workspace/ui/components/utils/api.js';
+import LyricGenerator from './canvas-generator.js';
+
 
 interface EditorProps {
   onWordSelect: (word: string) => void;
@@ -19,26 +22,27 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
 
   // TODO: fix this at final week
   // Function to update the Thesaurus with the selected word
-  // const handleKeyPress = (event: KeyboardEvent) => {
-  //   if (event.ctrlKey && event.key === "Enter") {
-  //     const selection = window.getSelection();
-  //     if (selection && selection.toString().trim()) {
-  //       const selectedText = selection.toString().trim();
-  //       const firstWord = selectedText.split(/\s+/)[0];
-  //       if (firstWord) {
-  //         onWordSelect(firstWord);
-  //       }
-  //     }
-  //   }
-  // };
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === "Enter") {
+      const selection = window.getSelection();
+      if (selection && selection.toString().trim()) {
+        const selectedText = selection.toString().trim();
+        const firstWord = selectedText.split(/\s+/)[0];
+        if (firstWord) {
+          console.log(firstWord)
+          onWordSelect(firstWord);
+        }
+      }
+    }
+  };
 
   // Handle key press to update the Thesaurus
-  // useEffect(() => {
-  //   document.addEventListener("keydown", handleKeyPress);
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyPress);
-  //   };
-  // }, []);
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   // Handle click outside to deselect cell
   const formatTime = (time: number) => {
@@ -115,6 +119,36 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
             className={`cell ${cell.id === selectedCellId ? 'selected' : ''}`}
             onClick={() => setSelectedCellId(cell.id)}
           >
+            {cell.type === 'lyric' && selectedCellId === cell.id && (
+              <div className="flex justify-end">
+                <LyricGenerator onGenerate={async (result: string) => {
+                  console.log('Generate function called: ', result);
+
+                  try {
+                    const generated = await generateLyrics(result);
+                    console.log('Generated lyrics:', generated.generated_text);
+
+                    // creating new cell with generated content
+                    const cellContent = "Generated Verse:\n\n" + generated.generated_text 
+                    console.log(cellContent)
+
+                    const newCell: { id: number; type: "note"; content: string; timeStart: number; timeEnd: number } = { id: nextId, type: "note", content: cellContent, timeStart: -1, timeEnd: -1 };
+                    setNextId(nextId + 1);
+                    setCells(prevCells => {
+                      const insertIndex = prevCells.findIndex(c => c.id === cell.id) + 1;
+                      return [
+                        ...prevCells.slice(0, insertIndex),
+                        newCell,
+                        ...prevCells.slice(insertIndex)
+                      ];
+                    });
+
+                  } catch (error) {
+                    console.error('Failed to generate lyrics:', error);
+                  }
+                }} />
+              </div>
+            )}
               <Cell
                 key={cell.id}
                 cellType={cell.type}
@@ -127,9 +161,9 @@ export default function LyricsEditor({ onWordSelect, currentTime }: EditorProps)
             {selectedCellId === cell.id && (
               <div>
                 <p>Current Time: {formatTime(currentTime)}</p>
-                <button className="px-2" onClick={() => insertCell(index, 'lyric')}>Insert Lyrics</button>
-                <button className="px-2" onClick={() => insertCell(index, 'note')}>Insert Notes</button>
-                <button className="px-2" onClick={() => deleteCell(cell.id)}>Delete</button>
+                <button className="px-2 rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'lyric')}>Insert Lyrics</button>
+                <button className="px-2 rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'note')}>Insert Notes</button>
+                <button className="px-2 rounded hover:bg-[#64ffda] hover:text-black" onClick={() => deleteCell(cell.id)}>Delete</button>
               </div>
             )}
           </div>
