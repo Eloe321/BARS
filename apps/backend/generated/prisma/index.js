@@ -178,7 +178,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/eloe/BARS-1/apps/backend/generated/prisma",
+      "value": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BACK-BARS\\BARS\\apps\\backend\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -187,12 +187,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/eloe/BARS-1/apps/backend/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BACK-BARS\\BARS\\apps\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -210,7 +210,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://neondb_owner:npg_c4JgStph6MDZ@ep-noisy-sun-a1mvq6vh-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+        "value": "postgresql://developer:npg_FIm1qkWdv6rn@ep-noisy-sun-a1mvq6vh-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
       }
     }
   },
@@ -254,8 +254,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
-path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "generated/prisma/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "generated/prisma/schema.prisma")

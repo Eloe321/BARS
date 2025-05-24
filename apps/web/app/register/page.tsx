@@ -76,7 +76,7 @@ export default function RegisterPage() {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="relative flex min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#112240] to-[#1a365d]">
+      <div className="relative flex min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#0a192f] via-[#0B132B] to-[#1a365d]">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -right-10 top-10 h-72 w-72 rounded-full bg-[#64ffda]-5 blur-[100px]" />
@@ -148,12 +148,12 @@ export default function RegisterPage() {
         <div className="relative z-10 flex w-full flex-col md:flex-row">
           {/* Image Section */}
           <div className="hidden md:flex md:w-1/2">
-            <div className="relative h-full w-full overflow-hidden">
+            <div className="relative h-full w-full">
               <Image
-                src="/placeholder.svg?height=800&width=600"
+                src="/static/auth-art.png"
                 alt="Music producer in studio"
                 fill
-                className="object-cover"
+                className="object-cover object-[center_right] rounded-lg shadow-[0_0_50px_#64ffda]"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#0a192f]-90 to-transparent"></div>
@@ -190,7 +190,7 @@ export default function RegisterPage() {
               transition={{ duration: 0.5 }}
               className="w-full max-w-md overflow-hidden rounded-xl bg-[#0a192f]-70 p-1 backdrop-blur-lg"
             >
-              <div className="rounded-lg bg-gradient-to-r from-[#1e3a5f]-20 to-[#64ffda]-5 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+              <div className="rounded-lg bg-gradient-to-b from-[#112240] to-[#132038] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
                 <div className="flex flex-col items-center justify-center space-y-3">
                   <motion.div
                     initial={{ scale: 0 }}
@@ -214,7 +214,7 @@ export default function RegisterPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-gradient-to-r from-white to-[#64ffda] bg-clip-text text-5xl font-bold tracking-wider text-transparent"
+                    className="p-1 bg-gradient-to-r from-white to-[#64ffda] bg-clip-text text-5xl font-bold tracking-wider text-transparent"
                   >
                     register
                   </motion.h1>
@@ -339,18 +339,18 @@ export default function RegisterPage() {
                           type="button"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
-                          className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
+                          className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-[#182235] border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
                         >
-                          <div className="absolute -inset-0.5 -z-10 rounded-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] opacity-0 blur transition-all group-hover:opacity-70"></div>
+                          <div className="absolute -inset-0.5 -z-10 rounded-full bg-radial from-[#1e3a5f] to-[#64ffda] opacity-0 blur transition-all group-hover:opacity-100"></div>
                           <FaGoogle className="h-5 w-5 text-red-500" />
                         </motion.button>
                         <motion.button
                           type="button"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
-                          className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
+                          className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-[#182235] border border-[#1e3a5f]-50 bg-[#112240]-50 text-white transition-all hover:border-[#64ffda]-50"
                         >
-                          <div className="absolute -inset-0.5 -z-10 rounded-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] opacity-0 blur transition-all group-hover:opacity-70"></div>
+                          <div className="absolute -inset-0.5 -z-10 rounded-full bg-radial from-[#1e3a5f] to-[#64ffda] opacity-0 blur transition-all group-hover:opacity-100"></div>
                           <FaFacebook className="h-5 w-5 text-blue-500" />
                         </motion.button>
                       </div>

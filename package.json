@@ -35,7 +35,16 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "bcrypt"
+      "@nestjs/core",
+      "@prisma/client",
+      "@prisma/engines",
+      "@scarf/scarf",
+      "@swc/core",
+      "bcrypt",
+      "core-js-pure",
+      "esbuild",
+      "prisma",
+      "sharp"
     ]
   }
 }
