@@ -1,3 +1,5 @@
+import { UserEntity } from "@workspace/types";
+import { useAuth } from "../../context/authContext.js";
 export interface BlobMP3File {
   url: string;
   filename: string;
@@ -20,10 +22,19 @@ export interface TrackLoadOptions {
   onProgress?: (progress: number) => void;
   abortSignal?: AbortSignal;
 }
+export interface AuthData {
+  token: string | null;
+  user: UserEntity;
+}
 
 class MediaApiService {
-  async fetchTracks(): Promise<TracksResponse> {
-    const response = await fetch("/api/getFiles");
+  async fetchTracks(authData: AuthData): Promise<TracksResponse> {
+    const { token } = authData;
+    const response = await fetch("/api/getFiles", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch tracks: ${response.statusText}`);
@@ -37,9 +48,11 @@ class MediaApiService {
   }
 
   async uploadFile(
+    authData: AuthData,
     file: File,
     onProgress?: (progress: number) => void
   ): Promise<UploadResponse> {
+    const { token, user } = authData;
     // Validate file type
     if (!file.type.includes("audio/mpeg") && !file.name.endsWith(".mp3")) {
       throw new Error("Please select a valid MP3 file");
@@ -71,6 +84,10 @@ class MediaApiService {
       const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "user-id": `${user?.id}`,
+        },
       });
 
       if (progressInterval) {

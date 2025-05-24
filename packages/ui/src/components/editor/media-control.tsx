@@ -30,7 +30,6 @@ import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@workspace/ui/components/context/authContext";
 import { formatTime } from "./utils/utils.js";
 import { mediaApi, type BlobMP3File } from "./mediaApi/mediaAccess.js";
-
 interface MediaControlsProps {
   isPlaying: boolean;
   togglePlay: () => void;
@@ -67,7 +66,6 @@ export default function MediaControls({
   const [selectedUploadedValue, setSelectedUploadedValue] =
     useState<string>("");
   const { token, user } = useAuth();
-
   // Ref to track the current track loading request
   const trackLoadingRef = useRef<AbortController | null>(null);
   const currentTrackRef = useRef<string>("");
@@ -79,7 +77,10 @@ export default function MediaControls({
   const fetchTracks = async () => {
     setLoadingFiles(true);
     try {
-      const data = await mediaApi.fetchTracks();
+      if (!user) {
+        throw new Error("User not authenticated");
+      }
+      const data = await mediaApi.fetchTracks({ token, user });
       setPremadeTracks(data.premade);
       setUploadedTracks(data.uploaded);
     } catch (error) {
@@ -172,10 +173,16 @@ export default function MediaControls({
     try {
       // Validate file using API service
       mediaApi.validateFile(file);
-
-      const data = await mediaApi.uploadFile(file, (progress) => {
-        setUploadProgress(progress);
-      });
+      if (!user) {
+        throw new Error("User not authenticated");
+      }
+      const data = await mediaApi.uploadFile(
+        { token, user },
+        file,
+        (progress) => {
+          setUploadProgress(progress);
+        }
+      );
 
       // Success - automatically load the uploaded track
       setUploadSuccess(true);
@@ -400,7 +407,7 @@ export default function MediaControls({
       {uploading && (
         <div className="mb-4">
           <div className="mb-1 flex justify-between text-xs text-gray-400">
-            <span>Uploading to Vercel Blob...</span>
+            <span>Uploading to Cloud Storage...</span>
             <span>{Math.round(uploadProgress)}%</span>
           </div>
           <Progress

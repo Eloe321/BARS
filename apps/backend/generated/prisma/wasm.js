@@ -155,14 +155,15 @@ exports.Prisma.LinkPermissionScalarFieldEnum = {
 exports.Prisma.PremadeMusicScalarFieldEnum = {
   music_id: 'music_id',
   music_name: 'music_name',
-  bpm: 'bpm',
-  uploaded_date: 'uploaded_date'
+  uploaded_date: 'uploaded_date',
+  path: 'path'
 };
 
 exports.Prisma.UploadedMusicScalarFieldEnum = {
   music_id: 'music_id',
   music_name: 'music_name',
-  uploaded_by: 'uploaded_by'
+  uploaded_by: 'uploaded_by',
+  path: 'path'
 };
 
 exports.Prisma.SortOrder = {

@@ -48,7 +48,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (savedToken) {
           setToken(savedToken);
           try {
-            // Fetch user data with the token
             const response = await fetch(`${API_BASE_URL}/users/me`, {
               headers: {
                 Authorization: `Bearer ${savedToken}`,
@@ -99,12 +98,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const accessToken = data.accessToken;
       const user = data.user;
 
-      // Save token to both cookie (for middleware) and localStorage (for backup)
       setCookie("authToken", accessToken);
       localStorage.setItem("authToken", accessToken);
       setToken(accessToken);
 
-      // Set placeholder user for now
       setUser({ id: user.id, username: user.username, email: user.email });
 
       return true;

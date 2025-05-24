@@ -1,5 +1,3 @@
-// Cookie utility functions
-
 // Set a cookie
 export function setCookie(name: string, value: string, days: number = 1) {
   const date = new Date();

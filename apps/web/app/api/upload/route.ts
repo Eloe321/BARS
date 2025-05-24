@@ -1,20 +1,19 @@
 import { put } from "@vercel/blob";
 import { type NextRequest, NextResponse } from "next/server";
 
-// Configure the API route to handle larger files
 export const runtime = "nodejs";
-export const maxDuration = 60; // 60 seconds timeout
+export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
   try {
-    // Add timeout handling
     const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error("Upload timeout")), 55000); // 55 seconds
+      setTimeout(() => reject(new Error("Upload timeout")), 55000);
     });
 
     const uploadPromise = async () => {
       const formData = await request.formData();
       const file = formData.get("file") as File | null;
+      const token = request.headers.get("Authorization");
 
       if (!file) {
         return NextResponse.json(
@@ -23,7 +22,6 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Validate file type
       const isValidMP3 =
         file.type === "audio/mpeg" ||
         file.type === "audio/mp3" ||
@@ -36,7 +34,6 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Check file size (limit to 100MB for better compatibility)
       const maxSize = 10 * 1024 * 1024;
       if (file.size > maxSize) {
         return NextResponse.json(
@@ -56,6 +53,26 @@ export async function POST(request: NextRequest) {
         addRandomSuffix: true,
         contentType: file.type || "audio/mpeg",
       });
+
+      //Put logic to save to database here
+      const dbResponse = await fetch("http://localhost:3306/music/uploaded", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify({
+          music_name: blob.contentDisposition.split("filename=")[1],
+          uploaded_by: request.headers.get("user-id") || "",
+          path: blob.url,
+        }),
+      });
+
+      if (!dbResponse.ok) {
+        throw new Error("Failed to save to database");
+      }
+
+      const dbData = await dbResponse.json();
 
       return NextResponse.json({
         url: blob.url,
