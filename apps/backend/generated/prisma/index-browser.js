@@ -132,6 +132,7 @@ exports.Prisma.SongScalarFieldEnum = {
   musicSource: 'musicSource',
   premade_music_id: 'premade_music_id',
   uploaded_music_id: 'uploaded_music_id',
+  content: 'content',
   file_path: 'file_path',
   creation_date: 'creation_date'
 };

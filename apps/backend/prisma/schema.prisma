@@ -39,6 +39,7 @@ model Song {
   musicSource   MusicSource       @default(PREMADE)
   premade_music_id   String?
   uploaded_music_id  String?
+  content          String      @default("")
   file_path     String   // for lyrics & notes
   creation_date DateTime @default(now())
   
