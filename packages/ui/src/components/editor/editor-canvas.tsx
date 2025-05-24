@@ -30,6 +30,9 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
   const [nextId, setNextId] = useState(2);
   const [selectedCellId, setSelectedCellId] = useState<number | null>(null);
 
+  // Lyric Generator
+  const [isGenerating, setIsGenerating] = useState(false);
+
   useEffect(() => {
     onCellsUpdate?.(cells); // Notify parent on any change
   }, [cells]);
@@ -81,13 +84,16 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
     };
   }, []);
 
-  const createCell = (type: "note" | "lyric" = 'note') => {
+  const createCell = (type: "note" | "lyric" = 'note', content?: string) => {
+    if (!content)
+      content = '';
+
     if (type == 'lyric') {
-      const newCell = { id: nextId, type, content: '', timeStart: undefined, timeEnd: undefined };
+      const newCell = { id: nextId, type, content: content, timeStart: undefined, timeEnd: undefined };
       setNextId(nextId + 1);
       return newCell;
     } else {
-      const newCell = { id: nextId, type, content: '', timeStart: -1, timeEnd: -1 };
+      const newCell = { id: nextId, type, content: content, timeStart: -1, timeEnd: -1 };
       setNextId(nextId + 1);
       return newCell;
     }
@@ -98,8 +104,8 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
     setCells([...cells, newCell]);
   };  
 
-  const insertCell = (index: number, type: "note" | "lyric") => {
-    const newCell = createCell(type);
+  const insertCell = (index: number, type: "note" | "lyric", content?: string ) => {
+    const newCell = createCell(type, content);
     const newCells = [
       ...cells.slice(0, index+1),
       newCell,
@@ -145,7 +151,7 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
     const lyricCellIds = cells.filter(cell => cell.type === 'lyric').map(cell => cell.id);
 
     // Now map verseTimes to lyricCellIds 1:1
-    verseTimes.forEach((verse, idx) => {
+    verseTimes.forEach((verse: { start_time: number | undefined; end_time: number | undefined; }, idx: number) => {
       const id = lyricCellIds[idx];
       if (id !== undefined) {
         updateCellTime(id, verse.start_time, verse.end_time);
@@ -196,7 +202,10 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
                   
                   
                   { cell.type === 'lyric' && (
-                    <LyricGenerator onGenerate={async (result: string) => {
+                    <LyricGenerator 
+                      isGenerating={isGenerating}
+                      setIsGenerating={setIsGenerating}
+                      onGenerate={async (result: string) => {
                       try {
                         const generated = await generateLyrics(result);
                         console.log('Generated lyrics:', generated.generated_text);
@@ -204,16 +213,18 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
                         // creating new cell with generated content
                         const cellContent = "Generated Verse:\n\n" + generated.generated_text 
 
-                        const newCell: { id: number; type: "note"; content: string; timeStart: number; timeEnd: number } = { id: nextId, type: "note", content: cellContent, timeStart: -1, timeEnd: -1 };
-                        setNextId(nextId + 1);
-                        setCells(prevCells => {
-                          const insertIndex = prevCells.findIndex(c => c.id === cell.id) + 1;
-                          return [
-                            ...prevCells.slice(0, insertIndex),
-                            newCell,
-                            ...prevCells.slice(insertIndex)
-                          ];
-                        });
+                        // const newCell: { id: number; type: "note"; content: string; } = { id: nextId, type: "note", content: cellContent };
+                        // setNextId(nextId + 1);
+                        // setCells(prevCells => {
+                        //   const insertIndex = prevCells.findIndex(c => c.id === cell.id) + 1;
+                        //   return [
+                        //     ...prevCells.slice(0, insertIndex),
+                        //     newCell,
+                        //     ...prevCells.slice(insertIndex)
+                        //   ];
+                        // });
+
+                        insertCell(selectedCellId, "note", cellContent);
 
                       } catch (error) {
                         console.error('Failed to generate lyrics:', error);

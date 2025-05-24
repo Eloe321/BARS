@@ -38,9 +38,10 @@ export default function EditorPage() {
   };
 
   const handleThesaurus = async (word: string) => {
+    setShowSidebar(true);
     setThesaurusWord(word);
   };
-  
+
   // automatically arranges cells into json format
   const handleCellsUpdate = (cells: Cell[]) => {
     // taking all the cells
@@ -116,7 +117,7 @@ export default function EditorPage() {
           </button>
 
           {showSidebar && (
-            <div className="top-0 right-0 min-h-screen h-full overflow-y-auto z-40">
+            <div className="top-0 right-0 min-h-screen h-full overflow-y-auto z-1">
               <ThesaurusSidebar word={thesaurusWord} />
             </div>
           )}

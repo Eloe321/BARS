@@ -34,6 +34,8 @@ export default function MediaControls({
   const [analyzedVerses, setAnalyzedVerses] = useState<any>(); 
   const [tempo, setTempo] = useState<number>(0);
 
+  // const [isDisabled, setIsDisabled] TODO: continue this
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
