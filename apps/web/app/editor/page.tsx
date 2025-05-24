@@ -17,6 +17,7 @@ export default function EditorPage() {
   const [progress, setProgress] = useState(0);
   const [trackUrl, setTrackUrl] = useState<string | null>(null);
   const [trackName, setTrackName] = useState<string>("No track loaded");
+  const [audioLoading, setAudioLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -25,71 +26,133 @@ export default function EditorPage() {
     if (!audio) return;
 
     const updateDuration = () => {
-      setDuration(audio.duration);
+      setDuration(audio.duration || 0);
+      setAudioLoading(false); // Audio is ready
     };
 
     const updateTime = () => {
       setCurrentTime(audio.currentTime);
-      setProgress((audio.currentTime / audio.duration) * 100);
+      if (audio.duration) {
+        setProgress((audio.currentTime / audio.duration) * 100);
+      }
     };
 
     const handleEnded = () => {
       setIsPlaying(false);
+      setCurrentTime(0);
+      setProgress(0);
+    };
+
+    const handleLoadStart = () => {
+      setAudioLoading(true);
+    };
+
+    const handleCanPlay = () => {
+      setAudioLoading(false);
+    };
+
+    const handleError = (e: Event) => {
+      console.error("Audio error:", e);
+      setAudioLoading(false);
+      setIsPlaying(false);
     };
 
     // Add event listeners
+    audio.addEventListener("loadstart", handleLoadStart);
     audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("canplay", handleCanPlay);
     audio.addEventListener("timeupdate", updateTime);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
 
     // Clean up
     return () => {
+      audio.removeEventListener("loadstart", handleLoadStart);
       audio.removeEventListener("loadedmetadata", updateDuration);
+      audio.removeEventListener("canplay", handleCanPlay);
       audio.removeEventListener("timeupdate", updateTime);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
     };
   }, []);
 
   // Effect to handle play/pause state
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || audioLoading) return;
 
     if (isPlaying) {
-      audio.play().catch((error) => {
-        console.error("Error playing audio:", error);
-        setIsPlaying(false);
-      });
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.error("Error playing audio:", error);
+          setIsPlaying(false);
+        });
+      }
     } else {
       audio.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, audioLoading]);
 
   const togglePlay = () => {
+    if (audioLoading || !trackUrl) return;
     setIsPlaying((prev) => !prev);
   };
 
   const handleSliderChange = (value: number[]) => {
+    if (audioLoading) return;
+
     const newTime = ((value[0] ?? 0) / 100) * duration;
 
-    if (audioRef.current) {
+    if (audioRef.current && duration > 0) {
       audioRef.current.currentTime = newTime;
       setCurrentTime(newTime);
       setProgress(value[0] ?? 0);
     }
   };
 
+  const resetPlayer = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      // Pause and reset current audio
+      audio.pause();
+      audio.currentTime = 0;
+    }
+
+    // Reset all state
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setProgress(0);
+    setDuration(0);
+    setAudioLoading(false);
+  };
+
   const handleTrackChange = (newTrackUrl: string, newTrackName: string) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Set loading state
+    setAudioLoading(true);
+
+    // Update track info
     setTrackUrl(newTrackUrl);
     setTrackName(newTrackName);
 
-    // Reset state for new track
+    // Reset player state
+    setIsPlaying(false);
     setCurrentTime(0);
     setProgress(0);
-    setIsPlaying(false);
+    setDuration(0);
 
-    // Let the audio load metadata naturally and the event listeners
-    // will update duration and other properties
+    // Pause current audio and reset
+    audio.pause();
+    audio.currentTime = 0;
+
+    // Load new track
+    audio.src = newTrackUrl;
+    audio.load(); // Force reload of the audio element
+
+    // The loadedmetadata event will handle setting duration and clearing loading state
   };
 
   return (
@@ -112,6 +175,8 @@ export default function EditorPage() {
                 progress={progress}
                 handleSliderChange={handleSliderChange}
                 onTrackChange={handleTrackChange}
+                onResetPlayer={resetPlayer}
+                audioLoading={audioLoading}
               />
 
               <LyricsEditor />
@@ -121,8 +186,7 @@ export default function EditorPage() {
           </div>
 
           {/* Audio element for playback */}
-          <audio ref={audioRef} className="hidden">
-            {trackUrl && <source src={trackUrl} type="audio/mpeg" />}
+          <audio ref={audioRef} className="hidden" preload="metadata">
             Your browser does not support the audio element.
           </audio>
         </div>

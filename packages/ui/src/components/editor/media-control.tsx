@@ -26,7 +26,7 @@ import { Button } from "@workspace/ui/components/button";
 import { Slider } from "@workspace/ui/components/slider";
 import { Progress } from "@workspace/ui/components/progress";
 import { toast } from "sonner";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@workspace/ui/components/context/authContext";
 import { formatTime } from "./utils/utils.js";
 import { mediaApi, type BlobMP3File } from "./mediaApi/mediaAccess.js";
@@ -39,6 +39,8 @@ interface MediaControlsProps {
   progress: number;
   handleSliderChange: (value: number[]) => void;
   onTrackChange: (trackUrl: string, trackName: string) => void;
+  onResetPlayer: () => void;
+  audioLoading: boolean;
 }
 
 export default function MediaControls({
@@ -49,6 +51,8 @@ export default function MediaControls({
   progress,
   handleSliderChange,
   onTrackChange,
+  onResetPlayer,
+  audioLoading,
 }: MediaControlsProps) {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -58,7 +62,15 @@ export default function MediaControls({
   const [uploadedTracks, setUploadedTracks] = useState<BlobMP3File[]>([]);
   const [loadingFiles, setLoadingFiles] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [loadingTrack, setLoadingTrack] = useState(false);
+  const [selectedPremadeValue, setSelectedPremadeValue] = useState<string>("");
+  const [selectedUploadedValue, setSelectedUploadedValue] =
+    useState<string>("");
   const { token, user } = useAuth();
+
+  // Ref to track the current track loading request
+  const trackLoadingRef = useRef<AbortController | null>(null);
+  const currentTrackRef = useRef<string>("");
 
   useEffect(() => {
     fetchTracks();
@@ -81,9 +93,69 @@ export default function MediaControls({
     }
   };
 
-  const handleTrackSelect = (trackUrl: string, trackName: string) => {
-    onTrackChange(trackUrl, trackName);
-    setTrackName(trackName);
+  const resetPlayerAndLoadTrack = async (
+    trackUrl: string,
+    trackName: string
+  ) => {
+    // Cancel any ongoing track loading
+    if (trackLoadingRef.current) {
+      trackLoadingRef.current.abort();
+    }
+
+    // Create new abort controller for this request
+    const abortController = mediaApi.createAbortController();
+    trackLoadingRef.current = abortController;
+
+    setLoadingTrack(true);
+    setErrorMessage(null);
+
+    try {
+      // Reset player state immediately
+      onResetPlayer();
+
+      // Update track name immediately for user feedback
+      setTrackName(`Loading: ${trackName}`);
+
+      // Check if this request was cancelled
+      if (abortController.signal.aborted) {
+        return;
+      }
+
+      // Set the new track - this will trigger audio loading in parent
+      currentTrackRef.current = trackUrl;
+      onTrackChange(trackUrl, trackName);
+      setTrackName(trackName);
+    } catch (error) {
+      if (error instanceof Error && !mediaApi.isAbortError(error)) {
+        console.error("Error loading track:", error);
+        setErrorMessage("Failed to load track");
+        toast.error("Failed to load track", {
+          description: "Could not load the selected track",
+          icon: <AlertCircle className="h-4 w-4" />,
+        });
+      }
+    } finally {
+      // Only clear loading state if this request wasn't cancelled
+      if (!abortController.signal.aborted) {
+        setLoadingTrack(false);
+        trackLoadingRef.current = null;
+      }
+    }
+  };
+
+  const handleTrackSelect = async (
+    trackUrl: string,
+    trackName: string,
+    selectType: "premade" | "uploaded"
+  ) => {
+    // Clear the other select's value
+    if (selectType === "premade") {
+      setSelectedUploadedValue("");
+    } else {
+      setSelectedPremadeValue("");
+    }
+
+    await resetPlayerAndLoadTrack(trackUrl, trackName);
   };
 
   const handleFileUpload = async (
@@ -98,19 +170,25 @@ export default function MediaControls({
     setUploadSuccess(false);
 
     try {
+      // Validate file using API service
+      mediaApi.validateFile(file);
+
       const data = await mediaApi.uploadFile(file, (progress) => {
         setUploadProgress(progress);
       });
 
-      // Success
+      // Success - automatically load the uploaded track
       setUploadSuccess(true);
-      setTrackName(file.name);
-      onTrackChange(data.url, file.name);
 
       toast.success("Upload Successful!", {
         description: `${file.name} has been uploaded successfully`,
         icon: <CheckCircle className="h-4 w-4" />,
       });
+
+      // Reset select values and load the new track
+      setSelectedPremadeValue("");
+      setSelectedUploadedValue("");
+      await resetPlayerAndLoadTrack(data.url, file.name);
 
       // Refresh tracks
       fetchTracks();
@@ -173,6 +251,10 @@ export default function MediaControls({
     ));
   };
 
+  // Determine if controls should be disabled
+  const controlsDisabled =
+    uploading || loadingTrack || loadingFiles || audioLoading;
+
   return (
     <div className="border-b border-[#1e3a5f] bg-[#112240] px-4 py-3">
       {/* Top row with file info, upload and select elements */}
@@ -183,6 +265,13 @@ export default function MediaControls({
               <div className="flex items-center">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 <span>Uploading... {Math.round(uploadProgress)}%</span>
+              </div>
+            ) : loadingTrack || audioLoading ? (
+              <div className="flex items-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <span>
+                  {audioLoading ? "Loading audio..." : "Loading track..."}
+                </span>
               </div>
             ) : uploadSuccess ? (
               <div className="flex items-center text-[#64ffda]">
@@ -205,17 +294,17 @@ export default function MediaControls({
               accept=".mp3,audio/mpeg"
               onChange={handleFileUpload}
               className="absolute inset-0 cursor-pointer opacity-0"
-              disabled={uploading}
+              disabled={controlsDisabled}
             />
             <button
               className={`rounded-full p-1 ${
-                uploading
+                controlsDisabled
                   ? "text-gray-500"
                   : uploadSuccess
                     ? "text-[#64ffda]"
                     : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"
               }`}
-              disabled={uploading}
+              disabled={controlsDisabled}
             >
               {uploading ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -233,14 +322,19 @@ export default function MediaControls({
         <div className="flex items-center space-x-3">
           {/* Premade Tracks */}
           <Select
+            value={selectedPremadeValue}
             onValueChange={(value) => {
+              setSelectedPremadeValue(value);
               const track = premadeTracks.find((track) => track.url === value);
               if (track) {
-                handleTrackSelect(track.url, track.displayName);
+                handleTrackSelect(track.url, track.displayName, "premade");
               }
             }}
+            disabled={controlsDisabled}
           >
-            <SelectTrigger className="w-48 border-[#1e3a5f] bg-[#0a192f] text-gray-300">
+            <SelectTrigger
+              className={`w-48 border-[#1e3a5f] bg-[#0a192f] text-gray-300 ${controlsDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
               <SelectValue placeholder="Premade Tracks" />
             </SelectTrigger>
             <SelectContent>
@@ -253,14 +347,19 @@ export default function MediaControls({
 
           {/* Uploaded Tracks */}
           <Select
+            value={selectedUploadedValue}
             onValueChange={(value) => {
+              setSelectedUploadedValue(value);
               const track = uploadedTracks.find((track) => track.url === value);
               if (track) {
-                handleTrackSelect(track.url, track.displayName);
+                handleTrackSelect(track.url, track.displayName, "uploaded");
               }
             }}
+            disabled={controlsDisabled}
           >
-            <SelectTrigger className="w-48 border-[#1e3a5f] bg-[#0a192f] text-gray-300">
+            <SelectTrigger
+              className={`w-48 border-[#1e3a5f] bg-[#0a192f] text-gray-300 ${controlsDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
               <SelectValue placeholder="Your Uploads" />
             </SelectTrigger>
             <SelectContent>
@@ -271,7 +370,7 @@ export default function MediaControls({
                     variant="ghost"
                     size="sm"
                     onClick={fetchTracks}
-                    disabled={loadingFiles}
+                    disabled={controlsDisabled}
                     className="h-4 w-4 p-0"
                   >
                     {loadingFiles ? (
@@ -290,6 +389,7 @@ export default function MediaControls({
             variant="outline"
             size="sm"
             className="border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0a192f]"
+            disabled={controlsDisabled}
           >
             Align Lyrics
           </Button>
@@ -300,7 +400,7 @@ export default function MediaControls({
       {uploading && (
         <div className="mb-4">
           <div className="mb-1 flex justify-between text-xs text-gray-400">
-            <span>Uploading to Cloud Storage...</span>
+            <span>Uploading to Vercel Blob...</span>
             <span>{Math.round(uploadProgress)}%</span>
           </div>
           <Progress
@@ -310,22 +410,44 @@ export default function MediaControls({
         </div>
       )}
 
+      {/* Track Loading Progress */}
+      {loadingTrack && (
+        <div className="mb-4">
+          <div className="mb-1 flex justify-between text-xs text-gray-400">
+            <span>Loading track...</span>
+          </div>
+          <Progress
+            value={100}
+            className="h-2 w-full bg-[#1e3a5f] animate-pulse"
+          />
+        </div>
+      )}
+
       <div className="flex items-center">
         <div className="flex items-center space-x-2">
-          <button className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f] hover:text-white">
+          <button
+            className={`rounded-full p-1 ${controlsDisabled ? "text-gray-500 cursor-not-allowed" : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"}`}
+            disabled={controlsDisabled}
+          >
             <SkipBack className="h-5 w-5" />
           </button>
           <button
-            className="rounded-full bg-[#64ffda] p-2 text-[#0a192f] hover:bg-[#5ae6c4]"
+            className={`rounded-full p-2 ${controlsDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-[#64ffda] hover:bg-[#5ae6c4]"} text-[#0a192f]`}
             onClick={togglePlay}
+            disabled={controlsDisabled}
           >
-            {isPlaying ? (
+            {loadingTrack ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : isPlaying ? (
               <Pause className="h-5 w-5" />
             ) : (
               <Play className="h-5 w-5" />
             )}
           </button>
-          <button className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f] hover:text-white">
+          <button
+            className={`rounded-full p-1 ${controlsDisabled ? "text-gray-500 cursor-not-allowed" : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"}`}
+            disabled={controlsDisabled}
+          >
             <SkipForward className="h-5 w-5" />
           </button>
         </div>
@@ -339,8 +461,9 @@ export default function MediaControls({
             min={0}
             max={100}
             step={0.1}
-            className="w-full"
+            className={`w-full ${controlsDisabled ? "opacity-50 pointer-events-none" : ""}`}
             onValueChange={handleSliderChange}
+            disabled={controlsDisabled}
           />
           <span className="text-xs text-gray-400">{formatTime(duration)}</span>
         </div>

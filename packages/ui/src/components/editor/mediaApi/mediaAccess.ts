@@ -1,4 +1,3 @@
-// mediaApi.ts
 export interface BlobMP3File {
   url: string;
   filename: string;
@@ -17,10 +16,12 @@ export interface UploadResponse {
   error?: string;
 }
 
+export interface TrackLoadOptions {
+  onProgress?: (progress: number) => void;
+  abortSignal?: AbortSignal;
+}
+
 class MediaApiService {
-  /**
-   * Fetch all tracks (premade and uploaded) from the server
-   */
   async fetchTracks(): Promise<TracksResponse> {
     const response = await fetch("/api/getFiles");
 
@@ -35,9 +36,6 @@ class MediaApiService {
     };
   }
 
-  /**
-   * Upload an MP3 file to the server
-   */
   async uploadFile(
     file: File,
     onProgress?: (progress: number) => void
@@ -47,10 +45,9 @@ class MediaApiService {
       throw new Error("Please select a valid MP3 file");
     }
 
-    // Check file size (100MB limit)
-    const maxSize = 100 * 1024 * 1024;
+    const maxSize = 10 * 1024 * 1024;
     if (file.size > maxSize) {
-      throw new Error("File too large. Maximum size is 100MB.");
+      throw new Error("File too large. Maximum size is 10MB.");
     }
 
     const formData = new FormData();
@@ -103,13 +100,30 @@ class MediaApiService {
     }
   }
 
-  /**
-   * Format file size in MB
-   */
+  validateFile(file: File): void {
+    if (!file.type.includes("audio/mpeg") && !file.name.endsWith(".mp3")) {
+      throw new Error("Please select a valid MP3 file");
+    }
+
+    const maxSize = 100 * 1024 * 1024;
+    if (file.size > maxSize) {
+      throw new Error("File too large. Maximum size is 100MB.");
+    }
+  }
+
   formatFileSize(bytes: number): string {
     return (bytes / (1024 * 1024)).toFixed(2) + " MB";
   }
+
+  createAbortController(): AbortController {
+    return new AbortController();
+  }
+
+  isAbortError(error: Error): boolean {
+    return (
+      error.message === "Track loading cancelled" || error.name === "AbortError"
+    );
+  }
 }
 
-// Export singleton instance
 export const mediaApi = new MediaApiService();
