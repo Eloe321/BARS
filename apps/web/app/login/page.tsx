@@ -101,7 +101,7 @@ export default function LoginPage() {
                     <div className="absolute inset-0 animate-pulse-slow rounded-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] blur-sm"></div>
                     <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] p-1">
                       <div className="flex h-full w-full items-center justify-center rounded-full bg-[#0a192f] text-white">
-                        <span className="text-lg font-bold">BISAYA BARS</span>
+                        <span className="text-lg font-bold">BARS</span>
                       </div>
                     </div>
                   </motion.div>

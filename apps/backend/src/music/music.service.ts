@@ -5,6 +5,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from 'generated/prisma';
 import { DatabaseService } from 'src/database/database.service';
+import { listDirectory } from 'src/storageScripts/access';
 @Injectable()
 export class MusicService {
   constructor(private readonly db: DatabaseService) {}
@@ -15,7 +16,7 @@ export class MusicService {
   }
 
   async findAllPremadeMusic() {
-    return await this.db.premadeMusic.findMany();
+    return await listDirectory('/Premade Music');
   }
   async findAlluploadedMusicByUserId(userId: string) {
     return await this.db.uploadedMusic.findMany({

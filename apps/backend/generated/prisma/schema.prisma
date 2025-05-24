@@ -75,6 +75,7 @@ model LinkPermission {
 
 model PremadeMusic {
   music_id      String   @id @default(cuid())
+  music_name    String
   bpm           Int
   uploaded_date DateTime @default(now())
 
@@ -84,6 +85,7 @@ model PremadeMusic {
 
 model UploadedMusic {
   music_id    String @id @default(cuid())
+  music_name  String
   uploaded_by String
 
   // Relations

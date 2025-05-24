@@ -21,6 +21,8 @@ export default function HomePage() {
 
   const handleLogout = () => {
     logout();
+
+    window.location.href = "/login";
   };
 
   return (
@@ -32,7 +34,7 @@ export default function HomePage() {
             <div className="flex items-center gap-2">
               <div className="relative h-10 w-10 overflow-hidden rounded-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] p-0.5">
                 <div className="flex h-full w-full items-center justify-center rounded-full bg-[#0a192f] text-white">
-                  <span className="text-xs font-bold">BB</span>
+                  <span className="text-xs font-bold">BARS</span>
                 </div>
               </div>
               <span className="text-xl font-bold">Bisaya Bars</span>

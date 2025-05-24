@@ -27,6 +27,10 @@ import { User } from 'generated/prisma';
 interface RequestWithUser extends Request {
   user: User;
 }
+interface Uploadbody {
+  musicData: string;
+  file: Express.Multer.File;
+}
 @Controller('music')
 export class MusicController {
   constructor(private readonly musicService: MusicService) {}
@@ -35,28 +39,35 @@ export class MusicController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadMP3(
     @UploadedFile(new MP3ValidationPipe()) file: Express.Multer.File,
-    @Body() body: Prisma.UploadedMusicCreateInput,
-  ): Promise<{ success: boolean; path: string }> {
-    const prismabody = await this.musicService.createMusicUpload(body);
-    // Create a temp file path
+    @Body() body: Uploadbody,
+  ): Promise<{ success: boolean }> {
+    const musicData = body.musicData ? JSON.parse(body.musicData) : body;
+    console.log('Music data: ', musicData);
+    const uploadData: Prisma.UploadedMusicCreateInput = {
+      music_name: musicData.music_name,
+      uploaded_by: musicData.uploaded_by,
+    };
+
+    const prismabody = await this.musicService.createMusicUpload(uploadData);
+    console.log('Prisma body: ', prismabody);
     const tempFilePath = join(tmpdir(), `upload-${Date.now()}.mp3`);
-
-    // Write buffer to temp file
+    console.log('Temp file path: ', tempFilePath);
     await fs.promises.writeFile(tempFilePath, file.buffer);
-
+    console.log('File written to temp file path');
     try {
-      // Use your existing uploadFile function
-      await uploadFile(`/Uploaded Music/${prismabody.music_id}`, tempFilePath);
-      return { success: true, path: `/Uploaded Music/${prismabody.music_id}` };
+      await uploadFile(
+        `/Uploaded Music/${prismabody.music_name}`,
+        tempFilePath,
+      );
+      return { success: true };
     } finally {
-      // Clean up the temp file
       await fs.promises.unlink(tempFilePath);
     }
   }
 
   @Get('uploaded')
   @UseGuards(JwtAuthGuard)
-  findAllUploadedMusic(@Req() request: RequestWithUser) {
+  async findAllUploadedMusic(@Req() request: RequestWithUser) {
     const userId = request.user?.id;
     if (!userId) {
       throw new Error('User not authenticated');
@@ -64,8 +75,8 @@ export class MusicController {
     return this.musicService.findAlluploadedMusicByUserId(userId);
   }
   @Get('premade')
-  findAllPremadeMusic() {
-    return this.musicService.findAllPremadeMusic();
+  async findAllPremadeMusic() {
+    return await this.musicService.findAllPremadeMusic();
   }
 
   @Get('premade/:id')

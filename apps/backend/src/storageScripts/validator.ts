@@ -14,10 +14,10 @@ export class MP3ValidationPipe implements PipeTransform {
       throw new BadRequestException('File is required');
     }
 
-    // Check file size (15MB limit)
-    const maxSize = 15 * 1024 * 1024; // 15MB in bytes
+    // Check file size (30MB limit)
+    const maxSize = 30 * 1024 * 1024; // 30MB in bytes
     if (value.size > maxSize) {
-      throw new BadRequestException('File size exceeds the 15MB limit');
+      throw new BadRequestException('File size exceeds the 30MB limit');
     }
 
     // Verify file extension is .mp3

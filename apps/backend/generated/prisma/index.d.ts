@@ -6004,18 +6004,21 @@ export namespace Prisma {
 
   export type PremadeMusicMinAggregateOutputType = {
     music_id: string | null
+    music_name: string | null
     bpm: number | null
     uploaded_date: Date | null
   }
 
   export type PremadeMusicMaxAggregateOutputType = {
     music_id: string | null
+    music_name: string | null
     bpm: number | null
     uploaded_date: Date | null
   }
 
   export type PremadeMusicCountAggregateOutputType = {
     music_id: number
+    music_name: number
     bpm: number
     uploaded_date: number
     _all: number
@@ -6032,18 +6035,21 @@ export namespace Prisma {
 
   export type PremadeMusicMinAggregateInputType = {
     music_id?: true
+    music_name?: true
     bpm?: true
     uploaded_date?: true
   }
 
   export type PremadeMusicMaxAggregateInputType = {
     music_id?: true
+    music_name?: true
     bpm?: true
     uploaded_date?: true
   }
 
   export type PremadeMusicCountAggregateInputType = {
     music_id?: true
+    music_name?: true
     bpm?: true
     uploaded_date?: true
     _all?: true
@@ -6137,6 +6143,7 @@ export namespace Prisma {
 
   export type PremadeMusicGroupByOutputType = {
     music_id: string
+    music_name: string
     bpm: number
     uploaded_date: Date
     _count: PremadeMusicCountAggregateOutputType | null
@@ -6162,6 +6169,7 @@ export namespace Prisma {
 
   export type PremadeMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
+    music_name?: boolean
     bpm?: boolean
     uploaded_date?: boolean
     songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
@@ -6170,23 +6178,26 @@ export namespace Prisma {
 
   export type PremadeMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
+    music_name?: boolean
     bpm?: boolean
     uploaded_date?: boolean
   }, ExtArgs["result"]["premadeMusic"]>
 
   export type PremadeMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
+    music_name?: boolean
     bpm?: boolean
     uploaded_date?: boolean
   }, ExtArgs["result"]["premadeMusic"]>
 
   export type PremadeMusicSelectScalar = {
     music_id?: boolean
+    music_name?: boolean
     bpm?: boolean
     uploaded_date?: boolean
   }
 
-  export type PremadeMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "bpm" | "uploaded_date", ExtArgs["result"]["premadeMusic"]>
+  export type PremadeMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "bpm" | "uploaded_date", ExtArgs["result"]["premadeMusic"]>
   export type PremadeMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
     _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
@@ -6201,6 +6212,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       music_id: string
+      music_name: string
       bpm: number
       uploaded_date: Date
     }, ExtArgs["result"]["premadeMusic"]>
@@ -6628,6 +6640,7 @@ export namespace Prisma {
    */
   interface PremadeMusicFieldRefs {
     readonly music_id: FieldRef<"PremadeMusic", 'String'>
+    readonly music_name: FieldRef<"PremadeMusic", 'String'>
     readonly bpm: FieldRef<"PremadeMusic", 'Int'>
     readonly uploaded_date: FieldRef<"PremadeMusic", 'DateTime'>
   }
@@ -7072,16 +7085,19 @@ export namespace Prisma {
 
   export type UploadedMusicMinAggregateOutputType = {
     music_id: string | null
+    music_name: string | null
     uploaded_by: string | null
   }
 
   export type UploadedMusicMaxAggregateOutputType = {
     music_id: string | null
+    music_name: string | null
     uploaded_by: string | null
   }
 
   export type UploadedMusicCountAggregateOutputType = {
     music_id: number
+    music_name: number
     uploaded_by: number
     _all: number
   }
@@ -7089,16 +7105,19 @@ export namespace Prisma {
 
   export type UploadedMusicMinAggregateInputType = {
     music_id?: true
+    music_name?: true
     uploaded_by?: true
   }
 
   export type UploadedMusicMaxAggregateInputType = {
     music_id?: true
+    music_name?: true
     uploaded_by?: true
   }
 
   export type UploadedMusicCountAggregateInputType = {
     music_id?: true
+    music_name?: true
     uploaded_by?: true
     _all?: true
   }
@@ -7177,6 +7196,7 @@ export namespace Prisma {
 
   export type UploadedMusicGroupByOutputType = {
     music_id: string
+    music_name: string
     uploaded_by: string
     _count: UploadedMusicCountAggregateOutputType | null
     _min: UploadedMusicMinAggregateOutputType | null
@@ -7199,6 +7219,7 @@ export namespace Prisma {
 
   export type UploadedMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
+    music_name?: boolean
     uploaded_by?: boolean
     songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
     _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
@@ -7206,20 +7227,23 @@ export namespace Prisma {
 
   export type UploadedMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
+    music_name?: boolean
     uploaded_by?: boolean
   }, ExtArgs["result"]["uploadedMusic"]>
 
   export type UploadedMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
+    music_name?: boolean
     uploaded_by?: boolean
   }, ExtArgs["result"]["uploadedMusic"]>
 
   export type UploadedMusicSelectScalar = {
     music_id?: boolean
+    music_name?: boolean
     uploaded_by?: boolean
   }
 
-  export type UploadedMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "uploaded_by", ExtArgs["result"]["uploadedMusic"]>
+  export type UploadedMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "uploaded_by", ExtArgs["result"]["uploadedMusic"]>
   export type UploadedMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
     _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
@@ -7234,6 +7258,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       music_id: string
+      music_name: string
       uploaded_by: string
     }, ExtArgs["result"]["uploadedMusic"]>
     composites: {}
@@ -7660,6 +7685,7 @@ export namespace Prisma {
    */
   interface UploadedMusicFieldRefs {
     readonly music_id: FieldRef<"UploadedMusic", 'String'>
+    readonly music_name: FieldRef<"UploadedMusic", 'String'>
     readonly uploaded_by: FieldRef<"UploadedMusic", 'String'>
   }
     
@@ -8154,6 +8180,7 @@ export namespace Prisma {
 
   export const PremadeMusicScalarFieldEnum: {
     music_id: 'music_id',
+    music_name: 'music_name',
     bpm: 'bpm',
     uploaded_date: 'uploaded_date'
   };
@@ -8163,6 +8190,7 @@ export namespace Prisma {
 
   export const UploadedMusicScalarFieldEnum: {
     music_id: 'music_id',
+    music_name: 'music_name',
     uploaded_by: 'uploaded_by'
   };
 
@@ -8542,6 +8570,7 @@ export namespace Prisma {
     OR?: PremadeMusicWhereInput[]
     NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
     music_id?: StringFilter<"PremadeMusic"> | string
+    music_name?: StringFilter<"PremadeMusic"> | string
     bpm?: IntFilter<"PremadeMusic"> | number
     uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
     songs?: SongListRelationFilter
@@ -8549,6 +8578,7 @@ export namespace Prisma {
 
   export type PremadeMusicOrderByWithRelationInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     bpm?: SortOrder
     uploaded_date?: SortOrder
     songs?: SongOrderByRelationAggregateInput
@@ -8559,6 +8589,7 @@ export namespace Prisma {
     AND?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
     OR?: PremadeMusicWhereInput[]
     NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    music_name?: StringFilter<"PremadeMusic"> | string
     bpm?: IntFilter<"PremadeMusic"> | number
     uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
     songs?: SongListRelationFilter
@@ -8566,6 +8597,7 @@ export namespace Prisma {
 
   export type PremadeMusicOrderByWithAggregationInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     bpm?: SortOrder
     uploaded_date?: SortOrder
     _count?: PremadeMusicCountOrderByAggregateInput
@@ -8580,6 +8612,7 @@ export namespace Prisma {
     OR?: PremadeMusicScalarWhereWithAggregatesInput[]
     NOT?: PremadeMusicScalarWhereWithAggregatesInput | PremadeMusicScalarWhereWithAggregatesInput[]
     music_id?: StringWithAggregatesFilter<"PremadeMusic"> | string
+    music_name?: StringWithAggregatesFilter<"PremadeMusic"> | string
     bpm?: IntWithAggregatesFilter<"PremadeMusic"> | number
     uploaded_date?: DateTimeWithAggregatesFilter<"PremadeMusic"> | Date | string
   }
@@ -8589,12 +8622,14 @@ export namespace Prisma {
     OR?: UploadedMusicWhereInput[]
     NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
     music_id?: StringFilter<"UploadedMusic"> | string
+    music_name?: StringFilter<"UploadedMusic"> | string
     uploaded_by?: StringFilter<"UploadedMusic"> | string
     songs?: SongListRelationFilter
   }
 
   export type UploadedMusicOrderByWithRelationInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     uploaded_by?: SortOrder
     songs?: SongOrderByRelationAggregateInput
   }
@@ -8604,12 +8639,14 @@ export namespace Prisma {
     AND?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
     OR?: UploadedMusicWhereInput[]
     NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    music_name?: StringFilter<"UploadedMusic"> | string
     uploaded_by?: StringFilter<"UploadedMusic"> | string
     songs?: SongListRelationFilter
   }, "music_id">
 
   export type UploadedMusicOrderByWithAggregationInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     uploaded_by?: SortOrder
     _count?: UploadedMusicCountOrderByAggregateInput
     _max?: UploadedMusicMaxOrderByAggregateInput
@@ -8621,6 +8658,7 @@ export namespace Prisma {
     OR?: UploadedMusicScalarWhereWithAggregatesInput[]
     NOT?: UploadedMusicScalarWhereWithAggregatesInput | UploadedMusicScalarWhereWithAggregatesInput[]
     music_id?: StringWithAggregatesFilter<"UploadedMusic"> | string
+    music_name?: StringWithAggregatesFilter<"UploadedMusic"> | string
     uploaded_by?: StringWithAggregatesFilter<"UploadedMusic"> | string
   }
 
@@ -8884,6 +8922,7 @@ export namespace Prisma {
 
   export type PremadeMusicCreateInput = {
     music_id?: string
+    music_name: string
     bpm: number
     uploaded_date?: Date | string
     songs?: SongCreateNestedManyWithoutPremadeMusicInput
@@ -8891,6 +8930,7 @@ export namespace Prisma {
 
   export type PremadeMusicUncheckedCreateInput = {
     music_id?: string
+    music_name: string
     bpm: number
     uploaded_date?: Date | string
     songs?: SongUncheckedCreateNestedManyWithoutPremadeMusicInput
@@ -8898,6 +8938,7 @@ export namespace Prisma {
 
   export type PremadeMusicUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
     songs?: SongUpdateManyWithoutPremadeMusicNestedInput
@@ -8905,6 +8946,7 @@ export namespace Prisma {
 
   export type PremadeMusicUncheckedUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
     songs?: SongUncheckedUpdateManyWithoutPremadeMusicNestedInput
@@ -8912,58 +8954,68 @@ export namespace Prisma {
 
   export type PremadeMusicCreateManyInput = {
     music_id?: string
+    music_name: string
     bpm: number
     uploaded_date?: Date | string
   }
 
   export type PremadeMusicUpdateManyMutationInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PremadeMusicUncheckedUpdateManyInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UploadedMusicCreateInput = {
     music_id?: string
+    music_name: string
     uploaded_by: string
     songs?: SongCreateNestedManyWithoutUploadedMusicInput
   }
 
   export type UploadedMusicUncheckedCreateInput = {
     music_id?: string
+    music_name: string
     uploaded_by: string
     songs?: SongUncheckedCreateNestedManyWithoutUploadedMusicInput
   }
 
   export type UploadedMusicUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
     songs?: SongUpdateManyWithoutUploadedMusicNestedInput
   }
 
   export type UploadedMusicUncheckedUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
     songs?: SongUncheckedUpdateManyWithoutUploadedMusicNestedInput
   }
 
   export type UploadedMusicCreateManyInput = {
     music_id?: string
+    music_name: string
     uploaded_by: string
   }
 
   export type UploadedMusicUpdateManyMutationInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
   }
 
   export type UploadedMusicUncheckedUpdateManyInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9266,6 +9318,7 @@ export namespace Prisma {
 
   export type PremadeMusicCountOrderByAggregateInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     bpm?: SortOrder
     uploaded_date?: SortOrder
   }
@@ -9276,12 +9329,14 @@ export namespace Prisma {
 
   export type PremadeMusicMaxOrderByAggregateInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     bpm?: SortOrder
     uploaded_date?: SortOrder
   }
 
   export type PremadeMusicMinOrderByAggregateInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     bpm?: SortOrder
     uploaded_date?: SortOrder
   }
@@ -9308,16 +9363,19 @@ export namespace Prisma {
 
   export type UploadedMusicCountOrderByAggregateInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     uploaded_by?: SortOrder
   }
 
   export type UploadedMusicMaxOrderByAggregateInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     uploaded_by?: SortOrder
   }
 
   export type UploadedMusicMinOrderByAggregateInput = {
     music_id?: SortOrder
+    music_name?: SortOrder
     uploaded_by?: SortOrder
   }
 
@@ -10131,12 +10189,14 @@ export namespace Prisma {
 
   export type PremadeMusicCreateWithoutSongsInput = {
     music_id?: string
+    music_name: string
     bpm: number
     uploaded_date?: Date | string
   }
 
   export type PremadeMusicUncheckedCreateWithoutSongsInput = {
     music_id?: string
+    music_name: string
     bpm: number
     uploaded_date?: Date | string
   }
@@ -10148,11 +10208,13 @@ export namespace Prisma {
 
   export type UploadedMusicCreateWithoutSongsInput = {
     music_id?: string
+    music_name: string
     uploaded_by: string
   }
 
   export type UploadedMusicUncheckedCreateWithoutSongsInput = {
     music_id?: string
+    music_name: string
     uploaded_by: string
   }
 
@@ -10223,12 +10285,14 @@ export namespace Prisma {
 
   export type PremadeMusicUpdateWithoutSongsInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PremadeMusicUncheckedUpdateWithoutSongsInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     bpm?: IntFieldUpdateOperationsInput | number
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10246,11 +10310,13 @@ export namespace Prisma {
 
   export type UploadedMusicUpdateWithoutSongsInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
   }
 
   export type UploadedMusicUncheckedUpdateWithoutSongsInput = {
     music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
   }
 
