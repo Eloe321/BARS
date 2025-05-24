@@ -31,6 +31,12 @@ export default function EditorPage() {
 
   const [thesaurusWord, setThesaurusWord] = useState<string>("");
 
+  const [isAligning, setIsAligning] = useState<boolean>(false);
+
+  // useEffect(() => {
+
+  // }, [isAligning])
+
   const handleSliderChange = (value: number[]) => {
     const newTime = ((value[0] ?? 0) / 100) * duration;
     setTime(newTime);
@@ -96,15 +102,23 @@ export default function EditorPage() {
               onAnalyzedVersesUpdate={(result) => {
                 setAnalyzedVerses(result);
               }}
+              onSetIsAligning={(isAligning) => {
+                setIsAligning(isAligning);
+              }}
             />
 
             {/* TODO: Potential issues may arise from currentTime not updating every frame */}
-            <div className="h-screen overflow-y-auto">
+            <div className="relative h-screen overflow-y-auto">
               <LyricsEditor 
+                className={`${isAligning ? "pointer-events-none" : ""}`}
+                // className="pointer-events-none "
                 onWordSelect={handleThesaurus} 
                 currentTime={currentTime} 
                 onCellsUpdate={handleCellsUpdate}
                 analyzedVerses={analyzedVerses} />
+                {isAligning && (
+                  <div className="absolute inset-0 bg-gray-900 mix-blend-multiply pointer-events-none z-10" style={{ opacity: 0.5 }} />
+                )}
             </div>
             
           </div>

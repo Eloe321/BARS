@@ -16,13 +16,14 @@ interface EditorCell {
 }
 
 interface EditorProps {
+  className?: string
   onWordSelect: (word: string) => void;
   currentTime: number;
   onCellsUpdate?: (cells: EditorCell[]) => void;
   analyzedVerses: any;
 }
 
-export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate, analyzedVerses }: EditorProps) {
+export default function LyricsEditor({ className, onWordSelect, currentTime, onCellsUpdate, analyzedVerses }: EditorProps) {
   const notebookRef = useRef<HTMLDivElement>(null);
   const [cells, setCells] = useState<{ id: number; type: "note" | "lyric"; content: string; timeStart?: number; timeEnd?: number }[]>([
     { id: 0, type: 'note', content: '', timeStart: -1, timeEnd: -1 }
@@ -168,7 +169,7 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
   }, [analyzedVerses]);
 
   return (
-    <div className='flex flex-1 overflow-hidden'>
+    <div className={`flex flex-1 overflow-hidden ${className}`}>
       <TimelineSidebar/>
       <div className="notebook" ref={notebookRef}>
         <button className="px-2" onClick={() => addCell('lyric')}>Add Lyrics</button>
@@ -212,17 +213,6 @@ export default function LyricsEditor({ onWordSelect, currentTime, onCellsUpdate,
 
                         // creating new cell with generated content
                         const cellContent = "Generated Verse:\n\n" + generated.generated_text 
-
-                        // const newCell: { id: number; type: "note"; content: string; } = { id: nextId, type: "note", content: cellContent };
-                        // setNextId(nextId + 1);
-                        // setCells(prevCells => {
-                        //   const insertIndex = prevCells.findIndex(c => c.id === cell.id) + 1;
-                        //   return [
-                        //     ...prevCells.slice(0, insertIndex),
-                        //     newCell,
-                        //     ...prevCells.slice(insertIndex)
-                        //   ];
-                        // });
 
                         insertCell(selectedCellId, "note", cellContent);
 

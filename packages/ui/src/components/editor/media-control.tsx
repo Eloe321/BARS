@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@workspace/ui/components/button";
 import { Play, Pause, SkipBack, SkipForward, Download } from "lucide-react";
 import { Slider } from "@workspace/ui/components/slider";
@@ -17,6 +17,7 @@ interface MediaControlsProps {
   audioSrc: string;
   lyricsText: string;
   onAnalyzedVersesUpdate: (analyzedVerses: any) => void;
+  onSetIsAligning: (isAligning: boolean) => void;
 }
 
 export default function MediaControls({
@@ -29,12 +30,28 @@ export default function MediaControls({
   audioSrc,
   lyricsText,
   onAnalyzedVersesUpdate,
+  onSetIsAligning,
 }: MediaControlsProps) {
   const [analyzedLyrics, setAnalyzedLyrics] = useState<any>();
   const [analyzedVerses, setAnalyzedVerses] = useState<any>(); 
   const [tempo, setTempo] = useState<number>(0);
 
-  // const [isDisabled, setIsDisabled] TODO: continue this
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [isAligning, setIsAligning] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!audioSrc || !lyricsText)
+      setIsDisabled(true);
+    else
+      setIsDisabled(false);
+
+    if (isAligning){
+      setIsDisabled(true);
+    }
+
+    onSetIsAligning(isAligning);
+      
+  }, [audioSrc, lyricsText, isAligning])
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -53,7 +70,10 @@ export default function MediaControls({
       const audioFile = await urlToFile(audioSrc, "placeholder.mp3", "audio/mpeg");
 
       // Now call the API with the lyrics and File
+      setIsAligning(true);
       const result = await analyzeLyrics(lyricsText, audioFile);
+      setIsAligning(false);
+
       console.log("Analysis result:", result);
       onAnalyzedLyrics(result);
     } catch (err) {
@@ -112,18 +132,32 @@ export default function MediaControls({
             onValueChange={handleSliderChange}
           />
           <span className="text-xs text-gray-400">{formatTime(duration)}</span>
-
-          <Button
-            variant="outline"
-            size="sm"
-            className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
-            onClick={handleAnalyze}
-          >
-            Align Lyrics
+          
+          { isDisabled ? (
+            <Button
+              variant="outline"
+              size="sm"
+              disabled 
+              className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10 cursor-not-allowed"
+              onClick={handleAnalyze}
+            >
+              {isAligning ? (<p>Aligning...</p>) : (<p>Align Lyrics</p>)}
           </Button>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm" 
+              className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
+              onClick={handleAnalyze}
+            >
+              Align Lyrics
+            </Button>
+          )}
+          
 
         </div>
       </div>
     </div>
   );
 }
+
