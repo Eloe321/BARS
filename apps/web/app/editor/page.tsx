@@ -58,6 +58,10 @@ export default function EditorPage() {
       console.error("User not authenticated");
       return false;
     }
+    if (!trackUrl || !trackName || !fullTrackName) {
+      toast.error("Please selecta track first before saving.");
+      return false;
+    }
 
     // Get the current content from the editor
     const currentContent = editorRef.current?.getContent() || "";
