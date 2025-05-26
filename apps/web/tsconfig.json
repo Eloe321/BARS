@@ -17,7 +17,9 @@
     "next.config.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "../../packages/ui/src/components/hooks/useAudioPlayer.ts"  ],
+    ".next/types/**/*.ts",
+    "../../packages/ui/src/components/hooks/useAudioPlayer.ts",
+    "../../packages/types/src/cookies/cookies.ts"
+  ],
   "exclude": ["node_modules"]
 }

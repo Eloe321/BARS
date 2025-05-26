@@ -14,6 +14,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum MusicSource {
+  PREMADE
+  UPLOADED
+}
+
 model User {
   id       String   @id @default(cuid())
   username String   @unique
@@ -21,4 +26,69 @@ model User {
   password String
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+
+  // Relations
+  songs           Song[]
+  links           Link[]
+  linkPermissions LinkPermission[]
+}
+
+model Song {
+  id                String      @id @default(cuid())
+  title             String      @default("untitled")
+  user_id           String
+  musicSource       MusicSource @default(PREMADE)
+  premade_music_id  String?
+  uploaded_music_id String?
+  content           String      @default("")
+  creation_date     DateTime    @default(now())
+
+  user          User           @relation(fields: [user_id], references: [id])
+  links         Link[]
+  premadeMusic  PremadeMusic?  @relation(fields: [premade_music_id], references: [music_id])
+  uploadedMusic UploadedMusic? @relation(fields: [uploaded_music_id], references: [music_id])
+}
+
+model Link {
+  link_id    String   @id @default(cuid())
+  song_id    String
+  created_by String // user_id
+  is_public  Boolean  @default(false)
+  created_at DateTime @default(now())
+  expires_at DateTime
+
+  // Relations
+  song            Song             @relation(fields: [song_id], references: [id])
+  creator         User             @relation(fields: [created_by], references: [id])
+  linkPermissions LinkPermission[]
+}
+
+model LinkPermission {
+  link_permission_id String  @id @default(cuid())
+  link_id            String
+  user_id            String
+  can_view           Boolean @default(true)
+
+  // Relations
+  link     User @relation(fields: [user_id], references: [id])
+  userLink Link @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
+}
+
+model PremadeMusic {
+  music_id      String   @id @default(cuid())
+  music_name    String   @unique
+  uploaded_date DateTime @default(now())
+  path          String
+
+  // Relations
+  songs Song[]
+}
+
+model UploadedMusic {
+  music_id    String @id @default(cuid())
+  music_name  String @unique
+  uploaded_by String
+  path        String @default("")
+  // Relations
+  songs       Song[]
 }

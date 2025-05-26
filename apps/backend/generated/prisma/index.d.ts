@@ -18,6 +18,48 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Song
+ * 
+ */
+export type Song = $Result.DefaultSelection<Prisma.$SongPayload>
+/**
+ * Model Link
+ * 
+ */
+export type Link = $Result.DefaultSelection<Prisma.$LinkPayload>
+/**
+ * Model LinkPermission
+ * 
+ */
+export type LinkPermission = $Result.DefaultSelection<Prisma.$LinkPermissionPayload>
+/**
+ * Model PremadeMusic
+ * 
+ */
+export type PremadeMusic = $Result.DefaultSelection<Prisma.$PremadeMusicPayload>
+/**
+ * Model UploadedMusic
+ * 
+ */
+export type UploadedMusic = $Result.DefaultSelection<Prisma.$UploadedMusicPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const MusicSource: {
+  PREMADE: 'PREMADE',
+  UPLOADED: 'UPLOADED'
+};
+
+export type MusicSource = (typeof MusicSource)[keyof typeof MusicSource]
+
+}
+
+export type MusicSource = $Enums.MusicSource
+
+export const MusicSource: typeof $Enums.MusicSource
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +195,56 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.song`: Exposes CRUD operations for the **Song** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Songs
+    * const songs = await prisma.song.findMany()
+    * ```
+    */
+  get song(): Prisma.SongDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.link`: Exposes CRUD operations for the **Link** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Links
+    * const links = await prisma.link.findMany()
+    * ```
+    */
+  get link(): Prisma.LinkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.linkPermission`: Exposes CRUD operations for the **LinkPermission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LinkPermissions
+    * const linkPermissions = await prisma.linkPermission.findMany()
+    * ```
+    */
+  get linkPermission(): Prisma.LinkPermissionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.premadeMusic`: Exposes CRUD operations for the **PremadeMusic** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PremadeMusics
+    * const premadeMusics = await prisma.premadeMusic.findMany()
+    * ```
+    */
+  get premadeMusic(): Prisma.PremadeMusicDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.uploadedMusic`: Exposes CRUD operations for the **UploadedMusic** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UploadedMusics
+    * const uploadedMusics = await prisma.uploadedMusic.findMany()
+    * ```
+    */
+  get uploadedMusic(): Prisma.UploadedMusicDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +685,12 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Song: 'Song',
+    Link: 'Link',
+    LinkPermission: 'LinkPermission',
+    PremadeMusic: 'PremadeMusic',
+    UploadedMusic: 'UploadedMusic'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +709,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "song" | "link" | "linkPermission" | "premadeMusic" | "uploadedMusic"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +784,376 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Song: {
+        payload: Prisma.$SongPayload<ExtArgs>
+        fields: Prisma.SongFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SongFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SongFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+          }
+          findFirst: {
+            args: Prisma.SongFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SongFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+          }
+          findMany: {
+            args: Prisma.SongFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>[]
+          }
+          create: {
+            args: Prisma.SongCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+          }
+          createMany: {
+            args: Prisma.SongCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SongCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>[]
+          }
+          delete: {
+            args: Prisma.SongDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+          }
+          update: {
+            args: Prisma.SongUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+          }
+          deleteMany: {
+            args: Prisma.SongDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SongUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SongUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>[]
+          }
+          upsert: {
+            args: Prisma.SongUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+          }
+          aggregate: {
+            args: Prisma.SongAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSong>
+          }
+          groupBy: {
+            args: Prisma.SongGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SongGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SongCountArgs<ExtArgs>
+            result: $Utils.Optional<SongCountAggregateOutputType> | number
+          }
+        }
+      }
+      Link: {
+        payload: Prisma.$LinkPayload<ExtArgs>
+        fields: Prisma.LinkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LinkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LinkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>
+          }
+          findFirst: {
+            args: Prisma.LinkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LinkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>
+          }
+          findMany: {
+            args: Prisma.LinkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>[]
+          }
+          create: {
+            args: Prisma.LinkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>
+          }
+          createMany: {
+            args: Prisma.LinkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LinkCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>[]
+          }
+          delete: {
+            args: Prisma.LinkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>
+          }
+          update: {
+            args: Prisma.LinkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>
+          }
+          deleteMany: {
+            args: Prisma.LinkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LinkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LinkUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>[]
+          }
+          upsert: {
+            args: Prisma.LinkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPayload>
+          }
+          aggregate: {
+            args: Prisma.LinkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLink>
+          }
+          groupBy: {
+            args: Prisma.LinkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LinkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LinkCountArgs<ExtArgs>
+            result: $Utils.Optional<LinkCountAggregateOutputType> | number
+          }
+        }
+      }
+      LinkPermission: {
+        payload: Prisma.$LinkPermissionPayload<ExtArgs>
+        fields: Prisma.LinkPermissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LinkPermissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LinkPermissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>
+          }
+          findFirst: {
+            args: Prisma.LinkPermissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LinkPermissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>
+          }
+          findMany: {
+            args: Prisma.LinkPermissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>[]
+          }
+          create: {
+            args: Prisma.LinkPermissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>
+          }
+          createMany: {
+            args: Prisma.LinkPermissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LinkPermissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>[]
+          }
+          delete: {
+            args: Prisma.LinkPermissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>
+          }
+          update: {
+            args: Prisma.LinkPermissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.LinkPermissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LinkPermissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LinkPermissionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>[]
+          }
+          upsert: {
+            args: Prisma.LinkPermissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LinkPermissionPayload>
+          }
+          aggregate: {
+            args: Prisma.LinkPermissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLinkPermission>
+          }
+          groupBy: {
+            args: Prisma.LinkPermissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LinkPermissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LinkPermissionCountArgs<ExtArgs>
+            result: $Utils.Optional<LinkPermissionCountAggregateOutputType> | number
+          }
+        }
+      }
+      PremadeMusic: {
+        payload: Prisma.$PremadeMusicPayload<ExtArgs>
+        fields: Prisma.PremadeMusicFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PremadeMusicFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PremadeMusicFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
+          }
+          findFirst: {
+            args: Prisma.PremadeMusicFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PremadeMusicFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
+          }
+          findMany: {
+            args: Prisma.PremadeMusicFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>[]
+          }
+          create: {
+            args: Prisma.PremadeMusicCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
+          }
+          createMany: {
+            args: Prisma.PremadeMusicCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PremadeMusicCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>[]
+          }
+          delete: {
+            args: Prisma.PremadeMusicDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
+          }
+          update: {
+            args: Prisma.PremadeMusicUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
+          }
+          deleteMany: {
+            args: Prisma.PremadeMusicDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PremadeMusicUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PremadeMusicUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>[]
+          }
+          upsert: {
+            args: Prisma.PremadeMusicUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PremadeMusicPayload>
+          }
+          aggregate: {
+            args: Prisma.PremadeMusicAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePremadeMusic>
+          }
+          groupBy: {
+            args: Prisma.PremadeMusicGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PremadeMusicGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PremadeMusicCountArgs<ExtArgs>
+            result: $Utils.Optional<PremadeMusicCountAggregateOutputType> | number
+          }
+        }
+      }
+      UploadedMusic: {
+        payload: Prisma.$UploadedMusicPayload<ExtArgs>
+        fields: Prisma.UploadedMusicFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UploadedMusicFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UploadedMusicFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          findFirst: {
+            args: Prisma.UploadedMusicFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UploadedMusicFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          findMany: {
+            args: Prisma.UploadedMusicFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>[]
+          }
+          create: {
+            args: Prisma.UploadedMusicCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          createMany: {
+            args: Prisma.UploadedMusicCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UploadedMusicCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>[]
+          }
+          delete: {
+            args: Prisma.UploadedMusicDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          update: {
+            args: Prisma.UploadedMusicUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          deleteMany: {
+            args: Prisma.UploadedMusicDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UploadedMusicUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UploadedMusicUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>[]
+          }
+          upsert: {
+            args: Prisma.UploadedMusicUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UploadedMusicPayload>
+          }
+          aggregate: {
+            args: Prisma.UploadedMusicAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUploadedMusic>
+          }
+          groupBy: {
+            args: Prisma.UploadedMusicGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UploadedMusicGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UploadedMusicCountArgs<ExtArgs>
+            result: $Utils.Optional<UploadedMusicCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +1242,11 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    song?: SongOmit
+    link?: LinkOmit
+    linkPermission?: LinkPermissionOmit
+    premadeMusic?: PremadeMusicOmit
+    uploadedMusic?: UploadedMusicOmit
   }
 
   /* Types for Logging */
@@ -863,6 +1335,178 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    songs: number
+    links: number
+    linkPermissions: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | UserCountOutputTypeCountSongsArgs
+    links?: boolean | UserCountOutputTypeCountLinksArgs
+    linkPermissions?: boolean | UserCountOutputTypeCountLinkPermissionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SongWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLinkPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkPermissionWhereInput
+  }
+
+
+  /**
+   * Count Type SongCountOutputType
+   */
+
+  export type SongCountOutputType = {
+    links: number
+  }
+
+  export type SongCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    links?: boolean | SongCountOutputTypeCountLinksArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SongCountOutputType without action
+   */
+  export type SongCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SongCountOutputType
+     */
+    select?: SongCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SongCountOutputType without action
+   */
+  export type SongCountOutputTypeCountLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkWhereInput
+  }
+
+
+  /**
+   * Count Type LinkCountOutputType
+   */
+
+  export type LinkCountOutputType = {
+    linkPermissions: number
+  }
+
+  export type LinkCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    linkPermissions?: boolean | LinkCountOutputTypeCountLinkPermissionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LinkCountOutputType without action
+   */
+  export type LinkCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkCountOutputType
+     */
+    select?: LinkCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LinkCountOutputType without action
+   */
+  export type LinkCountOutputTypeCountLinkPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkPermissionWhereInput
+  }
+
+
+  /**
+   * Count Type PremadeMusicCountOutputType
+   */
+
+  export type PremadeMusicCountOutputType = {
+    songs: number
+  }
+
+  export type PremadeMusicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | PremadeMusicCountOutputTypeCountSongsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PremadeMusicCountOutputType without action
+   */
+  export type PremadeMusicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusicCountOutputType
+     */
+    select?: PremadeMusicCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PremadeMusicCountOutputType without action
+   */
+  export type PremadeMusicCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SongWhereInput
+  }
+
+
+  /**
+   * Count Type UploadedMusicCountOutputType
+   */
+
+  export type UploadedMusicCountOutputType = {
+    songs: number
+  }
+
+  export type UploadedMusicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | UploadedMusicCountOutputTypeCountSongsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UploadedMusicCountOutputType without action
+   */
+  export type UploadedMusicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusicCountOutputType
+     */
+    select?: UploadedMusicCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UploadedMusicCountOutputType without action
+   */
+  export type UploadedMusicCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SongWhereInput
+  }
 
 
   /**
@@ -1041,6 +1685,10 @@ export namespace Prisma {
     password?: boolean
     createAt?: boolean
     updateAt?: boolean
+    songs?: boolean | User$songsArgs<ExtArgs>
+    links?: boolean | User$linksArgs<ExtArgs>
+    linkPermissions?: boolean | User$linkPermissionsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1071,10 +1719,22 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "createAt" | "updateAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | User$songsArgs<ExtArgs>
+    links?: boolean | User$linksArgs<ExtArgs>
+    linkPermissions?: boolean | User$linkPermissionsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      songs: Prisma.$SongPayload<ExtArgs>[]
+      links: Prisma.$LinkPayload<ExtArgs>[]
+      linkPermissions: Prisma.$LinkPermissionPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       username: string
@@ -1476,6 +2136,9 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    songs<T extends User$songsArgs<ExtArgs> = {}>(args?: Subset<T, User$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    links<T extends User$linksArgs<ExtArgs> = {}>(args?: Subset<T, User$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    linkPermissions<T extends User$linkPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, User$linkPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1528,6 +2191,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1546,6 +2213,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1563,6 +2234,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1612,6 +2287,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1660,6 +2339,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1702,6 +2385,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1750,6 +2437,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1817,6 +2508,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1843,6 +2538,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1863,6 +2562,78 @@ export namespace Prisma {
   }
 
   /**
+   * User.songs
+   */
+  export type User$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    where?: SongWhereInput
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    cursor?: SongWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+  }
+
+  /**
+   * User.links
+   */
+  export type User$linksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    where?: LinkWhereInput
+    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
+    cursor?: LinkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
+  }
+
+  /**
+   * User.linkPermissions
+   */
+  export type User$linkPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    where?: LinkPermissionWhereInput
+    orderBy?: LinkPermissionOrderByWithRelationInput | LinkPermissionOrderByWithRelationInput[]
+    cursor?: LinkPermissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LinkPermissionScalarFieldEnum | LinkPermissionScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1874,6 +2645,5467 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Song
+   */
+
+  export type AggregateSong = {
+    _count: SongCountAggregateOutputType | null
+    _min: SongMinAggregateOutputType | null
+    _max: SongMaxAggregateOutputType | null
+  }
+
+  export type SongMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    user_id: string | null
+    musicSource: $Enums.MusicSource | null
+    premade_music_id: string | null
+    uploaded_music_id: string | null
+    content: string | null
+    creation_date: Date | null
+  }
+
+  export type SongMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    user_id: string | null
+    musicSource: $Enums.MusicSource | null
+    premade_music_id: string | null
+    uploaded_music_id: string | null
+    content: string | null
+    creation_date: Date | null
+  }
+
+  export type SongCountAggregateOutputType = {
+    id: number
+    title: number
+    user_id: number
+    musicSource: number
+    premade_music_id: number
+    uploaded_music_id: number
+    content: number
+    creation_date: number
+    _all: number
+  }
+
+
+  export type SongMinAggregateInputType = {
+    id?: true
+    title?: true
+    user_id?: true
+    musicSource?: true
+    premade_music_id?: true
+    uploaded_music_id?: true
+    content?: true
+    creation_date?: true
+  }
+
+  export type SongMaxAggregateInputType = {
+    id?: true
+    title?: true
+    user_id?: true
+    musicSource?: true
+    premade_music_id?: true
+    uploaded_music_id?: true
+    content?: true
+    creation_date?: true
+  }
+
+  export type SongCountAggregateInputType = {
+    id?: true
+    title?: true
+    user_id?: true
+    musicSource?: true
+    premade_music_id?: true
+    uploaded_music_id?: true
+    content?: true
+    creation_date?: true
+    _all?: true
+  }
+
+  export type SongAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Song to aggregate.
+     */
+    where?: SongWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Songs to fetch.
+     */
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SongWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Songs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Songs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Songs
+    **/
+    _count?: true | SongCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SongMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SongMaxAggregateInputType
+  }
+
+  export type GetSongAggregateType<T extends SongAggregateArgs> = {
+        [P in keyof T & keyof AggregateSong]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSong[P]>
+      : GetScalarType<T[P], AggregateSong[P]>
+  }
+
+
+
+
+  export type SongGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SongWhereInput
+    orderBy?: SongOrderByWithAggregationInput | SongOrderByWithAggregationInput[]
+    by: SongScalarFieldEnum[] | SongScalarFieldEnum
+    having?: SongScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SongCountAggregateInputType | true
+    _min?: SongMinAggregateInputType
+    _max?: SongMaxAggregateInputType
+  }
+
+  export type SongGroupByOutputType = {
+    id: string
+    title: string
+    user_id: string
+    musicSource: $Enums.MusicSource
+    premade_music_id: string | null
+    uploaded_music_id: string | null
+    content: string
+    creation_date: Date
+    _count: SongCountAggregateOutputType | null
+    _min: SongMinAggregateOutputType | null
+    _max: SongMaxAggregateOutputType | null
+  }
+
+  type GetSongGroupByPayload<T extends SongGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SongGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SongGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SongGroupByOutputType[P]>
+            : GetScalarType<T[P], SongGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SongSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    user_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
+    content?: boolean
+    creation_date?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    links?: boolean | Song$linksArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+    _count?: boolean | SongCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["song"]>
+
+  export type SongSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    user_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
+    content?: boolean
+    creation_date?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+  }, ExtArgs["result"]["song"]>
+
+  export type SongSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    user_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
+    content?: boolean
+    creation_date?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+  }, ExtArgs["result"]["song"]>
+
+  export type SongSelectScalar = {
+    id?: boolean
+    title?: boolean
+    user_id?: boolean
+    musicSource?: boolean
+    premade_music_id?: boolean
+    uploaded_music_id?: boolean
+    content?: boolean
+    creation_date?: boolean
+  }
+
+  export type SongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "user_id" | "musicSource" | "premade_music_id" | "uploaded_music_id" | "content" | "creation_date", ExtArgs["result"]["song"]>
+  export type SongInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    links?: boolean | Song$linksArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+    _count?: boolean | SongCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SongIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+  }
+  export type SongIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+  }
+
+  export type $SongPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Song"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      links: Prisma.$LinkPayload<ExtArgs>[]
+      premadeMusic: Prisma.$PremadeMusicPayload<ExtArgs> | null
+      uploadedMusic: Prisma.$UploadedMusicPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      user_id: string
+      musicSource: $Enums.MusicSource
+      premade_music_id: string | null
+      uploaded_music_id: string | null
+      content: string
+      creation_date: Date
+    }, ExtArgs["result"]["song"]>
+    composites: {}
+  }
+
+  type SongGetPayload<S extends boolean | null | undefined | SongDefaultArgs> = $Result.GetResult<Prisma.$SongPayload, S>
+
+  type SongCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SongFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SongCountAggregateInputType | true
+    }
+
+  export interface SongDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Song'], meta: { name: 'Song' } }
+    /**
+     * Find zero or one Song that matches the filter.
+     * @param {SongFindUniqueArgs} args - Arguments to find a Song
+     * @example
+     * // Get one Song
+     * const song = await prisma.song.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SongFindUniqueArgs>(args: SelectSubset<T, SongFindUniqueArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Song that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SongFindUniqueOrThrowArgs} args - Arguments to find a Song
+     * @example
+     * // Get one Song
+     * const song = await prisma.song.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SongFindUniqueOrThrowArgs>(args: SelectSubset<T, SongFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Song that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SongFindFirstArgs} args - Arguments to find a Song
+     * @example
+     * // Get one Song
+     * const song = await prisma.song.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SongFindFirstArgs>(args?: SelectSubset<T, SongFindFirstArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Song that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SongFindFirstOrThrowArgs} args - Arguments to find a Song
+     * @example
+     * // Get one Song
+     * const song = await prisma.song.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SongFindFirstOrThrowArgs>(args?: SelectSubset<T, SongFindFirstOrThrowArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Songs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SongFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Songs
+     * const songs = await prisma.song.findMany()
+     * 
+     * // Get first 10 Songs
+     * const songs = await prisma.song.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const songWithIdOnly = await prisma.song.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SongFindManyArgs>(args?: SelectSubset<T, SongFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Song.
+     * @param {SongCreateArgs} args - Arguments to create a Song.
+     * @example
+     * // Create one Song
+     * const Song = await prisma.song.create({
+     *   data: {
+     *     // ... data to create a Song
+     *   }
+     * })
+     * 
+     */
+    create<T extends SongCreateArgs>(args: SelectSubset<T, SongCreateArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Songs.
+     * @param {SongCreateManyArgs} args - Arguments to create many Songs.
+     * @example
+     * // Create many Songs
+     * const song = await prisma.song.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SongCreateManyArgs>(args?: SelectSubset<T, SongCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Songs and returns the data saved in the database.
+     * @param {SongCreateManyAndReturnArgs} args - Arguments to create many Songs.
+     * @example
+     * // Create many Songs
+     * const song = await prisma.song.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Songs and only return the `id`
+     * const songWithIdOnly = await prisma.song.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SongCreateManyAndReturnArgs>(args?: SelectSubset<T, SongCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Song.
+     * @param {SongDeleteArgs} args - Arguments to delete one Song.
+     * @example
+     * // Delete one Song
+     * const Song = await prisma.song.delete({
+     *   where: {
+     *     // ... filter to delete one Song
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SongDeleteArgs>(args: SelectSubset<T, SongDeleteArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Song.
+     * @param {SongUpdateArgs} args - Arguments to update one Song.
+     * @example
+     * // Update one Song
+     * const song = await prisma.song.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SongUpdateArgs>(args: SelectSubset<T, SongUpdateArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Songs.
+     * @param {SongDeleteManyArgs} args - Arguments to filter Songs to delete.
+     * @example
+     * // Delete a few Songs
+     * const { count } = await prisma.song.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SongDeleteManyArgs>(args?: SelectSubset<T, SongDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Songs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SongUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Songs
+     * const song = await prisma.song.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SongUpdateManyArgs>(args: SelectSubset<T, SongUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Songs and returns the data updated in the database.
+     * @param {SongUpdateManyAndReturnArgs} args - Arguments to update many Songs.
+     * @example
+     * // Update many Songs
+     * const song = await prisma.song.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Songs and only return the `id`
+     * const songWithIdOnly = await prisma.song.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SongUpdateManyAndReturnArgs>(args: SelectSubset<T, SongUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Song.
+     * @param {SongUpsertArgs} args - Arguments to update or create a Song.
+     * @example
+     * // Update or create a Song
+     * const song = await prisma.song.upsert({
+     *   create: {
+     *     // ... data to create a Song
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Song we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SongUpsertArgs>(args: SelectSubset<T, SongUpsertArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Songs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SongCountArgs} args - Arguments to filter Songs to count.
+     * @example
+     * // Count the number of Songs
+     * const count = await prisma.song.count({
+     *   where: {
+     *     // ... the filter for the Songs we want to count
+     *   }
+     * })
+    **/
+    count<T extends SongCountArgs>(
+      args?: Subset<T, SongCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SongCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Song.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SongAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SongAggregateArgs>(args: Subset<T, SongAggregateArgs>): Prisma.PrismaPromise<GetSongAggregateType<T>>
+
+    /**
+     * Group by Song.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SongGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SongGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SongGroupByArgs['orderBy'] }
+        : { orderBy?: SongGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SongGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSongGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Song model
+   */
+  readonly fields: SongFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Song.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SongClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    links<T extends Song$linksArgs<ExtArgs> = {}>(args?: Subset<T, Song$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    premadeMusic<T extends Song$premadeMusicArgs<ExtArgs> = {}>(args?: Subset<T, Song$premadeMusicArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    uploadedMusic<T extends Song$uploadedMusicArgs<ExtArgs> = {}>(args?: Subset<T, Song$uploadedMusicArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Song model
+   */
+  interface SongFieldRefs {
+    readonly id: FieldRef<"Song", 'String'>
+    readonly title: FieldRef<"Song", 'String'>
+    readonly user_id: FieldRef<"Song", 'String'>
+    readonly musicSource: FieldRef<"Song", 'MusicSource'>
+    readonly premade_music_id: FieldRef<"Song", 'String'>
+    readonly uploaded_music_id: FieldRef<"Song", 'String'>
+    readonly content: FieldRef<"Song", 'String'>
+    readonly creation_date: FieldRef<"Song", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Song findUnique
+   */
+  export type SongFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * Filter, which Song to fetch.
+     */
+    where: SongWhereUniqueInput
+  }
+
+  /**
+   * Song findUniqueOrThrow
+   */
+  export type SongFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * Filter, which Song to fetch.
+     */
+    where: SongWhereUniqueInput
+  }
+
+  /**
+   * Song findFirst
+   */
+  export type SongFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * Filter, which Song to fetch.
+     */
+    where?: SongWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Songs to fetch.
+     */
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Songs.
+     */
+    cursor?: SongWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Songs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Songs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Songs.
+     */
+    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+  }
+
+  /**
+   * Song findFirstOrThrow
+   */
+  export type SongFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * Filter, which Song to fetch.
+     */
+    where?: SongWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Songs to fetch.
+     */
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Songs.
+     */
+    cursor?: SongWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Songs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Songs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Songs.
+     */
+    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+  }
+
+  /**
+   * Song findMany
+   */
+  export type SongFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * Filter, which Songs to fetch.
+     */
+    where?: SongWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Songs to fetch.
+     */
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Songs.
+     */
+    cursor?: SongWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Songs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Songs.
+     */
+    skip?: number
+    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+  }
+
+  /**
+   * Song create
+   */
+  export type SongCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Song.
+     */
+    data: XOR<SongCreateInput, SongUncheckedCreateInput>
+  }
+
+  /**
+   * Song createMany
+   */
+  export type SongCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Songs.
+     */
+    data: SongCreateManyInput | SongCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Song createManyAndReturn
+   */
+  export type SongCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * The data used to create many Songs.
+     */
+    data: SongCreateManyInput | SongCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Song update
+   */
+  export type SongUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Song.
+     */
+    data: XOR<SongUpdateInput, SongUncheckedUpdateInput>
+    /**
+     * Choose, which Song to update.
+     */
+    where: SongWhereUniqueInput
+  }
+
+  /**
+   * Song updateMany
+   */
+  export type SongUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Songs.
+     */
+    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyInput>
+    /**
+     * Filter which Songs to update
+     */
+    where?: SongWhereInput
+    /**
+     * Limit how many Songs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Song updateManyAndReturn
+   */
+  export type SongUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * The data used to update Songs.
+     */
+    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyInput>
+    /**
+     * Filter which Songs to update
+     */
+    where?: SongWhereInput
+    /**
+     * Limit how many Songs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Song upsert
+   */
+  export type SongUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Song to update in case it exists.
+     */
+    where: SongWhereUniqueInput
+    /**
+     * In case the Song found by the `where` argument doesn't exist, create a new Song with this data.
+     */
+    create: XOR<SongCreateInput, SongUncheckedCreateInput>
+    /**
+     * In case the Song was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SongUpdateInput, SongUncheckedUpdateInput>
+  }
+
+  /**
+   * Song delete
+   */
+  export type SongDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    /**
+     * Filter which Song to delete.
+     */
+    where: SongWhereUniqueInput
+  }
+
+  /**
+   * Song deleteMany
+   */
+  export type SongDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Songs to delete
+     */
+    where?: SongWhereInput
+    /**
+     * Limit how many Songs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Song.links
+   */
+  export type Song$linksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    where?: LinkWhereInput
+    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
+    cursor?: LinkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
+  }
+
+  /**
+   * Song.premadeMusic
+   */
+  export type Song$premadeMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    where?: PremadeMusicWhereInput
+  }
+
+  /**
+   * Song.uploadedMusic
+   */
+  export type Song$uploadedMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    where?: UploadedMusicWhereInput
+  }
+
+  /**
+   * Song without action
+   */
+  export type SongDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Link
+   */
+
+  export type AggregateLink = {
+    _count: LinkCountAggregateOutputType | null
+    _min: LinkMinAggregateOutputType | null
+    _max: LinkMaxAggregateOutputType | null
+  }
+
+  export type LinkMinAggregateOutputType = {
+    link_id: string | null
+    song_id: string | null
+    created_by: string | null
+    is_public: boolean | null
+    created_at: Date | null
+    expires_at: Date | null
+  }
+
+  export type LinkMaxAggregateOutputType = {
+    link_id: string | null
+    song_id: string | null
+    created_by: string | null
+    is_public: boolean | null
+    created_at: Date | null
+    expires_at: Date | null
+  }
+
+  export type LinkCountAggregateOutputType = {
+    link_id: number
+    song_id: number
+    created_by: number
+    is_public: number
+    created_at: number
+    expires_at: number
+    _all: number
+  }
+
+
+  export type LinkMinAggregateInputType = {
+    link_id?: true
+    song_id?: true
+    created_by?: true
+    is_public?: true
+    created_at?: true
+    expires_at?: true
+  }
+
+  export type LinkMaxAggregateInputType = {
+    link_id?: true
+    song_id?: true
+    created_by?: true
+    is_public?: true
+    created_at?: true
+    expires_at?: true
+  }
+
+  export type LinkCountAggregateInputType = {
+    link_id?: true
+    song_id?: true
+    created_by?: true
+    is_public?: true
+    created_at?: true
+    expires_at?: true
+    _all?: true
+  }
+
+  export type LinkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Link to aggregate.
+     */
+    where?: LinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Links to fetch.
+     */
+    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Links from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Links.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Links
+    **/
+    _count?: true | LinkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LinkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LinkMaxAggregateInputType
+  }
+
+  export type GetLinkAggregateType<T extends LinkAggregateArgs> = {
+        [P in keyof T & keyof AggregateLink]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLink[P]>
+      : GetScalarType<T[P], AggregateLink[P]>
+  }
+
+
+
+
+  export type LinkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkWhereInput
+    orderBy?: LinkOrderByWithAggregationInput | LinkOrderByWithAggregationInput[]
+    by: LinkScalarFieldEnum[] | LinkScalarFieldEnum
+    having?: LinkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LinkCountAggregateInputType | true
+    _min?: LinkMinAggregateInputType
+    _max?: LinkMaxAggregateInputType
+  }
+
+  export type LinkGroupByOutputType = {
+    link_id: string
+    song_id: string
+    created_by: string
+    is_public: boolean
+    created_at: Date
+    expires_at: Date
+    _count: LinkCountAggregateOutputType | null
+    _min: LinkMinAggregateOutputType | null
+    _max: LinkMaxAggregateOutputType | null
+  }
+
+  type GetLinkGroupByPayload<T extends LinkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LinkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LinkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LinkGroupByOutputType[P]>
+            : GetScalarType<T[P], LinkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    link_id?: boolean
+    song_id?: boolean
+    created_by?: boolean
+    is_public?: boolean
+    created_at?: boolean
+    expires_at?: boolean
+    song?: boolean | SongDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    linkPermissions?: boolean | Link$linkPermissionsArgs<ExtArgs>
+    _count?: boolean | LinkCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["link"]>
+
+  export type LinkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    link_id?: boolean
+    song_id?: boolean
+    created_by?: boolean
+    is_public?: boolean
+    created_at?: boolean
+    expires_at?: boolean
+    song?: boolean | SongDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["link"]>
+
+  export type LinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    link_id?: boolean
+    song_id?: boolean
+    created_by?: boolean
+    is_public?: boolean
+    created_at?: boolean
+    expires_at?: boolean
+    song?: boolean | SongDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["link"]>
+
+  export type LinkSelectScalar = {
+    link_id?: boolean
+    song_id?: boolean
+    created_by?: boolean
+    is_public?: boolean
+    created_at?: boolean
+    expires_at?: boolean
+  }
+
+  export type LinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"link_id" | "song_id" | "created_by" | "is_public" | "created_at" | "expires_at", ExtArgs["result"]["link"]>
+  export type LinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    song?: boolean | SongDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    linkPermissions?: boolean | Link$linkPermissionsArgs<ExtArgs>
+    _count?: boolean | LinkCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LinkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    song?: boolean | SongDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LinkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    song?: boolean | SongDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $LinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Link"
+    objects: {
+      song: Prisma.$SongPayload<ExtArgs>
+      creator: Prisma.$UserPayload<ExtArgs>
+      linkPermissions: Prisma.$LinkPermissionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      link_id: string
+      song_id: string
+      created_by: string
+      is_public: boolean
+      created_at: Date
+      expires_at: Date
+    }, ExtArgs["result"]["link"]>
+    composites: {}
+  }
+
+  type LinkGetPayload<S extends boolean | null | undefined | LinkDefaultArgs> = $Result.GetResult<Prisma.$LinkPayload, S>
+
+  type LinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LinkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LinkCountAggregateInputType | true
+    }
+
+  export interface LinkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Link'], meta: { name: 'Link' } }
+    /**
+     * Find zero or one Link that matches the filter.
+     * @param {LinkFindUniqueArgs} args - Arguments to find a Link
+     * @example
+     * // Get one Link
+     * const link = await prisma.link.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LinkFindUniqueArgs>(args: SelectSubset<T, LinkFindUniqueArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Link that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LinkFindUniqueOrThrowArgs} args - Arguments to find a Link
+     * @example
+     * // Get one Link
+     * const link = await prisma.link.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LinkFindUniqueOrThrowArgs>(args: SelectSubset<T, LinkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Link that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkFindFirstArgs} args - Arguments to find a Link
+     * @example
+     * // Get one Link
+     * const link = await prisma.link.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LinkFindFirstArgs>(args?: SelectSubset<T, LinkFindFirstArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Link that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkFindFirstOrThrowArgs} args - Arguments to find a Link
+     * @example
+     * // Get one Link
+     * const link = await prisma.link.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LinkFindFirstOrThrowArgs>(args?: SelectSubset<T, LinkFindFirstOrThrowArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Links that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Links
+     * const links = await prisma.link.findMany()
+     * 
+     * // Get first 10 Links
+     * const links = await prisma.link.findMany({ take: 10 })
+     * 
+     * // Only select the `link_id`
+     * const linkWithLink_idOnly = await prisma.link.findMany({ select: { link_id: true } })
+     * 
+     */
+    findMany<T extends LinkFindManyArgs>(args?: SelectSubset<T, LinkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Link.
+     * @param {LinkCreateArgs} args - Arguments to create a Link.
+     * @example
+     * // Create one Link
+     * const Link = await prisma.link.create({
+     *   data: {
+     *     // ... data to create a Link
+     *   }
+     * })
+     * 
+     */
+    create<T extends LinkCreateArgs>(args: SelectSubset<T, LinkCreateArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Links.
+     * @param {LinkCreateManyArgs} args - Arguments to create many Links.
+     * @example
+     * // Create many Links
+     * const link = await prisma.link.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LinkCreateManyArgs>(args?: SelectSubset<T, LinkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Links and returns the data saved in the database.
+     * @param {LinkCreateManyAndReturnArgs} args - Arguments to create many Links.
+     * @example
+     * // Create many Links
+     * const link = await prisma.link.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Links and only return the `link_id`
+     * const linkWithLink_idOnly = await prisma.link.createManyAndReturn({
+     *   select: { link_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LinkCreateManyAndReturnArgs>(args?: SelectSubset<T, LinkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Link.
+     * @param {LinkDeleteArgs} args - Arguments to delete one Link.
+     * @example
+     * // Delete one Link
+     * const Link = await prisma.link.delete({
+     *   where: {
+     *     // ... filter to delete one Link
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LinkDeleteArgs>(args: SelectSubset<T, LinkDeleteArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Link.
+     * @param {LinkUpdateArgs} args - Arguments to update one Link.
+     * @example
+     * // Update one Link
+     * const link = await prisma.link.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LinkUpdateArgs>(args: SelectSubset<T, LinkUpdateArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Links.
+     * @param {LinkDeleteManyArgs} args - Arguments to filter Links to delete.
+     * @example
+     * // Delete a few Links
+     * const { count } = await prisma.link.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LinkDeleteManyArgs>(args?: SelectSubset<T, LinkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Links.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Links
+     * const link = await prisma.link.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LinkUpdateManyArgs>(args: SelectSubset<T, LinkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Links and returns the data updated in the database.
+     * @param {LinkUpdateManyAndReturnArgs} args - Arguments to update many Links.
+     * @example
+     * // Update many Links
+     * const link = await prisma.link.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Links and only return the `link_id`
+     * const linkWithLink_idOnly = await prisma.link.updateManyAndReturn({
+     *   select: { link_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LinkUpdateManyAndReturnArgs>(args: SelectSubset<T, LinkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Link.
+     * @param {LinkUpsertArgs} args - Arguments to update or create a Link.
+     * @example
+     * // Update or create a Link
+     * const link = await prisma.link.upsert({
+     *   create: {
+     *     // ... data to create a Link
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Link we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LinkUpsertArgs>(args: SelectSubset<T, LinkUpsertArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Links.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkCountArgs} args - Arguments to filter Links to count.
+     * @example
+     * // Count the number of Links
+     * const count = await prisma.link.count({
+     *   where: {
+     *     // ... the filter for the Links we want to count
+     *   }
+     * })
+    **/
+    count<T extends LinkCountArgs>(
+      args?: Subset<T, LinkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LinkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Link.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LinkAggregateArgs>(args: Subset<T, LinkAggregateArgs>): Prisma.PrismaPromise<GetLinkAggregateType<T>>
+
+    /**
+     * Group by Link.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LinkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LinkGroupByArgs['orderBy'] }
+        : { orderBy?: LinkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Link model
+   */
+  readonly fields: LinkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Link.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    song<T extends SongDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SongDefaultArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    linkPermissions<T extends Link$linkPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, Link$linkPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Link model
+   */
+  interface LinkFieldRefs {
+    readonly link_id: FieldRef<"Link", 'String'>
+    readonly song_id: FieldRef<"Link", 'String'>
+    readonly created_by: FieldRef<"Link", 'String'>
+    readonly is_public: FieldRef<"Link", 'Boolean'>
+    readonly created_at: FieldRef<"Link", 'DateTime'>
+    readonly expires_at: FieldRef<"Link", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Link findUnique
+   */
+  export type LinkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * Filter, which Link to fetch.
+     */
+    where: LinkWhereUniqueInput
+  }
+
+  /**
+   * Link findUniqueOrThrow
+   */
+  export type LinkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * Filter, which Link to fetch.
+     */
+    where: LinkWhereUniqueInput
+  }
+
+  /**
+   * Link findFirst
+   */
+  export type LinkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * Filter, which Link to fetch.
+     */
+    where?: LinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Links to fetch.
+     */
+    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Links.
+     */
+    cursor?: LinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Links from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Links.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Links.
+     */
+    distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
+  }
+
+  /**
+   * Link findFirstOrThrow
+   */
+  export type LinkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * Filter, which Link to fetch.
+     */
+    where?: LinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Links to fetch.
+     */
+    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Links.
+     */
+    cursor?: LinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Links from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Links.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Links.
+     */
+    distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
+  }
+
+  /**
+   * Link findMany
+   */
+  export type LinkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * Filter, which Links to fetch.
+     */
+    where?: LinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Links to fetch.
+     */
+    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Links.
+     */
+    cursor?: LinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Links from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Links.
+     */
+    skip?: number
+    distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
+  }
+
+  /**
+   * Link create
+   */
+  export type LinkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Link.
+     */
+    data: XOR<LinkCreateInput, LinkUncheckedCreateInput>
+  }
+
+  /**
+   * Link createMany
+   */
+  export type LinkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Links.
+     */
+    data: LinkCreateManyInput | LinkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Link createManyAndReturn
+   */
+  export type LinkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * The data used to create many Links.
+     */
+    data: LinkCreateManyInput | LinkCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Link update
+   */
+  export type LinkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Link.
+     */
+    data: XOR<LinkUpdateInput, LinkUncheckedUpdateInput>
+    /**
+     * Choose, which Link to update.
+     */
+    where: LinkWhereUniqueInput
+  }
+
+  /**
+   * Link updateMany
+   */
+  export type LinkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Links.
+     */
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyInput>
+    /**
+     * Filter which Links to update
+     */
+    where?: LinkWhereInput
+    /**
+     * Limit how many Links to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Link updateManyAndReturn
+   */
+  export type LinkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * The data used to update Links.
+     */
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyInput>
+    /**
+     * Filter which Links to update
+     */
+    where?: LinkWhereInput
+    /**
+     * Limit how many Links to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Link upsert
+   */
+  export type LinkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Link to update in case it exists.
+     */
+    where: LinkWhereUniqueInput
+    /**
+     * In case the Link found by the `where` argument doesn't exist, create a new Link with this data.
+     */
+    create: XOR<LinkCreateInput, LinkUncheckedCreateInput>
+    /**
+     * In case the Link was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LinkUpdateInput, LinkUncheckedUpdateInput>
+  }
+
+  /**
+   * Link delete
+   */
+  export type LinkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    /**
+     * Filter which Link to delete.
+     */
+    where: LinkWhereUniqueInput
+  }
+
+  /**
+   * Link deleteMany
+   */
+  export type LinkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Links to delete
+     */
+    where?: LinkWhereInput
+    /**
+     * Limit how many Links to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Link.linkPermissions
+   */
+  export type Link$linkPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    where?: LinkPermissionWhereInput
+    orderBy?: LinkPermissionOrderByWithRelationInput | LinkPermissionOrderByWithRelationInput[]
+    cursor?: LinkPermissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LinkPermissionScalarFieldEnum | LinkPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * Link without action
+   */
+  export type LinkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LinkPermission
+   */
+
+  export type AggregateLinkPermission = {
+    _count: LinkPermissionCountAggregateOutputType | null
+    _min: LinkPermissionMinAggregateOutputType | null
+    _max: LinkPermissionMaxAggregateOutputType | null
+  }
+
+  export type LinkPermissionMinAggregateOutputType = {
+    link_permission_id: string | null
+    link_id: string | null
+    user_id: string | null
+    can_view: boolean | null
+  }
+
+  export type LinkPermissionMaxAggregateOutputType = {
+    link_permission_id: string | null
+    link_id: string | null
+    user_id: string | null
+    can_view: boolean | null
+  }
+
+  export type LinkPermissionCountAggregateOutputType = {
+    link_permission_id: number
+    link_id: number
+    user_id: number
+    can_view: number
+    _all: number
+  }
+
+
+  export type LinkPermissionMinAggregateInputType = {
+    link_permission_id?: true
+    link_id?: true
+    user_id?: true
+    can_view?: true
+  }
+
+  export type LinkPermissionMaxAggregateInputType = {
+    link_permission_id?: true
+    link_id?: true
+    user_id?: true
+    can_view?: true
+  }
+
+  export type LinkPermissionCountAggregateInputType = {
+    link_permission_id?: true
+    link_id?: true
+    user_id?: true
+    can_view?: true
+    _all?: true
+  }
+
+  export type LinkPermissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LinkPermission to aggregate.
+     */
+    where?: LinkPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkPermissions to fetch.
+     */
+    orderBy?: LinkPermissionOrderByWithRelationInput | LinkPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LinkPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LinkPermissions
+    **/
+    _count?: true | LinkPermissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LinkPermissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LinkPermissionMaxAggregateInputType
+  }
+
+  export type GetLinkPermissionAggregateType<T extends LinkPermissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateLinkPermission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLinkPermission[P]>
+      : GetScalarType<T[P], AggregateLinkPermission[P]>
+  }
+
+
+
+
+  export type LinkPermissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkPermissionWhereInput
+    orderBy?: LinkPermissionOrderByWithAggregationInput | LinkPermissionOrderByWithAggregationInput[]
+    by: LinkPermissionScalarFieldEnum[] | LinkPermissionScalarFieldEnum
+    having?: LinkPermissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LinkPermissionCountAggregateInputType | true
+    _min?: LinkPermissionMinAggregateInputType
+    _max?: LinkPermissionMaxAggregateInputType
+  }
+
+  export type LinkPermissionGroupByOutputType = {
+    link_permission_id: string
+    link_id: string
+    user_id: string
+    can_view: boolean
+    _count: LinkPermissionCountAggregateOutputType | null
+    _min: LinkPermissionMinAggregateOutputType | null
+    _max: LinkPermissionMaxAggregateOutputType | null
+  }
+
+  type GetLinkPermissionGroupByPayload<T extends LinkPermissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LinkPermissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LinkPermissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LinkPermissionGroupByOutputType[P]>
+            : GetScalarType<T[P], LinkPermissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LinkPermissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    link_permission_id?: boolean
+    link_id?: boolean
+    user_id?: boolean
+    can_view?: boolean
+    link?: boolean | UserDefaultArgs<ExtArgs>
+    userLink?: boolean | LinkDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["linkPermission"]>
+
+  export type LinkPermissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    link_permission_id?: boolean
+    link_id?: boolean
+    user_id?: boolean
+    can_view?: boolean
+    link?: boolean | UserDefaultArgs<ExtArgs>
+    userLink?: boolean | LinkDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["linkPermission"]>
+
+  export type LinkPermissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    link_permission_id?: boolean
+    link_id?: boolean
+    user_id?: boolean
+    can_view?: boolean
+    link?: boolean | UserDefaultArgs<ExtArgs>
+    userLink?: boolean | LinkDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["linkPermission"]>
+
+  export type LinkPermissionSelectScalar = {
+    link_permission_id?: boolean
+    link_id?: boolean
+    user_id?: boolean
+    can_view?: boolean
+  }
+
+  export type LinkPermissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"link_permission_id" | "link_id" | "user_id" | "can_view", ExtArgs["result"]["linkPermission"]>
+  export type LinkPermissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    link?: boolean | UserDefaultArgs<ExtArgs>
+    userLink?: boolean | LinkDefaultArgs<ExtArgs>
+  }
+  export type LinkPermissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    link?: boolean | UserDefaultArgs<ExtArgs>
+    userLink?: boolean | LinkDefaultArgs<ExtArgs>
+  }
+  export type LinkPermissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    link?: boolean | UserDefaultArgs<ExtArgs>
+    userLink?: boolean | LinkDefaultArgs<ExtArgs>
+  }
+
+  export type $LinkPermissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LinkPermission"
+    objects: {
+      link: Prisma.$UserPayload<ExtArgs>
+      userLink: Prisma.$LinkPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      link_permission_id: string
+      link_id: string
+      user_id: string
+      can_view: boolean
+    }, ExtArgs["result"]["linkPermission"]>
+    composites: {}
+  }
+
+  type LinkPermissionGetPayload<S extends boolean | null | undefined | LinkPermissionDefaultArgs> = $Result.GetResult<Prisma.$LinkPermissionPayload, S>
+
+  type LinkPermissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LinkPermissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LinkPermissionCountAggregateInputType | true
+    }
+
+  export interface LinkPermissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LinkPermission'], meta: { name: 'LinkPermission' } }
+    /**
+     * Find zero or one LinkPermission that matches the filter.
+     * @param {LinkPermissionFindUniqueArgs} args - Arguments to find a LinkPermission
+     * @example
+     * // Get one LinkPermission
+     * const linkPermission = await prisma.linkPermission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LinkPermissionFindUniqueArgs>(args: SelectSubset<T, LinkPermissionFindUniqueArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LinkPermission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LinkPermissionFindUniqueOrThrowArgs} args - Arguments to find a LinkPermission
+     * @example
+     * // Get one LinkPermission
+     * const linkPermission = await prisma.linkPermission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LinkPermissionFindUniqueOrThrowArgs>(args: SelectSubset<T, LinkPermissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LinkPermission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkPermissionFindFirstArgs} args - Arguments to find a LinkPermission
+     * @example
+     * // Get one LinkPermission
+     * const linkPermission = await prisma.linkPermission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LinkPermissionFindFirstArgs>(args?: SelectSubset<T, LinkPermissionFindFirstArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LinkPermission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkPermissionFindFirstOrThrowArgs} args - Arguments to find a LinkPermission
+     * @example
+     * // Get one LinkPermission
+     * const linkPermission = await prisma.linkPermission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LinkPermissionFindFirstOrThrowArgs>(args?: SelectSubset<T, LinkPermissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LinkPermissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkPermissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LinkPermissions
+     * const linkPermissions = await prisma.linkPermission.findMany()
+     * 
+     * // Get first 10 LinkPermissions
+     * const linkPermissions = await prisma.linkPermission.findMany({ take: 10 })
+     * 
+     * // Only select the `link_permission_id`
+     * const linkPermissionWithLink_permission_idOnly = await prisma.linkPermission.findMany({ select: { link_permission_id: true } })
+     * 
+     */
+    findMany<T extends LinkPermissionFindManyArgs>(args?: SelectSubset<T, LinkPermissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LinkPermission.
+     * @param {LinkPermissionCreateArgs} args - Arguments to create a LinkPermission.
+     * @example
+     * // Create one LinkPermission
+     * const LinkPermission = await prisma.linkPermission.create({
+     *   data: {
+     *     // ... data to create a LinkPermission
+     *   }
+     * })
+     * 
+     */
+    create<T extends LinkPermissionCreateArgs>(args: SelectSubset<T, LinkPermissionCreateArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LinkPermissions.
+     * @param {LinkPermissionCreateManyArgs} args - Arguments to create many LinkPermissions.
+     * @example
+     * // Create many LinkPermissions
+     * const linkPermission = await prisma.linkPermission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LinkPermissionCreateManyArgs>(args?: SelectSubset<T, LinkPermissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LinkPermissions and returns the data saved in the database.
+     * @param {LinkPermissionCreateManyAndReturnArgs} args - Arguments to create many LinkPermissions.
+     * @example
+     * // Create many LinkPermissions
+     * const linkPermission = await prisma.linkPermission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LinkPermissions and only return the `link_permission_id`
+     * const linkPermissionWithLink_permission_idOnly = await prisma.linkPermission.createManyAndReturn({
+     *   select: { link_permission_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LinkPermissionCreateManyAndReturnArgs>(args?: SelectSubset<T, LinkPermissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LinkPermission.
+     * @param {LinkPermissionDeleteArgs} args - Arguments to delete one LinkPermission.
+     * @example
+     * // Delete one LinkPermission
+     * const LinkPermission = await prisma.linkPermission.delete({
+     *   where: {
+     *     // ... filter to delete one LinkPermission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LinkPermissionDeleteArgs>(args: SelectSubset<T, LinkPermissionDeleteArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LinkPermission.
+     * @param {LinkPermissionUpdateArgs} args - Arguments to update one LinkPermission.
+     * @example
+     * // Update one LinkPermission
+     * const linkPermission = await prisma.linkPermission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LinkPermissionUpdateArgs>(args: SelectSubset<T, LinkPermissionUpdateArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LinkPermissions.
+     * @param {LinkPermissionDeleteManyArgs} args - Arguments to filter LinkPermissions to delete.
+     * @example
+     * // Delete a few LinkPermissions
+     * const { count } = await prisma.linkPermission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LinkPermissionDeleteManyArgs>(args?: SelectSubset<T, LinkPermissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LinkPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkPermissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LinkPermissions
+     * const linkPermission = await prisma.linkPermission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LinkPermissionUpdateManyArgs>(args: SelectSubset<T, LinkPermissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LinkPermissions and returns the data updated in the database.
+     * @param {LinkPermissionUpdateManyAndReturnArgs} args - Arguments to update many LinkPermissions.
+     * @example
+     * // Update many LinkPermissions
+     * const linkPermission = await prisma.linkPermission.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LinkPermissions and only return the `link_permission_id`
+     * const linkPermissionWithLink_permission_idOnly = await prisma.linkPermission.updateManyAndReturn({
+     *   select: { link_permission_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LinkPermissionUpdateManyAndReturnArgs>(args: SelectSubset<T, LinkPermissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LinkPermission.
+     * @param {LinkPermissionUpsertArgs} args - Arguments to update or create a LinkPermission.
+     * @example
+     * // Update or create a LinkPermission
+     * const linkPermission = await prisma.linkPermission.upsert({
+     *   create: {
+     *     // ... data to create a LinkPermission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LinkPermission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LinkPermissionUpsertArgs>(args: SelectSubset<T, LinkPermissionUpsertArgs<ExtArgs>>): Prisma__LinkPermissionClient<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LinkPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkPermissionCountArgs} args - Arguments to filter LinkPermissions to count.
+     * @example
+     * // Count the number of LinkPermissions
+     * const count = await prisma.linkPermission.count({
+     *   where: {
+     *     // ... the filter for the LinkPermissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends LinkPermissionCountArgs>(
+      args?: Subset<T, LinkPermissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LinkPermissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LinkPermission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkPermissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LinkPermissionAggregateArgs>(args: Subset<T, LinkPermissionAggregateArgs>): Prisma.PrismaPromise<GetLinkPermissionAggregateType<T>>
+
+    /**
+     * Group by LinkPermission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LinkPermissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LinkPermissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LinkPermissionGroupByArgs['orderBy'] }
+        : { orderBy?: LinkPermissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LinkPermissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLinkPermissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LinkPermission model
+   */
+  readonly fields: LinkPermissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LinkPermission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LinkPermissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    link<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    userLink<T extends LinkDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LinkDefaultArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LinkPermission model
+   */
+  interface LinkPermissionFieldRefs {
+    readonly link_permission_id: FieldRef<"LinkPermission", 'String'>
+    readonly link_id: FieldRef<"LinkPermission", 'String'>
+    readonly user_id: FieldRef<"LinkPermission", 'String'>
+    readonly can_view: FieldRef<"LinkPermission", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LinkPermission findUnique
+   */
+  export type LinkPermissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which LinkPermission to fetch.
+     */
+    where: LinkPermissionWhereUniqueInput
+  }
+
+  /**
+   * LinkPermission findUniqueOrThrow
+   */
+  export type LinkPermissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which LinkPermission to fetch.
+     */
+    where: LinkPermissionWhereUniqueInput
+  }
+
+  /**
+   * LinkPermission findFirst
+   */
+  export type LinkPermissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which LinkPermission to fetch.
+     */
+    where?: LinkPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkPermissions to fetch.
+     */
+    orderBy?: LinkPermissionOrderByWithRelationInput | LinkPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LinkPermissions.
+     */
+    cursor?: LinkPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LinkPermissions.
+     */
+    distinct?: LinkPermissionScalarFieldEnum | LinkPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * LinkPermission findFirstOrThrow
+   */
+  export type LinkPermissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which LinkPermission to fetch.
+     */
+    where?: LinkPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkPermissions to fetch.
+     */
+    orderBy?: LinkPermissionOrderByWithRelationInput | LinkPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LinkPermissions.
+     */
+    cursor?: LinkPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LinkPermissions.
+     */
+    distinct?: LinkPermissionScalarFieldEnum | LinkPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * LinkPermission findMany
+   */
+  export type LinkPermissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * Filter, which LinkPermissions to fetch.
+     */
+    where?: LinkPermissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LinkPermissions to fetch.
+     */
+    orderBy?: LinkPermissionOrderByWithRelationInput | LinkPermissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LinkPermissions.
+     */
+    cursor?: LinkPermissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LinkPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LinkPermissions.
+     */
+    skip?: number
+    distinct?: LinkPermissionScalarFieldEnum | LinkPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * LinkPermission create
+   */
+  export type LinkPermissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LinkPermission.
+     */
+    data: XOR<LinkPermissionCreateInput, LinkPermissionUncheckedCreateInput>
+  }
+
+  /**
+   * LinkPermission createMany
+   */
+  export type LinkPermissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LinkPermissions.
+     */
+    data: LinkPermissionCreateManyInput | LinkPermissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LinkPermission createManyAndReturn
+   */
+  export type LinkPermissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * The data used to create many LinkPermissions.
+     */
+    data: LinkPermissionCreateManyInput | LinkPermissionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LinkPermission update
+   */
+  export type LinkPermissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LinkPermission.
+     */
+    data: XOR<LinkPermissionUpdateInput, LinkPermissionUncheckedUpdateInput>
+    /**
+     * Choose, which LinkPermission to update.
+     */
+    where: LinkPermissionWhereUniqueInput
+  }
+
+  /**
+   * LinkPermission updateMany
+   */
+  export type LinkPermissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LinkPermissions.
+     */
+    data: XOR<LinkPermissionUpdateManyMutationInput, LinkPermissionUncheckedUpdateManyInput>
+    /**
+     * Filter which LinkPermissions to update
+     */
+    where?: LinkPermissionWhereInput
+    /**
+     * Limit how many LinkPermissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LinkPermission updateManyAndReturn
+   */
+  export type LinkPermissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * The data used to update LinkPermissions.
+     */
+    data: XOR<LinkPermissionUpdateManyMutationInput, LinkPermissionUncheckedUpdateManyInput>
+    /**
+     * Filter which LinkPermissions to update
+     */
+    where?: LinkPermissionWhereInput
+    /**
+     * Limit how many LinkPermissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LinkPermission upsert
+   */
+  export type LinkPermissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LinkPermission to update in case it exists.
+     */
+    where: LinkPermissionWhereUniqueInput
+    /**
+     * In case the LinkPermission found by the `where` argument doesn't exist, create a new LinkPermission with this data.
+     */
+    create: XOR<LinkPermissionCreateInput, LinkPermissionUncheckedCreateInput>
+    /**
+     * In case the LinkPermission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LinkPermissionUpdateInput, LinkPermissionUncheckedUpdateInput>
+  }
+
+  /**
+   * LinkPermission delete
+   */
+  export type LinkPermissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+    /**
+     * Filter which LinkPermission to delete.
+     */
+    where: LinkPermissionWhereUniqueInput
+  }
+
+  /**
+   * LinkPermission deleteMany
+   */
+  export type LinkPermissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LinkPermissions to delete
+     */
+    where?: LinkPermissionWhereInput
+    /**
+     * Limit how many LinkPermissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LinkPermission without action
+   */
+  export type LinkPermissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LinkPermission
+     */
+    select?: LinkPermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LinkPermission
+     */
+    omit?: LinkPermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkPermissionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PremadeMusic
+   */
+
+  export type AggregatePremadeMusic = {
+    _count: PremadeMusicCountAggregateOutputType | null
+    _min: PremadeMusicMinAggregateOutputType | null
+    _max: PremadeMusicMaxAggregateOutputType | null
+  }
+
+  export type PremadeMusicMinAggregateOutputType = {
+    music_id: string | null
+    music_name: string | null
+    uploaded_date: Date | null
+    path: string | null
+  }
+
+  export type PremadeMusicMaxAggregateOutputType = {
+    music_id: string | null
+    music_name: string | null
+    uploaded_date: Date | null
+    path: string | null
+  }
+
+  export type PremadeMusicCountAggregateOutputType = {
+    music_id: number
+    music_name: number
+    uploaded_date: number
+    path: number
+    _all: number
+  }
+
+
+  export type PremadeMusicMinAggregateInputType = {
+    music_id?: true
+    music_name?: true
+    uploaded_date?: true
+    path?: true
+  }
+
+  export type PremadeMusicMaxAggregateInputType = {
+    music_id?: true
+    music_name?: true
+    uploaded_date?: true
+    path?: true
+  }
+
+  export type PremadeMusicCountAggregateInputType = {
+    music_id?: true
+    music_name?: true
+    uploaded_date?: true
+    path?: true
+    _all?: true
+  }
+
+  export type PremadeMusicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PremadeMusic to aggregate.
+     */
+    where?: PremadeMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PremadeMusics to fetch.
+     */
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PremadeMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PremadeMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PremadeMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PremadeMusics
+    **/
+    _count?: true | PremadeMusicCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PremadeMusicMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PremadeMusicMaxAggregateInputType
+  }
+
+  export type GetPremadeMusicAggregateType<T extends PremadeMusicAggregateArgs> = {
+        [P in keyof T & keyof AggregatePremadeMusic]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePremadeMusic[P]>
+      : GetScalarType<T[P], AggregatePremadeMusic[P]>
+  }
+
+
+
+
+  export type PremadeMusicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PremadeMusicWhereInput
+    orderBy?: PremadeMusicOrderByWithAggregationInput | PremadeMusicOrderByWithAggregationInput[]
+    by: PremadeMusicScalarFieldEnum[] | PremadeMusicScalarFieldEnum
+    having?: PremadeMusicScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PremadeMusicCountAggregateInputType | true
+    _min?: PremadeMusicMinAggregateInputType
+    _max?: PremadeMusicMaxAggregateInputType
+  }
+
+  export type PremadeMusicGroupByOutputType = {
+    music_id: string
+    music_name: string
+    uploaded_date: Date
+    path: string
+    _count: PremadeMusicCountAggregateOutputType | null
+    _min: PremadeMusicMinAggregateOutputType | null
+    _max: PremadeMusicMaxAggregateOutputType | null
+  }
+
+  type GetPremadeMusicGroupByPayload<T extends PremadeMusicGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PremadeMusicGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PremadeMusicGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PremadeMusicGroupByOutputType[P]>
+            : GetScalarType<T[P], PremadeMusicGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PremadeMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_date?: boolean
+    path?: boolean
+    songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
+    _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["premadeMusic"]>
+
+  export type PremadeMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_date?: boolean
+    path?: boolean
+  }, ExtArgs["result"]["premadeMusic"]>
+
+  export type PremadeMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_date?: boolean
+    path?: boolean
+  }, ExtArgs["result"]["premadeMusic"]>
+
+  export type PremadeMusicSelectScalar = {
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_date?: boolean
+    path?: boolean
+  }
+
+  export type PremadeMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "uploaded_date" | "path", ExtArgs["result"]["premadeMusic"]>
+  export type PremadeMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
+    _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PremadeMusicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PremadeMusicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $PremadeMusicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PremadeMusic"
+    objects: {
+      songs: Prisma.$SongPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      music_id: string
+      music_name: string
+      uploaded_date: Date
+      path: string
+    }, ExtArgs["result"]["premadeMusic"]>
+    composites: {}
+  }
+
+  type PremadeMusicGetPayload<S extends boolean | null | undefined | PremadeMusicDefaultArgs> = $Result.GetResult<Prisma.$PremadeMusicPayload, S>
+
+  type PremadeMusicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PremadeMusicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PremadeMusicCountAggregateInputType | true
+    }
+
+  export interface PremadeMusicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PremadeMusic'], meta: { name: 'PremadeMusic' } }
+    /**
+     * Find zero or one PremadeMusic that matches the filter.
+     * @param {PremadeMusicFindUniqueArgs} args - Arguments to find a PremadeMusic
+     * @example
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PremadeMusicFindUniqueArgs>(args: SelectSubset<T, PremadeMusicFindUniqueArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PremadeMusic that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PremadeMusicFindUniqueOrThrowArgs} args - Arguments to find a PremadeMusic
+     * @example
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PremadeMusicFindUniqueOrThrowArgs>(args: SelectSubset<T, PremadeMusicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PremadeMusic that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PremadeMusicFindFirstArgs} args - Arguments to find a PremadeMusic
+     * @example
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PremadeMusicFindFirstArgs>(args?: SelectSubset<T, PremadeMusicFindFirstArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PremadeMusic that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PremadeMusicFindFirstOrThrowArgs} args - Arguments to find a PremadeMusic
+     * @example
+     * // Get one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PremadeMusicFindFirstOrThrowArgs>(args?: SelectSubset<T, PremadeMusicFindFirstOrThrowArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PremadeMusics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PremadeMusicFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PremadeMusics
+     * const premadeMusics = await prisma.premadeMusic.findMany()
+     * 
+     * // Get first 10 PremadeMusics
+     * const premadeMusics = await prisma.premadeMusic.findMany({ take: 10 })
+     * 
+     * // Only select the `music_id`
+     * const premadeMusicWithMusic_idOnly = await prisma.premadeMusic.findMany({ select: { music_id: true } })
+     * 
+     */
+    findMany<T extends PremadeMusicFindManyArgs>(args?: SelectSubset<T, PremadeMusicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PremadeMusic.
+     * @param {PremadeMusicCreateArgs} args - Arguments to create a PremadeMusic.
+     * @example
+     * // Create one PremadeMusic
+     * const PremadeMusic = await prisma.premadeMusic.create({
+     *   data: {
+     *     // ... data to create a PremadeMusic
+     *   }
+     * })
+     * 
+     */
+    create<T extends PremadeMusicCreateArgs>(args: SelectSubset<T, PremadeMusicCreateArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PremadeMusics.
+     * @param {PremadeMusicCreateManyArgs} args - Arguments to create many PremadeMusics.
+     * @example
+     * // Create many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PremadeMusicCreateManyArgs>(args?: SelectSubset<T, PremadeMusicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PremadeMusics and returns the data saved in the database.
+     * @param {PremadeMusicCreateManyAndReturnArgs} args - Arguments to create many PremadeMusics.
+     * @example
+     * // Create many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PremadeMusics and only return the `music_id`
+     * const premadeMusicWithMusic_idOnly = await prisma.premadeMusic.createManyAndReturn({
+     *   select: { music_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PremadeMusicCreateManyAndReturnArgs>(args?: SelectSubset<T, PremadeMusicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PremadeMusic.
+     * @param {PremadeMusicDeleteArgs} args - Arguments to delete one PremadeMusic.
+     * @example
+     * // Delete one PremadeMusic
+     * const PremadeMusic = await prisma.premadeMusic.delete({
+     *   where: {
+     *     // ... filter to delete one PremadeMusic
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PremadeMusicDeleteArgs>(args: SelectSubset<T, PremadeMusicDeleteArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PremadeMusic.
+     * @param {PremadeMusicUpdateArgs} args - Arguments to update one PremadeMusic.
+     * @example
+     * // Update one PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PremadeMusicUpdateArgs>(args: SelectSubset<T, PremadeMusicUpdateArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PremadeMusics.
+     * @param {PremadeMusicDeleteManyArgs} args - Arguments to filter PremadeMusics to delete.
+     * @example
+     * // Delete a few PremadeMusics
+     * const { count } = await prisma.premadeMusic.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PremadeMusicDeleteManyArgs>(args?: SelectSubset<T, PremadeMusicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PremadeMusics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PremadeMusicUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PremadeMusicUpdateManyArgs>(args: SelectSubset<T, PremadeMusicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PremadeMusics and returns the data updated in the database.
+     * @param {PremadeMusicUpdateManyAndReturnArgs} args - Arguments to update many PremadeMusics.
+     * @example
+     * // Update many PremadeMusics
+     * const premadeMusic = await prisma.premadeMusic.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PremadeMusics and only return the `music_id`
+     * const premadeMusicWithMusic_idOnly = await prisma.premadeMusic.updateManyAndReturn({
+     *   select: { music_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PremadeMusicUpdateManyAndReturnArgs>(args: SelectSubset<T, PremadeMusicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PremadeMusic.
+     * @param {PremadeMusicUpsertArgs} args - Arguments to update or create a PremadeMusic.
+     * @example
+     * // Update or create a PremadeMusic
+     * const premadeMusic = await prisma.premadeMusic.upsert({
+     *   create: {
+     *     // ... data to create a PremadeMusic
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PremadeMusic we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PremadeMusicUpsertArgs>(args: SelectSubset<T, PremadeMusicUpsertArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PremadeMusics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PremadeMusicCountArgs} args - Arguments to filter PremadeMusics to count.
+     * @example
+     * // Count the number of PremadeMusics
+     * const count = await prisma.premadeMusic.count({
+     *   where: {
+     *     // ... the filter for the PremadeMusics we want to count
+     *   }
+     * })
+    **/
+    count<T extends PremadeMusicCountArgs>(
+      args?: Subset<T, PremadeMusicCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PremadeMusicCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PremadeMusic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PremadeMusicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PremadeMusicAggregateArgs>(args: Subset<T, PremadeMusicAggregateArgs>): Prisma.PrismaPromise<GetPremadeMusicAggregateType<T>>
+
+    /**
+     * Group by PremadeMusic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PremadeMusicGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PremadeMusicGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PremadeMusicGroupByArgs['orderBy'] }
+        : { orderBy?: PremadeMusicGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PremadeMusicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPremadeMusicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PremadeMusic model
+   */
+  readonly fields: PremadeMusicFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PremadeMusic.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PremadeMusicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    songs<T extends PremadeMusic$songsArgs<ExtArgs> = {}>(args?: Subset<T, PremadeMusic$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PremadeMusic model
+   */
+  interface PremadeMusicFieldRefs {
+    readonly music_id: FieldRef<"PremadeMusic", 'String'>
+    readonly music_name: FieldRef<"PremadeMusic", 'String'>
+    readonly uploaded_date: FieldRef<"PremadeMusic", 'DateTime'>
+    readonly path: FieldRef<"PremadeMusic", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PremadeMusic findUnique
+   */
+  export type PremadeMusicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which PremadeMusic to fetch.
+     */
+    where: PremadeMusicWhereUniqueInput
+  }
+
+  /**
+   * PremadeMusic findUniqueOrThrow
+   */
+  export type PremadeMusicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which PremadeMusic to fetch.
+     */
+    where: PremadeMusicWhereUniqueInput
+  }
+
+  /**
+   * PremadeMusic findFirst
+   */
+  export type PremadeMusicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which PremadeMusic to fetch.
+     */
+    where?: PremadeMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PremadeMusics to fetch.
+     */
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PremadeMusics.
+     */
+    cursor?: PremadeMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PremadeMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PremadeMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PremadeMusics.
+     */
+    distinct?: PremadeMusicScalarFieldEnum | PremadeMusicScalarFieldEnum[]
+  }
+
+  /**
+   * PremadeMusic findFirstOrThrow
+   */
+  export type PremadeMusicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which PremadeMusic to fetch.
+     */
+    where?: PremadeMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PremadeMusics to fetch.
+     */
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PremadeMusics.
+     */
+    cursor?: PremadeMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PremadeMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PremadeMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PremadeMusics.
+     */
+    distinct?: PremadeMusicScalarFieldEnum | PremadeMusicScalarFieldEnum[]
+  }
+
+  /**
+   * PremadeMusic findMany
+   */
+  export type PremadeMusicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which PremadeMusics to fetch.
+     */
+    where?: PremadeMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PremadeMusics to fetch.
+     */
+    orderBy?: PremadeMusicOrderByWithRelationInput | PremadeMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PremadeMusics.
+     */
+    cursor?: PremadeMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PremadeMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PremadeMusics.
+     */
+    skip?: number
+    distinct?: PremadeMusicScalarFieldEnum | PremadeMusicScalarFieldEnum[]
+  }
+
+  /**
+   * PremadeMusic create
+   */
+  export type PremadeMusicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PremadeMusic.
+     */
+    data: XOR<PremadeMusicCreateInput, PremadeMusicUncheckedCreateInput>
+  }
+
+  /**
+   * PremadeMusic createMany
+   */
+  export type PremadeMusicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PremadeMusics.
+     */
+    data: PremadeMusicCreateManyInput | PremadeMusicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PremadeMusic createManyAndReturn
+   */
+  export type PremadeMusicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * The data used to create many PremadeMusics.
+     */
+    data: PremadeMusicCreateManyInput | PremadeMusicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PremadeMusic update
+   */
+  export type PremadeMusicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PremadeMusic.
+     */
+    data: XOR<PremadeMusicUpdateInput, PremadeMusicUncheckedUpdateInput>
+    /**
+     * Choose, which PremadeMusic to update.
+     */
+    where: PremadeMusicWhereUniqueInput
+  }
+
+  /**
+   * PremadeMusic updateMany
+   */
+  export type PremadeMusicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PremadeMusics.
+     */
+    data: XOR<PremadeMusicUpdateManyMutationInput, PremadeMusicUncheckedUpdateManyInput>
+    /**
+     * Filter which PremadeMusics to update
+     */
+    where?: PremadeMusicWhereInput
+    /**
+     * Limit how many PremadeMusics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PremadeMusic updateManyAndReturn
+   */
+  export type PremadeMusicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * The data used to update PremadeMusics.
+     */
+    data: XOR<PremadeMusicUpdateManyMutationInput, PremadeMusicUncheckedUpdateManyInput>
+    /**
+     * Filter which PremadeMusics to update
+     */
+    where?: PremadeMusicWhereInput
+    /**
+     * Limit how many PremadeMusics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PremadeMusic upsert
+   */
+  export type PremadeMusicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PremadeMusic to update in case it exists.
+     */
+    where: PremadeMusicWhereUniqueInput
+    /**
+     * In case the PremadeMusic found by the `where` argument doesn't exist, create a new PremadeMusic with this data.
+     */
+    create: XOR<PremadeMusicCreateInput, PremadeMusicUncheckedCreateInput>
+    /**
+     * In case the PremadeMusic was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PremadeMusicUpdateInput, PremadeMusicUncheckedUpdateInput>
+  }
+
+  /**
+   * PremadeMusic delete
+   */
+  export type PremadeMusicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+    /**
+     * Filter which PremadeMusic to delete.
+     */
+    where: PremadeMusicWhereUniqueInput
+  }
+
+  /**
+   * PremadeMusic deleteMany
+   */
+  export type PremadeMusicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PremadeMusics to delete
+     */
+    where?: PremadeMusicWhereInput
+    /**
+     * Limit how many PremadeMusics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PremadeMusic.songs
+   */
+  export type PremadeMusic$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    where?: SongWhereInput
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    cursor?: SongWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+  }
+
+  /**
+   * PremadeMusic without action
+   */
+  export type PremadeMusicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PremadeMusic
+     */
+    select?: PremadeMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PremadeMusic
+     */
+    omit?: PremadeMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PremadeMusicInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UploadedMusic
+   */
+
+  export type AggregateUploadedMusic = {
+    _count: UploadedMusicCountAggregateOutputType | null
+    _min: UploadedMusicMinAggregateOutputType | null
+    _max: UploadedMusicMaxAggregateOutputType | null
+  }
+
+  export type UploadedMusicMinAggregateOutputType = {
+    music_id: string | null
+    music_name: string | null
+    uploaded_by: string | null
+    path: string | null
+  }
+
+  export type UploadedMusicMaxAggregateOutputType = {
+    music_id: string | null
+    music_name: string | null
+    uploaded_by: string | null
+    path: string | null
+  }
+
+  export type UploadedMusicCountAggregateOutputType = {
+    music_id: number
+    music_name: number
+    uploaded_by: number
+    path: number
+    _all: number
+  }
+
+
+  export type UploadedMusicMinAggregateInputType = {
+    music_id?: true
+    music_name?: true
+    uploaded_by?: true
+    path?: true
+  }
+
+  export type UploadedMusicMaxAggregateInputType = {
+    music_id?: true
+    music_name?: true
+    uploaded_by?: true
+    path?: true
+  }
+
+  export type UploadedMusicCountAggregateInputType = {
+    music_id?: true
+    music_name?: true
+    uploaded_by?: true
+    path?: true
+    _all?: true
+  }
+
+  export type UploadedMusicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UploadedMusic to aggregate.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UploadedMusics
+    **/
+    _count?: true | UploadedMusicCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UploadedMusicMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UploadedMusicMaxAggregateInputType
+  }
+
+  export type GetUploadedMusicAggregateType<T extends UploadedMusicAggregateArgs> = {
+        [P in keyof T & keyof AggregateUploadedMusic]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUploadedMusic[P]>
+      : GetScalarType<T[P], AggregateUploadedMusic[P]>
+  }
+
+
+
+
+  export type UploadedMusicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UploadedMusicWhereInput
+    orderBy?: UploadedMusicOrderByWithAggregationInput | UploadedMusicOrderByWithAggregationInput[]
+    by: UploadedMusicScalarFieldEnum[] | UploadedMusicScalarFieldEnum
+    having?: UploadedMusicScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UploadedMusicCountAggregateInputType | true
+    _min?: UploadedMusicMinAggregateInputType
+    _max?: UploadedMusicMaxAggregateInputType
+  }
+
+  export type UploadedMusicGroupByOutputType = {
+    music_id: string
+    music_name: string
+    uploaded_by: string
+    path: string
+    _count: UploadedMusicCountAggregateOutputType | null
+    _min: UploadedMusicMinAggregateOutputType | null
+    _max: UploadedMusicMaxAggregateOutputType | null
+  }
+
+  type GetUploadedMusicGroupByPayload<T extends UploadedMusicGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UploadedMusicGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UploadedMusicGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UploadedMusicGroupByOutputType[P]>
+            : GetScalarType<T[P], UploadedMusicGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UploadedMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_by?: boolean
+    path?: boolean
+    songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
+    _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["uploadedMusic"]>
+
+  export type UploadedMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_by?: boolean
+    path?: boolean
+  }, ExtArgs["result"]["uploadedMusic"]>
+
+  export type UploadedMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_by?: boolean
+    path?: boolean
+  }, ExtArgs["result"]["uploadedMusic"]>
+
+  export type UploadedMusicSelectScalar = {
+    music_id?: boolean
+    music_name?: boolean
+    uploaded_by?: boolean
+    path?: boolean
+  }
+
+  export type UploadedMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "uploaded_by" | "path", ExtArgs["result"]["uploadedMusic"]>
+  export type UploadedMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
+    _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UploadedMusicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UploadedMusicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $UploadedMusicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UploadedMusic"
+    objects: {
+      songs: Prisma.$SongPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      music_id: string
+      music_name: string
+      uploaded_by: string
+      path: string
+    }, ExtArgs["result"]["uploadedMusic"]>
+    composites: {}
+  }
+
+  type UploadedMusicGetPayload<S extends boolean | null | undefined | UploadedMusicDefaultArgs> = $Result.GetResult<Prisma.$UploadedMusicPayload, S>
+
+  type UploadedMusicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UploadedMusicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UploadedMusicCountAggregateInputType | true
+    }
+
+  export interface UploadedMusicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UploadedMusic'], meta: { name: 'UploadedMusic' } }
+    /**
+     * Find zero or one UploadedMusic that matches the filter.
+     * @param {UploadedMusicFindUniqueArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UploadedMusicFindUniqueArgs>(args: SelectSubset<T, UploadedMusicFindUniqueArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UploadedMusic that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UploadedMusicFindUniqueOrThrowArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UploadedMusicFindUniqueOrThrowArgs>(args: SelectSubset<T, UploadedMusicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UploadedMusic that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicFindFirstArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UploadedMusicFindFirstArgs>(args?: SelectSubset<T, UploadedMusicFindFirstArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UploadedMusic that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicFindFirstOrThrowArgs} args - Arguments to find a UploadedMusic
+     * @example
+     * // Get one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UploadedMusicFindFirstOrThrowArgs>(args?: SelectSubset<T, UploadedMusicFindFirstOrThrowArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UploadedMusics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UploadedMusics
+     * const uploadedMusics = await prisma.uploadedMusic.findMany()
+     * 
+     * // Get first 10 UploadedMusics
+     * const uploadedMusics = await prisma.uploadedMusic.findMany({ take: 10 })
+     * 
+     * // Only select the `music_id`
+     * const uploadedMusicWithMusic_idOnly = await prisma.uploadedMusic.findMany({ select: { music_id: true } })
+     * 
+     */
+    findMany<T extends UploadedMusicFindManyArgs>(args?: SelectSubset<T, UploadedMusicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UploadedMusic.
+     * @param {UploadedMusicCreateArgs} args - Arguments to create a UploadedMusic.
+     * @example
+     * // Create one UploadedMusic
+     * const UploadedMusic = await prisma.uploadedMusic.create({
+     *   data: {
+     *     // ... data to create a UploadedMusic
+     *   }
+     * })
+     * 
+     */
+    create<T extends UploadedMusicCreateArgs>(args: SelectSubset<T, UploadedMusicCreateArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UploadedMusics.
+     * @param {UploadedMusicCreateManyArgs} args - Arguments to create many UploadedMusics.
+     * @example
+     * // Create many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UploadedMusicCreateManyArgs>(args?: SelectSubset<T, UploadedMusicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UploadedMusics and returns the data saved in the database.
+     * @param {UploadedMusicCreateManyAndReturnArgs} args - Arguments to create many UploadedMusics.
+     * @example
+     * // Create many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UploadedMusics and only return the `music_id`
+     * const uploadedMusicWithMusic_idOnly = await prisma.uploadedMusic.createManyAndReturn({
+     *   select: { music_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UploadedMusicCreateManyAndReturnArgs>(args?: SelectSubset<T, UploadedMusicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UploadedMusic.
+     * @param {UploadedMusicDeleteArgs} args - Arguments to delete one UploadedMusic.
+     * @example
+     * // Delete one UploadedMusic
+     * const UploadedMusic = await prisma.uploadedMusic.delete({
+     *   where: {
+     *     // ... filter to delete one UploadedMusic
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UploadedMusicDeleteArgs>(args: SelectSubset<T, UploadedMusicDeleteArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UploadedMusic.
+     * @param {UploadedMusicUpdateArgs} args - Arguments to update one UploadedMusic.
+     * @example
+     * // Update one UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UploadedMusicUpdateArgs>(args: SelectSubset<T, UploadedMusicUpdateArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UploadedMusics.
+     * @param {UploadedMusicDeleteManyArgs} args - Arguments to filter UploadedMusics to delete.
+     * @example
+     * // Delete a few UploadedMusics
+     * const { count } = await prisma.uploadedMusic.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UploadedMusicDeleteManyArgs>(args?: SelectSubset<T, UploadedMusicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UploadedMusics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UploadedMusicUpdateManyArgs>(args: SelectSubset<T, UploadedMusicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UploadedMusics and returns the data updated in the database.
+     * @param {UploadedMusicUpdateManyAndReturnArgs} args - Arguments to update many UploadedMusics.
+     * @example
+     * // Update many UploadedMusics
+     * const uploadedMusic = await prisma.uploadedMusic.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UploadedMusics and only return the `music_id`
+     * const uploadedMusicWithMusic_idOnly = await prisma.uploadedMusic.updateManyAndReturn({
+     *   select: { music_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UploadedMusicUpdateManyAndReturnArgs>(args: SelectSubset<T, UploadedMusicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UploadedMusic.
+     * @param {UploadedMusicUpsertArgs} args - Arguments to update or create a UploadedMusic.
+     * @example
+     * // Update or create a UploadedMusic
+     * const uploadedMusic = await prisma.uploadedMusic.upsert({
+     *   create: {
+     *     // ... data to create a UploadedMusic
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UploadedMusic we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UploadedMusicUpsertArgs>(args: SelectSubset<T, UploadedMusicUpsertArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UploadedMusics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicCountArgs} args - Arguments to filter UploadedMusics to count.
+     * @example
+     * // Count the number of UploadedMusics
+     * const count = await prisma.uploadedMusic.count({
+     *   where: {
+     *     // ... the filter for the UploadedMusics we want to count
+     *   }
+     * })
+    **/
+    count<T extends UploadedMusicCountArgs>(
+      args?: Subset<T, UploadedMusicCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UploadedMusicCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UploadedMusic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UploadedMusicAggregateArgs>(args: Subset<T, UploadedMusicAggregateArgs>): Prisma.PrismaPromise<GetUploadedMusicAggregateType<T>>
+
+    /**
+     * Group by UploadedMusic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UploadedMusicGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UploadedMusicGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UploadedMusicGroupByArgs['orderBy'] }
+        : { orderBy?: UploadedMusicGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UploadedMusicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUploadedMusicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UploadedMusic model
+   */
+  readonly fields: UploadedMusicFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UploadedMusic.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UploadedMusicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    songs<T extends UploadedMusic$songsArgs<ExtArgs> = {}>(args?: Subset<T, UploadedMusic$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UploadedMusic model
+   */
+  interface UploadedMusicFieldRefs {
+    readonly music_id: FieldRef<"UploadedMusic", 'String'>
+    readonly music_name: FieldRef<"UploadedMusic", 'String'>
+    readonly uploaded_by: FieldRef<"UploadedMusic", 'String'>
+    readonly path: FieldRef<"UploadedMusic", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UploadedMusic findUnique
+   */
+  export type UploadedMusicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic findUniqueOrThrow
+   */
+  export type UploadedMusicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic findFirst
+   */
+  export type UploadedMusicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UploadedMusics.
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UploadedMusics.
+     */
+    distinct?: UploadedMusicScalarFieldEnum | UploadedMusicScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic findFirstOrThrow
+   */
+  export type UploadedMusicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusic to fetch.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UploadedMusics.
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UploadedMusics.
+     */
+    distinct?: UploadedMusicScalarFieldEnum | UploadedMusicScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic findMany
+   */
+  export type UploadedMusicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter, which UploadedMusics to fetch.
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UploadedMusics to fetch.
+     */
+    orderBy?: UploadedMusicOrderByWithRelationInput | UploadedMusicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UploadedMusics.
+     */
+    cursor?: UploadedMusicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UploadedMusics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UploadedMusics.
+     */
+    skip?: number
+    distinct?: UploadedMusicScalarFieldEnum | UploadedMusicScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic create
+   */
+  export type UploadedMusicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UploadedMusic.
+     */
+    data: XOR<UploadedMusicCreateInput, UploadedMusicUncheckedCreateInput>
+  }
+
+  /**
+   * UploadedMusic createMany
+   */
+  export type UploadedMusicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UploadedMusics.
+     */
+    data: UploadedMusicCreateManyInput | UploadedMusicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UploadedMusic createManyAndReturn
+   */
+  export type UploadedMusicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * The data used to create many UploadedMusics.
+     */
+    data: UploadedMusicCreateManyInput | UploadedMusicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UploadedMusic update
+   */
+  export type UploadedMusicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UploadedMusic.
+     */
+    data: XOR<UploadedMusicUpdateInput, UploadedMusicUncheckedUpdateInput>
+    /**
+     * Choose, which UploadedMusic to update.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic updateMany
+   */
+  export type UploadedMusicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UploadedMusics.
+     */
+    data: XOR<UploadedMusicUpdateManyMutationInput, UploadedMusicUncheckedUpdateManyInput>
+    /**
+     * Filter which UploadedMusics to update
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * Limit how many UploadedMusics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UploadedMusic updateManyAndReturn
+   */
+  export type UploadedMusicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * The data used to update UploadedMusics.
+     */
+    data: XOR<UploadedMusicUpdateManyMutationInput, UploadedMusicUncheckedUpdateManyInput>
+    /**
+     * Filter which UploadedMusics to update
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * Limit how many UploadedMusics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UploadedMusic upsert
+   */
+  export type UploadedMusicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UploadedMusic to update in case it exists.
+     */
+    where: UploadedMusicWhereUniqueInput
+    /**
+     * In case the UploadedMusic found by the `where` argument doesn't exist, create a new UploadedMusic with this data.
+     */
+    create: XOR<UploadedMusicCreateInput, UploadedMusicUncheckedCreateInput>
+    /**
+     * In case the UploadedMusic was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UploadedMusicUpdateInput, UploadedMusicUncheckedUpdateInput>
+  }
+
+  /**
+   * UploadedMusic delete
+   */
+  export type UploadedMusicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    /**
+     * Filter which UploadedMusic to delete.
+     */
+    where: UploadedMusicWhereUniqueInput
+  }
+
+  /**
+   * UploadedMusic deleteMany
+   */
+  export type UploadedMusicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UploadedMusics to delete
+     */
+    where?: UploadedMusicWhereInput
+    /**
+     * Limit how many UploadedMusics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UploadedMusic.songs
+   */
+  export type UploadedMusic$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Song
+     */
+    select?: SongSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Song
+     */
+    omit?: SongOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SongInclude<ExtArgs> | null
+    where?: SongWhereInput
+    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    cursor?: SongWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic without action
+   */
+  export type UploadedMusicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
   }
 
 
@@ -1903,6 +8135,62 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const SongScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    user_id: 'user_id',
+    musicSource: 'musicSource',
+    premade_music_id: 'premade_music_id',
+    uploaded_music_id: 'uploaded_music_id',
+    content: 'content',
+    creation_date: 'creation_date'
+  };
+
+  export type SongScalarFieldEnum = (typeof SongScalarFieldEnum)[keyof typeof SongScalarFieldEnum]
+
+
+  export const LinkScalarFieldEnum: {
+    link_id: 'link_id',
+    song_id: 'song_id',
+    created_by: 'created_by',
+    is_public: 'is_public',
+    created_at: 'created_at',
+    expires_at: 'expires_at'
+  };
+
+  export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof LinkScalarFieldEnum]
+
+
+  export const LinkPermissionScalarFieldEnum: {
+    link_permission_id: 'link_permission_id',
+    link_id: 'link_id',
+    user_id: 'user_id',
+    can_view: 'can_view'
+  };
+
+  export type LinkPermissionScalarFieldEnum = (typeof LinkPermissionScalarFieldEnum)[keyof typeof LinkPermissionScalarFieldEnum]
+
+
+  export const PremadeMusicScalarFieldEnum: {
+    music_id: 'music_id',
+    music_name: 'music_name',
+    uploaded_date: 'uploaded_date',
+    path: 'path'
+  };
+
+  export type PremadeMusicScalarFieldEnum = (typeof PremadeMusicScalarFieldEnum)[keyof typeof PremadeMusicScalarFieldEnum]
+
+
+  export const UploadedMusicScalarFieldEnum: {
+    music_id: 'music_id',
+    music_name: 'music_name',
+    uploaded_by: 'uploaded_by',
+    path: 'path'
+  };
+
+  export type UploadedMusicScalarFieldEnum = (typeof UploadedMusicScalarFieldEnum)[keyof typeof UploadedMusicScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -1917,6 +8205,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -1953,6 +8249,27 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'MusicSource'
+   */
+  export type EnumMusicSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MusicSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'MusicSource[]'
+   */
+  export type ListEnumMusicSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MusicSource[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1979,6 +8296,9 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createAt?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
+    songs?: SongListRelationFilter
+    links?: LinkListRelationFilter
+    linkPermissions?: LinkPermissionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -1988,6 +8308,9 @@ export namespace Prisma {
     password?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
+    songs?: SongOrderByRelationAggregateInput
+    links?: LinkOrderByRelationAggregateInput
+    linkPermissions?: LinkPermissionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -2000,6 +8323,9 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createAt?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
+    songs?: SongListRelationFilter
+    links?: LinkListRelationFilter
+    linkPermissions?: LinkPermissionListRelationFilter
   }, "id" | "username" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -2026,6 +8352,304 @@ export namespace Prisma {
     updateAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type SongWhereInput = {
+    AND?: SongWhereInput | SongWhereInput[]
+    OR?: SongWhereInput[]
+    NOT?: SongWhereInput | SongWhereInput[]
+    id?: StringFilter<"Song"> | string
+    title?: StringFilter<"Song"> | string
+    user_id?: StringFilter<"Song"> | string
+    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
+    content?: StringFilter<"Song"> | string
+    creation_date?: DateTimeFilter<"Song"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    links?: LinkListRelationFilter
+    premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
+    uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+  }
+
+  export type SongOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    user_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrderInput | SortOrder
+    uploaded_music_id?: SortOrderInput | SortOrder
+    content?: SortOrder
+    creation_date?: SortOrder
+    user?: UserOrderByWithRelationInput
+    links?: LinkOrderByRelationAggregateInput
+    premadeMusic?: PremadeMusicOrderByWithRelationInput
+    uploadedMusic?: UploadedMusicOrderByWithRelationInput
+  }
+
+  export type SongWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SongWhereInput | SongWhereInput[]
+    OR?: SongWhereInput[]
+    NOT?: SongWhereInput | SongWhereInput[]
+    title?: StringFilter<"Song"> | string
+    user_id?: StringFilter<"Song"> | string
+    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
+    content?: StringFilter<"Song"> | string
+    creation_date?: DateTimeFilter<"Song"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    links?: LinkListRelationFilter
+    premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
+    uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+  }, "id">
+
+  export type SongOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    user_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrderInput | SortOrder
+    uploaded_music_id?: SortOrderInput | SortOrder
+    content?: SortOrder
+    creation_date?: SortOrder
+    _count?: SongCountOrderByAggregateInput
+    _max?: SongMaxOrderByAggregateInput
+    _min?: SongMinOrderByAggregateInput
+  }
+
+  export type SongScalarWhereWithAggregatesInput = {
+    AND?: SongScalarWhereWithAggregatesInput | SongScalarWhereWithAggregatesInput[]
+    OR?: SongScalarWhereWithAggregatesInput[]
+    NOT?: SongScalarWhereWithAggregatesInput | SongScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Song"> | string
+    title?: StringWithAggregatesFilter<"Song"> | string
+    user_id?: StringWithAggregatesFilter<"Song"> | string
+    musicSource?: EnumMusicSourceWithAggregatesFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
+    content?: StringWithAggregatesFilter<"Song"> | string
+    creation_date?: DateTimeWithAggregatesFilter<"Song"> | Date | string
+  }
+
+  export type LinkWhereInput = {
+    AND?: LinkWhereInput | LinkWhereInput[]
+    OR?: LinkWhereInput[]
+    NOT?: LinkWhereInput | LinkWhereInput[]
+    link_id?: StringFilter<"Link"> | string
+    song_id?: StringFilter<"Link"> | string
+    created_by?: StringFilter<"Link"> | string
+    is_public?: BoolFilter<"Link"> | boolean
+    created_at?: DateTimeFilter<"Link"> | Date | string
+    expires_at?: DateTimeFilter<"Link"> | Date | string
+    song?: XOR<SongScalarRelationFilter, SongWhereInput>
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    linkPermissions?: LinkPermissionListRelationFilter
+  }
+
+  export type LinkOrderByWithRelationInput = {
+    link_id?: SortOrder
+    song_id?: SortOrder
+    created_by?: SortOrder
+    is_public?: SortOrder
+    created_at?: SortOrder
+    expires_at?: SortOrder
+    song?: SongOrderByWithRelationInput
+    creator?: UserOrderByWithRelationInput
+    linkPermissions?: LinkPermissionOrderByRelationAggregateInput
+  }
+
+  export type LinkWhereUniqueInput = Prisma.AtLeast<{
+    link_id?: string
+    AND?: LinkWhereInput | LinkWhereInput[]
+    OR?: LinkWhereInput[]
+    NOT?: LinkWhereInput | LinkWhereInput[]
+    song_id?: StringFilter<"Link"> | string
+    created_by?: StringFilter<"Link"> | string
+    is_public?: BoolFilter<"Link"> | boolean
+    created_at?: DateTimeFilter<"Link"> | Date | string
+    expires_at?: DateTimeFilter<"Link"> | Date | string
+    song?: XOR<SongScalarRelationFilter, SongWhereInput>
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    linkPermissions?: LinkPermissionListRelationFilter
+  }, "link_id">
+
+  export type LinkOrderByWithAggregationInput = {
+    link_id?: SortOrder
+    song_id?: SortOrder
+    created_by?: SortOrder
+    is_public?: SortOrder
+    created_at?: SortOrder
+    expires_at?: SortOrder
+    _count?: LinkCountOrderByAggregateInput
+    _max?: LinkMaxOrderByAggregateInput
+    _min?: LinkMinOrderByAggregateInput
+  }
+
+  export type LinkScalarWhereWithAggregatesInput = {
+    AND?: LinkScalarWhereWithAggregatesInput | LinkScalarWhereWithAggregatesInput[]
+    OR?: LinkScalarWhereWithAggregatesInput[]
+    NOT?: LinkScalarWhereWithAggregatesInput | LinkScalarWhereWithAggregatesInput[]
+    link_id?: StringWithAggregatesFilter<"Link"> | string
+    song_id?: StringWithAggregatesFilter<"Link"> | string
+    created_by?: StringWithAggregatesFilter<"Link"> | string
+    is_public?: BoolWithAggregatesFilter<"Link"> | boolean
+    created_at?: DateTimeWithAggregatesFilter<"Link"> | Date | string
+    expires_at?: DateTimeWithAggregatesFilter<"Link"> | Date | string
+  }
+
+  export type LinkPermissionWhereInput = {
+    AND?: LinkPermissionWhereInput | LinkPermissionWhereInput[]
+    OR?: LinkPermissionWhereInput[]
+    NOT?: LinkPermissionWhereInput | LinkPermissionWhereInput[]
+    link_permission_id?: StringFilter<"LinkPermission"> | string
+    link_id?: StringFilter<"LinkPermission"> | string
+    user_id?: StringFilter<"LinkPermission"> | string
+    can_view?: BoolFilter<"LinkPermission"> | boolean
+    link?: XOR<UserScalarRelationFilter, UserWhereInput>
+    userLink?: XOR<LinkScalarRelationFilter, LinkWhereInput>
+  }
+
+  export type LinkPermissionOrderByWithRelationInput = {
+    link_permission_id?: SortOrder
+    link_id?: SortOrder
+    user_id?: SortOrder
+    can_view?: SortOrder
+    link?: UserOrderByWithRelationInput
+    userLink?: LinkOrderByWithRelationInput
+  }
+
+  export type LinkPermissionWhereUniqueInput = Prisma.AtLeast<{
+    link_permission_id?: string
+    AND?: LinkPermissionWhereInput | LinkPermissionWhereInput[]
+    OR?: LinkPermissionWhereInput[]
+    NOT?: LinkPermissionWhereInput | LinkPermissionWhereInput[]
+    link_id?: StringFilter<"LinkPermission"> | string
+    user_id?: StringFilter<"LinkPermission"> | string
+    can_view?: BoolFilter<"LinkPermission"> | boolean
+    link?: XOR<UserScalarRelationFilter, UserWhereInput>
+    userLink?: XOR<LinkScalarRelationFilter, LinkWhereInput>
+  }, "link_permission_id">
+
+  export type LinkPermissionOrderByWithAggregationInput = {
+    link_permission_id?: SortOrder
+    link_id?: SortOrder
+    user_id?: SortOrder
+    can_view?: SortOrder
+    _count?: LinkPermissionCountOrderByAggregateInput
+    _max?: LinkPermissionMaxOrderByAggregateInput
+    _min?: LinkPermissionMinOrderByAggregateInput
+  }
+
+  export type LinkPermissionScalarWhereWithAggregatesInput = {
+    AND?: LinkPermissionScalarWhereWithAggregatesInput | LinkPermissionScalarWhereWithAggregatesInput[]
+    OR?: LinkPermissionScalarWhereWithAggregatesInput[]
+    NOT?: LinkPermissionScalarWhereWithAggregatesInput | LinkPermissionScalarWhereWithAggregatesInput[]
+    link_permission_id?: StringWithAggregatesFilter<"LinkPermission"> | string
+    link_id?: StringWithAggregatesFilter<"LinkPermission"> | string
+    user_id?: StringWithAggregatesFilter<"LinkPermission"> | string
+    can_view?: BoolWithAggregatesFilter<"LinkPermission"> | boolean
+  }
+
+  export type PremadeMusicWhereInput = {
+    AND?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    OR?: PremadeMusicWhereInput[]
+    NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    music_id?: StringFilter<"PremadeMusic"> | string
+    music_name?: StringFilter<"PremadeMusic"> | string
+    uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
+    path?: StringFilter<"PremadeMusic"> | string
+    songs?: SongListRelationFilter
+  }
+
+  export type PremadeMusicOrderByWithRelationInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_date?: SortOrder
+    path?: SortOrder
+    songs?: SongOrderByRelationAggregateInput
+  }
+
+  export type PremadeMusicWhereUniqueInput = Prisma.AtLeast<{
+    music_id?: string
+    music_name?: string
+    AND?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    OR?: PremadeMusicWhereInput[]
+    NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
+    uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
+    path?: StringFilter<"PremadeMusic"> | string
+    songs?: SongListRelationFilter
+  }, "music_id" | "music_name">
+
+  export type PremadeMusicOrderByWithAggregationInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_date?: SortOrder
+    path?: SortOrder
+    _count?: PremadeMusicCountOrderByAggregateInput
+    _max?: PremadeMusicMaxOrderByAggregateInput
+    _min?: PremadeMusicMinOrderByAggregateInput
+  }
+
+  export type PremadeMusicScalarWhereWithAggregatesInput = {
+    AND?: PremadeMusicScalarWhereWithAggregatesInput | PremadeMusicScalarWhereWithAggregatesInput[]
+    OR?: PremadeMusicScalarWhereWithAggregatesInput[]
+    NOT?: PremadeMusicScalarWhereWithAggregatesInput | PremadeMusicScalarWhereWithAggregatesInput[]
+    music_id?: StringWithAggregatesFilter<"PremadeMusic"> | string
+    music_name?: StringWithAggregatesFilter<"PremadeMusic"> | string
+    uploaded_date?: DateTimeWithAggregatesFilter<"PremadeMusic"> | Date | string
+    path?: StringWithAggregatesFilter<"PremadeMusic"> | string
+  }
+
+  export type UploadedMusicWhereInput = {
+    AND?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    OR?: UploadedMusicWhereInput[]
+    NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    music_id?: StringFilter<"UploadedMusic"> | string
+    music_name?: StringFilter<"UploadedMusic"> | string
+    uploaded_by?: StringFilter<"UploadedMusic"> | string
+    path?: StringFilter<"UploadedMusic"> | string
+    songs?: SongListRelationFilter
+  }
+
+  export type UploadedMusicOrderByWithRelationInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_by?: SortOrder
+    path?: SortOrder
+    songs?: SongOrderByRelationAggregateInput
+  }
+
+  export type UploadedMusicWhereUniqueInput = Prisma.AtLeast<{
+    music_id?: string
+    music_name?: string
+    AND?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    OR?: UploadedMusicWhereInput[]
+    NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
+    uploaded_by?: StringFilter<"UploadedMusic"> | string
+    path?: StringFilter<"UploadedMusic"> | string
+    songs?: SongListRelationFilter
+  }, "music_id" | "music_name">
+
+  export type UploadedMusicOrderByWithAggregationInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_by?: SortOrder
+    path?: SortOrder
+    _count?: UploadedMusicCountOrderByAggregateInput
+    _max?: UploadedMusicMaxOrderByAggregateInput
+    _min?: UploadedMusicMinOrderByAggregateInput
+  }
+
+  export type UploadedMusicScalarWhereWithAggregatesInput = {
+    AND?: UploadedMusicScalarWhereWithAggregatesInput | UploadedMusicScalarWhereWithAggregatesInput[]
+    OR?: UploadedMusicScalarWhereWithAggregatesInput[]
+    NOT?: UploadedMusicScalarWhereWithAggregatesInput | UploadedMusicScalarWhereWithAggregatesInput[]
+    music_id?: StringWithAggregatesFilter<"UploadedMusic"> | string
+    music_name?: StringWithAggregatesFilter<"UploadedMusic"> | string
+    uploaded_by?: StringWithAggregatesFilter<"UploadedMusic"> | string
+    path?: StringWithAggregatesFilter<"UploadedMusic"> | string
+  }
+
   export type UserCreateInput = {
     id?: string
     username: string
@@ -2033,6 +8657,9 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
+    songs?: SongCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2042,6 +8669,9 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
+    songs?: SongUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
   }
 
   export type UserUpdateInput = {
@@ -2051,6 +8681,9 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    songs?: SongUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2060,6 +8693,9 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    songs?: SongUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2089,6 +8725,302 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SongCreateInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    content?: string
+    creation_date?: Date | string
+    user: UserCreateNestedOneWithoutSongsInput
+    links?: LinkCreateNestedManyWithoutSongInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+  }
+
+  export type SongUncheckedCreateInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+  }
+
+  export type SongUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSongsNestedInput
+    links?: LinkUpdateManyWithoutSongNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
+  }
+
+  export type SongUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
+  }
+
+  export type SongCreateManyInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+  }
+
+  export type SongUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SongUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkCreateInput = {
+    link_id?: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+    song: SongCreateNestedOneWithoutLinksInput
+    creator: UserCreateNestedOneWithoutLinksInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutUserLinkInput
+  }
+
+  export type LinkUncheckedCreateInput = {
+    link_id?: string
+    song_id: string
+    created_by: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutUserLinkInput
+  }
+
+  export type LinkUpdateInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    song?: SongUpdateOneRequiredWithoutLinksNestedInput
+    creator?: UserUpdateOneRequiredWithoutLinksNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutUserLinkNestedInput
+  }
+
+  export type LinkUncheckedUpdateInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    song_id?: StringFieldUpdateOperationsInput | string
+    created_by?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutUserLinkNestedInput
+  }
+
+  export type LinkCreateManyInput = {
+    link_id?: string
+    song_id: string
+    created_by: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+  }
+
+  export type LinkUpdateManyMutationInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkUncheckedUpdateManyInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    song_id?: StringFieldUpdateOperationsInput | string
+    created_by?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkPermissionCreateInput = {
+    link_permission_id?: string
+    can_view?: boolean
+    link: UserCreateNestedOneWithoutLinkPermissionsInput
+    userLink: LinkCreateNestedOneWithoutLinkPermissionsInput
+  }
+
+  export type LinkPermissionUncheckedCreateInput = {
+    link_permission_id?: string
+    link_id: string
+    user_id: string
+    can_view?: boolean
+  }
+
+  export type LinkPermissionUpdateInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+    link?: UserUpdateOneRequiredWithoutLinkPermissionsNestedInput
+    userLink?: LinkUpdateOneRequiredWithoutLinkPermissionsNestedInput
+  }
+
+  export type LinkPermissionUncheckedUpdateInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    link_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LinkPermissionCreateManyInput = {
+    link_permission_id?: string
+    link_id: string
+    user_id: string
+    can_view?: boolean
+  }
+
+  export type LinkPermissionUpdateManyMutationInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LinkPermissionUncheckedUpdateManyInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    link_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PremadeMusicCreateInput = {
+    music_id?: string
+    music_name: string
+    uploaded_date?: Date | string
+    path: string
+    songs?: SongCreateNestedManyWithoutPremadeMusicInput
+  }
+
+  export type PremadeMusicUncheckedCreateInput = {
+    music_id?: string
+    music_name: string
+    uploaded_date?: Date | string
+    path: string
+    songs?: SongUncheckedCreateNestedManyWithoutPremadeMusicInput
+  }
+
+  export type PremadeMusicUpdateInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    path?: StringFieldUpdateOperationsInput | string
+    songs?: SongUpdateManyWithoutPremadeMusicNestedInput
+  }
+
+  export type PremadeMusicUncheckedUpdateInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    path?: StringFieldUpdateOperationsInput | string
+    songs?: SongUncheckedUpdateManyWithoutPremadeMusicNestedInput
+  }
+
+  export type PremadeMusicCreateManyInput = {
+    music_id?: string
+    music_name: string
+    uploaded_date?: Date | string
+    path: string
+  }
+
+  export type PremadeMusicUpdateManyMutationInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PremadeMusicUncheckedUpdateManyInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UploadedMusicCreateInput = {
+    music_id?: string
+    music_name: string
+    uploaded_by: string
+    path?: string
+    songs?: SongCreateNestedManyWithoutUploadedMusicInput
+  }
+
+  export type UploadedMusicUncheckedCreateInput = {
+    music_id?: string
+    music_name: string
+    uploaded_by: string
+    path?: string
+    songs?: SongUncheckedCreateNestedManyWithoutUploadedMusicInput
+  }
+
+  export type UploadedMusicUpdateInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    songs?: SongUpdateManyWithoutUploadedMusicNestedInput
+  }
+
+  export type UploadedMusicUncheckedUpdateInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    songs?: SongUncheckedUpdateManyWithoutUploadedMusicNestedInput
+  }
+
+  export type UploadedMusicCreateManyInput = {
+    music_id?: string
+    music_name: string
+    uploaded_by: string
+    path?: string
+  }
+
+  export type UploadedMusicUpdateManyMutationInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UploadedMusicUncheckedUpdateManyInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2113,6 +9045,36 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type SongListRelationFilter = {
+    every?: SongWhereInput
+    some?: SongWhereInput
+    none?: SongWhereInput
+  }
+
+  export type LinkListRelationFilter = {
+    every?: LinkWhereInput
+    some?: LinkWhereInput
+    none?: LinkWhereInput
+  }
+
+  export type LinkPermissionListRelationFilter = {
+    every?: LinkPermissionWhereInput
+    some?: LinkPermissionWhereInput
+    none?: LinkPermissionWhereInput
+  }
+
+  export type SongOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LinkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LinkPermissionOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -2174,12 +9136,636 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumMusicSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceFilter<$PrismaModel> | $Enums.MusicSource
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type PremadeMusicNullableScalarRelationFilter = {
+    is?: PremadeMusicWhereInput | null
+    isNot?: PremadeMusicWhereInput | null
+  }
+
+  export type UploadedMusicNullableScalarRelationFilter = {
+    is?: UploadedMusicWhereInput | null
+    isNot?: UploadedMusicWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type SongCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    user_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrder
+    uploaded_music_id?: SortOrder
+    content?: SortOrder
+    creation_date?: SortOrder
+  }
+
+  export type SongMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    user_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrder
+    uploaded_music_id?: SortOrder
+    content?: SortOrder
+    creation_date?: SortOrder
+  }
+
+  export type SongMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    user_id?: SortOrder
+    musicSource?: SortOrder
+    premade_music_id?: SortOrder
+    uploaded_music_id?: SortOrder
+    content?: SortOrder
+    creation_date?: SortOrder
+  }
+
+  export type EnumMusicSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceWithAggregatesFilter<$PrismaModel> | $Enums.MusicSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMusicSourceFilter<$PrismaModel>
+    _max?: NestedEnumMusicSourceFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type SongScalarRelationFilter = {
+    is?: SongWhereInput
+    isNot?: SongWhereInput
+  }
+
+  export type LinkCountOrderByAggregateInput = {
+    link_id?: SortOrder
+    song_id?: SortOrder
+    created_by?: SortOrder
+    is_public?: SortOrder
+    created_at?: SortOrder
+    expires_at?: SortOrder
+  }
+
+  export type LinkMaxOrderByAggregateInput = {
+    link_id?: SortOrder
+    song_id?: SortOrder
+    created_by?: SortOrder
+    is_public?: SortOrder
+    created_at?: SortOrder
+    expires_at?: SortOrder
+  }
+
+  export type LinkMinOrderByAggregateInput = {
+    link_id?: SortOrder
+    song_id?: SortOrder
+    created_by?: SortOrder
+    is_public?: SortOrder
+    created_at?: SortOrder
+    expires_at?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type LinkScalarRelationFilter = {
+    is?: LinkWhereInput
+    isNot?: LinkWhereInput
+  }
+
+  export type LinkPermissionCountOrderByAggregateInput = {
+    link_permission_id?: SortOrder
+    link_id?: SortOrder
+    user_id?: SortOrder
+    can_view?: SortOrder
+  }
+
+  export type LinkPermissionMaxOrderByAggregateInput = {
+    link_permission_id?: SortOrder
+    link_id?: SortOrder
+    user_id?: SortOrder
+    can_view?: SortOrder
+  }
+
+  export type LinkPermissionMinOrderByAggregateInput = {
+    link_permission_id?: SortOrder
+    link_id?: SortOrder
+    user_id?: SortOrder
+    can_view?: SortOrder
+  }
+
+  export type PremadeMusicCountOrderByAggregateInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_date?: SortOrder
+    path?: SortOrder
+  }
+
+  export type PremadeMusicMaxOrderByAggregateInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_date?: SortOrder
+    path?: SortOrder
+  }
+
+  export type PremadeMusicMinOrderByAggregateInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_date?: SortOrder
+    path?: SortOrder
+  }
+
+  export type UploadedMusicCountOrderByAggregateInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_by?: SortOrder
+    path?: SortOrder
+  }
+
+  export type UploadedMusicMaxOrderByAggregateInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_by?: SortOrder
+    path?: SortOrder
+  }
+
+  export type UploadedMusicMinOrderByAggregateInput = {
+    music_id?: SortOrder
+    music_name?: SortOrder
+    uploaded_by?: SortOrder
+    path?: SortOrder
+  }
+
+  export type SongCreateNestedManyWithoutUserInput = {
+    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
+    createMany?: SongCreateManyUserInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type LinkCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<LinkCreateWithoutCreatorInput, LinkUncheckedCreateWithoutCreatorInput> | LinkCreateWithoutCreatorInput[] | LinkUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutCreatorInput | LinkCreateOrConnectWithoutCreatorInput[]
+    createMany?: LinkCreateManyCreatorInputEnvelope
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  }
+
+  export type LinkPermissionCreateNestedManyWithoutLinkInput = {
+    create?: XOR<LinkPermissionCreateWithoutLinkInput, LinkPermissionUncheckedCreateWithoutLinkInput> | LinkPermissionCreateWithoutLinkInput[] | LinkPermissionUncheckedCreateWithoutLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutLinkInput | LinkPermissionCreateOrConnectWithoutLinkInput[]
+    createMany?: LinkPermissionCreateManyLinkInputEnvelope
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+  }
+
+  export type SongUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
+    createMany?: SongCreateManyUserInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type LinkUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<LinkCreateWithoutCreatorInput, LinkUncheckedCreateWithoutCreatorInput> | LinkCreateWithoutCreatorInput[] | LinkUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutCreatorInput | LinkCreateOrConnectWithoutCreatorInput[]
+    createMany?: LinkCreateManyCreatorInputEnvelope
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  }
+
+  export type LinkPermissionUncheckedCreateNestedManyWithoutLinkInput = {
+    create?: XOR<LinkPermissionCreateWithoutLinkInput, LinkPermissionUncheckedCreateWithoutLinkInput> | LinkPermissionCreateWithoutLinkInput[] | LinkPermissionUncheckedCreateWithoutLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutLinkInput | LinkPermissionCreateOrConnectWithoutLinkInput[]
+    createMany?: LinkPermissionCreateManyLinkInputEnvelope
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type SongUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutUserInput | SongUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SongCreateManyUserInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutUserInput | SongUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutUserInput | SongUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  }
+
+  export type LinkUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<LinkCreateWithoutCreatorInput, LinkUncheckedCreateWithoutCreatorInput> | LinkCreateWithoutCreatorInput[] | LinkUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutCreatorInput | LinkCreateOrConnectWithoutCreatorInput[]
+    upsert?: LinkUpsertWithWhereUniqueWithoutCreatorInput | LinkUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: LinkCreateManyCreatorInputEnvelope
+    set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    update?: LinkUpdateWithWhereUniqueWithoutCreatorInput | LinkUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: LinkUpdateManyWithWhereWithoutCreatorInput | LinkUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
+  }
+
+  export type LinkPermissionUpdateManyWithoutLinkNestedInput = {
+    create?: XOR<LinkPermissionCreateWithoutLinkInput, LinkPermissionUncheckedCreateWithoutLinkInput> | LinkPermissionCreateWithoutLinkInput[] | LinkPermissionUncheckedCreateWithoutLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutLinkInput | LinkPermissionCreateOrConnectWithoutLinkInput[]
+    upsert?: LinkPermissionUpsertWithWhereUniqueWithoutLinkInput | LinkPermissionUpsertWithWhereUniqueWithoutLinkInput[]
+    createMany?: LinkPermissionCreateManyLinkInputEnvelope
+    set?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    disconnect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    delete?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    update?: LinkPermissionUpdateWithWhereUniqueWithoutLinkInput | LinkPermissionUpdateWithWhereUniqueWithoutLinkInput[]
+    updateMany?: LinkPermissionUpdateManyWithWhereWithoutLinkInput | LinkPermissionUpdateManyWithWhereWithoutLinkInput[]
+    deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
+  }
+
+  export type SongUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutUserInput | SongUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SongCreateManyUserInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutUserInput | SongUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutUserInput | SongUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  }
+
+  export type LinkUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<LinkCreateWithoutCreatorInput, LinkUncheckedCreateWithoutCreatorInput> | LinkCreateWithoutCreatorInput[] | LinkUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutCreatorInput | LinkCreateOrConnectWithoutCreatorInput[]
+    upsert?: LinkUpsertWithWhereUniqueWithoutCreatorInput | LinkUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: LinkCreateManyCreatorInputEnvelope
+    set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    update?: LinkUpdateWithWhereUniqueWithoutCreatorInput | LinkUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: LinkUpdateManyWithWhereWithoutCreatorInput | LinkUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
+  }
+
+  export type LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput = {
+    create?: XOR<LinkPermissionCreateWithoutLinkInput, LinkPermissionUncheckedCreateWithoutLinkInput> | LinkPermissionCreateWithoutLinkInput[] | LinkPermissionUncheckedCreateWithoutLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutLinkInput | LinkPermissionCreateOrConnectWithoutLinkInput[]
+    upsert?: LinkPermissionUpsertWithWhereUniqueWithoutLinkInput | LinkPermissionUpsertWithWhereUniqueWithoutLinkInput[]
+    createMany?: LinkPermissionCreateManyLinkInputEnvelope
+    set?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    disconnect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    delete?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    update?: LinkPermissionUpdateWithWhereUniqueWithoutLinkInput | LinkPermissionUpdateWithWhereUniqueWithoutLinkInput[]
+    updateMany?: LinkPermissionUpdateManyWithWhereWithoutLinkInput | LinkPermissionUpdateManyWithWhereWithoutLinkInput[]
+    deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutSongsInput = {
+    create?: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSongsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LinkCreateNestedManyWithoutSongInput = {
+    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
+    createMany?: LinkCreateManySongInputEnvelope
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  }
+
+  export type PremadeMusicCreateNestedOneWithoutSongsInput = {
+    create?: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSongsInput
+    connect?: PremadeMusicWhereUniqueInput
+  }
+
+  export type UploadedMusicCreateNestedOneWithoutSongsInput = {
+    create?: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSongsInput
+    connect?: UploadedMusicWhereUniqueInput
+  }
+
+  export type LinkUncheckedCreateNestedManyWithoutSongInput = {
+    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
+    createMany?: LinkCreateManySongInputEnvelope
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  }
+
+  export type EnumMusicSourceFieldUpdateOperationsInput = {
+    set?: $Enums.MusicSource
+  }
+
+  export type UserUpdateOneRequiredWithoutSongsNestedInput = {
+    create?: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSongsInput
+    upsert?: UserUpsertWithoutSongsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSongsInput, UserUpdateWithoutSongsInput>, UserUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type LinkUpdateManyWithoutSongNestedInput = {
+    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
+    upsert?: LinkUpsertWithWhereUniqueWithoutSongInput | LinkUpsertWithWhereUniqueWithoutSongInput[]
+    createMany?: LinkCreateManySongInputEnvelope
+    set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    update?: LinkUpdateWithWhereUniqueWithoutSongInput | LinkUpdateWithWhereUniqueWithoutSongInput[]
+    updateMany?: LinkUpdateManyWithWhereWithoutSongInput | LinkUpdateManyWithWhereWithoutSongInput[]
+    deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
+  }
+
+  export type PremadeMusicUpdateOneWithoutSongsNestedInput = {
+    create?: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSongsInput
+    upsert?: PremadeMusicUpsertWithoutSongsInput
+    disconnect?: PremadeMusicWhereInput | boolean
+    delete?: PremadeMusicWhereInput | boolean
+    connect?: PremadeMusicWhereUniqueInput
+    update?: XOR<XOR<PremadeMusicUpdateToOneWithWhereWithoutSongsInput, PremadeMusicUpdateWithoutSongsInput>, PremadeMusicUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type UploadedMusicUpdateOneWithoutSongsNestedInput = {
+    create?: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSongsInput
+    upsert?: UploadedMusicUpsertWithoutSongsInput
+    disconnect?: UploadedMusicWhereInput | boolean
+    delete?: UploadedMusicWhereInput | boolean
+    connect?: UploadedMusicWhereUniqueInput
+    update?: XOR<XOR<UploadedMusicUpdateToOneWithWhereWithoutSongsInput, UploadedMusicUpdateWithoutSongsInput>, UploadedMusicUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type LinkUncheckedUpdateManyWithoutSongNestedInput = {
+    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
+    upsert?: LinkUpsertWithWhereUniqueWithoutSongInput | LinkUpsertWithWhereUniqueWithoutSongInput[]
+    createMany?: LinkCreateManySongInputEnvelope
+    set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    update?: LinkUpdateWithWhereUniqueWithoutSongInput | LinkUpdateWithWhereUniqueWithoutSongInput[]
+    updateMany?: LinkUpdateManyWithWhereWithoutSongInput | LinkUpdateManyWithWhereWithoutSongInput[]
+    deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
+  }
+
+  export type SongCreateNestedOneWithoutLinksInput = {
+    create?: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: SongCreateOrConnectWithoutLinksInput
+    connect?: SongWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutLinksInput = {
+    create?: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLinksInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LinkPermissionCreateNestedManyWithoutUserLinkInput = {
+    create?: XOR<LinkPermissionCreateWithoutUserLinkInput, LinkPermissionUncheckedCreateWithoutUserLinkInput> | LinkPermissionCreateWithoutUserLinkInput[] | LinkPermissionUncheckedCreateWithoutUserLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutUserLinkInput | LinkPermissionCreateOrConnectWithoutUserLinkInput[]
+    createMany?: LinkPermissionCreateManyUserLinkInputEnvelope
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+  }
+
+  export type LinkPermissionUncheckedCreateNestedManyWithoutUserLinkInput = {
+    create?: XOR<LinkPermissionCreateWithoutUserLinkInput, LinkPermissionUncheckedCreateWithoutUserLinkInput> | LinkPermissionCreateWithoutUserLinkInput[] | LinkPermissionUncheckedCreateWithoutUserLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutUserLinkInput | LinkPermissionCreateOrConnectWithoutUserLinkInput[]
+    createMany?: LinkPermissionCreateManyUserLinkInputEnvelope
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type SongUpdateOneRequiredWithoutLinksNestedInput = {
+    create?: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: SongCreateOrConnectWithoutLinksInput
+    upsert?: SongUpsertWithoutLinksInput
+    connect?: SongWhereUniqueInput
+    update?: XOR<XOR<SongUpdateToOneWithWhereWithoutLinksInput, SongUpdateWithoutLinksInput>, SongUncheckedUpdateWithoutLinksInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutLinksNestedInput = {
+    create?: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLinksInput
+    upsert?: UserUpsertWithoutLinksInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinksInput, UserUpdateWithoutLinksInput>, UserUncheckedUpdateWithoutLinksInput>
+  }
+
+  export type LinkPermissionUpdateManyWithoutUserLinkNestedInput = {
+    create?: XOR<LinkPermissionCreateWithoutUserLinkInput, LinkPermissionUncheckedCreateWithoutUserLinkInput> | LinkPermissionCreateWithoutUserLinkInput[] | LinkPermissionUncheckedCreateWithoutUserLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutUserLinkInput | LinkPermissionCreateOrConnectWithoutUserLinkInput[]
+    upsert?: LinkPermissionUpsertWithWhereUniqueWithoutUserLinkInput | LinkPermissionUpsertWithWhereUniqueWithoutUserLinkInput[]
+    createMany?: LinkPermissionCreateManyUserLinkInputEnvelope
+    set?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    disconnect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    delete?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    update?: LinkPermissionUpdateWithWhereUniqueWithoutUserLinkInput | LinkPermissionUpdateWithWhereUniqueWithoutUserLinkInput[]
+    updateMany?: LinkPermissionUpdateManyWithWhereWithoutUserLinkInput | LinkPermissionUpdateManyWithWhereWithoutUserLinkInput[]
+    deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
+  }
+
+  export type LinkPermissionUncheckedUpdateManyWithoutUserLinkNestedInput = {
+    create?: XOR<LinkPermissionCreateWithoutUserLinkInput, LinkPermissionUncheckedCreateWithoutUserLinkInput> | LinkPermissionCreateWithoutUserLinkInput[] | LinkPermissionUncheckedCreateWithoutUserLinkInput[]
+    connectOrCreate?: LinkPermissionCreateOrConnectWithoutUserLinkInput | LinkPermissionCreateOrConnectWithoutUserLinkInput[]
+    upsert?: LinkPermissionUpsertWithWhereUniqueWithoutUserLinkInput | LinkPermissionUpsertWithWhereUniqueWithoutUserLinkInput[]
+    createMany?: LinkPermissionCreateManyUserLinkInputEnvelope
+    set?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    disconnect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    delete?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
+    update?: LinkPermissionUpdateWithWhereUniqueWithoutUserLinkInput | LinkPermissionUpdateWithWhereUniqueWithoutUserLinkInput[]
+    updateMany?: LinkPermissionUpdateManyWithWhereWithoutUserLinkInput | LinkPermissionUpdateManyWithWhereWithoutUserLinkInput[]
+    deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutLinkPermissionsInput = {
+    create?: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLinkPermissionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LinkCreateNestedOneWithoutLinkPermissionsInput = {
+    create?: XOR<LinkCreateWithoutLinkPermissionsInput, LinkUncheckedCreateWithoutLinkPermissionsInput>
+    connectOrCreate?: LinkCreateOrConnectWithoutLinkPermissionsInput
+    connect?: LinkWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutLinkPermissionsNestedInput = {
+    create?: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLinkPermissionsInput
+    upsert?: UserUpsertWithoutLinkPermissionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinkPermissionsInput, UserUpdateWithoutLinkPermissionsInput>, UserUncheckedUpdateWithoutLinkPermissionsInput>
+  }
+
+  export type LinkUpdateOneRequiredWithoutLinkPermissionsNestedInput = {
+    create?: XOR<LinkCreateWithoutLinkPermissionsInput, LinkUncheckedCreateWithoutLinkPermissionsInput>
+    connectOrCreate?: LinkCreateOrConnectWithoutLinkPermissionsInput
+    upsert?: LinkUpsertWithoutLinkPermissionsInput
+    connect?: LinkWhereUniqueInput
+    update?: XOR<XOR<LinkUpdateToOneWithWhereWithoutLinkPermissionsInput, LinkUpdateWithoutLinkPermissionsInput>, LinkUncheckedUpdateWithoutLinkPermissionsInput>
+  }
+
+  export type SongCreateNestedManyWithoutPremadeMusicInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type SongUncheckedCreateNestedManyWithoutPremadeMusicInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type SongUpdateManyWithoutPremadeMusicNestedInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutPremadeMusicInput | SongUpsertWithWhereUniqueWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutPremadeMusicInput | SongUpdateWithWhereUniqueWithoutPremadeMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutPremadeMusicInput | SongUpdateManyWithWhereWithoutPremadeMusicInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  }
+
+  export type SongUncheckedUpdateManyWithoutPremadeMusicNestedInput = {
+    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutPremadeMusicInput | SongUpsertWithWhereUniqueWithoutPremadeMusicInput[]
+    createMany?: SongCreateManyPremadeMusicInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutPremadeMusicInput | SongUpdateWithWhereUniqueWithoutPremadeMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutPremadeMusicInput | SongUpdateManyWithWhereWithoutPremadeMusicInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  }
+
+  export type SongCreateNestedManyWithoutUploadedMusicInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type SongUncheckedCreateNestedManyWithoutUploadedMusicInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type SongUpdateManyWithoutUploadedMusicNestedInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutUploadedMusicInput | SongUpsertWithWhereUniqueWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutUploadedMusicInput | SongUpdateWithWhereUniqueWithoutUploadedMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutUploadedMusicInput | SongUpdateManyWithWhereWithoutUploadedMusicInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  }
+
+  export type SongUncheckedUpdateManyWithoutUploadedMusicNestedInput = {
+    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
+    upsert?: SongUpsertWithWhereUniqueWithoutUploadedMusicInput | SongUpsertWithWhereUniqueWithoutUploadedMusicInput[]
+    createMany?: SongCreateManyUploadedMusicInputEnvelope
+    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+    update?: SongUpdateWithWhereUniqueWithoutUploadedMusicInput | SongUpdateWithWhereUniqueWithoutUploadedMusicInput[]
+    updateMany?: SongUpdateManyWithWhereWithoutUploadedMusicInput | SongUpdateManyWithWhereWithoutUploadedMusicInput[]
+    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2247,6 +9833,1044 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMusicSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceFilter<$PrismaModel> | $Enums.MusicSource
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumMusicSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MusicSource | EnumMusicSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MusicSource[] | ListEnumMusicSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMusicSourceWithAggregatesFilter<$PrismaModel> | $Enums.MusicSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMusicSourceFilter<$PrismaModel>
+    _max?: NestedEnumMusicSourceFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type SongCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    content?: string
+    creation_date?: Date | string
+    links?: LinkCreateNestedManyWithoutSongInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+  }
+
+  export type SongUncheckedCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+  }
+
+  export type SongCreateOrConnectWithoutUserInput = {
+    where: SongWhereUniqueInput
+    create: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput>
+  }
+
+  export type SongCreateManyUserInputEnvelope = {
+    data: SongCreateManyUserInput | SongCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LinkCreateWithoutCreatorInput = {
+    link_id?: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+    song: SongCreateNestedOneWithoutLinksInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutUserLinkInput
+  }
+
+  export type LinkUncheckedCreateWithoutCreatorInput = {
+    link_id?: string
+    song_id: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutUserLinkInput
+  }
+
+  export type LinkCreateOrConnectWithoutCreatorInput = {
+    where: LinkWhereUniqueInput
+    create: XOR<LinkCreateWithoutCreatorInput, LinkUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type LinkCreateManyCreatorInputEnvelope = {
+    data: LinkCreateManyCreatorInput | LinkCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LinkPermissionCreateWithoutLinkInput = {
+    link_permission_id?: string
+    can_view?: boolean
+    userLink: LinkCreateNestedOneWithoutLinkPermissionsInput
+  }
+
+  export type LinkPermissionUncheckedCreateWithoutLinkInput = {
+    link_permission_id?: string
+    link_id: string
+    can_view?: boolean
+  }
+
+  export type LinkPermissionCreateOrConnectWithoutLinkInput = {
+    where: LinkPermissionWhereUniqueInput
+    create: XOR<LinkPermissionCreateWithoutLinkInput, LinkPermissionUncheckedCreateWithoutLinkInput>
+  }
+
+  export type LinkPermissionCreateManyLinkInputEnvelope = {
+    data: LinkPermissionCreateManyLinkInput | LinkPermissionCreateManyLinkInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SongUpsertWithWhereUniqueWithoutUserInput = {
+    where: SongWhereUniqueInput
+    update: XOR<SongUpdateWithoutUserInput, SongUncheckedUpdateWithoutUserInput>
+    create: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput>
+  }
+
+  export type SongUpdateWithWhereUniqueWithoutUserInput = {
+    where: SongWhereUniqueInput
+    data: XOR<SongUpdateWithoutUserInput, SongUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SongUpdateManyWithWhereWithoutUserInput = {
+    where: SongScalarWhereInput
+    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SongScalarWhereInput = {
+    AND?: SongScalarWhereInput | SongScalarWhereInput[]
+    OR?: SongScalarWhereInput[]
+    NOT?: SongScalarWhereInput | SongScalarWhereInput[]
+    id?: StringFilter<"Song"> | string
+    title?: StringFilter<"Song"> | string
+    user_id?: StringFilter<"Song"> | string
+    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Song"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
+    content?: StringFilter<"Song"> | string
+    creation_date?: DateTimeFilter<"Song"> | Date | string
+  }
+
+  export type LinkUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: LinkWhereUniqueInput
+    update: XOR<LinkUpdateWithoutCreatorInput, LinkUncheckedUpdateWithoutCreatorInput>
+    create: XOR<LinkCreateWithoutCreatorInput, LinkUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type LinkUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: LinkWhereUniqueInput
+    data: XOR<LinkUpdateWithoutCreatorInput, LinkUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type LinkUpdateManyWithWhereWithoutCreatorInput = {
+    where: LinkScalarWhereInput
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type LinkScalarWhereInput = {
+    AND?: LinkScalarWhereInput | LinkScalarWhereInput[]
+    OR?: LinkScalarWhereInput[]
+    NOT?: LinkScalarWhereInput | LinkScalarWhereInput[]
+    link_id?: StringFilter<"Link"> | string
+    song_id?: StringFilter<"Link"> | string
+    created_by?: StringFilter<"Link"> | string
+    is_public?: BoolFilter<"Link"> | boolean
+    created_at?: DateTimeFilter<"Link"> | Date | string
+    expires_at?: DateTimeFilter<"Link"> | Date | string
+  }
+
+  export type LinkPermissionUpsertWithWhereUniqueWithoutLinkInput = {
+    where: LinkPermissionWhereUniqueInput
+    update: XOR<LinkPermissionUpdateWithoutLinkInput, LinkPermissionUncheckedUpdateWithoutLinkInput>
+    create: XOR<LinkPermissionCreateWithoutLinkInput, LinkPermissionUncheckedCreateWithoutLinkInput>
+  }
+
+  export type LinkPermissionUpdateWithWhereUniqueWithoutLinkInput = {
+    where: LinkPermissionWhereUniqueInput
+    data: XOR<LinkPermissionUpdateWithoutLinkInput, LinkPermissionUncheckedUpdateWithoutLinkInput>
+  }
+
+  export type LinkPermissionUpdateManyWithWhereWithoutLinkInput = {
+    where: LinkPermissionScalarWhereInput
+    data: XOR<LinkPermissionUpdateManyMutationInput, LinkPermissionUncheckedUpdateManyWithoutLinkInput>
+  }
+
+  export type LinkPermissionScalarWhereInput = {
+    AND?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
+    OR?: LinkPermissionScalarWhereInput[]
+    NOT?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
+    link_permission_id?: StringFilter<"LinkPermission"> | string
+    link_id?: StringFilter<"LinkPermission"> | string
+    user_id?: StringFilter<"LinkPermission"> | string
+    can_view?: BoolFilter<"LinkPermission"> | boolean
+  }
+
+  export type UserCreateWithoutSongsInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    links?: LinkCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+  }
+
+  export type UserUncheckedCreateWithoutSongsInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+  }
+
+  export type UserCreateOrConnectWithoutSongsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
+  }
+
+  export type LinkCreateWithoutSongInput = {
+    link_id?: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+    creator: UserCreateNestedOneWithoutLinksInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutUserLinkInput
+  }
+
+  export type LinkUncheckedCreateWithoutSongInput = {
+    link_id?: string
+    created_by: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutUserLinkInput
+  }
+
+  export type LinkCreateOrConnectWithoutSongInput = {
+    where: LinkWhereUniqueInput
+    create: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput>
+  }
+
+  export type LinkCreateManySongInputEnvelope = {
+    data: LinkCreateManySongInput | LinkCreateManySongInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PremadeMusicCreateWithoutSongsInput = {
+    music_id?: string
+    music_name: string
+    uploaded_date?: Date | string
+    path: string
+  }
+
+  export type PremadeMusicUncheckedCreateWithoutSongsInput = {
+    music_id?: string
+    music_name: string
+    uploaded_date?: Date | string
+    path: string
+  }
+
+  export type PremadeMusicCreateOrConnectWithoutSongsInput = {
+    where: PremadeMusicWhereUniqueInput
+    create: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+  }
+
+  export type UploadedMusicCreateWithoutSongsInput = {
+    music_id?: string
+    music_name: string
+    uploaded_by: string
+    path?: string
+  }
+
+  export type UploadedMusicUncheckedCreateWithoutSongsInput = {
+    music_id?: string
+    music_name: string
+    uploaded_by: string
+    path?: string
+  }
+
+  export type UploadedMusicCreateOrConnectWithoutSongsInput = {
+    where: UploadedMusicWhereUniqueInput
+    create: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+  }
+
+  export type UserUpsertWithoutSongsInput = {
+    update: XOR<UserUpdateWithoutSongsInput, UserUncheckedUpdateWithoutSongsInput>
+    create: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSongsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSongsInput, UserUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type UserUpdateWithoutSongsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSongsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+  }
+
+  export type LinkUpsertWithWhereUniqueWithoutSongInput = {
+    where: LinkWhereUniqueInput
+    update: XOR<LinkUpdateWithoutSongInput, LinkUncheckedUpdateWithoutSongInput>
+    create: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput>
+  }
+
+  export type LinkUpdateWithWhereUniqueWithoutSongInput = {
+    where: LinkWhereUniqueInput
+    data: XOR<LinkUpdateWithoutSongInput, LinkUncheckedUpdateWithoutSongInput>
+  }
+
+  export type LinkUpdateManyWithWhereWithoutSongInput = {
+    where: LinkScalarWhereInput
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutSongInput>
+  }
+
+  export type PremadeMusicUpsertWithoutSongsInput = {
+    update: XOR<PremadeMusicUpdateWithoutSongsInput, PremadeMusicUncheckedUpdateWithoutSongsInput>
+    create: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+    where?: PremadeMusicWhereInput
+  }
+
+  export type PremadeMusicUpdateToOneWithWhereWithoutSongsInput = {
+    where?: PremadeMusicWhereInput
+    data: XOR<PremadeMusicUpdateWithoutSongsInput, PremadeMusicUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type PremadeMusicUpdateWithoutSongsInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PremadeMusicUncheckedUpdateWithoutSongsInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UploadedMusicUpsertWithoutSongsInput = {
+    update: XOR<UploadedMusicUpdateWithoutSongsInput, UploadedMusicUncheckedUpdateWithoutSongsInput>
+    create: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+    where?: UploadedMusicWhereInput
+  }
+
+  export type UploadedMusicUpdateToOneWithWhereWithoutSongsInput = {
+    where?: UploadedMusicWhereInput
+    data: XOR<UploadedMusicUpdateWithoutSongsInput, UploadedMusicUncheckedUpdateWithoutSongsInput>
+  }
+
+  export type UploadedMusicUpdateWithoutSongsInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UploadedMusicUncheckedUpdateWithoutSongsInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SongCreateWithoutLinksInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    content?: string
+    creation_date?: Date | string
+    user: UserCreateNestedOneWithoutSongsInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+  }
+
+  export type SongUncheckedCreateWithoutLinksInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+  }
+
+  export type SongCreateOrConnectWithoutLinksInput = {
+    where: SongWhereUniqueInput
+    create: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
+  }
+
+  export type UserCreateWithoutLinksInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    songs?: SongCreateNestedManyWithoutUserInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+  }
+
+  export type UserUncheckedCreateWithoutLinksInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    songs?: SongUncheckedCreateNestedManyWithoutUserInput
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+  }
+
+  export type UserCreateOrConnectWithoutLinksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
+  }
+
+  export type LinkPermissionCreateWithoutUserLinkInput = {
+    link_permission_id?: string
+    can_view?: boolean
+    link: UserCreateNestedOneWithoutLinkPermissionsInput
+  }
+
+  export type LinkPermissionUncheckedCreateWithoutUserLinkInput = {
+    link_permission_id?: string
+    user_id: string
+    can_view?: boolean
+  }
+
+  export type LinkPermissionCreateOrConnectWithoutUserLinkInput = {
+    where: LinkPermissionWhereUniqueInput
+    create: XOR<LinkPermissionCreateWithoutUserLinkInput, LinkPermissionUncheckedCreateWithoutUserLinkInput>
+  }
+
+  export type LinkPermissionCreateManyUserLinkInputEnvelope = {
+    data: LinkPermissionCreateManyUserLinkInput | LinkPermissionCreateManyUserLinkInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SongUpsertWithoutLinksInput = {
+    update: XOR<SongUpdateWithoutLinksInput, SongUncheckedUpdateWithoutLinksInput>
+    create: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
+    where?: SongWhereInput
+  }
+
+  export type SongUpdateToOneWithWhereWithoutLinksInput = {
+    where?: SongWhereInput
+    data: XOR<SongUpdateWithoutLinksInput, SongUncheckedUpdateWithoutLinksInput>
+  }
+
+  export type SongUpdateWithoutLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSongsNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
+  }
+
+  export type SongUncheckedUpdateWithoutLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutLinksInput = {
+    update: XOR<UserUpdateWithoutLinksInput, UserUncheckedUpdateWithoutLinksInput>
+    create: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLinksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLinksInput, UserUncheckedUpdateWithoutLinksInput>
+  }
+
+  export type UserUpdateWithoutLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    songs?: SongUpdateManyWithoutUserNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    songs?: SongUncheckedUpdateManyWithoutUserNestedInput
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+  }
+
+  export type LinkPermissionUpsertWithWhereUniqueWithoutUserLinkInput = {
+    where: LinkPermissionWhereUniqueInput
+    update: XOR<LinkPermissionUpdateWithoutUserLinkInput, LinkPermissionUncheckedUpdateWithoutUserLinkInput>
+    create: XOR<LinkPermissionCreateWithoutUserLinkInput, LinkPermissionUncheckedCreateWithoutUserLinkInput>
+  }
+
+  export type LinkPermissionUpdateWithWhereUniqueWithoutUserLinkInput = {
+    where: LinkPermissionWhereUniqueInput
+    data: XOR<LinkPermissionUpdateWithoutUserLinkInput, LinkPermissionUncheckedUpdateWithoutUserLinkInput>
+  }
+
+  export type LinkPermissionUpdateManyWithWhereWithoutUserLinkInput = {
+    where: LinkPermissionScalarWhereInput
+    data: XOR<LinkPermissionUpdateManyMutationInput, LinkPermissionUncheckedUpdateManyWithoutUserLinkInput>
+  }
+
+  export type UserCreateWithoutLinkPermissionsInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    songs?: SongCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutLinkPermissionsInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    songs?: SongUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutLinkPermissionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
+  }
+
+  export type LinkCreateWithoutLinkPermissionsInput = {
+    link_id?: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+    song: SongCreateNestedOneWithoutLinksInput
+    creator: UserCreateNestedOneWithoutLinksInput
+  }
+
+  export type LinkUncheckedCreateWithoutLinkPermissionsInput = {
+    link_id?: string
+    song_id: string
+    created_by: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+  }
+
+  export type LinkCreateOrConnectWithoutLinkPermissionsInput = {
+    where: LinkWhereUniqueInput
+    create: XOR<LinkCreateWithoutLinkPermissionsInput, LinkUncheckedCreateWithoutLinkPermissionsInput>
+  }
+
+  export type UserUpsertWithoutLinkPermissionsInput = {
+    update: XOR<UserUpdateWithoutLinkPermissionsInput, UserUncheckedUpdateWithoutLinkPermissionsInput>
+    create: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLinkPermissionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLinkPermissionsInput, UserUncheckedUpdateWithoutLinkPermissionsInput>
+  }
+
+  export type UserUpdateWithoutLinkPermissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    songs?: SongUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLinkPermissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    songs?: SongUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type LinkUpsertWithoutLinkPermissionsInput = {
+    update: XOR<LinkUpdateWithoutLinkPermissionsInput, LinkUncheckedUpdateWithoutLinkPermissionsInput>
+    create: XOR<LinkCreateWithoutLinkPermissionsInput, LinkUncheckedCreateWithoutLinkPermissionsInput>
+    where?: LinkWhereInput
+  }
+
+  export type LinkUpdateToOneWithWhereWithoutLinkPermissionsInput = {
+    where?: LinkWhereInput
+    data: XOR<LinkUpdateWithoutLinkPermissionsInput, LinkUncheckedUpdateWithoutLinkPermissionsInput>
+  }
+
+  export type LinkUpdateWithoutLinkPermissionsInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    song?: SongUpdateOneRequiredWithoutLinksNestedInput
+    creator?: UserUpdateOneRequiredWithoutLinksNestedInput
+  }
+
+  export type LinkUncheckedUpdateWithoutLinkPermissionsInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    song_id?: StringFieldUpdateOperationsInput | string
+    created_by?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SongCreateWithoutPremadeMusicInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    content?: string
+    creation_date?: Date | string
+    user: UserCreateNestedOneWithoutSongsInput
+    links?: LinkCreateNestedManyWithoutSongInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+  }
+
+  export type SongUncheckedCreateWithoutPremadeMusicInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    uploaded_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+  }
+
+  export type SongCreateOrConnectWithoutPremadeMusicInput = {
+    where: SongWhereUniqueInput
+    create: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput>
+  }
+
+  export type SongCreateManyPremadeMusicInputEnvelope = {
+    data: SongCreateManyPremadeMusicInput | SongCreateManyPremadeMusicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SongUpsertWithWhereUniqueWithoutPremadeMusicInput = {
+    where: SongWhereUniqueInput
+    update: XOR<SongUpdateWithoutPremadeMusicInput, SongUncheckedUpdateWithoutPremadeMusicInput>
+    create: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput>
+  }
+
+  export type SongUpdateWithWhereUniqueWithoutPremadeMusicInput = {
+    where: SongWhereUniqueInput
+    data: XOR<SongUpdateWithoutPremadeMusicInput, SongUncheckedUpdateWithoutPremadeMusicInput>
+  }
+
+  export type SongUpdateManyWithWhereWithoutPremadeMusicInput = {
+    where: SongScalarWhereInput
+    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutPremadeMusicInput>
+  }
+
+  export type SongCreateWithoutUploadedMusicInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    content?: string
+    creation_date?: Date | string
+    user: UserCreateNestedOneWithoutSongsInput
+    links?: LinkCreateNestedManyWithoutSongInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+  }
+
+  export type SongUncheckedCreateWithoutUploadedMusicInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+  }
+
+  export type SongCreateOrConnectWithoutUploadedMusicInput = {
+    where: SongWhereUniqueInput
+    create: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput>
+  }
+
+  export type SongCreateManyUploadedMusicInputEnvelope = {
+    data: SongCreateManyUploadedMusicInput | SongCreateManyUploadedMusicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SongUpsertWithWhereUniqueWithoutUploadedMusicInput = {
+    where: SongWhereUniqueInput
+    update: XOR<SongUpdateWithoutUploadedMusicInput, SongUncheckedUpdateWithoutUploadedMusicInput>
+    create: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput>
+  }
+
+  export type SongUpdateWithWhereUniqueWithoutUploadedMusicInput = {
+    where: SongWhereUniqueInput
+    data: XOR<SongUpdateWithoutUploadedMusicInput, SongUncheckedUpdateWithoutUploadedMusicInput>
+  }
+
+  export type SongUpdateManyWithWhereWithoutUploadedMusicInput = {
+    where: SongScalarWhereInput
+    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutUploadedMusicInput>
+  }
+
+  export type SongCreateManyUserInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+  }
+
+  export type LinkCreateManyCreatorInput = {
+    link_id?: string
+    song_id: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+  }
+
+  export type LinkPermissionCreateManyLinkInput = {
+    link_permission_id?: string
+    link_id: string
+    can_view?: boolean
+  }
+
+  export type SongUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUpdateManyWithoutSongNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
+  }
+
+  export type SongUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
+  }
+
+  export type SongUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkUpdateWithoutCreatorInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    song?: SongUpdateOneRequiredWithoutLinksNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutUserLinkNestedInput
+  }
+
+  export type LinkUncheckedUpdateWithoutCreatorInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    song_id?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutUserLinkNestedInput
+  }
+
+  export type LinkUncheckedUpdateManyWithoutCreatorInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    song_id?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkPermissionUpdateWithoutLinkInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+    userLink?: LinkUpdateOneRequiredWithoutLinkPermissionsNestedInput
+  }
+
+  export type LinkPermissionUncheckedUpdateWithoutLinkInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    link_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LinkPermissionUncheckedUpdateManyWithoutLinkInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    link_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LinkCreateManySongInput = {
+    link_id?: string
+    created_by: string
+    is_public?: boolean
+    created_at?: Date | string
+    expires_at: Date | string
+  }
+
+  export type LinkUpdateWithoutSongInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutLinksNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutUserLinkNestedInput
+  }
+
+  export type LinkUncheckedUpdateWithoutSongInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    created_by?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutUserLinkNestedInput
+  }
+
+  export type LinkUncheckedUpdateManyWithoutSongInput = {
+    link_id?: StringFieldUpdateOperationsInput | string
+    created_by?: StringFieldUpdateOperationsInput | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkPermissionCreateManyUserLinkInput = {
+    link_permission_id?: string
+    user_id: string
+    can_view?: boolean
+  }
+
+  export type LinkPermissionUpdateWithoutUserLinkInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+    link?: UserUpdateOneRequiredWithoutLinkPermissionsNestedInput
+  }
+
+  export type LinkPermissionUncheckedUpdateWithoutUserLinkInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LinkPermissionUncheckedUpdateManyWithoutUserLinkInput = {
+    link_permission_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SongCreateManyPremadeMusicInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    uploaded_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+  }
+
+  export type SongUpdateWithoutPremadeMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSongsNestedInput
+    links?: LinkUpdateManyWithoutSongNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
+  }
+
+  export type SongUncheckedUpdateWithoutPremadeMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
+  }
+
+  export type SongUncheckedUpdateManyWithoutPremadeMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SongCreateManyUploadedMusicInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    content?: string
+    creation_date?: Date | string
+  }
+
+  export type SongUpdateWithoutUploadedMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSongsNestedInput
+    links?: LinkUpdateManyWithoutSongNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+  }
+
+  export type SongUncheckedUpdateWithoutUploadedMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
+  }
+
+  export type SongUncheckedUpdateManyWithoutUploadedMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

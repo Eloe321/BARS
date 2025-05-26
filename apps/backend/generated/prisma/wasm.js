@@ -126,6 +126,47 @@ exports.Prisma.UserScalarFieldEnum = {
   updateAt: 'updateAt'
 };
 
+exports.Prisma.SongScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  user_id: 'user_id',
+  musicSource: 'musicSource',
+  premade_music_id: 'premade_music_id',
+  uploaded_music_id: 'uploaded_music_id',
+  content: 'content',
+  creation_date: 'creation_date'
+};
+
+exports.Prisma.LinkScalarFieldEnum = {
+  link_id: 'link_id',
+  song_id: 'song_id',
+  created_by: 'created_by',
+  is_public: 'is_public',
+  created_at: 'created_at',
+  expires_at: 'expires_at'
+};
+
+exports.Prisma.LinkPermissionScalarFieldEnum = {
+  link_permission_id: 'link_permission_id',
+  link_id: 'link_id',
+  user_id: 'user_id',
+  can_view: 'can_view'
+};
+
+exports.Prisma.PremadeMusicScalarFieldEnum = {
+  music_id: 'music_id',
+  music_name: 'music_name',
+  uploaded_date: 'uploaded_date',
+  path: 'path'
+};
+
+exports.Prisma.UploadedMusicScalarFieldEnum = {
+  music_id: 'music_id',
+  music_name: 'music_name',
+  uploaded_by: 'uploaded_by',
+  path: 'path'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -136,9 +177,22 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.MusicSource = exports.$Enums.MusicSource = {
+  PREMADE: 'PREMADE',
+  UPLOADED: 'UPLOADED'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Song: 'Song',
+  Link: 'Link',
+  LinkPermission: 'LinkPermission',
+  PremadeMusic: 'PremadeMusic',
+  UploadedMusic: 'UploadedMusic'
 };
 
 /**

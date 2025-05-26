@@ -1,19 +1,39 @@
-import { Injectable } from '@nestjs/common';
-import { User } from 'generated/prisma';
-
-type AuthInput = { username: string; password: string };
+//src/auth/auth.service.ts
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { DatabaseService } from '../database/database.service';
+import { JwtService } from '@nestjs/jwt';
+import { AuthEntity } from './entity/auth.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
-  async validateUser(input: AuthInput): Promise<User | null> {
-    const user = await this.userService.findUserByUsername(input.username);
+  constructor(
+    private db: DatabaseService,
+    private jwtService: JwtService,
+  ) {}
 
-    if (user && user.password === input.password) {
-      return {
-        ...user,
-      };
+  async login(email: string, password: string): Promise<AuthEntity> {
+    const user = await this.db.user.findFirst({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      throw new NotFoundException(`No user found for email: ${email}`);
     }
-    return null;
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid password');
+    }
+
+    return {
+      accessToken: this.jwtService.sign({ userId: user.id }),
+      user: user,
+    };
   }
 }

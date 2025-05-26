@@ -1,12 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import type React from "react";
+
+import {
+  Play,
+  Pause,
+  SkipBack,
+  SkipForward,
+  Upload,
+  Loader2,
+  AlertCircle,
+  RefreshCw,
+  CheckCircle,
+} from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
 import { Button } from "@workspace/ui/components/button";
 import { Play, Pause, SkipBack, SkipForward, Download } from "lucide-react";
 import { Slider } from "@workspace/ui/components/slider";
 import { analyzeLyrics } from "@workspace/ui/components/utils/api.js";
-import { urlToFile } from "@workspace/ui/components/utils/helper.js"; 
 
+import { Progress } from "@workspace/ui/components/progress";
+import { toast } from "sonner";
+import { useState, useEffect, useRef } from "react";
+import { useAuth } from "@workspace/ui/components/context/authContext";
+import { formatTime } from "./utils/utils.js";
+import { mediaApi, type BlobMP3File } from "./mediaApi/mediaAccess.js";
 interface MediaControlsProps {
   isPlaying: boolean;
   togglePlay: () => void;
@@ -14,10 +40,18 @@ interface MediaControlsProps {
   duration: number;
   progress: number;
   handleSliderChange: (value: number[]) => void;
-  audioSrc: string;
   lyricsText: string;
   onAnalyzedVersesUpdate: (analyzedVerses: any) => void;
   onSetIsAligning: (isAligning: boolean) => void;
+  onTrackChange: (
+    trackUrl: string,
+    trackName: string,
+    fullTrackName: string
+  ) => void;
+  onResetPlayer: () => void;
+  audioLoading: boolean;
+  currentTrackName?: string | null;
+  currentFullTrackName?: string | null;
 }
 
 export default function MediaControls({
@@ -27,17 +61,241 @@ export default function MediaControls({
   duration,
   progress,
   handleSliderChange,
-  audioSrc,
-  lyricsText,
-  onAnalyzedVersesUpdate,
-  onSetIsAligning,
+  onTrackChange,
+  onResetPlayer,
+  audioLoading,
+  currentTrackName,
+  currentFullTrackName,
 }: MediaControlsProps) {
-  const [analyzedLyrics, setAnalyzedLyrics] = useState<any>();
-  const [analyzedVerses, setAnalyzedVerses] = useState<any>(); 
-  const [tempo, setTempo] = useState<number>(0);
+  const [fullTrackName, setFullTrackName] = useState<string | null>(null); // Your new state
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploading, setUploading] = useState(false);
+  const [trackName, setTrackName] = useState("Upload a mp3 file!");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [premadeTracks, setPremadeTracks] = useState<BlobMP3File[]>([]);
+  const [uploadedTracks, setUploadedTracks] = useState<BlobMP3File[]>([]);
+  const [loadingFiles, setLoadingFiles] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [loadingTrack, setLoadingTrack] = useState(false);
+  const [selectedPremadeValue, setSelectedPremadeValue] = useState<string>("");
+  const [selectedUploadedValue, setSelectedUploadedValue] =
+    useState<string>("");
+  const { token, user } = useAuth();
+  const trackLoadingRef = useRef<AbortController | null>(null);
+  const currentTrackRef = useRef<string>("");
 
-  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [analyzedLyrics, setAnalyzedLyrics] = useState<any>(null);
+  const [analyzedVerses, setAnalyzedVerses] = useState<any>(null);
+  const [tempo, setTempo] = useState<number>(110);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isAligning, setIsAligning] = useState<boolean>(false);
+
+  useEffect(() => {
+    fetchTracks();
+  }, []);
+
+  useEffect(() => {
+    if (currentTrackName) {
+      setTrackName(currentTrackName);
+      setFullTrackName(currentFullTrackName || currentTrackName);
+    }
+  }, [currentTrackName, currentFullTrackName]);
+
+  const fetchTracks = async () => {
+    setLoadingFiles(true);
+    try {
+      if (!user) {
+        throw new Error("User not authenticated");
+      }
+      const data = await mediaApi.fetchTracks({ token, user });
+      setPremadeTracks(data.premade);
+      setUploadedTracks(data.uploaded);
+    } catch (error) {
+      console.error("Error fetching tracks:", error);
+      toast.error("Failed to load tracks", {
+        description: "Could not fetch tracks from server",
+        icon: <AlertCircle className="h-4 w-4" />,
+      });
+    } finally {
+      setLoadingFiles(false);
+    }
+  };
+
+  const resetPlayerAndLoadTrack = async (
+    trackUrl: string,
+    trackName: string,
+    fullTrackName?: string
+  ) => {
+    if (trackLoadingRef.current) {
+      trackLoadingRef.current.abort();
+    }
+
+    const abortController = mediaApi.createAbortController();
+    trackLoadingRef.current = abortController;
+
+    setLoadingTrack(true);
+    setErrorMessage(null);
+
+    try {
+      onResetPlayer();
+
+      setTrackName(`Loading: ${trackName}`);
+
+      if (abortController.signal.aborted) {
+        return;
+      }
+
+      currentTrackRef.current = trackUrl;
+      const finalFullTrackName = fullTrackName || trackName;
+      setFullTrackName(finalFullTrackName);
+
+      onTrackChange(trackUrl, trackName, fullTrackName as string);
+      setTrackName(trackName);
+    } catch (error) {
+      if (error instanceof Error && !mediaApi.isAbortError(error)) {
+        console.error("Error loading track:", error);
+        setErrorMessage("Failed to load track");
+        toast.error("Failed to load track", {
+          description: "Could not load the selected track",
+          icon: <AlertCircle className="h-4 w-4" />,
+        });
+      }
+    } finally {
+      if (!abortController.signal.aborted) {
+        setLoadingTrack(false);
+        trackLoadingRef.current = null;
+      }
+    }
+  };
+
+  const handleTrackSelect = async (
+    trackUrl: string,
+    trackName: string,
+    selectType: "premade" | "uploaded",
+    originalFilename?: string
+  ) => {
+    if (selectType === "premade") {
+      setSelectedUploadedValue("");
+    } else {
+      setSelectedPremadeValue("");
+    }
+
+    await resetPlayerAndLoadTrack(trackUrl, trackName, originalFilename);
+  };
+
+  const handleFileUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setErrorMessage(null);
+    setUploadProgress(0);
+    setUploadSuccess(false);
+
+    try {
+      mediaApi.validateFile(file);
+      if (!user) {
+        throw new Error("User not authenticated");
+      }
+      const data = await mediaApi.uploadFile(
+        { token, user },
+        file,
+        (progress) => {
+          setUploadProgress(progress);
+        }
+      );
+
+      // Success - automatically load the uploaded track
+      setUploadSuccess(true);
+
+      toast.success("Upload Successful!", {
+        description: `${file.name} has been uploaded successfully`,
+        icon: <CheckCircle className="h-4 w-4" />,
+      });
+
+      setSelectedPremadeValue("");
+      setSelectedUploadedValue("");
+      await resetPlayerAndLoadTrack(data.url, file.name, data.filename);
+
+      fetchTracks();
+
+      event.target.value = "";
+
+      setTimeout(() => {
+        setUploadSuccess(false);
+        setUploadProgress(0);
+      }, 3000);
+    } catch (err) {
+      console.error("Upload error:", err);
+      const errorMsg =
+        err instanceof Error
+          ? err.message
+          : "Failed to upload file. Please try again.";
+      setErrorMessage(errorMsg);
+      setUploadProgress(0);
+
+      toast.error("Upload Failed", {
+        description: errorMsg,
+        icon: <AlertCircle className="h-4 w-4" />,
+      });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleResetPlayer = () => {
+    setFullTrackName(null);
+    setTrackName("Upload a mp3 file!");
+    onResetPlayer();
+  };
+
+  const renderTrackItems = (tracks: BlobMP3File[]) => {
+    if (loadingFiles) {
+      return (
+        <SelectItem value="loading" disabled>
+          <span className="flex items-center">
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Loading tracks...
+          </span>
+        </SelectItem>
+      );
+    }
+
+    if (tracks.length === 0) {
+      return (
+        <SelectItem value="empty" disabled>
+          No tracks found
+        </SelectItem>
+      );
+    }
+
+    return tracks.map((track) => (
+      <SelectItem key={track.url} value={track.url}>
+        <div className="flex flex-col">
+          <span className="font-medium">{track.displayName}</span>
+          <span className="text-xs text-gray-500">
+            {mediaApi.formatFileSize(track.size)}
+          </span>
+        </div>
+      </SelectItem>
+    ));
+  };
+
+  const controlsDisabled =
+    uploading || loadingTrack || loadingFiles || audioLoading;
+
+  
+  const onAnalyzedLyrics = (result: any) => {
+    setAnalyzedLyrics(result);
+    setTempo(Number(result.rhythm_info.tempo.toFixed(2)));
+
+    const verses = result.aligned_lyrics;
+    setAnalyzedVerses(verses);
+
+    onAnalyzedVersesUpdate(verses);
+  };
 
   useEffect(() => {
     if (!audioSrc || !lyricsText)
@@ -53,73 +311,236 @@ export default function MediaControls({
       
   }, [audioSrc, lyricsText, isAligning])
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
+  // TODO fix this
+  // const handleAnalyze = async () => {
+  //   try {
+  //     if (!audioSrc || !lyricsText) {
+  //       console.log("audio or lyrics doesn't exist");
+  //       return;
+  //     }
 
-  const handleAnalyze = async () => {
-    try {
-      if (!audioSrc || !lyricsText) {
-        console.log("audio or lyrics doesn't exist");
-        return;
-      }
+  //     // Convert the local URL to a File object
+  //     const audioFile = await urlToFile(audioSrc, "placeholder.mp3", "audio/mpeg");
 
-      // Convert the local URL to a File object
-      const audioFile = await urlToFile(audioSrc, "placeholder.mp3", "audio/mpeg");
+  //     // Now call the API with the lyrics and File
+  //     setIsAligning(true);
+  //     const result = await analyzeLyrics(lyricsText, audioFile);
 
-      // Now call the API with the lyrics and File
-      setIsAligning(true);
-      const result = await analyzeLyrics(lyricsText, audioFile);
-
-      console.log("Analysis result:", result);
-      onAnalyzedLyrics(result);
-    } catch (err) {
-      console.error("Error analyzing lyrics:", err);
-    }
-    setIsAligning(false);
-  };
-
-  const onAnalyzedLyrics = (result: any) => {
-    setAnalyzedLyrics(result);
-    setTempo(Number(result.rhythm_info.tempo.toFixed(2)));
-
-    const verses = result.aligned_lyrics;
-    setAnalyzedVerses(verses);
-
-    onAnalyzedVersesUpdate(verses);
-  };
+  //     console.log("Analysis result:", result);
+  //     onAnalyzedLyrics(result);
+  //   } catch (err) {
+  //     console.error("Error analyzing lyrics:", err);
+  //   }
+  //   setIsAligning(false);
+  // };
 
   return (
     <div className="border-b border-[#1e3a5f] bg-[#112240] px-4 py-3">
-      <div className="flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <button className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f]-20 hover:text-white">
-              <SkipBack className="h-5 w-5" />
-            </button>
+          <div className="text-sm text-gray-300">
+            {uploading ? (
+              <div className="flex items-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <span>Uploading... {Math.round(uploadProgress)}%</span>
+              </div>
+            ) : loadingTrack || audioLoading ? (
+              <div className="flex items-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <span>
+                  {audioLoading ? "Loading audio..." : "Loading track..."}
+                </span>
+              </div>
+            ) : uploadSuccess ? (
+              <div className="flex items-center text-[#64ffda]">
+                <CheckCircle className="mr-2 h-4 w-4" />
+                <span>Upload successful!</span>
+              </div>
+            ) : errorMessage ? (
+              <div className="flex items-center text-red-400">
+                <AlertCircle className="mr-2 h-4 w-4" />
+                <span>{errorMessage}</span>
+              </div>
+            ) : (
+              trackName
+            )}
+          </div>
+
+          <div className="relative">
+            <input
+              type="file"
+              accept=".mp3,audio/mpeg"
+              onChange={handleFileUpload}
+              className="absolute inset-0 cursor-pointer opacity-0"
+              disabled={controlsDisabled}
+            />
             <button
-              className="rounded-full bg-[#64ffda] p-2 text-[#0a192f] hover:bg-[#5ae6c4]"
-              onClick={togglePlay}
+              className={`rounded-full p-1 ${
+                controlsDisabled
+                  ? "text-gray-500"
+                  : uploadSuccess
+                    ? "text-[#64ffda]"
+                    : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"
+              }`}
+              disabled={controlsDisabled}
             >
-              {isPlaying ? (
-                <Pause className="h-5 w-5" />
+              {uploading ? (
+                <Loader2 className="h-5 w-5 animate-spin" />
+              ) : uploadSuccess ? (
+                <CheckCircle className="h-5 w-5" />
               ) : (
-                <Play className="h-5 w-5" />
+                <Upload className="h-5 w-5" />
               )}
             </button>
-            <button className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f]-20 hover:text-white">
-              <SkipForward className="h-5 w-5" />
-            </button>
           </div>
-          <div className="text-sm text-gray-300">track.mp4</div>
-          <button className="rounded-full p-1 text-gray-300 hover:bg-[#1e3a5f]-20 hover:text-white">
-            <Download className="h-5 w-5" />
-          </button>
-          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">{tempo} BPM</div>
+
+          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">110 BPM</div>
         </div>
-        <div className="flex w-1/2 items-center space-x-4">
+
+        <div className="flex items-center space-x-3">
+          {/* Premade Tracks */}
+          <Select
+            value={selectedPremadeValue}
+            onValueChange={(value) => {
+              setSelectedPremadeValue(value);
+              const track = premadeTracks.find((track) => track.url === value);
+              if (track) {
+                handleTrackSelect(
+                  track.url,
+                  track.displayName,
+                  "premade",
+                  track.originalFilename
+                );
+              }
+            }}
+            disabled={controlsDisabled}
+          >
+            <SelectTrigger
+              className={`w-48 border-[#1e3a5f] bg-[#0a192f] text-gray-300 ${controlsDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
+              <SelectValue placeholder="Premade Tracks" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Premade Music</SelectLabel>
+                {renderTrackItems(premadeTracks)}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+
+          {/* Uploaded Tracks */}
+          <Select
+            value={selectedUploadedValue}
+            onValueChange={(value) => {
+              setSelectedUploadedValue(value);
+              const track = uploadedTracks.find((track) => track.url === value);
+              if (track) {
+                handleTrackSelect(
+                  track.url,
+                  track.displayName,
+                  "uploaded",
+                  track.originalFilename
+                );
+              }
+            }}
+            disabled={controlsDisabled}
+          >
+            <SelectTrigger
+              className={`w-48 border-[#1e3a5f] bg-[#0a192f] text-gray-300 ${controlsDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
+              <SelectValue placeholder="Your Uploads" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel className="flex items-center justify-between">
+                  Your Uploaded Music
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={fetchTracks}
+                    disabled={controlsDisabled}
+                    className="h-4 w-4 p-0"
+                  >
+                    {loadingFiles ? (
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                    ) : (
+                      <RefreshCw className="h-3 w-3" />
+                    )}
+                  </Button>
+                </SelectLabel>
+                {renderTrackItems(uploadedTracks)}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0a192f]"
+            disabled={controlsDisabled}
+          >
+            Align Lyrics
+          </Button>
+        </div>
+      </div>
+
+      {/* Upload Progress Bar */}
+      {uploading && (
+        <div className="mb-4">
+          <div className="mb-1 flex justify-between text-xs text-gray-400">
+            <span>Uploading to Cloud Storage...</span>
+            <span>{Math.round(uploadProgress)}%</span>
+          </div>
+          <Progress
+            value={uploadProgress}
+            className="h-2 w-full bg-[#1e3a5f]"
+          />
+        </div>
+      )}
+
+      {/* Track Loading Progress */}
+      {loadingTrack && (
+        <div className="mb-4">
+          <div className="mb-1 flex justify-between text-xs text-gray-400">
+            <span>Loading track...</span>
+          </div>
+          <Progress
+            value={100}
+            className="h-2 w-full bg-[#1e3a5f] animate-pulse"
+          />
+        </div>
+      )}
+
+      <div className="flex items-center">
+        <div className="flex items-center space-x-2">
+          <button
+            className={`rounded-full p-1 ${controlsDisabled ? "text-gray-500 cursor-not-allowed" : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"}`}
+            disabled={controlsDisabled}
+          >
+            <SkipBack className="h-5 w-5" />
+          </button>
+          <button
+            className={`rounded-full p-2 ${controlsDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-[#64ffda] hover:bg-[#5ae6c4]"} text-[#0a192f]`}
+            onClick={togglePlay}
+            disabled={controlsDisabled}
+          >
+            {loadingTrack ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : isPlaying ? (
+              <Pause className="h-5 w-5" />
+            ) : (
+              <Play className="h-5 w-5" />
+            )}
+          </button>
+          <button
+            className={`rounded-full p-1 ${controlsDisabled ? "text-gray-500 cursor-not-allowed" : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"}`}
+            disabled={controlsDisabled}
+          >
+            <SkipForward className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="mx-auto flex w-1/2 items-center space-x-4">
           <span className="text-xs text-gray-400">
             {formatTime(currentTime)}
           </span>
@@ -128,8 +549,9 @@ export default function MediaControls({
             min={0}
             max={100}
             step={0.1}
-            className="w-full"
+            className={`w-full ${controlsDisabled ? "opacity-50 pointer-events-none" : ""}`}
             onValueChange={handleSliderChange}
+            disabled={controlsDisabled}
           />
           <span className="text-xs text-gray-400">{formatTime(duration)}</span>
           
@@ -156,6 +578,8 @@ export default function MediaControls({
           
 
         </div>
+
+        <div className="w-20"></div>
       </div>
     </div>
   );

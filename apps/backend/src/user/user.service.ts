@@ -1,13 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, User } from 'generated/prisma';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { DatabaseService } from 'src/database/database.service';
+import * as bcrypt from 'bcrypt';
+
+export const roundsOfHashing = 10;
 
 @Injectable()
 export class UserService {
   constructor(private readonly databaseService: DatabaseService) {}
 
-  async create(createUserDto: Prisma.UserCreateInput) {
-    return await this.databaseService.user.create({
+  async create(createUserDto: CreateUserDto) {
+    const hashedPassword = await bcrypt.hash(
+      createUserDto.password,
+
+      roundsOfHashing,
+    );
+
+    createUserDto.password = hashedPassword;
+
+    return this.databaseService.user.create({
       data: createUserDto,
     });
   }
@@ -17,17 +29,20 @@ export class UserService {
   }
 
   async findOne(id: string) {
-    return (await this.databaseService.user.findUnique({
-      where: { id },
-    })) as User;
+    return await this.databaseService.user.findUnique({ where: { id } });
   }
   async findUserByUsername(username: string) {
-    return (await this.databaseService.user.findUnique({
-      where: { username },
-    })) as User;
+    return await this.databaseService.user.findUnique({ where: { username } });
   }
 
-  async update(id: string, updateUserDto: Prisma.UserUpdateInput) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(
+        updateUserDto.password,
+
+        roundsOfHashing,
+      );
+    }
     return await this.databaseService.user.update({
       where: { id },
       data: updateUserDto,

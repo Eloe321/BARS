@@ -6,6 +6,6 @@
       "@workspace/ui/*": ["./src/*"]
     }
   },
-  "include": ["."],
+  "include": [".", "../contexts/authContext.tsx"],
   "exclude": ["node_modules", "dist"]
 }
