@@ -177,7 +177,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/eloe/BARS-1/apps/backend/generated/prisma",
+      "value": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BACK-BARS\\BARS\\apps\\backend\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -186,12 +186,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/eloe/BARS-1/apps/backend/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BACK-BARS\\BARS\\apps\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
