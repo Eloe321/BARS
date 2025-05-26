@@ -1,6 +1,6 @@
 import { RefreshCw } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { generateLyrics } from '@workspace/ui/components/utils/api.js';
 
 
@@ -15,10 +15,11 @@ type BinisayaFoundResult = {
   synonyms: string[];
 };
 
-function BinisayaFoundCard({ entry }: { entry: BinisayaFoundResult }) {
+function BinisayaFoundCard({ entry, isGettingEntry }: { entry: BinisayaFoundResult, isGettingEntry: boolean }) {
   const [figurative, setFigurative] = useState<string>("metaphor");
   const [generatedVerse, setGeneratedVerse] = useState<string | null>(null);
 
+  const [isGenerating, setIsGenerating] = useState<boolean>(false);
   interface GenerateVerseFn {
     (): Promise<void>;
   }
@@ -27,17 +28,19 @@ function BinisayaFoundCard({ entry }: { entry: BinisayaFoundResult }) {
     const prompt = "make sure to include " + entry.word + " in the verse with the figurative language, " + figurative;
 
     try {
+      setIsGenerating(true);
       const generated = await generateLyrics(prompt);
       setGeneratedVerse(generated.generated_text);
       console.log(generated.generated_text)
     } catch (error) {
       console.error("Failed to generate lyrics:", error);
     }
+    setIsGenerating(false);
   };
 
 
   return (
-    <div className="bg-slate-800 text-white p-4 rounded-md shadow-md">
+    <div className="relative text-white rounded-md shadow-md">
       <p><strong>Pronunciation:</strong> {entry.pronunciation} ({entry.ipa})</p>
       <p><strong>Part of Speech:</strong> {entry.pos}</p>
       <p><strong>Definitions:</strong></p>
@@ -51,7 +54,7 @@ function BinisayaFoundCard({ entry }: { entry: BinisayaFoundResult }) {
       <p><strong>Synonyms:</strong></p>
       <ul className="grid grid-cols-2 gap-x-4 list-disc pl-5 mb-2">
         {entry.synonyms.map((def, i) => (
-          <li key={i}>- {def}</li>
+          <li key={i}><p>{def}</p></li>
         ))}
       </ul>
 
@@ -69,16 +72,29 @@ function BinisayaFoundCard({ entry }: { entry: BinisayaFoundResult }) {
           <option value="alliteration">Alliteration</option>
         </select>
 
-        <Button
-          className="mt-6 w-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]"
-          size="sm"
-          onClick={generateVerse}
-        >
-          <RefreshCw className="mr-2 h-4 w-4" />
-          Generate {figurative}
-        </Button>
+        { isGenerating ? (
+          <Button
+            className="mt-6 w-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4] cursor-not-allowed"
+            size="sm"
+            disabled
+            onClick={generateVerse}
+          >
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Waiting...
+          </Button>
+        ) : (
+          <Button
+            className="mt-6 w-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]"
+            size="sm"
+            onClick={generateVerse}
+          >
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Generate {figurative}
+          </Button>
+        ) }
+
         
-        <div className="mt-4 text-sm text-gray-200 txt-lyric">
+        <div className="mt-4 text-sm text-gray-200 font-mono">
             {generatedVerse &&
             generatedVerse.split('\n').map((line, idx) => (
               <div key={idx}>{line}</div>
@@ -86,6 +102,10 @@ function BinisayaFoundCard({ entry }: { entry: BinisayaFoundResult }) {
             }
         </div>
       </div>
+
+      {isGenerating || isGettingEntry && (
+        <div className="absolute inset-0 bg-gray-900 mix-blend-multiply pointer-events-none z-10" style={{ opacity: 0.5 }} />
+      )}
     </div>
   );
 }

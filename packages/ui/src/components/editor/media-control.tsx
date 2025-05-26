@@ -72,13 +72,13 @@ export default function MediaControls({
       // Now call the API with the lyrics and File
       setIsAligning(true);
       const result = await analyzeLyrics(lyricsText, audioFile);
-      setIsAligning(false);
 
       console.log("Analysis result:", result);
       onAnalyzedLyrics(result);
     } catch (err) {
       console.error("Error analyzing lyrics:", err);
     }
+    setIsAligning(false);
   };
 
   const onAnalyzedLyrics = (result: any) => {

@@ -72,8 +72,13 @@ export default function LyricGenerator({ onGenerate, isGenerating, setIsGenerati
           )}
             onClick={async () => {
               if (isGenerating) return;
-              setIsGenerating(true);
-              await generateFunction({ theme, mood, figurative });
+              try{
+                setIsGenerating(true);
+                await generateFunction({ theme, mood, figurative });
+              } catch (error) {
+                console.error("Failed to generate lyrics:", error);
+              }
+              
               setIsGenerating(false);
             }}
         >

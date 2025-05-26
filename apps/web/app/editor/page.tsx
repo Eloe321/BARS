@@ -5,37 +5,24 @@ import { ThemeProvider } from "@workspace/ui/components/theme-provider";
 import { useAudioPlayer } from "@workspace/ui/hooks/useAudioPlayer";
 import { useFileUpload } from "@workspace/ui/hooks/useFileUpload";
 import { useProgress } from "@workspace/ui/hooks/useProgress";
+import { useSongAlign } from "@workspace/ui/hooks/useSongAlign";
 import EditorTopBar from "@workspace/ui/components/editor/editor-topbar";
 import MediaControls from "@workspace/ui/components/editor/media-control";
 import LyricsEditor from "@workspace/ui/components/editor/editor-canvas";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
 
-// Define the Cell type to match EditorCell
-type Cell = {
-  id: number;
-  type: string;
-  content: string;
-  timeStart?: number;
-  timeEnd?: number;
-};
-
 export default function EditorPage() {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const { audioSrc } = useFileUpload("/beat/placeholder.mp3");
-  const [lyricsText, setLyricsText] = useState<any>();
-  const [cells, setCells] = useState<Cell[]>([]);
   const [analyzedVerses, setAnalyzedVerses] = useState<any[]>([]);
   const { isPlaying, togglePlay, setTime, handleAudioEnd, currentTime, duration, audioRef } = useAudioPlayer(audioSrc);
   const { progress, updateProgress } = useProgress(currentTime, duration);
+  const { cells, lyricsText, handleCellsUpdate} = useSongAlign();
 
   const [thesaurusWord, setThesaurusWord] = useState<string>("");
 
   const [isAligning, setIsAligning] = useState<boolean>(false);
-
-  // useEffect(() => {
-
-  // }, [isAligning])
 
   const handleSliderChange = (value: number[]) => {
     const newTime = ((value[0] ?? 0) / 100) * duration;
@@ -46,41 +33,6 @@ export default function EditorPage() {
   const handleThesaurus = async (word: string) => {
     setShowSidebar(true);
     setThesaurusWord(word);
-  };
-
-  // automatically arranges cells into json format
-  const handleCellsUpdate = (cells: Cell[]) => {
-    // taking all the cells
-    setCells(cells);
-
-    const lyricCells = cells.filter(cell => cell.type === 'lyric');
-
-  const lyricsText = lyricCells.map(cell => {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = cell.content;
-
-    // Convert <div> and <br> to new lines explicitly
-    tempDiv.querySelectorAll("br").forEach(br => br.replaceWith("\n"));
-    tempDiv.querySelectorAll("div").forEach(div => {
-      const textNode = document.createTextNode("\n" + div.textContent);
-      div.replaceWith(textNode);
-    });
-
-    return tempDiv.textContent?.trim() || "";
-  }).join('<VERSE>'); // Two newlines between each cell
-
-  setLyricsText(lyricsText);
-
-    // Save all cell info in clean array
-    const jsonData = cells.map(cell => ({
-      id: cell.id,
-      type: cell.type,
-      content: cell.content,
-      timeStart: cell.timeStart,
-      timeEnd: cell.timeEnd
-    }));
-
-    // console.log("Generated JSON (all cells):", JSON.stringify(jsonData, null, 2));
   };
 
   return (
@@ -152,4 +104,3 @@ export default function EditorPage() {
     </ThemeProvider>
   );
 }
-

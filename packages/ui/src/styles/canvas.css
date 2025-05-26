@@ -23,7 +23,9 @@
   
   .time-info {
     position: relative;
-    left: -90px;
+    left: -100px;
+    font-family: monospace;
+    font-size: large;
   }
 
   textarea {

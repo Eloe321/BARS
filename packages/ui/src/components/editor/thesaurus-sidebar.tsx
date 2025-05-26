@@ -10,10 +10,19 @@ interface ThesaurusSidebarProps {
 export default function ThesaurusSidebar({ word }: ThesaurusSidebarProps) {
   const [thesaurusEntry, setThesaurusEntry] = useState<any>(null);
 
+    const [isGettingEntry, setIsGettingEntry] = useState<boolean>(false);
+
+
   useEffect(() => {
     const fetchThesaurusEntry = async () => {
       if (word) {
-        setThesaurusEntry(await searchBinisaya(word));
+        try{
+          setIsGettingEntry(true);
+          setThesaurusEntry(await searchBinisaya(word));
+        } catch (error) {
+          console.log("Error getting entry: ", error);
+        }
+        setIsGettingEntry(false);
       }
     };
 
@@ -31,7 +40,7 @@ export default function ThesaurusSidebar({ word }: ThesaurusSidebarProps) {
         {thesaurusEntry !== null && (
           <>
             {thesaurusEntry.status === 'found' && (
-              <BinisayaFoundCard entry={thesaurusEntry.result[0]} />
+              <BinisayaFoundCard entry={thesaurusEntry.result[0]} isGettingEntry={isGettingEntry} />
             )}
             {thesaurusEntry.status === 'suggestions' && (
               <BinisayaSuggestions suggestions={thesaurusEntry.result} />
