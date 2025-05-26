@@ -7,12 +7,13 @@ import TimelineSidebar from "@workspace/ui/components/editor/timeline-sidebar";
 import EditorTopBar from "@workspace/ui/components/editor/editor-topbar";
 import MediaControls from "@workspace/ui/components/editor/media-control";
 import LyricsEditor, {
-  LyricsEditorRef,
+  type LyricsEditorRef,
 } from "@workspace/ui/components/editor/editor-canvas";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
 import SongSelection from "@workspace/ui/components/editor/song-selection";
-import ProtectedRoute from "../../components/auth/protected-route";
-import { Song, MusicSource } from "@workspace/types";
+import ProtectedRoute from "@/components/auth/protected-route";
+import SongNameModal from "@/components/modals/song-name-modal";
+import { type Song, MusicSource } from "@workspace/types";
 import { useAuth } from "@workspace/ui/components/context/authContext";
 import {
   formatMusicName,
@@ -27,6 +28,10 @@ export default function EditorPage() {
   const [showSongSelection, setShowSongSelection] = useState(true);
   const [savedSong, setSavedSong] = useState<Song | null>(null);
 
+  // Modal state
+  const [showSongNameModal, setShowSongNameModal] = useState(false);
+  const [pendingSave, setPendingSave] = useState(false);
+
   //media controls
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -34,7 +39,7 @@ export default function EditorPage() {
   const [progress, setProgress] = useState(0);
   const [trackUrl, setTrackUrl] = useState<string | null>(null);
   const [trackName, setTrackName] = useState<string | null>(null);
-  const [fullTrackName, setFullTrackName] = useState<string | null>(null); // Add this state
+  const [fullTrackName, setFullTrackName] = useState<string | null>(null);
   const [audioLoading, setAudioLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -52,14 +57,73 @@ export default function EditorPage() {
 
   const [isSaving, setIsSaving] = useState(false);
 
-  // Save song function
-  const handleSongSave = async (): Promise<boolean> => {
-    if (!user?.id) {
-      console.error("User not authenticated");
-      return false;
+  // Enhanced error handling utility
+  const handleError = (error: any, context: string) => {
+    console.error(`Error in ${context}:`, error);
+
+    let userMessage = "An unexpected error occurred. Please try again.";
+
+    if (error.message) {
+      if (
+        error.message.includes("Unauthorized") ||
+        error.message.includes("401")
+      ) {
+        userMessage = "Your session has expired. Please log in again.";
+      } else if (error.message.includes("Failed to fetch")) {
+        userMessage =
+          "Network error. Please check your connection and try again.";
+      } else if (error.message.includes("Failed to save")) {
+        userMessage =
+          "Failed to save your song. Please try again or contact support.";
+      } else if (error.message.includes("Failed to fetch music data")) {
+        userMessage =
+          "Could not load music data. Please try selecting the track again.";
+      } else {
+        userMessage = error.message;
+      }
     }
+
+    toast.error(userMessage, {
+      duration: 5000,
+      action: {
+        label: "Dismiss",
+        onClick: () => {},
+      },
+    });
+  };
+
+  // Validation utility
+  const validateSaveConditions = (): { isValid: boolean; error?: string } => {
+    if (!user?.id) {
+      return { isValid: false, error: "You must be logged in to save songs." };
+    }
+
     if (!trackUrl || !trackName || !fullTrackName) {
-      toast.error("Please selecta track first before saving.");
+      return {
+        isValid: false,
+        error: "Please select a track before saving your song.",
+      };
+    }
+
+    const currentContent = editorRef.current?.getContent() || "";
+    if (!currentContent.trim()) {
+      return {
+        isValid: false,
+        error: "Cannot save an empty song. Please add some lyrics first.",
+      };
+    }
+
+    return { isValid: true };
+  };
+
+  // Enhanced save song function with modal and better error handling
+  const handleSongSave = async (): Promise<boolean> => {
+    // Validate conditions before proceeding
+    const validation = validateSaveConditions();
+    if (!validation.isValid) {
+      toast.error(validation.error!, {
+        duration: 4000,
+      });
       return false;
     }
 
@@ -67,30 +131,71 @@ export default function EditorPage() {
     const currentContent = editorRef.current?.getContent() || "";
     setSongLyrics(currentContent);
 
-    console.log("checking if all the variables is correct:");
-    console.log("user id: ", user.id);
-    console.log("selected song: ", selectedSong);
-    console.log("file name: ", fileName);
-    console.log("song lyrics: ", currentContent);
-    console.log("track url: ", trackUrl);
-    console.log("track name: ", trackName);
-    console.log("full track name: ", fullTrackName);
-    console.log("The content of the song: ", currentContent);
     try {
       setIsSaving(true);
+      toast.loading("Preparing to save your song...", { id: "save-progress" });
 
-      let currentFileName = fileName;
+      const currentFileName = fileName;
 
-      // If it's a new file, prompt for name
+      // If it's a new file, show modal for name input
       if (fileName === "untitled.bar") {
-        const newName = prompt("Enter a name for your song:");
-        if (!newName) return false; // User cancelled
-        currentFileName = newName;
-        setFileName(currentFileName);
+        setPendingSave(true);
+        setShowSongNameModal(true);
+        toast.dismiss("save-progress");
+        setIsSaving(false);
+        return false; // Will continue in handleSongNameConfirm
       }
 
+      return await performSave(currentFileName, currentContent);
+    } catch (error) {
+      handleError(error, "song save initialization");
+      return false;
+    } finally {
+      if (!pendingSave) {
+        setIsSaving(false);
+        toast.dismiss("save-progress");
+      }
+    }
+  };
+
+  // Handle song name confirmation from modal
+  const handleSongNameConfirm = async (newName: string) => {
+    if (!newName.trim()) {
+      toast.error("Song name cannot be empty");
+      return;
+    }
+
+    setFileName(newName);
+    setPendingSave(false);
+    setIsSaving(true);
+
+    const currentContent = editorRef.current?.getContent() || "";
+
+    toast.loading("Saving your song...", { id: "save-progress" });
+
+    const success = await performSave(newName, currentContent);
+
+    setIsSaving(false);
+    toast.dismiss("save-progress");
+
+    if (success) {
+      toast.success(`Song "${newName}" saved successfully!`, {
+        duration: 3000,
+      });
+    }
+  };
+
+  // Perform the actual save operation
+  const performSave = async (
+    songName: string,
+    content: string
+  ): Promise<boolean> => {
+    try {
+      // Fetch music data
       let fetchedMusicData;
       try {
+        toast.loading("Loading music data...", { id: "save-progress" });
+
         const response = await fetch(
           `api/music?type=uploaded&name="${fullTrackName}"`,
           {
@@ -100,94 +205,147 @@ export default function EditorPage() {
             },
           }
         );
-        // Check for 401 Unauthorized status
+
         if (response.status === 401) {
-          throw new Error("Unauthorized access. Please log in.");
+          throw new Error("Your session has expired. Please log in again.");
         }
 
-        // Check for other response statuses
+        if (response.status === 404) {
+          throw new Error(
+            "The selected music track could not be found. Please select a different track."
+          );
+        }
+
         if (!response.ok) {
           throw new Error(
-            "Failed to fetch music data. Status: " + response.status
+            `Failed to load music data. Server responded with status ${response.status}.`
           );
         }
 
         fetchedMusicData = await response.json();
         setMusicData(fetchedMusicData);
-      } catch (error: any) {
-        console.error("Error fetching music:", error);
-        toast.error(error.message);
+      } catch (error) {
+        handleError(error, "music data fetch");
+        return false;
       }
 
+      // Save or update song
       if (!selectedSong) {
-        const songData = {
-          user_id: user.id,
-          title: currentFileName,
-          content: songLyrics,
-          musicSource: MusicSource.UPLOADED,
-          uploaded_music_id: fetchedMusicData.music_id,
-          creation_date: new Date().toISOString(),
-        };
-
-        try {
-          const response = await fetch("/api/songs", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(songData),
-          });
-          if (!response.ok) {
-            throw new Error("Failed to save song");
-          }
-
-          const savedSongData = await response.json();
-          setSavedSong(savedSongData);
-          setSelectedSong(savedSong);
-        } catch (error: any) {
-          console.error("Error saving song:", error);
-          alert("Failed to save song. Please try again.");
-          return false;
-        }
+        return await createNewSong(songName, content, fetchedMusicData);
       } else {
-        const songData = {
-          title: currentFileName,
-          content: songLyrics,
-          musicSource: MusicSource.UPLOADED,
-          uploaded_music_id: fetchedMusicData.music.id,
-        };
+        return await updateExistingSong(songName, content, fetchedMusicData);
+      }
+    } catch (error) {
+      handleError(error, "song save operation");
+      return false;
+    }
+  };
 
-        try {
-          const response = await fetch(`/api/songs?id=${selectedSong?.id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(songData),
-          });
+  // Create new song
+  const createNewSong = async (
+    songName: string,
+    content: string,
+    musicData: any
+  ): Promise<boolean> => {
+    try {
+      toast.loading("Creating new song...", { id: "save-progress" });
 
-          if (!response.ok) {
-            throw new Error("Failed to save song");
-          }
+      const songData = {
+        user_id: user!.id,
+        title: songName,
+        content: content,
+        musicSource: MusicSource.UPLOADED,
+        uploaded_music_id: musicData.music_id,
+        creation_date: new Date().toISOString(),
+      };
 
-          const updatedSongData = await response.json();
-          setSavedSong(updatedSongData);
-          setSelectedSong(updatedSongData);
-        } catch (error: any) {
-          console.error("Error saving song: ", error);
-        }
+      const response = await fetch("/api/songs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(songData),
+      });
+
+      if (response.status === 401) {
+        throw new Error("Your session has expired. Please log in again.");
       }
 
-      console.log("Song saved successfully:", savedSong);
+      if (response.status === 409) {
+        throw new Error(
+          "A song with this name already exists. Please choose a different name."
+        );
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.message ||
+            `Failed to save song. Server error: ${response.status}`
+        );
+      }
+
+      const savedSongData = await response.json();
+      setSavedSong(savedSongData);
+      setSelectedSong(savedSongData);
+
       return true;
     } catch (error) {
-      console.error("Error saving song:", error);
-      alert("Failed to save song. Please try again.");
+      handleError(error, "new song creation");
       return false;
-    } finally {
-      setIsSaving(false);
+    }
+  };
+
+  // Update existing song
+  const updateExistingSong = async (
+    songName: string,
+    content: string,
+    musicData: any
+  ): Promise<boolean> => {
+    try {
+      toast.loading("Updating song...", { id: "save-progress" });
+
+      const songData = {
+        title: songName,
+        content: content,
+        musicSource: MusicSource.UPLOADED,
+        uploaded_music_id: musicData.music?.id || musicData.music_id,
+      };
+
+      const response = await fetch(`/api/songs?id=${selectedSong?.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(songData),
+      });
+
+      if (response.status === 401) {
+        throw new Error("Your session has expired. Please log in again.");
+      }
+
+      if (response.status === 404) {
+        throw new Error("The song you're trying to update no longer exists.");
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.message ||
+            `Failed to update song. Server error: ${response.status}`
+        );
+      }
+
+      const updatedSongData = await response.json();
+      setSavedSong(updatedSongData);
+      setSelectedSong(updatedSongData);
+
+      return true;
+    } catch (error) {
+      handleError(error, "song update");
+      return false;
     }
   };
 
@@ -204,35 +362,41 @@ export default function EditorPage() {
     if (song) {
       setFileName(song.title);
       setSongLyrics(song.content || "");
-      console.log("The song music id: ", song.uploaded_music_id);
 
-      const response = await fetch(
-        `/api/music?type=uploaded&id=${song.uploaded_music_id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      try {
+        toast.loading("Loading song data...", { id: "song-load" });
+
+        const response = await fetch(
+          `/api/music?type=uploaded&id=${song.uploaded_music_id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to load song's music data");
         }
-      );
-      const musicData = await response.json();
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch music data");
+        const musicData = await response.json();
+
+        handleTrackChange(
+          musicData.path,
+          formatMusicName(formatQuotesFromMusicName(musicData.music_name)),
+          formatQuotesFromMusicName(musicData.music_name)
+        );
+
+        toast.success("Song loaded successfully", { id: "song-load" });
+      } catch (error) {
+        handleError(error, "song selection");
+        toast.dismiss("song-load");
       }
-
-      handleTrackChange(
-        musicData.path,
-        formatMusicName(formatQuotesFromMusicName(musicData.music_name)),
-        formatQuotesFromMusicName(musicData.music_name)
-      );
-
-      // You can load other song data into the editor here
     } else {
       // New song - reset everything
       setFileName("untitled.bar");
       resetPlayer();
-      // Reset other editor state as needed
     }
   };
 
@@ -401,18 +565,12 @@ export default function EditorPage() {
         const saved = await handleSongSave();
         if (saved) {
           toast.success("Song saved successfully");
-        } else {
-          toast.error("Failed to save song");
         }
-        // Implement save logic here
+        // Note: Error handling is now done within handleSongSave
         break;
       case "save-as":
-        // Show save as dialog
-        // This would typically show a dialog to choose new filename
-        const newName = prompt("Enter filename:", fileName);
-        if (newName) {
-          setFileName(newName);
-        }
+        // Show save as dialog using the modal
+        setShowSongNameModal(true);
         break;
       case "export":
         // Export current project
@@ -545,6 +703,7 @@ export default function EditorPage() {
         break;
     }
   };
+
   return (
     <ProtectedRoute>
       <ThemeProvider attribute="class" defaultTheme="dark">
@@ -585,6 +744,28 @@ export default function EditorPage() {
               <ThesaurusSidebar />
             </div>
           )}
+
+          {/* Song Name Modal */}
+          <SongNameModal
+            isOpen={showSongNameModal}
+            onClose={() => {
+              setShowSongNameModal(false);
+              setPendingSave(false);
+              // Dismiss the loading toast if user cancels
+              toast.dismiss("save-progress");
+              setIsSaving(false);
+            }}
+            onConfirm={handleSongNameConfirm}
+            defaultName={fileName === "untitled.bar" ? "" : fileName}
+            title={
+              fileName === "untitled.bar" ? "Save New Song" : "Save Song As"
+            }
+            description={
+              fileName === "untitled.bar"
+                ? "Enter a name for your new song"
+                : "Enter a new name for your song"
+            }
+          />
 
           {/* Audio element for playback */}
           <audio ref={audioRef} className="hidden" preload="metadata">

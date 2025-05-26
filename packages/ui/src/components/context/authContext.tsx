@@ -10,6 +10,7 @@ import {
 import { UserCreateDto } from "@workspace/types";
 import { UserEntity } from "@workspace/types";
 import { getCookie, setCookie, deleteCookie } from "@workspace/types";
+import { toast } from "sonner";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3306";
 interface AuthContextType {
@@ -62,7 +63,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               throw new Error("Failed to fetch user data");
             }
           } catch (error) {
-            console.error("Error fetching user data:", error);
+            toast.error(
+              "Error fetching user data: " +
+                (error as Error).message +
+                "\nPlease log in again."
+            );
             // Clear invalid token
             deleteCookie("authToken");
             localStorage.removeItem("authToken");
