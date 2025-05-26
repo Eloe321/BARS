@@ -545,7 +545,7 @@ export default function EditorPage() {
     <ProtectedRoute>
       <ThemeProvider attribute="class" defaultTheme="dark">
         <div className="flex h-screen flex-col bg-[#0a192f] text-white">
-          <EditorHeader />
+          <EditorHeader fileName={fileName} />
           {showSongSelection ? (
             <SongSelection onSongSelect={handleSongSelect} />
           ) : (

@@ -1,6 +1,12 @@
 import { ChevronDown } from "lucide-react";
 
-export default function EditorHeader() {
+interface EditorHeaderProps {
+  fileName?: string;
+}
+
+export default function EditorHeader({
+  fileName = "untitled",
+}: EditorHeaderProps) {
   return (
     <div className="flex h-12 items-center justify-between border-b border-[#1e3a5f] bg-[#0a192f] px-4">
       <div className="flex items-center space-x-4">
@@ -15,9 +21,11 @@ export default function EditorHeader() {
           </div>
           <span className="text-sm font-medium">BARS-Editor</span>
         </div>
-        <div className="flex items-center rounded-md bg-[#112240] px-2 py-1">
-          <span className="text-xs text-gray-400">bars.ai</span>
-        </div>
+      </div>
+      <div className="flex-1 text-center ">
+        <span className="text-sm font-medium text-gray-300">
+          {fileName}.bars
+        </span>
       </div>
       <div className="flex items-center space-x-2">
         <button className="rounded-full p-1 hover:bg-[#1e3a5f]-20">
