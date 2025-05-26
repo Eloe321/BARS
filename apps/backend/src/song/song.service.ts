@@ -6,17 +6,17 @@ import { Song } from './entities/song.entity';
 
 @Injectable()
 export class SongService {
-  constructor(private prisma: DatabaseService) {}
+  constructor(private db: DatabaseService) {}
 
   async create(createSongDto: CreateSongDto): Promise<Song> {
-    const song = await this.prisma.song.create({
+    const song = await this.db.song.create({
       data: createSongDto,
     });
     return this.mapToEntity(song);
   }
 
   async findAll(filters = {}): Promise<Song[]> {
-    const songs = await this.prisma.song.findMany({
+    const songs = await this.db.song.findMany({
       where: filters,
       include: {
         premadeMusic: true,
@@ -27,7 +27,7 @@ export class SongService {
   }
 
   async findOne(id: string): Promise<Song> {
-    const song = await this.prisma.song.findUnique({
+    const song = await this.db.song.findUnique({
       where: { id },
       include: {
         premadeMusic: true,
@@ -41,7 +41,7 @@ export class SongService {
   }
 
   async update(id: string, updateSongDto: UpdateSongDto): Promise<Song> {
-    const song = await this.prisma.song.update({
+    const song = await this.db.song.update({
       where: { id },
       data: updateSongDto,
       include: {
@@ -53,7 +53,7 @@ export class SongService {
   }
 
   async remove(id: string): Promise<Song> {
-    const song = await this.prisma.song.delete({
+    const song = await this.db.song.delete({
       where: { id },
       include: {
         premadeMusic: true,
@@ -63,9 +63,9 @@ export class SongService {
     return this.mapToEntity(song);
   }
 
-  private mapToEntity(prismaData: any): Song {
+  private mapToEntity(dbData: any): Song {
     const song = new Song();
-    Object.assign(song, prismaData);
+    Object.assign(song, dbData);
     return song;
   }
 }

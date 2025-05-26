@@ -1,6 +1,7 @@
 import { list } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
+import { formatMusicName } from "@/components/functions/formatMusicName";
 
 interface MP3File {
   url: string;
@@ -27,13 +28,11 @@ async function fetchBlobFiles(prefix: string): Promise<MP3File[]> {
     return blobs
       .map((blob) => {
         const filename = blob.pathname.split("/").pop() ?? "";
-        const match = filename.match(/^mp3-\d+-(.+?)-[^-]+\.mp3$/);
-        const songTitle = match ? match[1].replace(/_/g, " ") : filename;
 
         return {
           url: blob.url,
           filename: blob.pathname,
-          displayName: songTitle,
+          displayName: formatMusicName(filename),
           originalFilename: filename as string,
           size: blob.size,
           uploadedAt: blob.uploadedAt.toString(),
@@ -69,7 +68,6 @@ async function fetchDatabaseFiles(token: string) {
     const uploadedData = await uploadedResponse.json();
     const premadeData = await premadeResponse.json();
 
-    console.log("Uploaded Data: ", await uploadedData);
     return {
       uploaded: uploadedData as DatabaseFile[],
       premade: premadeData as DatabaseFile[],
@@ -102,7 +100,6 @@ export async function GET() {
 
     // Filter premade files that exist in both Blob and DB
     const premadeFiles = premadeBlobs.filter((blobFile) => {
-      console.log("Blob File: ", blobFile.originalFilename);
       return dbFiles.premade.some((dbFile) => {
         const cleanDbFilename = dbFile.music_name.replace(/^"|"$/g, "").trim();
         return cleanDbFilename === blobFile.originalFilename;

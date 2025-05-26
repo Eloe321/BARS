@@ -4,6 +4,7 @@ export interface BlobMP3File {
   url: string;
   filename: string;
   displayName: string;
+  originalFilename: string;
   size: number;
   uploadedAt: string;
 }
@@ -15,6 +16,7 @@ export interface TracksResponse {
 
 export interface UploadResponse {
   url: string;
+  filename: string;
   error?: string;
 }
 

@@ -37,9 +37,15 @@ interface MediaControlsProps {
   duration: number;
   progress: number;
   handleSliderChange: (value: number[]) => void;
-  onTrackChange: (trackUrl: string, trackName: string) => void;
+  onTrackChange: (
+    trackUrl: string,
+    trackName: string,
+    fullTrackName: string
+  ) => void;
   onResetPlayer: () => void;
   audioLoading: boolean;
+  currentTrackName?: string | null;
+  currentFullTrackName?: string | null;
 }
 
 export default function MediaControls({
@@ -52,9 +58,12 @@ export default function MediaControls({
   onTrackChange,
   onResetPlayer,
   audioLoading,
+  currentTrackName,
+  currentFullTrackName,
 }: MediaControlsProps) {
-  const [uploading, setUploading] = useState(false);
+  const [fullTrackName, setFullTrackName] = useState<string | null>(null); // Your new state
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploading, setUploading] = useState(false);
   const [trackName, setTrackName] = useState("Upload a mp3 file!");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [premadeTracks, setPremadeTracks] = useState<BlobMP3File[]>([]);
@@ -66,13 +75,19 @@ export default function MediaControls({
   const [selectedUploadedValue, setSelectedUploadedValue] =
     useState<string>("");
   const { token, user } = useAuth();
-  // Ref to track the current track loading request
   const trackLoadingRef = useRef<AbortController | null>(null);
   const currentTrackRef = useRef<string>("");
 
   useEffect(() => {
     fetchTracks();
   }, []);
+
+  useEffect(() => {
+    if (currentTrackName) {
+      setTrackName(currentTrackName);
+      setFullTrackName(currentFullTrackName || currentTrackName);
+    }
+  }, [currentTrackName, currentFullTrackName]);
 
   const fetchTracks = async () => {
     setLoadingFiles(true);
@@ -96,14 +111,13 @@ export default function MediaControls({
 
   const resetPlayerAndLoadTrack = async (
     trackUrl: string,
-    trackName: string
+    trackName: string,
+    fullTrackName?: string
   ) => {
-    // Cancel any ongoing track loading
     if (trackLoadingRef.current) {
       trackLoadingRef.current.abort();
     }
 
-    // Create new abort controller for this request
     const abortController = mediaApi.createAbortController();
     trackLoadingRef.current = abortController;
 
@@ -111,20 +125,19 @@ export default function MediaControls({
     setErrorMessage(null);
 
     try {
-      // Reset player state immediately
       onResetPlayer();
 
-      // Update track name immediately for user feedback
       setTrackName(`Loading: ${trackName}`);
 
-      // Check if this request was cancelled
       if (abortController.signal.aborted) {
         return;
       }
 
-      // Set the new track - this will trigger audio loading in parent
       currentTrackRef.current = trackUrl;
-      onTrackChange(trackUrl, trackName);
+      const finalFullTrackName = fullTrackName || trackName;
+      setFullTrackName(finalFullTrackName);
+
+      onTrackChange(trackUrl, trackName, fullTrackName as string);
       setTrackName(trackName);
     } catch (error) {
       if (error instanceof Error && !mediaApi.isAbortError(error)) {
@@ -136,7 +149,6 @@ export default function MediaControls({
         });
       }
     } finally {
-      // Only clear loading state if this request wasn't cancelled
       if (!abortController.signal.aborted) {
         setLoadingTrack(false);
         trackLoadingRef.current = null;
@@ -147,16 +159,16 @@ export default function MediaControls({
   const handleTrackSelect = async (
     trackUrl: string,
     trackName: string,
-    selectType: "premade" | "uploaded"
+    selectType: "premade" | "uploaded",
+    originalFilename?: string
   ) => {
-    // Clear the other select's value
     if (selectType === "premade") {
       setSelectedUploadedValue("");
     } else {
       setSelectedPremadeValue("");
     }
 
-    await resetPlayerAndLoadTrack(trackUrl, trackName);
+    await resetPlayerAndLoadTrack(trackUrl, trackName, originalFilename);
   };
 
   const handleFileUpload = async (
@@ -171,7 +183,6 @@ export default function MediaControls({
     setUploadSuccess(false);
 
     try {
-      // Validate file using API service
       mediaApi.validateFile(file);
       if (!user) {
         throw new Error("User not authenticated");
@@ -192,18 +203,14 @@ export default function MediaControls({
         icon: <CheckCircle className="h-4 w-4" />,
       });
 
-      // Reset select values and load the new track
       setSelectedPremadeValue("");
       setSelectedUploadedValue("");
-      await resetPlayerAndLoadTrack(data.url, file.name);
+      await resetPlayerAndLoadTrack(data.url, file.name, data.filename);
 
-      // Refresh tracks
       fetchTracks();
 
-      // Reset file input
       event.target.value = "";
 
-      // Clear success state after 3 seconds
       setTimeout(() => {
         setUploadSuccess(false);
         setUploadProgress(0);
@@ -224,6 +231,12 @@ export default function MediaControls({
     } finally {
       setUploading(false);
     }
+  };
+
+  const handleResetPlayer = () => {
+    setFullTrackName(null);
+    setTrackName("Upload a mp3 file!");
+    onResetPlayer();
   };
 
   const renderTrackItems = (tracks: BlobMP3File[]) => {
@@ -258,13 +271,11 @@ export default function MediaControls({
     ));
   };
 
-  // Determine if controls should be disabled
   const controlsDisabled =
     uploading || loadingTrack || loadingFiles || audioLoading;
 
   return (
     <div className="border-b border-[#1e3a5f] bg-[#112240] px-4 py-3">
-      {/* Top row with file info, upload and select elements */}
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <div className="text-sm text-gray-300">
@@ -334,7 +345,12 @@ export default function MediaControls({
               setSelectedPremadeValue(value);
               const track = premadeTracks.find((track) => track.url === value);
               if (track) {
-                handleTrackSelect(track.url, track.displayName, "premade");
+                handleTrackSelect(
+                  track.url,
+                  track.displayName,
+                  "premade",
+                  track.originalFilename
+                );
               }
             }}
             disabled={controlsDisabled}
@@ -359,7 +375,12 @@ export default function MediaControls({
               setSelectedUploadedValue(value);
               const track = uploadedTracks.find((track) => track.url === value);
               if (track) {
-                handleTrackSelect(track.url, track.displayName, "uploaded");
+                handleTrackSelect(
+                  track.url,
+                  track.displayName,
+                  "uploaded",
+                  track.originalFilename
+                );
               }
             }}
             disabled={controlsDisabled}

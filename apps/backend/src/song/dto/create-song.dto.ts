@@ -10,6 +10,12 @@ export class CreateSongDto {
   @IsEnum(MusicSource)
   musicSource: MusicSource;
 
+  @IsString()
+  title: string;
+
+  @IsString()
+  content: string;
+
   @IsOptional()
   @IsString()
   premade_music_id?: string;
@@ -17,8 +23,4 @@ export class CreateSongDto {
   @IsOptional()
   @IsString()
   uploaded_music_id?: string;
-
-  @IsNotEmpty()
-  @IsString()
-  file_path: string;
 }

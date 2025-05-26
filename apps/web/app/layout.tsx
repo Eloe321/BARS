@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";
 import { AuthProvider } from "@workspace/ui/components/context/authContext";
+import { Toaster } from "@workspace/ui/components/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="dark">
             {children}
+            <Toaster />
           </ThemeProvider>
         </AuthProvider>
       </body>

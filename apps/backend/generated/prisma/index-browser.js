@@ -128,12 +128,12 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.SongScalarFieldEnum = {
   id: 'id',
+  title: 'title',
   user_id: 'user_id',
   musicSource: 'musicSource',
   premade_music_id: 'premade_music_id',
   uploaded_music_id: 'uploaded_music_id',
   content: 'content',
-  file_path: 'file_path',
   creation_date: 'creation_date'
 };
 

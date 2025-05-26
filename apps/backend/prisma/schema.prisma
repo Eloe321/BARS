@@ -35,12 +35,12 @@ model User {
 
 model Song {
   id            String   @id @default(cuid())
+  title         String   @default("untitled")
   user_id       String
   musicSource   MusicSource       @default(PREMADE)
   premade_music_id   String?
   uploaded_music_id  String?
   content          String      @default("")
-  file_path     String   // for lyrics & notes
   creation_date DateTime @default(now())
   
   user           User            @relation(fields: [user_id], references: [id])
@@ -76,7 +76,7 @@ model LinkPermission {
 
 model PremadeMusic {
   music_id      String   @id @default(cuid())
-  music_name    String
+  music_name    String    @unique
   uploaded_date DateTime @default(now())
   path          String
   
@@ -85,7 +85,7 @@ model PremadeMusic {
 }
 model UploadedMusic{
   music_id      String   @id @default(cuid())
-  music_name    String
+  music_name    String  @unique
   uploaded_by   String
   path          String    @default("")
   // Relations

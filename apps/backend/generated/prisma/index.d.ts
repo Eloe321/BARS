@@ -2664,34 +2664,34 @@ export namespace Prisma {
 
   export type SongMinAggregateOutputType = {
     id: string | null
+    title: string | null
     user_id: string | null
     musicSource: $Enums.MusicSource | null
     premade_music_id: string | null
     uploaded_music_id: string | null
     content: string | null
-    file_path: string | null
     creation_date: Date | null
   }
 
   export type SongMaxAggregateOutputType = {
     id: string | null
+    title: string | null
     user_id: string | null
     musicSource: $Enums.MusicSource | null
     premade_music_id: string | null
     uploaded_music_id: string | null
     content: string | null
-    file_path: string | null
     creation_date: Date | null
   }
 
   export type SongCountAggregateOutputType = {
     id: number
+    title: number
     user_id: number
     musicSource: number
     premade_music_id: number
     uploaded_music_id: number
     content: number
-    file_path: number
     creation_date: number
     _all: number
   }
@@ -2699,34 +2699,34 @@ export namespace Prisma {
 
   export type SongMinAggregateInputType = {
     id?: true
+    title?: true
     user_id?: true
     musicSource?: true
     premade_music_id?: true
     uploaded_music_id?: true
     content?: true
-    file_path?: true
     creation_date?: true
   }
 
   export type SongMaxAggregateInputType = {
     id?: true
+    title?: true
     user_id?: true
     musicSource?: true
     premade_music_id?: true
     uploaded_music_id?: true
     content?: true
-    file_path?: true
     creation_date?: true
   }
 
   export type SongCountAggregateInputType = {
     id?: true
+    title?: true
     user_id?: true
     musicSource?: true
     premade_music_id?: true
     uploaded_music_id?: true
     content?: true
-    file_path?: true
     creation_date?: true
     _all?: true
   }
@@ -2805,12 +2805,12 @@ export namespace Prisma {
 
   export type SongGroupByOutputType = {
     id: string
+    title: string
     user_id: string
     musicSource: $Enums.MusicSource
     premade_music_id: string | null
     uploaded_music_id: string | null
     content: string
-    file_path: string
     creation_date: Date
     _count: SongCountAggregateOutputType | null
     _min: SongMinAggregateOutputType | null
@@ -2833,12 +2833,12 @@ export namespace Prisma {
 
   export type SongSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
     content?: boolean
-    file_path?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     links?: boolean | Song$linksArgs<ExtArgs>
@@ -2849,12 +2849,12 @@ export namespace Prisma {
 
   export type SongSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
     content?: boolean
-    file_path?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
@@ -2863,12 +2863,12 @@ export namespace Prisma {
 
   export type SongSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
     content?: boolean
-    file_path?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
@@ -2877,16 +2877,16 @@ export namespace Prisma {
 
   export type SongSelectScalar = {
     id?: boolean
+    title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
     content?: boolean
-    file_path?: boolean
     creation_date?: boolean
   }
 
-  export type SongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "musicSource" | "premade_music_id" | "uploaded_music_id" | "content" | "file_path" | "creation_date", ExtArgs["result"]["song"]>
+  export type SongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "user_id" | "musicSource" | "premade_music_id" | "uploaded_music_id" | "content" | "creation_date", ExtArgs["result"]["song"]>
   export type SongInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     links?: boolean | Song$linksArgs<ExtArgs>
@@ -2915,12 +2915,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      title: string
       user_id: string
       musicSource: $Enums.MusicSource
       premade_music_id: string | null
       uploaded_music_id: string | null
       content: string
-      file_path: string
       creation_date: Date
     }, ExtArgs["result"]["song"]>
     composites: {}
@@ -3350,12 +3350,12 @@ export namespace Prisma {
    */
   interface SongFieldRefs {
     readonly id: FieldRef<"Song", 'String'>
+    readonly title: FieldRef<"Song", 'String'>
     readonly user_id: FieldRef<"Song", 'String'>
     readonly musicSource: FieldRef<"Song", 'MusicSource'>
     readonly premade_music_id: FieldRef<"Song", 'String'>
     readonly uploaded_music_id: FieldRef<"Song", 'String'>
     readonly content: FieldRef<"Song", 'String'>
-    readonly file_path: FieldRef<"Song", 'String'>
     readonly creation_date: FieldRef<"Song", 'DateTime'>
   }
     
@@ -8137,12 +8137,12 @@ export namespace Prisma {
 
   export const SongScalarFieldEnum: {
     id: 'id',
+    title: 'title',
     user_id: 'user_id',
     musicSource: 'musicSource',
     premade_music_id: 'premade_music_id',
     uploaded_music_id: 'uploaded_music_id',
     content: 'content',
-    file_path: 'file_path',
     creation_date: 'creation_date'
   };
 
@@ -8357,12 +8357,12 @@ export namespace Prisma {
     OR?: SongWhereInput[]
     NOT?: SongWhereInput | SongWhereInput[]
     id?: StringFilter<"Song"> | string
+    title?: StringFilter<"Song"> | string
     user_id?: StringFilter<"Song"> | string
     musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
     premade_music_id?: StringNullableFilter<"Song"> | string | null
     uploaded_music_id?: StringNullableFilter<"Song"> | string | null
     content?: StringFilter<"Song"> | string
-    file_path?: StringFilter<"Song"> | string
     creation_date?: DateTimeFilter<"Song"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
@@ -8372,12 +8372,12 @@ export namespace Prisma {
 
   export type SongOrderByWithRelationInput = {
     id?: SortOrder
+    title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrderInput | SortOrder
     uploaded_music_id?: SortOrderInput | SortOrder
     content?: SortOrder
-    file_path?: SortOrder
     creation_date?: SortOrder
     user?: UserOrderByWithRelationInput
     links?: LinkOrderByRelationAggregateInput
@@ -8390,12 +8390,12 @@ export namespace Prisma {
     AND?: SongWhereInput | SongWhereInput[]
     OR?: SongWhereInput[]
     NOT?: SongWhereInput | SongWhereInput[]
+    title?: StringFilter<"Song"> | string
     user_id?: StringFilter<"Song"> | string
     musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
     premade_music_id?: StringNullableFilter<"Song"> | string | null
     uploaded_music_id?: StringNullableFilter<"Song"> | string | null
     content?: StringFilter<"Song"> | string
-    file_path?: StringFilter<"Song"> | string
     creation_date?: DateTimeFilter<"Song"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
@@ -8405,12 +8405,12 @@ export namespace Prisma {
 
   export type SongOrderByWithAggregationInput = {
     id?: SortOrder
+    title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrderInput | SortOrder
     uploaded_music_id?: SortOrderInput | SortOrder
     content?: SortOrder
-    file_path?: SortOrder
     creation_date?: SortOrder
     _count?: SongCountOrderByAggregateInput
     _max?: SongMaxOrderByAggregateInput
@@ -8422,12 +8422,12 @@ export namespace Prisma {
     OR?: SongScalarWhereWithAggregatesInput[]
     NOT?: SongScalarWhereWithAggregatesInput | SongScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Song"> | string
+    title?: StringWithAggregatesFilter<"Song"> | string
     user_id?: StringWithAggregatesFilter<"Song"> | string
     musicSource?: EnumMusicSourceWithAggregatesFilter<"Song"> | $Enums.MusicSource
     premade_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
     uploaded_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
     content?: StringWithAggregatesFilter<"Song"> | string
-    file_path?: StringWithAggregatesFilter<"Song"> | string
     creation_date?: DateTimeWithAggregatesFilter<"Song"> | Date | string
   }
 
@@ -8571,14 +8571,14 @@ export namespace Prisma {
 
   export type PremadeMusicWhereUniqueInput = Prisma.AtLeast<{
     music_id?: string
+    music_name?: string
     AND?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
     OR?: PremadeMusicWhereInput[]
     NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
-    music_name?: StringFilter<"PremadeMusic"> | string
     uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
     path?: StringFilter<"PremadeMusic"> | string
     songs?: SongListRelationFilter
-  }, "music_id">
+  }, "music_id" | "music_name">
 
   export type PremadeMusicOrderByWithAggregationInput = {
     music_id?: SortOrder
@@ -8621,14 +8621,14 @@ export namespace Prisma {
 
   export type UploadedMusicWhereUniqueInput = Prisma.AtLeast<{
     music_id?: string
+    music_name?: string
     AND?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
     OR?: UploadedMusicWhereInput[]
     NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
-    music_name?: StringFilter<"UploadedMusic"> | string
     uploaded_by?: StringFilter<"UploadedMusic"> | string
     path?: StringFilter<"UploadedMusic"> | string
     songs?: SongListRelationFilter
-  }, "music_id">
+  }, "music_id" | "music_name">
 
   export type UploadedMusicOrderByWithAggregationInput = {
     music_id?: SortOrder
@@ -8727,9 +8727,9 @@ export namespace Prisma {
 
   export type SongCreateInput = {
     id?: string
+    title?: string
     musicSource?: $Enums.MusicSource
     content?: string
-    file_path: string
     creation_date?: Date | string
     user: UserCreateNestedOneWithoutSongsInput
     links?: LinkCreateNestedManyWithoutSongInput
@@ -8739,21 +8739,21 @@ export namespace Prisma {
 
   export type SongUncheckedCreateInput = {
     id?: string
+    title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutSongInput
   }
 
   export type SongUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSongsNestedInput
     links?: LinkUpdateManyWithoutSongNestedInput
@@ -8763,43 +8763,43 @@ export namespace Prisma {
 
   export type SongUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutSongNestedInput
   }
 
   export type SongCreateManyInput = {
     id?: string
+    title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
   }
 
   export type SongUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SongUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9180,34 +9180,34 @@ export namespace Prisma {
 
   export type SongCountOrderByAggregateInput = {
     id?: SortOrder
+    title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrder
     uploaded_music_id?: SortOrder
     content?: SortOrder
-    file_path?: SortOrder
     creation_date?: SortOrder
   }
 
   export type SongMaxOrderByAggregateInput = {
     id?: SortOrder
+    title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrder
     uploaded_music_id?: SortOrder
     content?: SortOrder
-    file_path?: SortOrder
     creation_date?: SortOrder
   }
 
   export type SongMinOrderByAggregateInput = {
     id?: SortOrder
+    title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrder
     uploaded_music_id?: SortOrder
     content?: SortOrder
-    file_path?: SortOrder
     creation_date?: SortOrder
   }
 
@@ -9909,9 +9909,9 @@ export namespace Prisma {
 
   export type SongCreateWithoutUserInput = {
     id?: string
+    title?: string
     musicSource?: $Enums.MusicSource
     content?: string
-    file_path: string
     creation_date?: Date | string
     links?: LinkCreateNestedManyWithoutSongInput
     premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
@@ -9920,11 +9920,11 @@ export namespace Prisma {
 
   export type SongUncheckedCreateWithoutUserInput = {
     id?: string
+    title?: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutSongInput
   }
@@ -10010,12 +10010,12 @@ export namespace Prisma {
     OR?: SongScalarWhereInput[]
     NOT?: SongScalarWhereInput | SongScalarWhereInput[]
     id?: StringFilter<"Song"> | string
+    title?: StringFilter<"Song"> | string
     user_id?: StringFilter<"Song"> | string
     musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
     premade_music_id?: StringNullableFilter<"Song"> | string | null
     uploaded_music_id?: StringNullableFilter<"Song"> | string | null
     content?: StringFilter<"Song"> | string
-    file_path?: StringFilter<"Song"> | string
     creation_date?: DateTimeFilter<"Song"> | Date | string
   }
 
@@ -10267,9 +10267,9 @@ export namespace Prisma {
 
   export type SongCreateWithoutLinksInput = {
     id?: string
+    title?: string
     musicSource?: $Enums.MusicSource
     content?: string
-    file_path: string
     creation_date?: Date | string
     user: UserCreateNestedOneWithoutSongsInput
     premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
@@ -10278,12 +10278,12 @@ export namespace Prisma {
 
   export type SongUncheckedCreateWithoutLinksInput = {
     id?: string
+    title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
   }
 
@@ -10354,9 +10354,9 @@ export namespace Prisma {
 
   export type SongUpdateWithoutLinksInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSongsNestedInput
     premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
@@ -10365,12 +10365,12 @@ export namespace Prisma {
 
   export type SongUncheckedUpdateWithoutLinksInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10537,9 +10537,9 @@ export namespace Prisma {
 
   export type SongCreateWithoutPremadeMusicInput = {
     id?: string
+    title?: string
     musicSource?: $Enums.MusicSource
     content?: string
-    file_path: string
     creation_date?: Date | string
     user: UserCreateNestedOneWithoutSongsInput
     links?: LinkCreateNestedManyWithoutSongInput
@@ -10548,11 +10548,11 @@ export namespace Prisma {
 
   export type SongUncheckedCreateWithoutPremadeMusicInput = {
     id?: string
+    title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     uploaded_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutSongInput
   }
@@ -10585,9 +10585,9 @@ export namespace Prisma {
 
   export type SongCreateWithoutUploadedMusicInput = {
     id?: string
+    title?: string
     musicSource?: $Enums.MusicSource
     content?: string
-    file_path: string
     creation_date?: Date | string
     user: UserCreateNestedOneWithoutSongsInput
     links?: LinkCreateNestedManyWithoutSongInput
@@ -10596,11 +10596,11 @@ export namespace Prisma {
 
   export type SongUncheckedCreateWithoutUploadedMusicInput = {
     id?: string
+    title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutSongInput
   }
@@ -10633,11 +10633,11 @@ export namespace Prisma {
 
   export type SongCreateManyUserInput = {
     id?: string
+    title?: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
   }
 
@@ -10657,9 +10657,9 @@ export namespace Prisma {
 
   export type SongUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUpdateManyWithoutSongNestedInput
     premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
@@ -10668,22 +10668,22 @@ export namespace Prisma {
 
   export type SongUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutSongNestedInput
   }
 
   export type SongUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10791,19 +10791,19 @@ export namespace Prisma {
 
   export type SongCreateManyPremadeMusicInput = {
     id?: string
+    title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     uploaded_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
   }
 
   export type SongUpdateWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSongsNestedInput
     links?: LinkUpdateManyWithoutSongNestedInput
@@ -10812,40 +10812,40 @@ export namespace Prisma {
 
   export type SongUncheckedUpdateWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutSongNestedInput
   }
 
   export type SongUncheckedUpdateManyWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SongCreateManyUploadedMusicInput = {
     id?: string
+    title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     content?: string
-    file_path: string
     creation_date?: Date | string
   }
 
   export type SongUpdateWithoutUploadedMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSongsNestedInput
     links?: LinkUpdateManyWithoutSongNestedInput
@@ -10854,22 +10854,22 @@ export namespace Prisma {
 
   export type SongUncheckedUpdateWithoutUploadedMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutSongNestedInput
   }
 
   export type SongUncheckedUpdateManyWithoutUploadedMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
-    file_path?: StringFieldUpdateOperationsInput | string
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

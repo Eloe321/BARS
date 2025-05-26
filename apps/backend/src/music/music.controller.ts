@@ -28,6 +28,22 @@ export class MusicController {
     return this.musicService.createMusicUpload(body);
   }
 
+  @Get('premade')
+  async findAllPremadeMusic() {
+    return await this.musicService.findAllPremadeMusic();
+  }
+
+  @Get('premade/name/:music_name')
+  @UseGuards(JwtAuthGuard)
+  findPremadeMusicByName(@Param('music_name') music_name: string) {
+    return this.musicService.findPremadeMusicByName(music_name);
+  }
+
+  @Get('premade/:id')
+  findOnePremadeMusic(@Param('id') id: string) {
+    return this.musicService.findOnePremadeMusic(id);
+  }
+
   @Get('uploaded')
   @UseGuards(JwtAuthGuard)
   async findAllUploadedMusic(@Req() request: RequestWithUser) {
@@ -37,20 +53,17 @@ export class MusicController {
     }
     return this.musicService.findAlluploadedMusicByUserId(userId);
   }
-  @Get('premade')
-  async findAllPremadeMusic() {
-    return await this.musicService.findAllPremadeMusic();
-  }
 
-  @Get('premade/:id')
-  findOnePremadeMusic(@Param('id') id: string) {
-    return this.musicService.findOnePremadeMusic(id);
+  @Get('uploaded/name/:music_name')
+  @UseGuards(JwtAuthGuard)
+  findUploadedMusicByName(@Param('music_name') music_name: string) {
+    return this.musicService.findUploadedMusicByName(music_name);
   }
 
   @Get('uploaded/:id')
   @UseGuards(JwtAuthGuard)
   findOneUploadedMusic(@Param('id') id: string) {
-    return this.musicService.findOneUploadeddMusic(id);
+    return this.musicService.findOneUploadedMusic(id);
   }
 
   @Delete('uploaded/:id')

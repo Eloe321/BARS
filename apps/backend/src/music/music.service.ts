@@ -34,10 +34,27 @@ export class MusicService {
       },
     });
   }
-  async findOneUploadeddMusic(id: string) {
+
+  async findPremadeMusicByName(name: string) {
+    return await this.db.premadeMusic.findUnique({
+      where: {
+        music_name: name,
+      },
+    });
+  }
+
+  async findOneUploadedMusic(id: string) {
     return await this.db.uploadedMusic.findUnique({
       where: {
         music_id: id,
+      },
+    });
+  }
+
+  async findUploadedMusicByName(name: string) {
+    return await this.db.uploadedMusic.findUnique({
+      where: {
+        music_name: name,
       },
     });
   }
