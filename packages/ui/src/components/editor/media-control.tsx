@@ -23,7 +23,6 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select";
 import { Button } from "@workspace/ui/components/button";
-import { Play, Pause, SkipBack, SkipForward, Download } from "lucide-react";
 import { Slider } from "@workspace/ui/components/slider";
 import { analyzeLyrics } from "@workspace/ui/components/utils/api.js";
 
@@ -33,6 +32,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@workspace/ui/components/context/authContext";
 import { formatTime } from "./utils/utils.js";
 import { mediaApi, type BlobMP3File } from "./mediaApi/mediaAccess.js";
+import { urlToFile } from "../utils/helper.js";
 interface MediaControlsProps {
   isPlaying: boolean;
   togglePlay: () => void;
@@ -40,7 +40,6 @@ interface MediaControlsProps {
   duration: number;
   progress: number;
   handleSliderChange: (value: number[]) => void;
-  lyricsText: string;
   onAnalyzedVersesUpdate: (analyzedVerses: any) => void;
   onSetIsAligning: (isAligning: boolean) => void;
   onTrackChange: (
@@ -52,6 +51,7 @@ interface MediaControlsProps {
   audioLoading: boolean;
   currentTrackName?: string | null;
   currentFullTrackName?: string | null;
+  lyricsText: string;
 }
 
 export default function MediaControls({
@@ -61,11 +61,14 @@ export default function MediaControls({
   duration,
   progress,
   handleSliderChange,
+  onAnalyzedVersesUpdate,
+  onSetIsAligning,
   onTrackChange,
   onResetPlayer,
   audioLoading,
   currentTrackName,
   currentFullTrackName,
+  lyricsText,
 }: MediaControlsProps) {
   const [fullTrackName, setFullTrackName] = useState<string | null>(null); // Your new state
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -298,7 +301,7 @@ export default function MediaControls({
   };
 
   useEffect(() => {
-    if (!audioSrc || !lyricsText)
+    if (!currentTrackRef.current || !lyricsText)
       setIsDisabled(true);
     else
       setIsDisabled(false);
@@ -309,30 +312,30 @@ export default function MediaControls({
 
     onSetIsAligning(isAligning);
       
-  }, [audioSrc, lyricsText, isAligning])
+  }, [currentTrackRef.current, lyricsText, isAligning])
 
-  // TODO fix this
-  // const handleAnalyze = async () => {
-  //   try {
-  //     if (!audioSrc || !lyricsText) {
-  //       console.log("audio or lyrics doesn't exist");
-  //       return;
-  //     }
 
-  //     // Convert the local URL to a File object
-  //     const audioFile = await urlToFile(audioSrc, "placeholder.mp3", "audio/mpeg");
+  const handleAnalyze = async () => {
+    try {
+      if (!currentTrackRef.current || !lyricsText) {
+        console.log("audio or lyrics doesn't exist");
+        return;
+      }
 
-  //     // Now call the API with the lyrics and File
-  //     setIsAligning(true);
-  //     const result = await analyzeLyrics(lyricsText, audioFile);
+      // Convert the local URL to a File object
+      const audioFile = await urlToFile(currentTrackRef.current, trackName, "audio/mpeg");
 
-  //     console.log("Analysis result:", result);
-  //     onAnalyzedLyrics(result);
-  //   } catch (err) {
-  //     console.error("Error analyzing lyrics:", err);
-  //   }
-  //   setIsAligning(false);
-  // };
+      // Now call the API with the lyrics and File
+      setIsAligning(true);
+      const result = await analyzeLyrics(lyricsText, audioFile);
+
+      console.log("Analysis result:", result);
+      onAnalyzedLyrics(result);
+    } catch (err) {
+      console.error("Error analyzing lyrics:", err);
+    }
+    setIsAligning(false);
+  };
 
   return (
     <div className="border-b border-[#1e3a5f] bg-[#112240] px-4 py-3">
@@ -473,14 +476,36 @@ export default function MediaControls({
             </SelectContent>
           </Select>
 
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             className="border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0a192f]"
             disabled={controlsDisabled}
           >
             Align Lyrics
+          </Button> */}
+
+          { isDisabled ? (
+            <Button
+              variant="outline"
+              size="sm"
+              className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10 cursor-not-allowed"
+              onClick={handleAnalyze}
+              disabled={controlsDisabled}
+            >
+              {isAligning ? (<p>Aligning...</p>) : (<p>Align Lyrics</p>)}
           </Button>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm" 
+              className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
+              onClick={handleAnalyze}
+              disabled={controlsDisabled}
+            >
+              Align Lyrics
+            </Button>
+          )}
         </div>
       </div>
 
@@ -554,28 +579,6 @@ export default function MediaControls({
             disabled={controlsDisabled}
           />
           <span className="text-xs text-gray-400">{formatTime(duration)}</span>
-          
-          { isDisabled ? (
-            <Button
-              variant="outline"
-              size="sm"
-              disabled 
-              className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10 cursor-not-allowed"
-              onClick={handleAnalyze}
-            >
-              {isAligning ? (<p>Aligning...</p>) : (<p>Align Lyrics</p>)}
-          </Button>
-          ) : (
-            <Button
-              variant="outline"
-              size="sm" 
-              className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
-              onClick={handleAnalyze}
-            >
-              Align Lyrics
-            </Button>
-          )}
-          
 
         </div>
 

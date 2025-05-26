@@ -11,6 +11,7 @@ type Cell = {
 export function useSongAlign() {
   const [cells, setCells] = useState<Cell[]>([]);
   const [lyricsText, setLyricsText] = useState<any>();
+  const [contentJson, setContentJson] = useState<any>();
 
   // automatically arranges cells into json format
   const handleCellsUpdate = (cells: Cell[]) => {
@@ -35,7 +36,6 @@ export function useSongAlign() {
 
   setLyricsText(lyricsText);
 
-    // TODO: put jsonData on the save/load feature
     const jsonData = cells.map(cell => ({
       id: cell.id,
       type: cell.type,
@@ -44,8 +44,10 @@ export function useSongAlign() {
       timeEnd: cell.timeEnd
     }));
 
-    // console.log("Generated JSON (all cells):", JSON.stringify(jsonData, null, 2));
+    // console.log("Generated JSON (lyrics only):", JSON.stringify(lyricsText, null, 2));
+    console.log("Generated JSON (all cells):", JSON.stringify(jsonData, null, 2));
+    setContentJson((JSON.stringify(jsonData, null, 2)));
   };
 
-  return {cells, lyricsText, handleCellsUpdate};  
+  return {contentJson, lyricsText, handleCellsUpdate};  
 }

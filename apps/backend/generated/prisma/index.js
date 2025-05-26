@@ -178,7 +178,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BACK-BARS\\BARS\\apps\\backend\\generated\\prisma",
+      "value": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BARS\\BARS\\apps\\backend\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -192,7 +192,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BACK-BARS\\BARS\\apps\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\jianl\\OneDrive\\Desktop\\CS342 - Soft Eng\\BARS\\BARS\\apps\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

@@ -2,15 +2,13 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";
-import { useAudioPlayer } from "@workspace/ui/hooks/useAudioPlayer";
-import { useFileUpload } from "@workspace/ui/hooks/useFileUpload";
-import { useProgress } from "@workspace/ui/hooks/useProgress";
+// import { useAudioPlayer } from "@workspace/ui/hooks/useAudioPlayer";
+// import { useFileUpload } from "@workspace/ui/hooks/useFileUpload";
+// import { useProgress } from "@workspace/ui/hooks/useProgress";
 import { useSongAlign } from "@workspace/ui/hooks/useSongAlign";
+import LyricsEditor from "@workspace/ui/components/editor/editor-canvas";
 import EditorTopBar from "@workspace/ui/components/editor/editor-topbar";
 import MediaControls from "@workspace/ui/components/editor/media-control";
-import LyricsEditor, {
-  type LyricsEditorRef,
-} from "@workspace/ui/components/editor/editor-canvas";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
 import SongSelection from "@workspace/ui/components/editor/song-selection";
 import ProtectedRoute from "@/components/auth/protected-route";
@@ -52,16 +50,17 @@ export default function EditorPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [zoom, setZoom] = useState(100);
   const [MusicData, setMusicData] = useState<any>(null);
+  const [ songLyrics, setSongLyrics ] = useState<string>("");
 
   //editor canvas
-  const editorRef = useRef<LyricsEditorRef>(null);
   const [analyzedVerses, setAnalyzedVerses] = useState<any[]>([]);
   const [isSaving, setIsSaving] = useState(false);
-  const { cells, lyricsText, handleCellsUpdate } = useSongAlign();
+  const { contentJson, lyricsText, handleCellsUpdate } = useSongAlign();
   const [isAligning, setIsAligning] = useState<boolean>(false);
 
   // thesaurus
   const [thesaurusWord, setThesaurusWord] = useState<string>("");
+  const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
   const handleThesaurus = async (word: string) => {
     setShowSidebar(true);
@@ -116,7 +115,7 @@ export default function EditorPage() {
       };
     }
 
-    const currentContent = editorRef.current?.getContent() || "";
+    const currentContent = contentJson || "";
     if (!currentContent.trim()) {
       return {
         isValid: false,
@@ -139,7 +138,7 @@ export default function EditorPage() {
     }
 
     // Get the current content from the editor
-    const currentContent = editorRef.current?.getContent() || "";
+    const currentContent = contentJson || "";
     setSongLyrics(currentContent);
 
     try {
@@ -180,7 +179,7 @@ export default function EditorPage() {
     setPendingSave(false);
     setIsSaving(true);
 
-    const currentContent = editorRef.current?.getContent() || "";
+    const currentContent = contentJson || "";
 
     toast.loading("Saving your song...", { id: "save-progress" });
 
@@ -373,6 +372,7 @@ export default function EditorPage() {
     if (song) {
       setFileName(song.title);
       setSongLyrics(song.content || "");
+      console.log("Selected song content:", song.content);
 
       try {
         toast.loading("Loading song data...", { id: "song-load" });
@@ -716,103 +716,105 @@ export default function EditorPage() {
   };
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="flex h-screen flex-col bg-[#2E3449] text-white">
-        <div className="flex flex-1 overflow-hidden">
-          <div className="flex flex-1 flex-col overflow-hidden">
-            <EditorTopBar
-              onFileAction={handleFileAction}
-              onEditAction={handleEditAction}
-              onSelectAction={handleSelectAction}
-              onViewAction={handleViewAction}
-              onCollabAction={handleCollabAction}
-            />
+    <ProtectedRoute>
+      <ThemeProvider attribute="class" defaultTheme="dark">
+        <div className="flex h-screen flex-col bg-[#2E3449] text-white">
+          {showSongSelection ? (
+            <SongSelection onSongSelect={handleSongSelect} />
+          ) : (
+          <div className="flex flex-1 overflow-hidden">
+            <div className="flex flex-1 flex-col overflow-hidden">
+              <EditorTopBar
+                fileName={fileName}
+                onFileAction={handleFileAction}
+                onEditAction={handleEditAction}
+                onSelectAction={handleSelectAction}
+                onViewAction={handleViewAction}
+                onCollabAction={handleCollabAction}
+              />
 
-            <MediaControls
-              isPlaying={isPlaying}
-              togglePlay={togglePlay}
-              currentTime={currentTime}
-              duration={duration}
-              progress={progress}
-              handleSliderChange={handleSliderChange}
-              onTrackChange={handleTrackChange}
-              onResetPlayer={resetPlayer}
-              audioLoading={audioLoading}
-              currentTrackName={trackName}
-              currentFullTrackName={fullTrackName}
-              lyricsText={lyricsText}
-              onAnalyzedVersesUpdate={(result) => {
-                setAnalyzedVerses(result);
-              }}
-              onSetIsAligning={(isAligning) => {
-                setIsAligning(isAligning);
-              }}
-            />
+              <MediaControls
+                isPlaying={isPlaying}
+                togglePlay={togglePlay}
+                currentTime={currentTime}
+                duration={duration}
+                progress={progress}
+                handleSliderChange={handleSliderChange}
+                onTrackChange={handleTrackChange}
+                onResetPlayer={resetPlayer}
+                audioLoading={audioLoading}
+                currentTrackName={trackName}
+                currentFullTrackName={fullTrackName}
+                lyricsText={lyricsText}
+                onAnalyzedVersesUpdate={(result) => {
+                  setAnalyzedVerses(result);
+                }}
+                onSetIsAligning={(isAligning) => {
+                  setIsAligning(isAligning);
+                }}
+              />
 
-            {/* TODO: Potential issues may arise from currentTime not updating every frame */}
-            <div className="relative h-screen overflow-y-auto">
-              <LyricsEditor 
-                className={`${isAligning ? "pointer-events-none" : ""}`}
-                // className="pointer-events-none "
-                ref={editorRef}
-                onWordSelect={handleThesaurus} 
-                currentTime={currentTime} 
-                onCellsUpdate={handleCellsUpdate}
-                analyzedVerses={analyzedVerses} />
-                {isAligning && (
-                  <div className="absolute inset-0 bg-gray-900 mix-blend-multiply pointer-events-none z-10" style={{ opacity: 0.5 }} />
-                )}
+              {/* TODO: Potential issues may arise from currentTime not updating every frame */}
+              <div className="relative h-screen overflow-y-auto">
+                <LyricsEditor 
+                  className={`${isAligning ? "pointer-events-none" : ""}`}
+                  // className="pointer-events-none "
+                  onWordSelect={handleThesaurus} 
+                  currentTime={currentTime} 
+                  onCellsUpdate={handleCellsUpdate}
+                  analyzedVerses={analyzedVerses}
+                  songLyrics = {songLyrics} />
+                  {isAligning && (
+                    <div className="absolute inset-0 bg-gray-900 mix-blend-multiply pointer-events-none z-10" style={{ opacity: 0.5 }} />
+                  )}
+              </div>
+              
             </div>
-            
+
+            <button
+              onClick={() => setShowSidebar(prev => !prev)}
+              className="px-2 py-4 bg-[#0a192f] text-white"
+            >
+              <p>{showSidebar ? ">" : "<"}</p>
+            </button>
+
+            {showSidebar && (
+              <div className="top-0 right-0 min-h-screen h-full overflow-y-auto z-1">
+                <ThesaurusSidebar word={thesaurusWord} />
+              </div>
+            )}
+
+            {/* Song Name Modal */}
+            <SongNameModal
+              isOpen={showSongNameModal}
+              onClose={() => {
+                setShowSongNameModal(false);
+                setPendingSave(false);
+                // Dismiss the loading toast if user cancels
+                toast.dismiss("save-progress");
+                setIsSaving(false);
+              }}
+              onConfirm={handleSongNameConfirm}
+              defaultName={fileName === "untitled.bar" ? "" : fileName}
+              title={
+                fileName === "untitled.bar" ? "Save New Song" : "Save Song As"
+              }
+              description={
+                fileName === "untitled.bar"
+                  ? "Enter a name for your new song"
+                  : "Enter a new name for your song"
+              }
+            />
           </div>
-
-          <button
-            onClick={() => setShowSidebar(prev => !prev)}
-            className="px-2 py-4 bg-[#0a192f] text-white"
-          >
-            <p>{showSidebar ? ">" : "<"}</p>
-          </button>
-
-          {showSidebar && (
-            <div className="top-0 right-0 min-h-screen h-full overflow-y-auto z-1">
-              <ThesaurusSidebar word={thesaurusWord} />
-            </div>
           )}
-
-          {/* Song Name Modal */}
-          <SongNameModal
-            isOpen={showSongNameModal}
-            onClose={() => {
-              setShowSongNameModal(false);
-              setPendingSave(false);
-              // Dismiss the loading toast if user cancels
-              toast.dismiss("save-progress");
-              setIsSaving(false);
-            }}
-            onConfirm={handleSongNameConfirm}
-            defaultName={fileName === "untitled.bar" ? "" : fileName}
-            title={
-              fileName === "untitled.bar" ? "Save New Song" : "Save Song As"
-            }
-            description={
-              fileName === "untitled.bar"
-                ? "Enter a name for your new song"
-                : "Enter a new name for your song"
-            }
-          />
 
           {/* Audio element for playback */}
           <audio ref={audioRef} className="hidden" preload="metadata">
             Your browser does not support the audio element.
           </audio>
+
         </div>
-
-        {/* Audio element for playback */}
-        <audio ref={audioRef} className="hidden" preload="metadata">
-          Your browser does not support the audio element.
-        </audio>
-
-      </div>
-    </ThemeProvider>
-  );
+      </ThemeProvider>
+    </ProtectedRoute>
+  )
 }

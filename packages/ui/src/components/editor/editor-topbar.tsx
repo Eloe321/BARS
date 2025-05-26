@@ -51,6 +51,7 @@ interface EditorTopBarProps {
 }
 
 export default function EditorTopBar({
+  fileName,
   onFileAction,
   onEditAction,
   onSelectAction,
@@ -65,7 +66,7 @@ export default function EditorTopBar({
             <span className="text-[10px] font-bold">BARS</span>
           </div>
         </div>
-        <span className="text-lg font-medium text-white">file.bar</span>
+        <span className="text-lg font-medium text-white">{fileName}.bars</span>
       </div>
 
       <div className="flex space-x-4">

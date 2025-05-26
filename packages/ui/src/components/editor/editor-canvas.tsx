@@ -1,7 +1,7 @@
 "use client";
 
 import '@workspace/ui/styles/canvas.css';
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, use } from "react";
 import Cell from '@workspace/ui/components/editor/canvas-cell';
 import { generateLyrics } from '@workspace/ui/components/utils/api.js';
 import LyricGenerator from './canvas-generator.js';
@@ -21,9 +21,10 @@ interface EditorProps {
   currentTime: number;
   onCellsUpdate?: (cells: EditorCell[]) => void;
   analyzedVerses: any;
+  songLyrics: string;
 }
 
-export default function LyricsEditor({ className, onWordSelect, currentTime, onCellsUpdate, analyzedVerses }: EditorProps) {
+export default function LyricsEditor({ className, onWordSelect, currentTime, onCellsUpdate, analyzedVerses, songLyrics }: EditorProps) {
   const notebookRef = useRef<HTMLDivElement>(null);
   const [cells, setCells] = useState<{ id: number; type: "note" | "lyric"; content: string; timeStart?: number; timeEnd?: number }[]>([
     { id: 0, type: 'note', content: '', timeStart: -1, timeEnd: -1 }
@@ -37,6 +38,32 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
   useEffect(() => {
     onCellsUpdate?.(cells); // Notify parent on any change
   }, [cells]);
+
+  useEffect(() => {
+
+    try{
+      const lyricsJson = JSON.parse(songLyrics);
+
+      if (lyricsJson && Array.isArray(lyricsJson)) {
+        const initialCells = lyricsJson.map((cell: any, index: number) => ({
+          id: index,
+          type: cell.type || 'lyric',
+          content: cell.content || '',
+          timeStart: cell.timeStart,
+          timeEnd: cell.timeEnd
+        }));
+        setCells(initialCells);
+        setNextId(initialCells.length + 1);
+      } else {
+        console.error("Invalid lyrics JSON format");
+      }
+    } catch (error) {
+      console.error("Error parsing lyrics JSON:", error);
+      // Fallback to an empty cell if parsing fails
+      setCells([{ id: 0, type: 'note', content: '', timeStart: -1, timeEnd: -1 }]);
+      setNextId(1);
+    }
+  }, []);
 
   // Function to update the Thesaurus with the selected word
   const handleKeyPress = (event: KeyboardEvent) => {
@@ -127,7 +154,6 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
   };
 
   const updateCellTime = (id: number, timeStart?: number, timeEnd?: number) => {
-    console.log(id);
 
     setCells(prevCells =>
       prevCells.map(cell =>
@@ -160,11 +186,11 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
     });
   };
 
-
   useEffect(() => {
     if (analyzedVerses) {
       handleAnalyzedVersesUpdate(analyzedVerses);
     }
+    console.log("UsedEffect Editor Canvas", analyzedVerses);
 
   }, [analyzedVerses]);
 
@@ -194,13 +220,11 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
               { selectedCellId === cell.id && (
                 <div className="flex justify-between">
                   <div>
-                    {/* TODO: remove when not needed anymore */}
-                    <p>Current Time: {formatTime(currentTime)}</p>
+                    {/* <p>Current Time: {formatTime(currentTime)}</p> */}
                     <button className="px-2 py-1 text-white rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'lyric')}>Insert Lyrics</button>
                     <button className="px-2 py-1 text-white rounded hover:bg-[#64ffda] hover:text-black" onClick={() => insertCell(index, 'note')}>Insert Notes</button>
                     <button className="px-2 py-1 text-white rounded hover:bg-[#64ffda] hover:text-black" onClick={() => deleteCell(cell.id)}>Delete</button>
                   </div>
-                  
                   
                   { cell.type === 'lyric' && (
                     <LyricGenerator 
@@ -212,9 +236,7 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
                         console.log('Generated lyrics:', generated.generated_text);
 
                         // creating new cell with generated content
-                        const cellContent = "Generated Verse:\n\n" + generated.generated_text 
-
-                        insertCell(selectedCellId, "note", cellContent);
+                        updateCellContent(cell.id, generated.generated_text );
 
                       } catch (error) {
                         console.error('Failed to generate lyrics:', error);

@@ -133,9 +133,29 @@ export default function SongSelection({ onSongSelect }: SongSelectionProps) {
     });
   };
 
-  const truncateContent = (content: string, maxLength = 100) => {
-    if (content.length <= maxLength) return content;
-    return content.substring(0, maxLength) + "...";
+  const truncateContent = (jsonString: string, maxLength = 100): string => {
+    try {
+      const parsed = JSON.parse(jsonString);
+
+      if (!Array.isArray(parsed)) return "";
+
+      const firstLyric = parsed.find((item) => item.type === "lyric");
+
+      if (!firstLyric || typeof firstLyric.content !== "string") return "";
+
+      // Remove all <div> and </div> tags and replace with '/'
+      let content = firstLyric.content.replace(/<\/?div>/g, "/");
+
+      // Remove duplicate slashes that may result from consecutive divs
+      content = content.replace(/\/+/g, "/ ").replace(/^\/|\/$/g, "");
+
+      return content.length <= maxLength
+        ? content
+        : content.substring(0, maxLength) + "...";
+    } catch (err) {
+      console.error("Invalid JSON string passed to truncateContent");
+      return "content could not be loaded";
+    }
   };
 
   if (loading) {

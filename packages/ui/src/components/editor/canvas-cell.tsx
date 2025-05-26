@@ -4,10 +4,12 @@ import { BigramModel } from '@workspace/ui/components/utils/bigram.js'
 
 function LyricTextbox({ 
   className,
-  onContentChange
+  onContentChange,
+  value,
  }: { 
   className?: string;
   onContentChange?: (content: string) => void;
+  value?: string;
 }) {
   const model = new BigramModel()
 
@@ -30,7 +32,18 @@ function LyricTextbox({
     }
   };
 
+  const stripHtml = (input: string = ''): string => {
+    // Replace <div> and </div> with newlines, then strip remaining HTML
+    const withNewlines = input.replace(/<\/div>\s*<div>/g, '\n').replace(/<div>/g, '').replace(/<\/div>/g, '');
+    const div = document.createElement('div');
+    div.innerHTML = withNewlines;
+    return div.textContent || div.innerText || '';
+  };
+
+  const sanitizedValue = value ? stripHtml(value) : '';
+
   return (
+    <div style={{ whiteSpace: 'pre-wrap' }}>
     <AutocompleteTextbox
       onPaste={(event: React.ClipboardEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -40,8 +53,10 @@ function LyricTextbox({
       className={className}
       getSuggestion={getSuggestion}
       onContentChange={handleContentChange}
+      value={sanitizedValue}
       style={{ width: '100%', overflow: 'hidden', resize: 'none' }}
     />
+    </div>
   );
 }
 
@@ -139,7 +154,11 @@ const Cell = ({
       {/* Text input */}
       <div className="flex-1">
         {cellType === 'lyric' && (
-          <LyricTextbox className="txt-lyric" onContentChange={(newContent) => onUpdateContent(newContent)}/>
+          <LyricTextbox 
+            className="txt-lyric" 
+            onContentChange={(newContent) => onUpdateContent(newContent)}
+            value={content}
+            />
         )}
         {cellType === 'note' && (
           <NoteTextbox
