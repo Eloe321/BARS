@@ -89,7 +89,7 @@ export default function MediaControls({
 
   const [analyzedLyrics, setAnalyzedLyrics] = useState<any>(null);
   const [analyzedVerses, setAnalyzedVerses] = useState<any>(null);
-  const [tempo, setTempo] = useState<number>(110);
+  const [tempo, setTempo] = useState<number>(0.0);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isAligning, setIsAligning] = useState<boolean>(false);
 
@@ -314,8 +314,12 @@ export default function MediaControls({
       
   }, [currentTrackRef.current, lyricsText, isAligning])
 
+  function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   const handleAnalyze = async () => {
+    await sleep(50);
     try {
       if (!currentTrackRef.current || !lyricsText) {
         console.log("audio or lyrics doesn't exist");
@@ -397,7 +401,7 @@ export default function MediaControls({
             </button>
           </div>
 
-          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">110 BPM</div>
+          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">{tempo} BPM</div>
         </div>
 
         <div className="flex items-center space-x-3">
@@ -485,7 +489,7 @@ export default function MediaControls({
             Align Lyrics
           </Button> */}
 
-          { isDisabled ? (
+          { controlsDisabled ? (
             <Button
               variant="outline"
               size="sm"

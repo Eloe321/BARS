@@ -3,14 +3,13 @@ import { useState } from 'react';
 
 interface LyricGeneratorProps {
     onGenerate: (result: string) => void;
-    isGenerating: boolean;
-    setIsGenerating: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function LyricGenerator({ onGenerate, isGenerating, setIsGenerating }: LyricGeneratorProps) {
+export default function LyricGenerator({ onGenerate }: LyricGeneratorProps) {
   const [theme, setTheme] = useState("love");
   const [mood, setMood] = useState("happy");
   const [figurative, setFigurative] = useState("metaphor");
+  const [isGenerating, setIsGenerating] = useState(false);
 
   async function generateFunction({ theme, mood, figurative }: { theme: string; mood: string; figurative: string }) {
     const result = `theme: ${theme}, mood: ${mood}, figurative: ${figurative}`;
@@ -24,7 +23,7 @@ export default function LyricGenerator({ onGenerate, isGenerating, setIsGenerati
           AI Options
       </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64 space-y-3 p-3 rounded-md bg-[#112240] text-white shadow-lg border border-blue-900 z-2">
+      <DropdownMenuContent className="w-64 space-y-3 p-3 rounded-md bg-[#112240] text-white shadow-lg border border-blue-900">
         <div>
           <label className="text-xs text-gray-300">Theme</label>
           <select
@@ -72,13 +71,8 @@ export default function LyricGenerator({ onGenerate, isGenerating, setIsGenerati
           )}
             onClick={async () => {
               if (isGenerating) return;
-              try{
-                setIsGenerating(true);
-                await generateFunction({ theme, mood, figurative });
-              } catch (error) {
-                console.error("Failed to generate lyrics:", error);
-              }
-              
+              setIsGenerating(true);
+              await generateFunction({ theme, mood, figurative });
               setIsGenerating(false);
             }}
         >

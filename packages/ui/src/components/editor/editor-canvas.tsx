@@ -32,7 +32,6 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
   const [nextId, setNextId] = useState(2);
   const [selectedCellId, setSelectedCellId] = useState<number | null>(null);
 
-  // Lyric Generator
   const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
@@ -40,7 +39,6 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
   }, [cells]);
 
   useEffect(() => {
-
     try{
       const lyricsJson = JSON.parse(songLyrics);
 
@@ -89,13 +87,6 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
   }, []);
 
   // Handle click outside to deselect cell
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    const milliseconds = Math.floor((time % 1) * 1000);
-    return `${minutes}:${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(3, "0")}`;
-  };
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -154,7 +145,6 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
   };
 
   const updateCellTime = (id: number, timeStart?: number, timeEnd?: number) => {
-
     setCells(prevCells =>
       prevCells.map(cell =>
         cell.id === id
@@ -206,16 +196,42 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
             key={cell.id}
             className={`cell ${cell.id === selectedCellId ? 'selected' : ''}`}
             onClick={() => setSelectedCellId(cell.id)}
-          >
-              <Cell
-                key={cell.id}
-                cellType={cell.type}
-                content={cell.content}
-                onUpdateContent={(content) => updateCellContent(cell.id, content)}
-                timeStart={cell.timeStart}
-                timeEnd={cell.timeEnd}
-                currentTime={currentTime}
-              />
+          >   
+          <Cell
+            key={cell.id}
+            cellType={cell.type}
+            content={cell.content}
+            onUpdateContent={(content) => updateCellContent(cell.id, content)}
+            timeStart={cell.timeStart}
+            timeEnd={cell.timeEnd}
+            currentTime={currentTime}
+            cellId={cell.id}
+            selectedCellId={selectedCellId}
+            isGenerating={isGenerating}
+          />
+              {/* { cell.type === 'lyric' ? (
+                <Cell
+                  key={cell.id}
+                  cellType={cell.type}
+                  content={cell.content}
+                  onUpdateContent={(content) => updateCellContent(cell.id, content)} // No content update for lyrics
+                  timeStart={cell.timeStart}
+                  timeEnd={cell.timeEnd}
+                  currentTime={currentTime}
+                  cellId={cell.id}
+                  selectedCellId={selectedCellId}
+                />
+              ) : (
+                <Cell
+                  key={cell.id}
+                  cellType={cell.type}
+                  content={cell.content}
+                  onUpdateContent={(content) => updateCellContent(cell.id, content)}
+                  timeStart={cell.timeStart}
+                  timeEnd={cell.timeEnd}
+                  currentTime={currentTime}
+                />
+              )} */}
 
               { selectedCellId === cell.id && (
                 <div className="flex justify-between">
@@ -228,10 +244,9 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
                   
                   { cell.type === 'lyric' && (
                     <LyricGenerator 
-                      isGenerating={isGenerating}
-                      setIsGenerating={setIsGenerating}
                       onGenerate={async (result: string) => {
                       try {
+                        setIsGenerating(true);
                         const generated = await generateLyrics(result);
                         console.log('Generated lyrics:', generated.generated_text);
 
@@ -241,6 +256,7 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
                       } catch (error) {
                         console.error('Failed to generate lyrics:', error);
                       }
+                      setIsGenerating(false);
                     }} />
                 )}
               

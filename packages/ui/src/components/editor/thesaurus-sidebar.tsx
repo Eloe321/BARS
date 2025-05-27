@@ -30,7 +30,7 @@ export default function ThesaurusSidebar({ word }: ThesaurusSidebarProps) {
   }, [word]);
 
   return (
-    <div className="w-72 flex-shrink-0 min-h-screen h-full overflow-y-auto border-l border-[#1e3a5f] bg-[#0a192f]">
+    <div className="w-80 flex-shrink-0 min-h-screen h-full overflow-y-auto border-l border-[#1e3a5f] bg-[#0a192f]">
       <div className="border-b border-[#1e3a5f] p-4">
         <h2 className="text-2xl font-bold">Thesaurus</h2>
       </div>
