@@ -28,7 +28,7 @@ import { analyzeLyrics } from "@workspace/ui/components/utils/api.js";
 
 import { Progress } from "@workspace/ui/components/progress";
 import { toast } from "sonner";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, use } from "react";
 import { useAuth } from "@workspace/ui/components/context/authContext";
 import { formatTime } from "./utils/utils.js";
 import { mediaApi, type BlobMP3File } from "./mediaApi/mediaAccess.js";
@@ -52,8 +52,8 @@ interface MediaControlsProps {
   currentTrackName?: string | null;
   currentFullTrackName?: string | null;
   lyricsText: string;
+  onSetKaraoke: (isKaraoke: boolean) => void;
 }
-
 export default function MediaControls({
   isPlaying,
   togglePlay,
@@ -69,6 +69,7 @@ export default function MediaControls({
   currentTrackName,
   currentFullTrackName,
   lyricsText,
+  onSetKaraoke,
 }: MediaControlsProps) {
   const [fullTrackName, setFullTrackName] = useState<string | null>(null); // Your new state
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -86,15 +87,17 @@ export default function MediaControls({
   const { token, user } = useAuth();
   const trackLoadingRef = useRef<AbortController | null>(null);
   const currentTrackRef = useRef<string>("");
+  const [toggleKaraoke, setToggleKaraoke] = useState<boolean>(false);
 
   const [analyzedLyrics, setAnalyzedLyrics] = useState<any>(null);
   const [analyzedVerses, setAnalyzedVerses] = useState<any>(null);
   const [tempo, setTempo] = useState<number>(0.0);
+  const [rapStyle, setRapStyle] = useState<{ name: string; description: string; time_style: string }>();
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isAligning, setIsAligning] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchTracks();
+    fetchTracks();  
   }, []);
 
   useEffect(() => {
@@ -293,6 +296,7 @@ export default function MediaControls({
   const onAnalyzedLyrics = (result: any) => {
     setAnalyzedLyrics(result);
     setTempo(Number(result.rhythm_info.tempo.toFixed(2)));
+    setRapStyle(result.rhythm_info.rap_style);
 
     const verses = result.aligned_lyrics;
     setAnalyzedVerses(verses);
@@ -321,10 +325,16 @@ export default function MediaControls({
   const handleAnalyze = async () => {
     await sleep(50);
     try {
-      if (!currentTrackRef.current || !lyricsText) {
-        console.log("audio or lyrics doesn't exist");
+      if (!currentTrackRef.current) {
+        // console.log("audio or lyrics doesn't exist");
+        toast.error("Audio doesn't exist or is not selected on uploads.")
         return;
       }
+
+      if (!lyricsText || lyricsText.trim().length === 0) {
+        toast.error("No lyrics found.")
+        return;
+      } 
 
       // Convert the local URL to a File object
       const audioFile = await urlToFile(currentTrackRef.current, trackName, "audio/mpeg");
@@ -333,7 +343,7 @@ export default function MediaControls({
       setIsAligning(true);
       const result = await analyzeLyrics(lyricsText, audioFile);
 
-      console.log("Analysis result:", result);
+      // console.log("Analysis result:", result);
       onAnalyzedLyrics(result);
     } catch (err) {
       console.error("Error analyzing lyrics:", err);
@@ -401,7 +411,29 @@ export default function MediaControls({
             </button>
           </div>
 
-          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">{tempo} BPM</div>
+          <div className="rounded bg-[#1e3a5f] px-2 py-1 text-xs">{tempo.toFixed(0)} BPM</div>
+            <div className="relative group">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="rounded bg-[#1e3a5f] text-xs text-gray-200"
+              tabIndex={0}
+            >
+              Song Details
+            </Button>
+              <div
+                className="pointer-events-none absolute left-0 top-full z-10 mt-2 w-max rounded bg-[#0a192f] px-3 py-2 text-xs text-gray-100 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
+                style={{ transitionDelay: "700ms" }}
+              >
+                {rapStyle ? (
+                  <p>Recommended Rap Style: {rapStyle.name}</p>
+                ) : (
+                  <p>Recommended Rap Style: Analyze Song to find out...</p>
+                )}
+                <p>Description: {rapStyle?.description}</p>
+                <p>Time Style: {rapStyle?.time_style}</p>
+              </div>
+            </div>
         </div>
 
         <div className="flex items-center space-x-3">
@@ -480,24 +512,15 @@ export default function MediaControls({
             </SelectContent>
           </Select>
 
-          {/* <Button
-            variant="outline"
-            size="sm"
-            className="border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda] hover:text-[#0a192f]"
-            disabled={controlsDisabled}
-          >
-            Align Lyrics
-          </Button> */}
-
-          { controlsDisabled ? (
+          { isDisabled ? (
             <Button
               variant="outline"
               size="sm"
-              className="mx-4 border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10 cursor-not-allowed"
+              className="mx-4 border-[#64ffda] text-[#64ffda] cursor-not-allowed"
               onClick={handleAnalyze}
               disabled={controlsDisabled}
             >
-              {isAligning ? (<p>Aligning...</p>) : (<p>Align Lyrics</p>)}
+              {isAligning ? (<p>Analyzing...</p>) : (<p>Analyze Song</p>)}
           </Button>
           ) : (
             <Button
@@ -507,7 +530,7 @@ export default function MediaControls({
               onClick={handleAnalyze}
               disabled={controlsDisabled}
             >
-              Align Lyrics
+              Analyze Song
             </Button>
           )}
         </div>
@@ -542,14 +565,14 @@ export default function MediaControls({
 
       <div className="flex items-center">
         <div className="flex items-center space-x-2">
-          <button
+          {/* <button
             className={`rounded-full p-1 ${controlsDisabled ? "text-gray-500 cursor-not-allowed" : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"}`}
             disabled={controlsDisabled}
           >
             <SkipBack className="h-5 w-5" />
-          </button>
+          </button> */}
           <button
-            className={`rounded-full p-2 ${controlsDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-[#64ffda] hover:bg-[#5ae6c4]"} text-[#0a192f]`}
+            className={`rounded-full ml-16 p-2 ${controlsDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-[#64ffda] hover:bg-[#5ae6c4]"} text-[#0a192f]`}
             onClick={togglePlay}
             disabled={controlsDisabled}
           >
@@ -561,16 +584,16 @@ export default function MediaControls({
               <Play className="h-5 w-5" />
             )}
           </button>
-          <button
+          {/* <button
             className={`rounded-full p-1 ${controlsDisabled ? "text-gray-500 cursor-not-allowed" : "text-gray-300 hover:bg-[#1e3a5f] hover:text-white"}`}
             disabled={controlsDisabled}
           >
             <SkipForward className="h-5 w-5" />
-          </button>
+          </button> */}
         </div>
 
-        <div className="mx-auto flex w-1/2 items-center space-x-4">
-          <span className="text-xs text-gray-400">
+        <div className="mx-auto flex w-3/4 items-center space-x-4">
+          <span className="text-xl">
             {formatTime(currentTime)}
           </span>
           <Slider
@@ -582,9 +605,30 @@ export default function MediaControls({
             onValueChange={handleSliderChange}
             disabled={controlsDisabled}
           />
-          <span className="text-xs text-gray-400">{formatTime(duration)}</span>
+          <span className="text-xl">{formatTime(duration)}</span>
 
         </div>
+          
+            <div className="relative group ml-4">
+              <Button
+                variant={toggleKaraoke ? "default" : "outline"}
+                size="sm"
+                className={`${toggleKaraoke ? "bg-[#64ffda] text-[#0a192f]" : "border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]/10"}`}
+                onClick={() => {
+                  const newValue = !toggleKaraoke;
+                  setToggleKaraoke(newValue);
+                  onSetKaraoke(newValue);
+                }}
+                disabled={controlsDisabled || !analyzedLyrics}
+              >
+                {toggleKaraoke ? "Karaoke On" : "Karaoke Off"}
+              </Button>
+              {(!analyzedLyrics) && (
+                <div className="pointer-events-none absolute top-full z-10 mt-2 rounded bg-[#0a192f] px-3 py-2 text-xs text-gray-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                  You need to analyze the song first before enabling Karaoke.
+                </div>
+              )}
+            </div>
 
         <div className="w-20"></div>
       </div>

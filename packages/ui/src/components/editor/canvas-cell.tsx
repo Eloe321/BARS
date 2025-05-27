@@ -177,7 +177,7 @@ const Cell = ({
     <div className={`cell ${isHighlighted ? 'highlight' : ''}`} style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
       {/* Display the times */}
       {cellType === 'lyric' && (
-        <div className="time-info">
+        <div className={`time-info ${isHighlighted ? 'highlight' : ''}`}>
           <div>{timeStart !== undefined ? formatTime(timeStart) : '--:--.---'}</div>
           <div>{timeEnd !== undefined ? formatTime(timeEnd) : '--:--.---'}</div>
         </div>

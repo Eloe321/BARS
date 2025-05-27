@@ -7,6 +7,7 @@ import { ThemeProvider } from "@workspace/ui/components/theme-provider";
 // import { useProgress } from "@workspace/ui/hooks/useProgress";
 import { useSongAlign } from "@workspace/ui/hooks/useSongAlign";
 import LyricsEditor from "@workspace/ui/components/editor/editor-canvas";
+import KaraokeViewer from "@workspace/ui/components/editor/karaoke-viewer";
 import EditorTopBar from "@workspace/ui/components/editor/editor-topbar";
 import MediaControls from "@workspace/ui/components/editor/media-control";
 import ThesaurusSidebar from "@workspace/ui/components/editor/thesaurus-sidebar";
@@ -44,7 +45,7 @@ export default function EditorPage() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   //editor topbar
-  const [fileName, setFileName] = useState("untitled.bar");
+  const [fileName, setFileName] = useState("untitled");
   const [showGrid, setShowGrid] = useState(false);
   const [showLayers, setShowLayers] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -61,6 +62,9 @@ export default function EditorPage() {
   // thesaurus
   const [thesaurusWord, setThesaurusWord] = useState<string>("");
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
+
+  // karaoke viewer
+  const [toggleKaraoke, setToggleKaraoke] = useState<boolean>(true);
 
   const handleThesaurus = async (word: string) => {
     setShowSidebar(true);
@@ -148,7 +152,7 @@ export default function EditorPage() {
       const currentFileName = fileName;
 
       // If it's a new file, show modal for name input
-      if (fileName === "untitled.bar") {
+      if (fileName === "untitled") {
         setPendingSave(true);
         setShowSongNameModal(true);
         toast.dismiss("save-progress");
@@ -406,7 +410,7 @@ export default function EditorPage() {
       }
     } else {
       // New song - reset everything
-      setFileName("untitled.bar");
+      setFileName("untitled");
       resetPlayer();
     }
   };
@@ -562,7 +566,7 @@ export default function EditorPage() {
     switch (action) {
       case "new":
         // Reset to new file
-        setFileName("untitled.bar");
+        setFileName("untitled");
         // Reset editor content, timeline, etc.
         // You can add more reset logic here
         break;
@@ -752,22 +756,59 @@ export default function EditorPage() {
                 onSetIsAligning={(isAligning) => {
                   setIsAligning(isAligning);
                 }}
+                onSetKaraoke={(toggleKaraoke) => {
+                  setToggleKaraoke(toggleKaraoke);
+                }}
               />
 
               {/* TODO: Potential issues may arise from currentTime not updating every frame */}
               <div className="relative h-screen overflow-y-auto">
-                <LyricsEditor 
-                  className={`${isAligning ? "pointer-events-none" : ""}`}
-                  // className="pointer-events-none "
-                  onWordSelect={handleThesaurus} 
-                  currentTime={currentTime} 
-                  onCellsUpdate={handleCellsUpdate}
-                  analyzedVerses={analyzedVerses}
-                  songLyrics = {songLyrics} />
-                  {isAligning && (
-                    <div className="absolute inset-0 bg-gray-900 mix-blend-multiply pointer-events-none z-10" style={{ opacity: 0.5 }} />
+                <div className="relative">
+                  
+                  <LyricsEditor 
+                    className={`${isAligning ? "pointer-events-none" : ""}`}
+                    onWordSelect={handleThesaurus} 
+                    currentTime={currentTime} 
+                    onCellsUpdate={handleCellsUpdate}
+                    analyzedVerses={analyzedVerses}
+                    songLyrics={songLyrics}
+                  />
+
+                  {toggleKaraoke && (
+                    <KaraokeViewer analyzedVerses={analyzedVerses} currentTime={currentTime} />
                   )}
+
+                  {isAligning && (
+                    <div className="lyrics-loading-overlay">
+                      <div className="lyrics-loading-spinner">
+                        <svg
+                          className="spinner-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="spinner-circle"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="spinner-path"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                          ></path>
+                        </svg>
+                        <span className="loading-text">Analyzing lyrics...</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
+
+
               
             </div>
 
@@ -795,12 +836,12 @@ export default function EditorPage() {
                 setIsSaving(false);
               }}
               onConfirm={handleSongNameConfirm}
-              defaultName={fileName === "untitled.bar" ? "" : fileName}
+              defaultName={fileName === "untitled" ? "" : fileName}
               title={
-                fileName === "untitled.bar" ? "Save New Song" : "Save Song As"
+                fileName === "untitled" ? "Save New Song" : "Save Song As"
               }
               description={
-                fileName === "untitled.bar"
+                fileName === "untitled"
                   ? "Enter a name for your new song"
                   : "Enter a new name for your song"
               }

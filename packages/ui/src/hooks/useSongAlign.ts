@@ -45,7 +45,7 @@ export function useSongAlign() {
     }));
 
     // console.log("Generated JSON (lyrics only):", JSON.stringify(lyricsText, null, 2));
-    console.log("Generated JSON (all cells):", JSON.stringify(jsonData, null, 2));
+    // console.log("Generated JSON (all cells):", JSON.stringify(jsonData, null, 2));
     setContentJson((JSON.stringify(jsonData, null, 2)));
   };
 

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Song } from "@workspace/types";
 import { useAuth } from "../context/authContext.js";
 import { Skeleton } from "@workspace/ui/components/skeleton";
-import { Plus, ChevronRight, Music, Calendar, FileText } from "lucide-react";
+import { Plus, ChevronRight, Music, Calendar, FileText, MoreVertical, Trash2, AlertTriangle } from "lucide-react";
+
 
 interface SongSelectionProps {
   onSongSelect: (song: Song | null) => void; // null for new song
@@ -82,10 +83,132 @@ function LoadingSkeleton() {
   );
 }
 
+// Dropdown Menu Component
+function DropdownMenu({ 
+  songId, 
+  songTitle, 
+  onDelete, 
+  isDeleting 
+}: { 
+  songId: string; 
+  songTitle: string; 
+  onDelete: (id: string) => void; 
+  isDeleting: boolean; 
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowConfirmDialog(true);
+    setIsOpen(false);
+  };
+
+  const handleConfirmDelete = () => {
+    onDelete(songId);
+    setShowConfirmDialog(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmDialog(false);
+  };
+
+  return (
+    <>
+      <div className="relative" ref={dropdownRef}>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsOpen(!isOpen);
+          }}
+          className="rounded-full p-2 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors"
+          disabled={isDeleting}
+        >
+          <MoreVertical className="h-4 w-4" />
+        </button>
+
+        {isOpen && (
+          <div className="absolute right-0 top-full mt-1 w-48 rounded-lg bg-gray-800 border border-gray-700 shadow-lg z-50">
+            <div className="py-1">
+              <button
+                onClick={handleDeleteClick}
+                className="flex w-full items-center px-4 py-2 text-sm text-red-400 hover:bg-gray-700 hover:text-red-300 transition-colors"
+                disabled={isDeleting}
+              >
+                <Trash2 className="mr-3 h-4 w-4" />
+                Delete Song
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Confirmation Dialog */}
+      {showConfirmDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 border border-gray-700">
+            <div className="flex items-center mb-4">
+              <div className="flex-shrink-0">
+                <AlertTriangle className="h-6 w-6 text-red-400" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-lg font-semibold text-white">Delete Song</h3>
+              </div>
+            </div>
+            <div className="mb-6">
+              <p className="text-gray-300">
+                Are you sure you want to delete "{songTitle}"? This action cannot be undone.
+              </p>
+            </div>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={handleCancelDelete}
+                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+                disabled={isDeleting}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                disabled={isDeleting}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+              >
+                {isDeleting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                    Deleting...
+                  </>
+                ) : (
+                  'Delete'
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function SongSelection({ onSongSelect }: SongSelectionProps) {
   const [songs, setSongs] = useState<Song[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [deletingSongId, setDeletingSongId] = useState<string | null>(null);
   const { token } = useAuth();
 
   useEffect(() => {
@@ -114,6 +237,32 @@ export default function SongSelection({ onSongSelect }: SongSelectionProps) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDeleteSong = async (songId: string) => {
+    try {
+      setDeletingSongId(songId);
+
+      const response = await fetch(`http://localhost:3306/songs/${songId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete song");
+      }
+
+      // Remove the song from the local state
+      setSongs(prevSongs => prevSongs.filter(song => song.id !== songId));
+    } catch (err) {
+      console.error("Error deleting song:", err);
+      setError(err instanceof Error ? err.message : "Failed to delete song");
+    } finally {
+      setDeletingSongId(null);
     }
   };
 
@@ -199,6 +348,12 @@ export default function SongSelection({ onSongSelect }: SongSelectionProps) {
   return (
     <div className="flex h-screen flex-col bg-[#0a192f] text-white">
       <div className="flex-1 overflow-auto p-8">
+      <a
+        href="/"
+        className="inline-block mb-6 rounded-lg bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] px-4 py-2 text-white font-semibold shadow hover:from-[#1a3456] hover:to-[#5ae6c4] transition-colors"
+        >
+        ← Back to Home
+      </a>
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="mb-8 flex items-center space-x-3">
@@ -246,34 +401,47 @@ export default function SongSelection({ onSongSelect }: SongSelectionProps) {
 
               <div className="grid gap-4">
                 {songs.map((song, index) => (
-                  <button
+                  <div
                     key={song.id}
-                    onClick={() => handleSongSelect(song)}
-                    className="group w-full rounded-lg bg-gray-800/50 p-6 text-left transition-all duration-200 hover:bg-gray-700/50 hover:scale-[1.01] hover:shadow-lg animate-in fade-in-0 slide-in-from-bottom-4"
+                    className="group w-full rounded-lg bg-gray-800/50 transition-all duration-200 hover:bg-gray-700/50 hover:scale-[1.01] hover:shadow-lg animate-in fade-in-0 slide-in-from-bottom-4"
                     style={{
                       animationDelay: `${index * 100}ms`,
                     }}
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1 space-y-2">
-                        <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
-                          {song.title}
-                        </h3>
-                        <div className="flex items-center space-x-2 text-sm text-gray-400">
-                          <Calendar className="h-4 w-4" />
-                          <span>
-                            Created: {formatDate(song.creation_date.toString())}
-                          </span>
+                    <div className="flex items-start justify-between p-6">
+                      <button
+                        onClick={() => handleSongSelect(song)}
+                        className="flex-1 text-left"
+                      >
+                        <div className="space-y-2">
+                          <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
+                            {song.title}
+                          </h3>
+                          <div className="flex items-center space-x-2 text-sm text-gray-400">
+                            <Calendar className="h-4 w-4" />
+                            <span>
+                              Created: {formatDate(song.creation_date.toString())}
+                            </span>
+                          </div>
+                          <p className="text-gray-300 leading-relaxed">
+                            {truncateContent(song.content)}
+                          </p>
                         </div>
-                        <p className="text-gray-300 leading-relaxed">
-                          {truncateContent(song.content)}
-                        </p>
-                      </div>
-                      <div className="ml-4 flex items-center text-gray-400 group-hover:text-blue-300 transition-colors">
-                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                      
+                      <div className="ml-4 flex items-center space-x-2">
+                        <DropdownMenu
+                          songId={song.id ?? ""}
+                          songTitle={song.title}
+                          onDelete={handleDeleteSong}
+                          isDeleting={deletingSongId === song.id}
+                        />
+                        <div className="text-gray-400 group-hover:text-blue-300 transition-colors">
+                          <ChevronRight className="h-5 w-5" />
+                        </div>
                       </div>
                     </div>
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>

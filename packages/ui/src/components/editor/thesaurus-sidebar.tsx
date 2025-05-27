@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect  } from "react";
-import { BinisayaFoundCard, BinisayaSuggestions } from "@workspace/ui/components/editor/thesaurus-card"
-import { searchBinisaya } from '@workspace/ui/components/utils/api.js';
+import { useState, useEffect, useRef } from "react";
+import { BinisayaFoundCard, BinisayaSuggestions } from "@workspace/ui/components/editor/thesaurus-card";
+import { searchBinisaya } from "@workspace/ui/components/utils/api.js";
 
 interface ThesaurusSidebarProps {
   word: string | null;
@@ -9,14 +9,15 @@ interface ThesaurusSidebarProps {
 
 export default function ThesaurusSidebar({ word }: ThesaurusSidebarProps) {
   const [thesaurusEntry, setThesaurusEntry] = useState<any>(null);
+  const [isGettingEntry, setIsGettingEntry] = useState<boolean>(false);
 
-    const [isGettingEntry, setIsGettingEntry] = useState<boolean>(false);
-
+  const [width, setWidth] = useState<number>(320); // Default width (e.g. 20rem)
+  const isResizing = useRef(false);
 
   useEffect(() => {
     const fetchThesaurusEntry = async () => {
       if (word) {
-        try{
+        try {
           setIsGettingEntry(true);
           setThesaurusEntry(await searchBinisaya(word));
         } catch (error) {
@@ -29,44 +30,61 @@ export default function ThesaurusSidebar({ word }: ThesaurusSidebarProps) {
     fetchThesaurusEntry();
   }, [word]);
 
+  // Handlers for drag-to-resize
+  const startResize = () => {
+    isResizing.current = true;
+    document.body.style.cursor = "ew-resize";
+  };
+
+  const stopResize = () => {
+    isResizing.current = false;
+    document.body.style.cursor = "default";
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (isResizing.current) {
+      const newWidth = window.innerWidth - e.clientX;
+      setWidth(Math.max(200, Math.min(600, newWidth))); // min 200px, max 600px
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", stopResize);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", stopResize);
+    };
+  }, []);
+
   return (
-    <div className="w-80 flex-shrink-0 min-h-screen h-full overflow-y-auto border-l border-[#1e3a5f] bg-[#0a192f]">
+    <div
+      className="flex-shrink-0 h-full overflow-y-auto border-l border-[#1e3a5f] bg-[#0a192f] relative"
+      style={{ width }}
+    >
+      {/* Drag Handle */}
+      <div
+        className="absolute top-0 left-0 h-full w-2 cursor-ew-resize z-50"
+        onMouseDown={startResize}
+      ></div>
+
+      {/* Sidebar Content */}
       <div className="border-b border-[#1e3a5f] p-4">
         <h2 className="text-2xl font-bold">Thesaurus</h2>
       </div>
       <div className="p-4">
-        <h3 className="text-xl font-medium text-[#64ffda]"> {word} </h3>
+        <h3 className="text-xl font-medium text-[#64ffda]">{word}</h3>
 
         {thesaurusEntry !== null && (
           <>
-            {thesaurusEntry.status === 'found' && (
+            {thesaurusEntry.status === "found" && (
               <BinisayaFoundCard entry={thesaurusEntry.result[0]} isGettingEntry={isGettingEntry} />
             )}
-            {thesaurusEntry.status === 'suggestions' && (
+            {thesaurusEntry.status === "suggestions" && (
               <BinisayaSuggestions suggestions={thesaurusEntry.result} />
             )}
           </>
         )}
-
-        {/* <div className="mt-6">
-          <h4 className="mb-2 text-lg font-medium">suggested metaphors:</h4>
-          <ul className="space-y-2 text-sm">
-            {metaphors.map((metaphor, index) => (
-              <li key={index} className="flex items-center">
-                <span className="mr-2 text-[#64ffda]">•</span>
-                <span>{metaphor}</span>
-              </li>
-            ))}
-          </ul>
-
-          <Button
-            className="mt-6 w-full bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]"
-            size="sm"
-          >
-            <RefreshCw className="mr-2 h-4 w-4" />
-            Generate metaphors
-          </Button>
-        </div> */}
       </div>
     </div>
   );

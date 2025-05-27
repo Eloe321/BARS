@@ -23,7 +23,7 @@ export default function LyricGenerator({ onGenerate }: LyricGeneratorProps) {
           AI Options
       </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64 space-y-3 p-3 rounded-md bg-[#112240] text-white shadow-lg border border-blue-900">
+      <DropdownMenuContent className="w-64 space-y-3 p-3 z-10 rounded-md bg-[#112240] text-white shadow-lg border border-blue-900">
         <div>
           <label className="text-xs text-gray-300">Theme</label>
           <select
