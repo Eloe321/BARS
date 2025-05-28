@@ -69,6 +69,7 @@
   }
   
 .cell.highlight {
+  padding-bottom: 10px;
   background-color: #64ffda;  
   transition: background-color 0.3s ease;
 }

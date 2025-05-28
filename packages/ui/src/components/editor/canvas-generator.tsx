@@ -12,7 +12,7 @@ export default function LyricGenerator({ onGenerate }: LyricGeneratorProps) {
   const [isGenerating, setIsGenerating] = useState(false);
 
   async function generateFunction({ theme, mood, figurative }: { theme: string; mood: string; figurative: string }) {
-    const result = `theme: ${theme}, mood: ${mood}, figurative: ${figurative}`;
+    const result = `8 sylables min 13 sylables max, theme: ${theme}, mood: ${mood}, figurative: ${figurative}`;
     await onGenerate(result);
   }
 
@@ -34,6 +34,7 @@ export default function LyricGenerator({ onGenerate }: LyricGeneratorProps) {
             <option value="love">Love</option>
             <option value="poverty">Poverty</option>
             <option value="wealth">Wealth</option>
+            <option value="culture">Cebuano Culture</option>
           </select>
         </div>
 
@@ -47,7 +48,7 @@ export default function LyricGenerator({ onGenerate }: LyricGeneratorProps) {
             <option value="happy">Happy</option>
             <option value="sad">Sad</option>
             <option value="anger">Anger</option>
-            <option value="lust">Lust</option>
+            <option value="Calm">Calm</option>
           </select>
         </div>
 
@@ -60,6 +61,9 @@ export default function LyricGenerator({ onGenerate }: LyricGeneratorProps) {
           >
             <option value="metaphor">Metaphor</option>
             <option value="simile">Simile</option>
+            <option value="personification">Personification</option>
+            <option value="hyperbole">Hyperbole</option>
+            <option value="alliteration">Alliteration</option>
             <option value="none">None</option>
           </select>
         </div>

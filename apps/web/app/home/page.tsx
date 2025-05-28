@@ -239,13 +239,13 @@ export default function HomePage() {
               <div className="rounded-lg border border-[#1e3a5f] bg-[#112240] p-6">
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-xl font-bold">Street Life</h3>
-                  <Button
+                  {/* <Button
                     variant="outline"
                     size="sm"
                     className="border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
                   >
                     Generate Similar
-                  </Button>
+                  </Button> */}
                 </div>
                 <div className="rounded-md bg-[#0a192f] p-4">
                   <p className="font-mono text-gray-300">
@@ -266,13 +266,13 @@ export default function HomePage() {
               <div className="rounded-lg border border-[#1e3a5f] bg-[#112240] p-6">
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-xl font-bold">Island Dreams</h3>
-                  <Button
+                  {/* <Button
                     variant="outline"
                     size="sm"
                     className="border-[#64ffda] text-[#64ffda] hover:bg-[#64ffda]-10"
                   >
                     Generate Similar
-                  </Button>
+                  </Button> */}
                 </div>
                 <div className="rounded-md bg-[#0a192f] p-4">
                   <p className="font-mono text-gray-300">

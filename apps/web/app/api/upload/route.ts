@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         url: blob.url,
-        filename: filename,
+        filename: blob.contentDisposition.split("filename=")[1],
         size: file.size,
       });
     };

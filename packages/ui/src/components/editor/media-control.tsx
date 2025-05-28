@@ -572,7 +572,7 @@ export default function MediaControls({
             <SkipBack className="h-5 w-5" />
           </button> */}
           <button
-            className={`rounded-full ml-16 p-2 ${controlsDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-[#64ffda] hover:bg-[#5ae6c4]"} text-[#0a192f]`}
+            className={`rounded-full p-2 ${controlsDisabled ? "bg-gray-500 cursor-not-allowed" : "bg-[#64ffda] hover:bg-[#5ae6c4]"} text-[#0a192f]`}
             onClick={togglePlay}
             disabled={controlsDisabled}
           >
