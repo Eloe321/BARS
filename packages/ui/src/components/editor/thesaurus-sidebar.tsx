@@ -71,6 +71,7 @@ export default function ThesaurusSidebar({ word }: ThesaurusSidebarProps) {
       {/* Sidebar Content */}
       <div className="border-b border-[#1e3a5f] p-4">
         <h2 className="text-2xl font-bold">Thesaurus</h2>
+        <p className="text-xs text-gray-400">select a word then ctrl + enter to search</p>
       </div>
       <div className="p-4">
         <h3 className="text-xl font-medium text-[#64ffda]">{word}</h3>

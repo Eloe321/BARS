@@ -61,7 +61,7 @@ export default function EditorPage() {
 
   // thesaurus
   const [thesaurusWord, setThesaurusWord] = useState<string>("");
-  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
   // karaoke viewer
   const [toggleKaraoke, setToggleKaraoke] = useState<boolean>(true);
@@ -410,8 +410,28 @@ export default function EditorPage() {
       }
     } else {
       // New song - reset everything
-      setFileName("untitled");
-      resetPlayer();
+      // New song - reset everything to clean state
+    console.log("Creating new song - resetting all state");
+    
+    // Reset file and song state
+    setFileName("untitled");
+    setSongLyrics("");
+    setSavedSong(null);
+    
+    // Reset editor state
+    setAnalyzedVerses([]);
+    setMusicData(null);
+    
+    // Reset media player
+    resetPlayer();
+    
+    // Reset editor canvas state (if you have a way to clear the editor content)
+    // You may need to add a method to clear the useSongAlign hook state
+    // handleCellsUpdate(""); // Uncomment if this clears the editor
+    
+    // Reset any other relevant state
+    setIsAligning(false);
+    setThesaurusWord("");
     }
   };
 

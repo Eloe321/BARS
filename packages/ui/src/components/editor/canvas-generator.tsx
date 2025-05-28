@@ -12,7 +12,7 @@ export default function LyricGenerator({ onGenerate }: LyricGeneratorProps) {
   const [isGenerating, setIsGenerating] = useState(false);
 
   async function generateFunction({ theme, mood, figurative }: { theme: string; mood: string; figurative: string }) {
-    const result = `8 sylables min 13 sylables max, theme: ${theme}, mood: ${mood}, figurative: ${figurative}`;
+    const result = `8 syllables min 13 syllables max, theme: ${theme}, mood: ${mood}, figurative: ${figurative}`;
     await onGenerate(result);
   }
 

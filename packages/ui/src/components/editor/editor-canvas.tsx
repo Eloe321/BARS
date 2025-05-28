@@ -39,6 +39,13 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
   }, [cells]);
 
   useEffect(() => {
+      if (!songLyrics || songLyrics.trim() === '') {
+    // New file - set default empty cell
+    console.log("New file detected - initializing with empty cell");
+    setCells([{ id: 0, type: 'note', content: '', timeStart: -1, timeEnd: -1 }]);
+    setNextId(1);
+    return;
+  }
     try{
       const lyricsJson = JSON.parse(songLyrics);
 
@@ -56,6 +63,7 @@ export default function LyricsEditor({ className, onWordSelect, currentTime, onC
         console.error("Invalid lyrics JSON format");
       }
     } catch (error) {
+      
       console.error("Error parsing lyrics JSON:", error);
       // Fallback to an empty cell if parsing fails
       setCells([{ id: 0, type: 'note', content: '', timeStart: -1, timeEnd: -1 }]);

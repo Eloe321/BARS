@@ -25,7 +25,7 @@ function BinisayaFoundCard({ entry, isGettingEntry }: { entry: BinisayaFoundResu
   }
 
   const generateVerse: GenerateVerseFn = async () => {
-    const prompt = "8 syllables min, 10 syllables max, and make sure to include " + entry.word + " in the verse with the figurative language, " + figurative;
+    const prompt = "8 syllables min 10 syllables max, make sure to include " + entry.word + " in the verse with the figurative language, " + figurative;
 
     try {
       setIsGenerating(true);
