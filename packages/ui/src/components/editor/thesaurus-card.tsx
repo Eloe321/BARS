@@ -93,11 +93,25 @@ function BinisayaFoundCard({
 	}
 
 	const generateVerse: GenerateVerseFn = async () => {
-		const prompt =
-			"8 syllables min 10 syllables max 4-bars or 4-lines, make sure to include " +
-			currentEntry.word +
-			" in the verse with the figurative language, " +
-			figurative
+		// Get English translations
+		const englishMeanings =
+			currentEntry.english_words && currentEntry.english_words.length > 0
+				? ` which means ${currentEntry.english_words.map((ew) => ew.word).join(", ")} in English`
+				: ""
+
+		// Get synonyms if available
+		const synonymsText =
+			currentEntry.synonyms && currentEntry.synonyms.length > 0
+				? ` Synonyms include: ${currentEntry.synonyms.join(", ")}.`
+				: ""
+
+		// Get rhyming words if available
+		const rhymingText =
+			rhymes && rhymes.length > 0
+				? ` Words that rhyme with it include: ${rhymes.map((r) => r.word).join(", ")}.`
+				: ""
+
+		const prompt = `Generate a 2-bar or 4-bar rap verse in Cebuano about the word "${currentEntry.word}"${englishMeanings}. The verse must include the word "${currentEntry.word}," follow a consistent rhyme scheme, and adhere to a rhythmic structure of 8-16 syllables per line, syllable count must be consisten throughout the verse. Feel free to use the following ${synonymsText}${rhymingText}. Use ${figurative} as the figurative language. Ensure the language and tone align with a creative and engaging rap style.`
 
 		try {
 			setIsGenerating(true)
