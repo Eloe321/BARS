@@ -19,10 +19,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model Song
+ * Model Session
  * 
  */
-export type Song = $Result.DefaultSelection<Prisma.$SongPayload>
+export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
+/**
+ * Model StickyNotes
+ * 
+ */
+export type StickyNotes = $Result.DefaultSelection<Prisma.$StickyNotesPayload>
 /**
  * Model Link
  * 
@@ -197,14 +202,24 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.song`: Exposes CRUD operations for the **Song** model.
+   * `prisma.session`: Exposes CRUD operations for the **Session** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Songs
-    * const songs = await prisma.song.findMany()
+    * // Fetch zero or more Sessions
+    * const sessions = await prisma.session.findMany()
     * ```
     */
-  get song(): Prisma.SongDelegate<ExtArgs, ClientOptions>;
+  get session(): Prisma.SessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.stickyNotes`: Exposes CRUD operations for the **StickyNotes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StickyNotes
+    * const stickyNotes = await prisma.stickyNotes.findMany()
+    * ```
+    */
+  get stickyNotes(): Prisma.StickyNotesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.link`: Exposes CRUD operations for the **Link** model.
@@ -686,7 +701,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Song: 'Song',
+    Session: 'Session',
+    StickyNotes: 'StickyNotes',
     Link: 'Link',
     LinkPermission: 'LinkPermission',
     PremadeMusic: 'PremadeMusic',
@@ -709,7 +725,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "song" | "link" | "linkPermission" | "premadeMusic" | "uploadedMusic"
+      modelProps: "user" | "session" | "stickyNotes" | "link" | "linkPermission" | "premadeMusic" | "uploadedMusic"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -787,77 +803,151 @@ export namespace Prisma {
           }
         }
       }
-      Song: {
-        payload: Prisma.$SongPayload<ExtArgs>
-        fields: Prisma.SongFieldRefs
+      Session: {
+        payload: Prisma.$SessionPayload<ExtArgs>
+        fields: Prisma.SessionFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.SongFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload> | null
+            args: Prisma.SessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.SongFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+            args: Prisma.SessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           findFirst: {
-            args: Prisma.SongFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload> | null
+            args: Prisma.SessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.SongFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+            args: Prisma.SessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           findMany: {
-            args: Prisma.SongFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>[]
+            args: Prisma.SessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           create: {
-            args: Prisma.SongCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+            args: Prisma.SessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           createMany: {
-            args: Prisma.SongCreateManyArgs<ExtArgs>
+            args: Prisma.SessionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.SongCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>[]
+            args: Prisma.SessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           delete: {
-            args: Prisma.SongDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+            args: Prisma.SessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           update: {
-            args: Prisma.SongUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+            args: Prisma.SessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           deleteMany: {
-            args: Prisma.SongDeleteManyArgs<ExtArgs>
+            args: Prisma.SessionDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.SongUpdateManyArgs<ExtArgs>
+            args: Prisma.SessionUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.SongUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>[]
+            args: Prisma.SessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           upsert: {
-            args: Prisma.SongUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SongPayload>
+            args: Prisma.SessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           aggregate: {
-            args: Prisma.SongAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSong>
+            args: Prisma.SessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSession>
           }
           groupBy: {
-            args: Prisma.SongGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SongGroupByOutputType>[]
+            args: Prisma.SessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SessionGroupByOutputType>[]
           }
           count: {
-            args: Prisma.SongCountArgs<ExtArgs>
-            result: $Utils.Optional<SongCountAggregateOutputType> | number
+            args: Prisma.SessionCountArgs<ExtArgs>
+            result: $Utils.Optional<SessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      StickyNotes: {
+        payload: Prisma.$StickyNotesPayload<ExtArgs>
+        fields: Prisma.StickyNotesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StickyNotesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StickyNotesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>
+          }
+          findFirst: {
+            args: Prisma.StickyNotesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StickyNotesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>
+          }
+          findMany: {
+            args: Prisma.StickyNotesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>[]
+          }
+          create: {
+            args: Prisma.StickyNotesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>
+          }
+          createMany: {
+            args: Prisma.StickyNotesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StickyNotesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>[]
+          }
+          delete: {
+            args: Prisma.StickyNotesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>
+          }
+          update: {
+            args: Prisma.StickyNotesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>
+          }
+          deleteMany: {
+            args: Prisma.StickyNotesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StickyNotesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StickyNotesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>[]
+          }
+          upsert: {
+            args: Prisma.StickyNotesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StickyNotesPayload>
+          }
+          aggregate: {
+            args: Prisma.StickyNotesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStickyNotes>
+          }
+          groupBy: {
+            args: Prisma.StickyNotesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StickyNotesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StickyNotesCountArgs<ExtArgs>
+            result: $Utils.Optional<StickyNotesCountAggregateOutputType> | number
           }
         }
       }
@@ -1242,7 +1332,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    song?: SongOmit
+    session?: SessionOmit
+    stickyNotes?: StickyNotesOmit
     link?: LinkOmit
     linkPermission?: LinkPermissionOmit
     premadeMusic?: PremadeMusicOmit
@@ -1341,15 +1432,17 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    songs: number
+    sessions: number
     links: number
     linkPermissions: number
+    stickyNotes: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | UserCountOutputTypeCountSongsArgs
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     links?: boolean | UserCountOutputTypeCountLinksArgs
     linkPermissions?: boolean | UserCountOutputTypeCountLinkPermissionsArgs
+    stickyNotes?: boolean | UserCountOutputTypeCountStickyNotesArgs
   }
 
   // Custom InputTypes
@@ -1366,8 +1459,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SongWhereInput
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
   }
 
   /**
@@ -1384,34 +1477,41 @@ export namespace Prisma {
     where?: LinkPermissionWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountStickyNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StickyNotesWhereInput
+  }
+
 
   /**
-   * Count Type SongCountOutputType
+   * Count Type SessionCountOutputType
    */
 
-  export type SongCountOutputType = {
+  export type SessionCountOutputType = {
     links: number
   }
 
-  export type SongCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    links?: boolean | SongCountOutputTypeCountLinksArgs
+  export type SessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    links?: boolean | SessionCountOutputTypeCountLinksArgs
   }
 
   // Custom InputTypes
   /**
-   * SongCountOutputType without action
+   * SessionCountOutputType without action
    */
-  export type SongCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SongCountOutputType
+     * Select specific fields to fetch from the SessionCountOutputType
      */
-    select?: SongCountOutputTypeSelect<ExtArgs> | null
+    select?: SessionCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * SongCountOutputType without action
+   * SessionCountOutputType without action
    */
-  export type SongCountOutputTypeCountLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCountOutputTypeCountLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LinkWhereInput
   }
 
@@ -1452,11 +1552,11 @@ export namespace Prisma {
    */
 
   export type PremadeMusicCountOutputType = {
-    songs: number
+    session: number
   }
 
   export type PremadeMusicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | PremadeMusicCountOutputTypeCountSongsArgs
+    session?: boolean | PremadeMusicCountOutputTypeCountSessionArgs
   }
 
   // Custom InputTypes
@@ -1473,8 +1573,8 @@ export namespace Prisma {
   /**
    * PremadeMusicCountOutputType without action
    */
-  export type PremadeMusicCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SongWhereInput
+  export type PremadeMusicCountOutputTypeCountSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
   }
 
 
@@ -1483,11 +1583,13 @@ export namespace Prisma {
    */
 
   export type UploadedMusicCountOutputType = {
-    songs: number
+    session: number
+    stickyNotes: number
   }
 
   export type UploadedMusicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | UploadedMusicCountOutputTypeCountSongsArgs
+    session?: boolean | UploadedMusicCountOutputTypeCountSessionArgs
+    stickyNotes?: boolean | UploadedMusicCountOutputTypeCountStickyNotesArgs
   }
 
   // Custom InputTypes
@@ -1504,8 +1606,15 @@ export namespace Prisma {
   /**
    * UploadedMusicCountOutputType without action
    */
-  export type UploadedMusicCountOutputTypeCountSongsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SongWhereInput
+  export type UploadedMusicCountOutputTypeCountSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
+  }
+
+  /**
+   * UploadedMusicCountOutputType without action
+   */
+  export type UploadedMusicCountOutputTypeCountStickyNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StickyNotesWhereInput
   }
 
 
@@ -1685,9 +1794,10 @@ export namespace Prisma {
     password?: boolean
     createAt?: boolean
     updateAt?: boolean
-    songs?: boolean | User$songsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     links?: boolean | User$linksArgs<ExtArgs>
     linkPermissions?: boolean | User$linkPermissionsArgs<ExtArgs>
+    stickyNotes?: boolean | User$stickyNotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1720,9 +1830,10 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "createAt" | "updateAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | User$songsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     links?: boolean | User$linksArgs<ExtArgs>
     linkPermissions?: boolean | User$linkPermissionsArgs<ExtArgs>
+    stickyNotes?: boolean | User$stickyNotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1731,9 +1842,10 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      songs: Prisma.$SongPayload<ExtArgs>[]
+      sessions: Prisma.$SessionPayload<ExtArgs>[]
       links: Prisma.$LinkPayload<ExtArgs>[]
       linkPermissions: Prisma.$LinkPermissionPayload<ExtArgs>[]
+      stickyNotes: Prisma.$StickyNotesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2136,9 +2248,10 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    songs<T extends User$songsArgs<ExtArgs> = {}>(args?: Subset<T, User$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     links<T extends User$linksArgs<ExtArgs> = {}>(args?: Subset<T, User$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     linkPermissions<T extends User$linkPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, User$linkPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stickyNotes<T extends User$stickyNotesArgs<ExtArgs> = {}>(args?: Subset<T, User$stickyNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2562,27 +2675,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.songs
+   * User.sessions
    */
-  export type User$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
-    where?: SongWhereInput
-    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
-    cursor?: SongWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -2634,6 +2747,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.stickyNotes
+   */
+  export type User$stickyNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    where?: StickyNotesWhereInput
+    orderBy?: StickyNotesOrderByWithRelationInput | StickyNotesOrderByWithRelationInput[]
+    cursor?: StickyNotesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StickyNotesScalarFieldEnum | StickyNotesScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2653,260 +2790,256 @@ export namespace Prisma {
 
 
   /**
-   * Model Song
+   * Model Session
    */
 
-  export type AggregateSong = {
-    _count: SongCountAggregateOutputType | null
-    _min: SongMinAggregateOutputType | null
-    _max: SongMaxAggregateOutputType | null
+  export type AggregateSession = {
+    _count: SessionCountAggregateOutputType | null
+    _min: SessionMinAggregateOutputType | null
+    _max: SessionMaxAggregateOutputType | null
   }
 
-  export type SongMinAggregateOutputType = {
+  export type SessionMinAggregateOutputType = {
     id: string | null
     title: string | null
     user_id: string | null
     musicSource: $Enums.MusicSource | null
     premade_music_id: string | null
     uploaded_music_id: string | null
-    content: string | null
     creation_date: Date | null
   }
 
-  export type SongMaxAggregateOutputType = {
+  export type SessionMaxAggregateOutputType = {
     id: string | null
     title: string | null
     user_id: string | null
     musicSource: $Enums.MusicSource | null
     premade_music_id: string | null
     uploaded_music_id: string | null
-    content: string | null
     creation_date: Date | null
   }
 
-  export type SongCountAggregateOutputType = {
+  export type SessionCountAggregateOutputType = {
     id: number
     title: number
     user_id: number
     musicSource: number
     premade_music_id: number
     uploaded_music_id: number
-    content: number
+    audio_timeline: number
     creation_date: number
     _all: number
   }
 
 
-  export type SongMinAggregateInputType = {
+  export type SessionMinAggregateInputType = {
     id?: true
     title?: true
     user_id?: true
     musicSource?: true
     premade_music_id?: true
     uploaded_music_id?: true
-    content?: true
     creation_date?: true
   }
 
-  export type SongMaxAggregateInputType = {
+  export type SessionMaxAggregateInputType = {
     id?: true
     title?: true
     user_id?: true
     musicSource?: true
     premade_music_id?: true
     uploaded_music_id?: true
-    content?: true
     creation_date?: true
   }
 
-  export type SongCountAggregateInputType = {
+  export type SessionCountAggregateInputType = {
     id?: true
     title?: true
     user_id?: true
     musicSource?: true
     premade_music_id?: true
     uploaded_music_id?: true
-    content?: true
+    audio_timeline?: true
     creation_date?: true
     _all?: true
   }
 
-  export type SongAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Song to aggregate.
+     * Filter which Session to aggregate.
      */
-    where?: SongWhereInput
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Songs to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SongWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Songs from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Songs.
+     * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Songs
+     * Count returned Sessions
     **/
-    _count?: true | SongCountAggregateInputType
+    _count?: true | SessionCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SongMinAggregateInputType
+    _min?: SessionMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SongMaxAggregateInputType
+    _max?: SessionMaxAggregateInputType
   }
 
-  export type GetSongAggregateType<T extends SongAggregateArgs> = {
-        [P in keyof T & keyof AggregateSong]: P extends '_count' | 'count'
+  export type GetSessionAggregateType<T extends SessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSession]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSong[P]>
-      : GetScalarType<T[P], AggregateSong[P]>
+        : GetScalarType<T[P], AggregateSession[P]>
+      : GetScalarType<T[P], AggregateSession[P]>
   }
 
 
 
 
-  export type SongGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SongWhereInput
-    orderBy?: SongOrderByWithAggregationInput | SongOrderByWithAggregationInput[]
-    by: SongScalarFieldEnum[] | SongScalarFieldEnum
-    having?: SongScalarWhereWithAggregatesInput
+  export type SessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithAggregationInput | SessionOrderByWithAggregationInput[]
+    by: SessionScalarFieldEnum[] | SessionScalarFieldEnum
+    having?: SessionScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SongCountAggregateInputType | true
-    _min?: SongMinAggregateInputType
-    _max?: SongMaxAggregateInputType
+    _count?: SessionCountAggregateInputType | true
+    _min?: SessionMinAggregateInputType
+    _max?: SessionMaxAggregateInputType
   }
 
-  export type SongGroupByOutputType = {
+  export type SessionGroupByOutputType = {
     id: string
     title: string
     user_id: string
     musicSource: $Enums.MusicSource
     premade_music_id: string | null
     uploaded_music_id: string | null
-    content: string
+    audio_timeline: JsonValue
     creation_date: Date
-    _count: SongCountAggregateOutputType | null
-    _min: SongMinAggregateOutputType | null
-    _max: SongMaxAggregateOutputType | null
+    _count: SessionCountAggregateOutputType | null
+    _min: SessionMinAggregateOutputType | null
+    _max: SessionMaxAggregateOutputType | null
   }
 
-  type GetSongGroupByPayload<T extends SongGroupByArgs> = Prisma.PrismaPromise<
+  type GetSessionGroupByPayload<T extends SessionGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SongGroupByOutputType, T['by']> &
+      PickEnumerable<SessionGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SongGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof SessionGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SongGroupByOutputType[P]>
-            : GetScalarType<T[P], SongGroupByOutputType[P]>
+              : GetScalarType<T[P], SessionGroupByOutputType[P]>
+            : GetScalarType<T[P], SessionGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SongSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
-    content?: boolean
+    audio_timeline?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    links?: boolean | Song$linksArgs<ExtArgs>
-    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
-    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
-    _count?: boolean | SongCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["song"]>
+    links?: boolean | Session$linksArgs<ExtArgs>
+    premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    _count?: boolean | SessionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
 
-  export type SongSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
-    content?: boolean
+    audio_timeline?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
-    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
-  }, ExtArgs["result"]["song"]>
+    premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
 
-  export type SongSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
-    content?: boolean
+    audio_timeline?: boolean
     creation_date?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
-    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
-  }, ExtArgs["result"]["song"]>
+    premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
 
-  export type SongSelectScalar = {
+  export type SessionSelectScalar = {
     id?: boolean
     title?: boolean
     user_id?: boolean
     musicSource?: boolean
     premade_music_id?: boolean
     uploaded_music_id?: boolean
-    content?: boolean
+    audio_timeline?: boolean
     creation_date?: boolean
   }
 
-  export type SongOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "user_id" | "musicSource" | "premade_music_id" | "uploaded_music_id" | "content" | "creation_date", ExtArgs["result"]["song"]>
-  export type SongInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "user_id" | "musicSource" | "premade_music_id" | "uploaded_music_id" | "audio_timeline" | "creation_date", ExtArgs["result"]["session"]>
+  export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    links?: boolean | Song$linksArgs<ExtArgs>
-    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
-    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
-    _count?: boolean | SongCountOutputTypeDefaultArgs<ExtArgs>
+    links?: boolean | Session$linksArgs<ExtArgs>
+    premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    _count?: boolean | SessionCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type SongIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
-    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+    premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
   }
-  export type SongIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    premadeMusic?: boolean | Song$premadeMusicArgs<ExtArgs>
-    uploadedMusic?: boolean | Song$uploadedMusicArgs<ExtArgs>
+    premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
+    uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
   }
 
-  export type $SongPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Song"
+  export type $SessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Session"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       links: Prisma.$LinkPayload<ExtArgs>[]
@@ -2920,138 +3053,138 @@ export namespace Prisma {
       musicSource: $Enums.MusicSource
       premade_music_id: string | null
       uploaded_music_id: string | null
-      content: string
+      audio_timeline: Prisma.JsonValue
       creation_date: Date
-    }, ExtArgs["result"]["song"]>
+    }, ExtArgs["result"]["session"]>
     composites: {}
   }
 
-  type SongGetPayload<S extends boolean | null | undefined | SongDefaultArgs> = $Result.GetResult<Prisma.$SongPayload, S>
+  type SessionGetPayload<S extends boolean | null | undefined | SessionDefaultArgs> = $Result.GetResult<Prisma.$SessionPayload, S>
 
-  type SongCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SongFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SongCountAggregateInputType | true
+  type SessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SessionCountAggregateInputType | true
     }
 
-  export interface SongDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Song'], meta: { name: 'Song' } }
+  export interface SessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Session'], meta: { name: 'Session' } }
     /**
-     * Find zero or one Song that matches the filter.
-     * @param {SongFindUniqueArgs} args - Arguments to find a Song
+     * Find zero or one Session that matches the filter.
+     * @param {SessionFindUniqueArgs} args - Arguments to find a Session
      * @example
-     * // Get one Song
-     * const song = await prisma.song.findUnique({
+     * // Get one Session
+     * const session = await prisma.session.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends SongFindUniqueArgs>(args: SelectSubset<T, SongFindUniqueArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends SessionFindUniqueArgs>(args: SelectSubset<T, SessionFindUniqueArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Song that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Session that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {SongFindUniqueOrThrowArgs} args - Arguments to find a Song
+     * @param {SessionFindUniqueOrThrowArgs} args - Arguments to find a Session
      * @example
-     * // Get one Song
-     * const song = await prisma.song.findUniqueOrThrow({
+     * // Get one Session
+     * const session = await prisma.session.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SongFindUniqueOrThrowArgs>(args: SelectSubset<T, SongFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends SessionFindUniqueOrThrowArgs>(args: SelectSubset<T, SessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Song that matches the filter.
+     * Find the first Session that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongFindFirstArgs} args - Arguments to find a Song
+     * @param {SessionFindFirstArgs} args - Arguments to find a Session
      * @example
-     * // Get one Song
-     * const song = await prisma.song.findFirst({
+     * // Get one Session
+     * const session = await prisma.session.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends SongFindFirstArgs>(args?: SelectSubset<T, SongFindFirstArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends SessionFindFirstArgs>(args?: SelectSubset<T, SessionFindFirstArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Song that matches the filter or
+     * Find the first Session that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongFindFirstOrThrowArgs} args - Arguments to find a Song
+     * @param {SessionFindFirstOrThrowArgs} args - Arguments to find a Session
      * @example
-     * // Get one Song
-     * const song = await prisma.song.findFirstOrThrow({
+     * // Get one Session
+     * const session = await prisma.session.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends SongFindFirstOrThrowArgs>(args?: SelectSubset<T, SongFindFirstOrThrowArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends SessionFindFirstOrThrowArgs>(args?: SelectSubset<T, SessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Songs that matches the filter.
+     * Find zero or more Sessions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {SessionFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Songs
-     * const songs = await prisma.song.findMany()
+     * // Get all Sessions
+     * const sessions = await prisma.session.findMany()
      * 
-     * // Get first 10 Songs
-     * const songs = await prisma.song.findMany({ take: 10 })
+     * // Get first 10 Sessions
+     * const sessions = await prisma.session.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const songWithIdOnly = await prisma.song.findMany({ select: { id: true } })
+     * const sessionWithIdOnly = await prisma.session.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends SongFindManyArgs>(args?: SelectSubset<T, SongFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends SessionFindManyArgs>(args?: SelectSubset<T, SessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Song.
-     * @param {SongCreateArgs} args - Arguments to create a Song.
+     * Create a Session.
+     * @param {SessionCreateArgs} args - Arguments to create a Session.
      * @example
-     * // Create one Song
-     * const Song = await prisma.song.create({
+     * // Create one Session
+     * const Session = await prisma.session.create({
      *   data: {
-     *     // ... data to create a Song
+     *     // ... data to create a Session
      *   }
      * })
      * 
      */
-    create<T extends SongCreateArgs>(args: SelectSubset<T, SongCreateArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends SessionCreateArgs>(args: SelectSubset<T, SessionCreateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Songs.
-     * @param {SongCreateManyArgs} args - Arguments to create many Songs.
+     * Create many Sessions.
+     * @param {SessionCreateManyArgs} args - Arguments to create many Sessions.
      * @example
-     * // Create many Songs
-     * const song = await prisma.song.createMany({
+     * // Create many Sessions
+     * const session = await prisma.session.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends SongCreateManyArgs>(args?: SelectSubset<T, SongCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends SessionCreateManyArgs>(args?: SelectSubset<T, SessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Songs and returns the data saved in the database.
-     * @param {SongCreateManyAndReturnArgs} args - Arguments to create many Songs.
+     * Create many Sessions and returns the data saved in the database.
+     * @param {SessionCreateManyAndReturnArgs} args - Arguments to create many Sessions.
      * @example
-     * // Create many Songs
-     * const song = await prisma.song.createManyAndReturn({
+     * // Create many Sessions
+     * const session = await prisma.session.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Songs and only return the `id`
-     * const songWithIdOnly = await prisma.song.createManyAndReturn({
+     * // Create many Sessions and only return the `id`
+     * const sessionWithIdOnly = await prisma.session.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -3061,28 +3194,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends SongCreateManyAndReturnArgs>(args?: SelectSubset<T, SongCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends SessionCreateManyAndReturnArgs>(args?: SelectSubset<T, SessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Song.
-     * @param {SongDeleteArgs} args - Arguments to delete one Song.
+     * Delete a Session.
+     * @param {SessionDeleteArgs} args - Arguments to delete one Session.
      * @example
-     * // Delete one Song
-     * const Song = await prisma.song.delete({
+     * // Delete one Session
+     * const Session = await prisma.session.delete({
      *   where: {
-     *     // ... filter to delete one Song
+     *     // ... filter to delete one Session
      *   }
      * })
      * 
      */
-    delete<T extends SongDeleteArgs>(args: SelectSubset<T, SongDeleteArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends SessionDeleteArgs>(args: SelectSubset<T, SessionDeleteArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Song.
-     * @param {SongUpdateArgs} args - Arguments to update one Song.
+     * Update one Session.
+     * @param {SessionUpdateArgs} args - Arguments to update one Session.
      * @example
-     * // Update one Song
-     * const song = await prisma.song.update({
+     * // Update one Session
+     * const session = await prisma.session.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3092,30 +3225,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends SongUpdateArgs>(args: SelectSubset<T, SongUpdateArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends SessionUpdateArgs>(args: SelectSubset<T, SessionUpdateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Songs.
-     * @param {SongDeleteManyArgs} args - Arguments to filter Songs to delete.
+     * Delete zero or more Sessions.
+     * @param {SessionDeleteManyArgs} args - Arguments to filter Sessions to delete.
      * @example
-     * // Delete a few Songs
-     * const { count } = await prisma.song.deleteMany({
+     * // Delete a few Sessions
+     * const { count } = await prisma.session.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends SongDeleteManyArgs>(args?: SelectSubset<T, SongDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends SessionDeleteManyArgs>(args?: SelectSubset<T, SessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Songs.
+     * Update zero or more Sessions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {SessionUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Songs
-     * const song = await prisma.song.updateMany({
+     * // Update many Sessions
+     * const session = await prisma.session.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3125,14 +3258,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends SongUpdateManyArgs>(args: SelectSubset<T, SongUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends SessionUpdateManyArgs>(args: SelectSubset<T, SessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Songs and returns the data updated in the database.
-     * @param {SongUpdateManyAndReturnArgs} args - Arguments to update many Songs.
+     * Update zero or more Sessions and returns the data updated in the database.
+     * @param {SessionUpdateManyAndReturnArgs} args - Arguments to update many Sessions.
      * @example
-     * // Update many Songs
-     * const song = await prisma.song.updateManyAndReturn({
+     * // Update many Sessions
+     * const session = await prisma.session.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3141,8 +3274,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Songs and only return the `id`
-     * const songWithIdOnly = await prisma.song.updateManyAndReturn({
+     * // Update zero or more Sessions and only return the `id`
+     * const sessionWithIdOnly = await prisma.session.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -3155,56 +3288,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends SongUpdateManyAndReturnArgs>(args: SelectSubset<T, SongUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends SessionUpdateManyAndReturnArgs>(args: SelectSubset<T, SessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Song.
-     * @param {SongUpsertArgs} args - Arguments to update or create a Song.
+     * Create or update one Session.
+     * @param {SessionUpsertArgs} args - Arguments to update or create a Session.
      * @example
-     * // Update or create a Song
-     * const song = await prisma.song.upsert({
+     * // Update or create a Session
+     * const session = await prisma.session.upsert({
      *   create: {
-     *     // ... data to create a Song
+     *     // ... data to create a Session
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Song we want to update
+     *     // ... the filter for the Session we want to update
      *   }
      * })
      */
-    upsert<T extends SongUpsertArgs>(args: SelectSubset<T, SongUpsertArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends SessionUpsertArgs>(args: SelectSubset<T, SessionUpsertArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Songs.
+     * Count the number of Sessions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongCountArgs} args - Arguments to filter Songs to count.
+     * @param {SessionCountArgs} args - Arguments to filter Sessions to count.
      * @example
-     * // Count the number of Songs
-     * const count = await prisma.song.count({
+     * // Count the number of Sessions
+     * const count = await prisma.session.count({
      *   where: {
-     *     // ... the filter for the Songs we want to count
+     *     // ... the filter for the Sessions we want to count
      *   }
      * })
     **/
-    count<T extends SongCountArgs>(
-      args?: Subset<T, SongCountArgs>,
+    count<T extends SessionCountArgs>(
+      args?: Subset<T, SessionCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SongCountAggregateOutputType>
+          : GetScalarType<T['select'], SessionCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Song.
+     * Allows you to perform aggregations operations on a Session.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {SessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3224,13 +3357,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SongAggregateArgs>(args: Subset<T, SongAggregateArgs>): Prisma.PrismaPromise<GetSongAggregateType<T>>
+    aggregate<T extends SessionAggregateArgs>(args: Subset<T, SessionAggregateArgs>): Prisma.PrismaPromise<GetSessionAggregateType<T>>
 
     /**
-     * Group by Song.
+     * Group by Session.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SongGroupByArgs} args - Group by arguments.
+     * @param {SessionGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3245,14 +3378,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SongGroupByArgs,
+      T extends SessionGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SongGroupByArgs['orderBy'] }
-        : { orderBy?: SongGroupByArgs['orderBy'] },
+        ? { orderBy: SessionGroupByArgs['orderBy'] }
+        : { orderBy?: SessionGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3301,25 +3434,25 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SongGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSongGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, SessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Song model
+   * Fields of the Session model
    */
-  readonly fields: SongFieldRefs;
+  readonly fields: SessionFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Song.
+   * The delegate class that acts as a "Promise-like" for Session.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SongClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__SessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    links<T extends Song$linksArgs<ExtArgs> = {}>(args?: Subset<T, Song$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    premadeMusic<T extends Song$premadeMusicArgs<ExtArgs> = {}>(args?: Subset<T, Song$premadeMusicArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    uploadedMusic<T extends Song$uploadedMusicArgs<ExtArgs> = {}>(args?: Subset<T, Song$uploadedMusicArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    links<T extends Session$linksArgs<ExtArgs> = {}>(args?: Subset<T, Session$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    premadeMusic<T extends Session$premadeMusicArgs<ExtArgs> = {}>(args?: Subset<T, Session$premadeMusicArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    uploadedMusic<T extends Session$uploadedMusicArgs<ExtArgs> = {}>(args?: Subset<T, Session$uploadedMusicArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3346,416 +3479,416 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Song model
+   * Fields of the Session model
    */
-  interface SongFieldRefs {
-    readonly id: FieldRef<"Song", 'String'>
-    readonly title: FieldRef<"Song", 'String'>
-    readonly user_id: FieldRef<"Song", 'String'>
-    readonly musicSource: FieldRef<"Song", 'MusicSource'>
-    readonly premade_music_id: FieldRef<"Song", 'String'>
-    readonly uploaded_music_id: FieldRef<"Song", 'String'>
-    readonly content: FieldRef<"Song", 'String'>
-    readonly creation_date: FieldRef<"Song", 'DateTime'>
+  interface SessionFieldRefs {
+    readonly id: FieldRef<"Session", 'String'>
+    readonly title: FieldRef<"Session", 'String'>
+    readonly user_id: FieldRef<"Session", 'String'>
+    readonly musicSource: FieldRef<"Session", 'MusicSource'>
+    readonly premade_music_id: FieldRef<"Session", 'String'>
+    readonly uploaded_music_id: FieldRef<"Session", 'String'>
+    readonly audio_timeline: FieldRef<"Session", 'Json'>
+    readonly creation_date: FieldRef<"Session", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Song findUnique
+   * Session findUnique
    */
-  export type SongFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * Filter, which Song to fetch.
+     * Filter, which Session to fetch.
      */
-    where: SongWhereUniqueInput
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * Song findUniqueOrThrow
+   * Session findUniqueOrThrow
    */
-  export type SongFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * Filter, which Song to fetch.
+     * Filter, which Session to fetch.
      */
-    where: SongWhereUniqueInput
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * Song findFirst
+   * Session findFirst
    */
-  export type SongFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * Filter, which Song to fetch.
+     * Filter, which Session to fetch.
      */
-    where?: SongWhereInput
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Songs to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Songs.
+     * Sets the position for searching for Sessions.
      */
-    cursor?: SongWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Songs from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Songs.
+     * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Songs.
+     * Filter by unique combinations of Sessions.
      */
-    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
-   * Song findFirstOrThrow
+   * Session findFirstOrThrow
    */
-  export type SongFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * Filter, which Song to fetch.
+     * Filter, which Session to fetch.
      */
-    where?: SongWhereInput
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Songs to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Songs.
+     * Sets the position for searching for Sessions.
      */
-    cursor?: SongWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Songs from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Songs.
+     * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Songs.
+     * Filter by unique combinations of Sessions.
      */
-    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
-   * Song findMany
+   * Session findMany
    */
-  export type SongFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * Filter, which Songs to fetch.
+     * Filter, which Sessions to fetch.
      */
-    where?: SongWhereInput
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Songs to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Songs.
+     * Sets the position for listing Sessions.
      */
-    cursor?: SongWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Songs from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Songs.
+     * Skip the first `n` Sessions.
      */
     skip?: number
-    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
-   * Song create
+   * Session create
    */
-  export type SongCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * The data needed to create a Song.
+     * The data needed to create a Session.
      */
-    data: XOR<SongCreateInput, SongUncheckedCreateInput>
+    data: XOR<SessionCreateInput, SessionUncheckedCreateInput>
   }
 
   /**
-   * Song createMany
+   * Session createMany
    */
-  export type SongCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Songs.
+     * The data used to create many Sessions.
      */
-    data: SongCreateManyInput | SongCreateManyInput[]
+    data: SessionCreateManyInput | SessionCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Song createManyAndReturn
+   * Session createManyAndReturn
    */
-  export type SongCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelectCreateManyAndReturn<ExtArgs> | null
+    select?: SessionSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * The data used to create many Songs.
+     * The data used to create many Sessions.
      */
-    data: SongCreateManyInput | SongCreateManyInput[]
+    data: SessionCreateManyInput | SessionCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: SessionIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Song update
+   * Session update
    */
-  export type SongUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * The data needed to update a Song.
+     * The data needed to update a Session.
      */
-    data: XOR<SongUpdateInput, SongUncheckedUpdateInput>
+    data: XOR<SessionUpdateInput, SessionUncheckedUpdateInput>
     /**
-     * Choose, which Song to update.
+     * Choose, which Session to update.
      */
-    where: SongWhereUniqueInput
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * Song updateMany
+   * Session updateMany
    */
-  export type SongUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Songs.
+     * The data used to update Sessions.
      */
-    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyInput>
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyInput>
     /**
-     * Filter which Songs to update
+     * Filter which Sessions to update
      */
-    where?: SongWhereInput
+    where?: SessionWhereInput
     /**
-     * Limit how many Songs to update.
+     * Limit how many Sessions to update.
      */
     limit?: number
   }
 
   /**
-   * Song updateManyAndReturn
+   * Session updateManyAndReturn
    */
-  export type SongUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: SessionSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * The data used to update Songs.
+     * The data used to update Sessions.
      */
-    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyInput>
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyInput>
     /**
-     * Filter which Songs to update
+     * Filter which Sessions to update
      */
-    where?: SongWhereInput
+    where?: SessionWhereInput
     /**
-     * Limit how many Songs to update.
+     * Limit how many Sessions to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: SessionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Song upsert
+   * Session upsert
    */
-  export type SongUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * The filter to search for the Song to update in case it exists.
+     * The filter to search for the Session to update in case it exists.
      */
-    where: SongWhereUniqueInput
+    where: SessionWhereUniqueInput
     /**
-     * In case the Song found by the `where` argument doesn't exist, create a new Song with this data.
+     * In case the Session found by the `where` argument doesn't exist, create a new Session with this data.
      */
-    create: XOR<SongCreateInput, SongUncheckedCreateInput>
+    create: XOR<SessionCreateInput, SessionUncheckedCreateInput>
     /**
-     * In case the Song was found with the provided `where` argument, update it with this data.
+     * In case the Session was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SongUpdateInput, SongUncheckedUpdateInput>
+    update: XOR<SessionUpdateInput, SessionUncheckedUpdateInput>
   }
 
   /**
-   * Song delete
+   * Session delete
    */
-  export type SongDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * Filter which Song to delete.
+     * Filter which Session to delete.
      */
-    where: SongWhereUniqueInput
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * Song deleteMany
+   * Session deleteMany
    */
-  export type SongDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Songs to delete
+     * Filter which Sessions to delete
      */
-    where?: SongWhereInput
+    where?: SessionWhereInput
     /**
-     * Limit how many Songs to delete.
+     * Limit how many Sessions to delete.
      */
     limit?: number
   }
 
   /**
-   * Song.links
+   * Session.links
    */
-  export type Song$linksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Session$linksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Link
      */
@@ -3777,9 +3910,9 @@ export namespace Prisma {
   }
 
   /**
-   * Song.premadeMusic
+   * Session.premadeMusic
    */
-  export type Song$premadeMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Session$premadeMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PremadeMusic
      */
@@ -3796,9 +3929,9 @@ export namespace Prisma {
   }
 
   /**
-   * Song.uploadedMusic
+   * Session.uploadedMusic
    */
-  export type Song$uploadedMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Session$uploadedMusicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the UploadedMusic
      */
@@ -3815,21 +3948,1106 @@ export namespace Prisma {
   }
 
   /**
-   * Song without action
+   * Session without action
    */
-  export type SongDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StickyNotes
+   */
+
+  export type AggregateStickyNotes = {
+    _count: StickyNotesCountAggregateOutputType | null
+    _min: StickyNotesMinAggregateOutputType | null
+    _max: StickyNotesMaxAggregateOutputType | null
+  }
+
+  export type StickyNotesMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    content: string | null
+    user_id: string | null
+    music_id: string | null
+  }
+
+  export type StickyNotesMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    content: string | null
+    user_id: string | null
+    music_id: string | null
+  }
+
+  export type StickyNotesCountAggregateOutputType = {
+    id: number
+    title: number
+    content: number
+    user_id: number
+    music_id: number
+    _all: number
+  }
+
+
+  export type StickyNotesMinAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    user_id?: true
+    music_id?: true
+  }
+
+  export type StickyNotesMaxAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    user_id?: true
+    music_id?: true
+  }
+
+  export type StickyNotesCountAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    user_id?: true
+    music_id?: true
+    _all?: true
+  }
+
+  export type StickyNotesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StickyNotes to aggregate.
+     */
+    where?: StickyNotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StickyNotes to fetch.
+     */
+    orderBy?: StickyNotesOrderByWithRelationInput | StickyNotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StickyNotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StickyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StickyNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StickyNotes
+    **/
+    _count?: true | StickyNotesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StickyNotesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StickyNotesMaxAggregateInputType
+  }
+
+  export type GetStickyNotesAggregateType<T extends StickyNotesAggregateArgs> = {
+        [P in keyof T & keyof AggregateStickyNotes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStickyNotes[P]>
+      : GetScalarType<T[P], AggregateStickyNotes[P]>
+  }
+
+
+
+
+  export type StickyNotesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StickyNotesWhereInput
+    orderBy?: StickyNotesOrderByWithAggregationInput | StickyNotesOrderByWithAggregationInput[]
+    by: StickyNotesScalarFieldEnum[] | StickyNotesScalarFieldEnum
+    having?: StickyNotesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StickyNotesCountAggregateInputType | true
+    _min?: StickyNotesMinAggregateInputType
+    _max?: StickyNotesMaxAggregateInputType
+  }
+
+  export type StickyNotesGroupByOutputType = {
+    id: string
+    title: string
+    content: string
+    user_id: string
+    music_id: string | null
+    _count: StickyNotesCountAggregateOutputType | null
+    _min: StickyNotesMinAggregateOutputType | null
+    _max: StickyNotesMaxAggregateOutputType | null
+  }
+
+  type GetStickyNotesGroupByPayload<T extends StickyNotesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StickyNotesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StickyNotesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StickyNotesGroupByOutputType[P]>
+            : GetScalarType<T[P], StickyNotesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StickyNotesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    user_id?: boolean
+    music_id?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    music?: boolean | StickyNotes$musicArgs<ExtArgs>
+  }, ExtArgs["result"]["stickyNotes"]>
+
+  export type StickyNotesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    user_id?: boolean
+    music_id?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    music?: boolean | StickyNotes$musicArgs<ExtArgs>
+  }, ExtArgs["result"]["stickyNotes"]>
+
+  export type StickyNotesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    user_id?: boolean
+    music_id?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    music?: boolean | StickyNotes$musicArgs<ExtArgs>
+  }, ExtArgs["result"]["stickyNotes"]>
+
+  export type StickyNotesSelectScalar = {
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    user_id?: boolean
+    music_id?: boolean
+  }
+
+  export type StickyNotesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "user_id" | "music_id", ExtArgs["result"]["stickyNotes"]>
+  export type StickyNotesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    music?: boolean | StickyNotes$musicArgs<ExtArgs>
+  }
+  export type StickyNotesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    music?: boolean | StickyNotes$musicArgs<ExtArgs>
+  }
+  export type StickyNotesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    music?: boolean | StickyNotes$musicArgs<ExtArgs>
+  }
+
+  export type $StickyNotesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StickyNotes"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      music: Prisma.$UploadedMusicPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      content: string
+      user_id: string
+      music_id: string | null
+    }, ExtArgs["result"]["stickyNotes"]>
+    composites: {}
+  }
+
+  type StickyNotesGetPayload<S extends boolean | null | undefined | StickyNotesDefaultArgs> = $Result.GetResult<Prisma.$StickyNotesPayload, S>
+
+  type StickyNotesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StickyNotesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StickyNotesCountAggregateInputType | true
+    }
+
+  export interface StickyNotesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StickyNotes'], meta: { name: 'StickyNotes' } }
+    /**
+     * Find zero or one StickyNotes that matches the filter.
+     * @param {StickyNotesFindUniqueArgs} args - Arguments to find a StickyNotes
+     * @example
+     * // Get one StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StickyNotesFindUniqueArgs>(args: SelectSubset<T, StickyNotesFindUniqueArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StickyNotes that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StickyNotesFindUniqueOrThrowArgs} args - Arguments to find a StickyNotes
+     * @example
+     * // Get one StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StickyNotesFindUniqueOrThrowArgs>(args: SelectSubset<T, StickyNotesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StickyNotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StickyNotesFindFirstArgs} args - Arguments to find a StickyNotes
+     * @example
+     * // Get one StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StickyNotesFindFirstArgs>(args?: SelectSubset<T, StickyNotesFindFirstArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StickyNotes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StickyNotesFindFirstOrThrowArgs} args - Arguments to find a StickyNotes
+     * @example
+     * // Get one StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StickyNotesFindFirstOrThrowArgs>(args?: SelectSubset<T, StickyNotesFindFirstOrThrowArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StickyNotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StickyNotesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.findMany()
+     * 
+     * // Get first 10 StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const stickyNotesWithIdOnly = await prisma.stickyNotes.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StickyNotesFindManyArgs>(args?: SelectSubset<T, StickyNotesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StickyNotes.
+     * @param {StickyNotesCreateArgs} args - Arguments to create a StickyNotes.
+     * @example
+     * // Create one StickyNotes
+     * const StickyNotes = await prisma.stickyNotes.create({
+     *   data: {
+     *     // ... data to create a StickyNotes
+     *   }
+     * })
+     * 
+     */
+    create<T extends StickyNotesCreateArgs>(args: SelectSubset<T, StickyNotesCreateArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StickyNotes.
+     * @param {StickyNotesCreateManyArgs} args - Arguments to create many StickyNotes.
+     * @example
+     * // Create many StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StickyNotesCreateManyArgs>(args?: SelectSubset<T, StickyNotesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StickyNotes and returns the data saved in the database.
+     * @param {StickyNotesCreateManyAndReturnArgs} args - Arguments to create many StickyNotes.
+     * @example
+     * // Create many StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StickyNotes and only return the `id`
+     * const stickyNotesWithIdOnly = await prisma.stickyNotes.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StickyNotesCreateManyAndReturnArgs>(args?: SelectSubset<T, StickyNotesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StickyNotes.
+     * @param {StickyNotesDeleteArgs} args - Arguments to delete one StickyNotes.
+     * @example
+     * // Delete one StickyNotes
+     * const StickyNotes = await prisma.stickyNotes.delete({
+     *   where: {
+     *     // ... filter to delete one StickyNotes
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StickyNotesDeleteArgs>(args: SelectSubset<T, StickyNotesDeleteArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StickyNotes.
+     * @param {StickyNotesUpdateArgs} args - Arguments to update one StickyNotes.
+     * @example
+     * // Update one StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StickyNotesUpdateArgs>(args: SelectSubset<T, StickyNotesUpdateArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StickyNotes.
+     * @param {StickyNotesDeleteManyArgs} args - Arguments to filter StickyNotes to delete.
+     * @example
+     * // Delete a few StickyNotes
+     * const { count } = await prisma.stickyNotes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StickyNotesDeleteManyArgs>(args?: SelectSubset<T, StickyNotesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StickyNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StickyNotesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StickyNotesUpdateManyArgs>(args: SelectSubset<T, StickyNotesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StickyNotes and returns the data updated in the database.
+     * @param {StickyNotesUpdateManyAndReturnArgs} args - Arguments to update many StickyNotes.
+     * @example
+     * // Update many StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StickyNotes and only return the `id`
+     * const stickyNotesWithIdOnly = await prisma.stickyNotes.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StickyNotesUpdateManyAndReturnArgs>(args: SelectSubset<T, StickyNotesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StickyNotes.
+     * @param {StickyNotesUpsertArgs} args - Arguments to update or create a StickyNotes.
+     * @example
+     * // Update or create a StickyNotes
+     * const stickyNotes = await prisma.stickyNotes.upsert({
+     *   create: {
+     *     // ... data to create a StickyNotes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StickyNotes we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StickyNotesUpsertArgs>(args: SelectSubset<T, StickyNotesUpsertArgs<ExtArgs>>): Prisma__StickyNotesClient<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StickyNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StickyNotesCountArgs} args - Arguments to filter StickyNotes to count.
+     * @example
+     * // Count the number of StickyNotes
+     * const count = await prisma.stickyNotes.count({
+     *   where: {
+     *     // ... the filter for the StickyNotes we want to count
+     *   }
+     * })
+    **/
+    count<T extends StickyNotesCountArgs>(
+      args?: Subset<T, StickyNotesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StickyNotesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StickyNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StickyNotesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StickyNotesAggregateArgs>(args: Subset<T, StickyNotesAggregateArgs>): Prisma.PrismaPromise<GetStickyNotesAggregateType<T>>
+
+    /**
+     * Group by StickyNotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StickyNotesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StickyNotesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StickyNotesGroupByArgs['orderBy'] }
+        : { orderBy?: StickyNotesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StickyNotesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStickyNotesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StickyNotes model
+   */
+  readonly fields: StickyNotesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StickyNotes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StickyNotesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    music<T extends StickyNotes$musicArgs<ExtArgs> = {}>(args?: Subset<T, StickyNotes$musicArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StickyNotes model
+   */
+  interface StickyNotesFieldRefs {
+    readonly id: FieldRef<"StickyNotes", 'String'>
+    readonly title: FieldRef<"StickyNotes", 'String'>
+    readonly content: FieldRef<"StickyNotes", 'String'>
+    readonly user_id: FieldRef<"StickyNotes", 'String'>
+    readonly music_id: FieldRef<"StickyNotes", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StickyNotes findUnique
+   */
+  export type StickyNotesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * Filter, which StickyNotes to fetch.
+     */
+    where: StickyNotesWhereUniqueInput
+  }
+
+  /**
+   * StickyNotes findUniqueOrThrow
+   */
+  export type StickyNotesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * Filter, which StickyNotes to fetch.
+     */
+    where: StickyNotesWhereUniqueInput
+  }
+
+  /**
+   * StickyNotes findFirst
+   */
+  export type StickyNotesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * Filter, which StickyNotes to fetch.
+     */
+    where?: StickyNotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StickyNotes to fetch.
+     */
+    orderBy?: StickyNotesOrderByWithRelationInput | StickyNotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StickyNotes.
+     */
+    cursor?: StickyNotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StickyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StickyNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StickyNotes.
+     */
+    distinct?: StickyNotesScalarFieldEnum | StickyNotesScalarFieldEnum[]
+  }
+
+  /**
+   * StickyNotes findFirstOrThrow
+   */
+  export type StickyNotesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * Filter, which StickyNotes to fetch.
+     */
+    where?: StickyNotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StickyNotes to fetch.
+     */
+    orderBy?: StickyNotesOrderByWithRelationInput | StickyNotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StickyNotes.
+     */
+    cursor?: StickyNotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StickyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StickyNotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StickyNotes.
+     */
+    distinct?: StickyNotesScalarFieldEnum | StickyNotesScalarFieldEnum[]
+  }
+
+  /**
+   * StickyNotes findMany
+   */
+  export type StickyNotesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * Filter, which StickyNotes to fetch.
+     */
+    where?: StickyNotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StickyNotes to fetch.
+     */
+    orderBy?: StickyNotesOrderByWithRelationInput | StickyNotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StickyNotes.
+     */
+    cursor?: StickyNotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StickyNotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StickyNotes.
+     */
+    skip?: number
+    distinct?: StickyNotesScalarFieldEnum | StickyNotesScalarFieldEnum[]
+  }
+
+  /**
+   * StickyNotes create
+   */
+  export type StickyNotesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StickyNotes.
+     */
+    data: XOR<StickyNotesCreateInput, StickyNotesUncheckedCreateInput>
+  }
+
+  /**
+   * StickyNotes createMany
+   */
+  export type StickyNotesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StickyNotes.
+     */
+    data: StickyNotesCreateManyInput | StickyNotesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StickyNotes createManyAndReturn
+   */
+  export type StickyNotesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * The data used to create many StickyNotes.
+     */
+    data: StickyNotesCreateManyInput | StickyNotesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StickyNotes update
+   */
+  export type StickyNotesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StickyNotes.
+     */
+    data: XOR<StickyNotesUpdateInput, StickyNotesUncheckedUpdateInput>
+    /**
+     * Choose, which StickyNotes to update.
+     */
+    where: StickyNotesWhereUniqueInput
+  }
+
+  /**
+   * StickyNotes updateMany
+   */
+  export type StickyNotesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StickyNotes.
+     */
+    data: XOR<StickyNotesUpdateManyMutationInput, StickyNotesUncheckedUpdateManyInput>
+    /**
+     * Filter which StickyNotes to update
+     */
+    where?: StickyNotesWhereInput
+    /**
+     * Limit how many StickyNotes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StickyNotes updateManyAndReturn
+   */
+  export type StickyNotesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * The data used to update StickyNotes.
+     */
+    data: XOR<StickyNotesUpdateManyMutationInput, StickyNotesUncheckedUpdateManyInput>
+    /**
+     * Filter which StickyNotes to update
+     */
+    where?: StickyNotesWhereInput
+    /**
+     * Limit how many StickyNotes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StickyNotes upsert
+   */
+  export type StickyNotesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StickyNotes to update in case it exists.
+     */
+    where: StickyNotesWhereUniqueInput
+    /**
+     * In case the StickyNotes found by the `where` argument doesn't exist, create a new StickyNotes with this data.
+     */
+    create: XOR<StickyNotesCreateInput, StickyNotesUncheckedCreateInput>
+    /**
+     * In case the StickyNotes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StickyNotesUpdateInput, StickyNotesUncheckedUpdateInput>
+  }
+
+  /**
+   * StickyNotes delete
+   */
+  export type StickyNotesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    /**
+     * Filter which StickyNotes to delete.
+     */
+    where: StickyNotesWhereUniqueInput
+  }
+
+  /**
+   * StickyNotes deleteMany
+   */
+  export type StickyNotesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StickyNotes to delete
+     */
+    where?: StickyNotesWhereInput
+    /**
+     * Limit how many StickyNotes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StickyNotes.music
+   */
+  export type StickyNotes$musicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UploadedMusic
+     */
+    select?: UploadedMusicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UploadedMusic
+     */
+    omit?: UploadedMusicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UploadedMusicInclude<ExtArgs> | null
+    where?: UploadedMusicWhereInput
+  }
+
+  /**
+   * StickyNotes without action
+   */
+  export type StickyNotesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
   }
 
 
@@ -4005,7 +5223,7 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: boolean
     expires_at?: boolean
-    song?: boolean | SongDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     linkPermissions?: boolean | Link$linkPermissionsArgs<ExtArgs>
     _count?: boolean | LinkCountOutputTypeDefaultArgs<ExtArgs>
@@ -4018,7 +5236,7 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: boolean
     expires_at?: boolean
-    song?: boolean | SongDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
 
@@ -4029,7 +5247,7 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: boolean
     expires_at?: boolean
-    song?: boolean | SongDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
 
@@ -4044,24 +5262,24 @@ export namespace Prisma {
 
   export type LinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"link_id" | "song_id" | "created_by" | "is_public" | "created_at" | "expires_at", ExtArgs["result"]["link"]>
   export type LinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    song?: boolean | SongDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     linkPermissions?: boolean | Link$linkPermissionsArgs<ExtArgs>
     _count?: boolean | LinkCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LinkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    song?: boolean | SongDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LinkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    song?: boolean | SongDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $LinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Link"
     objects: {
-      song: Prisma.$SongPayload<ExtArgs>
+      session: Prisma.$SessionPayload<ExtArgs>
       creator: Prisma.$UserPayload<ExtArgs>
       linkPermissions: Prisma.$LinkPermissionPayload<ExtArgs>[]
     }
@@ -4466,7 +5684,7 @@ export namespace Prisma {
    */
   export interface Prisma__LinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    song<T extends SongDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SongDefaultArgs<ExtArgs>>): Prisma__SongClient<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    session<T extends SessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SessionDefaultArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     linkPermissions<T extends Link$linkPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, Link$linkPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -6151,7 +7369,7 @@ export namespace Prisma {
     music_name?: boolean
     uploaded_date?: boolean
     path?: boolean
-    songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
+    session?: boolean | PremadeMusic$sessionArgs<ExtArgs>
     _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["premadeMusic"]>
 
@@ -6178,7 +7396,7 @@ export namespace Prisma {
 
   export type PremadeMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "uploaded_date" | "path", ExtArgs["result"]["premadeMusic"]>
   export type PremadeMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | PremadeMusic$songsArgs<ExtArgs>
+    session?: boolean | PremadeMusic$sessionArgs<ExtArgs>
     _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PremadeMusicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6187,7 +7405,7 @@ export namespace Prisma {
   export type $PremadeMusicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PremadeMusic"
     objects: {
-      songs: Prisma.$SongPayload<ExtArgs>[]
+      session: Prisma.$SessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       music_id: string
@@ -6588,7 +7806,7 @@ export namespace Prisma {
    */
   export interface Prisma__PremadeMusicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    songs<T extends PremadeMusic$songsArgs<ExtArgs> = {}>(args?: Subset<T, PremadeMusic$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    session<T extends PremadeMusic$sessionArgs<ExtArgs> = {}>(args?: Subset<T, PremadeMusic$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7010,27 +8228,27 @@ export namespace Prisma {
   }
 
   /**
-   * PremadeMusic.songs
+   * PremadeMusic.session
    */
-  export type PremadeMusic$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PremadeMusic$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
-    where?: SongWhereInput
-    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
-    cursor?: SongWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -7208,7 +8426,8 @@ export namespace Prisma {
     music_name?: boolean
     uploaded_by?: boolean
     path?: boolean
-    songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
+    session?: boolean | UploadedMusic$sessionArgs<ExtArgs>
+    stickyNotes?: boolean | UploadedMusic$stickyNotesArgs<ExtArgs>
     _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["uploadedMusic"]>
 
@@ -7235,7 +8454,8 @@ export namespace Prisma {
 
   export type UploadedMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "uploaded_by" | "path", ExtArgs["result"]["uploadedMusic"]>
   export type UploadedMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    songs?: boolean | UploadedMusic$songsArgs<ExtArgs>
+    session?: boolean | UploadedMusic$sessionArgs<ExtArgs>
+    stickyNotes?: boolean | UploadedMusic$stickyNotesArgs<ExtArgs>
     _count?: boolean | UploadedMusicCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UploadedMusicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7244,7 +8464,8 @@ export namespace Prisma {
   export type $UploadedMusicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UploadedMusic"
     objects: {
-      songs: Prisma.$SongPayload<ExtArgs>[]
+      session: Prisma.$SessionPayload<ExtArgs>[]
+      stickyNotes: Prisma.$StickyNotesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       music_id: string
@@ -7645,7 +8866,8 @@ export namespace Prisma {
    */
   export interface Prisma__UploadedMusicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    songs<T extends UploadedMusic$songsArgs<ExtArgs> = {}>(args?: Subset<T, UploadedMusic$songsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SongPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    session<T extends UploadedMusic$sessionArgs<ExtArgs> = {}>(args?: Subset<T, UploadedMusic$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stickyNotes<T extends UploadedMusic$stickyNotesArgs<ExtArgs> = {}>(args?: Subset<T, UploadedMusic$stickyNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8067,27 +9289,51 @@ export namespace Prisma {
   }
 
   /**
-   * UploadedMusic.songs
+   * UploadedMusic.session
    */
-  export type UploadedMusic$songsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UploadedMusic$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Song
+     * Select specific fields to fetch from the Session
      */
-    select?: SongSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Song
+     * Omit specific fields from the Session
      */
-    omit?: SongOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SongInclude<ExtArgs> | null
-    where?: SongWhereInput
-    orderBy?: SongOrderByWithRelationInput | SongOrderByWithRelationInput[]
-    cursor?: SongWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SongScalarFieldEnum | SongScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * UploadedMusic.stickyNotes
+   */
+  export type UploadedMusic$stickyNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StickyNotes
+     */
+    select?: StickyNotesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StickyNotes
+     */
+    omit?: StickyNotesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StickyNotesInclude<ExtArgs> | null
+    where?: StickyNotesWhereInput
+    orderBy?: StickyNotesOrderByWithRelationInput | StickyNotesOrderByWithRelationInput[]
+    cursor?: StickyNotesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StickyNotesScalarFieldEnum | StickyNotesScalarFieldEnum[]
   }
 
   /**
@@ -8135,18 +9381,29 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const SongScalarFieldEnum: {
+  export const SessionScalarFieldEnum: {
     id: 'id',
     title: 'title',
     user_id: 'user_id',
     musicSource: 'musicSource',
     premade_music_id: 'premade_music_id',
     uploaded_music_id: 'uploaded_music_id',
-    content: 'content',
+    audio_timeline: 'audio_timeline',
     creation_date: 'creation_date'
   };
 
-  export type SongScalarFieldEnum = (typeof SongScalarFieldEnum)[keyof typeof SongScalarFieldEnum]
+  export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+  export const StickyNotesScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    content: 'content',
+    user_id: 'user_id',
+    music_id: 'music_id'
+  };
+
+  export type StickyNotesScalarFieldEnum = (typeof StickyNotesScalarFieldEnum)[keyof typeof StickyNotesScalarFieldEnum]
 
 
   export const LinkScalarFieldEnum: {
@@ -8199,12 +9456,28 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -8263,6 +9536,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -8296,9 +9583,10 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createAt?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
-    songs?: SongListRelationFilter
+    sessions?: SessionListRelationFilter
     links?: LinkListRelationFilter
     linkPermissions?: LinkPermissionListRelationFilter
+    stickyNotes?: StickyNotesListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8308,9 +9596,10 @@ export namespace Prisma {
     password?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
-    songs?: SongOrderByRelationAggregateInput
+    sessions?: SessionOrderByRelationAggregateInput
     links?: LinkOrderByRelationAggregateInput
     linkPermissions?: LinkPermissionOrderByRelationAggregateInput
+    stickyNotes?: StickyNotesOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8323,9 +9612,10 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createAt?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
-    songs?: SongListRelationFilter
+    sessions?: SessionListRelationFilter
     links?: LinkListRelationFilter
     linkPermissions?: LinkPermissionListRelationFilter
+    stickyNotes?: StickyNotesListRelationFilter
   }, "id" | "username" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -8352,32 +9642,32 @@ export namespace Prisma {
     updateAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
-  export type SongWhereInput = {
-    AND?: SongWhereInput | SongWhereInput[]
-    OR?: SongWhereInput[]
-    NOT?: SongWhereInput | SongWhereInput[]
-    id?: StringFilter<"Song"> | string
-    title?: StringFilter<"Song"> | string
-    user_id?: StringFilter<"Song"> | string
-    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
-    premade_music_id?: StringNullableFilter<"Song"> | string | null
-    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
-    content?: StringFilter<"Song"> | string
-    creation_date?: DateTimeFilter<"Song"> | Date | string
+  export type SessionWhereInput = {
+    AND?: SessionWhereInput | SessionWhereInput[]
+    OR?: SessionWhereInput[]
+    NOT?: SessionWhereInput | SessionWhereInput[]
+    id?: StringFilter<"Session"> | string
+    title?: StringFilter<"Session"> | string
+    user_id?: StringFilter<"Session"> | string
+    musicSource?: EnumMusicSourceFilter<"Session"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Session"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Session"> | string | null
+    audio_timeline?: JsonFilter<"Session">
+    creation_date?: DateTimeFilter<"Session"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
     premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
     uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
   }
 
-  export type SongOrderByWithRelationInput = {
+  export type SessionOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrderInput | SortOrder
     uploaded_music_id?: SortOrderInput | SortOrder
-    content?: SortOrder
+    audio_timeline?: SortOrder
     creation_date?: SortOrder
     user?: UserOrderByWithRelationInput
     links?: LinkOrderByRelationAggregateInput
@@ -8385,50 +9675,108 @@ export namespace Prisma {
     uploadedMusic?: UploadedMusicOrderByWithRelationInput
   }
 
-  export type SongWhereUniqueInput = Prisma.AtLeast<{
+  export type SessionWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: SongWhereInput | SongWhereInput[]
-    OR?: SongWhereInput[]
-    NOT?: SongWhereInput | SongWhereInput[]
-    title?: StringFilter<"Song"> | string
-    user_id?: StringFilter<"Song"> | string
-    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
-    premade_music_id?: StringNullableFilter<"Song"> | string | null
-    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
-    content?: StringFilter<"Song"> | string
-    creation_date?: DateTimeFilter<"Song"> | Date | string
+    AND?: SessionWhereInput | SessionWhereInput[]
+    OR?: SessionWhereInput[]
+    NOT?: SessionWhereInput | SessionWhereInput[]
+    title?: StringFilter<"Session"> | string
+    user_id?: StringFilter<"Session"> | string
+    musicSource?: EnumMusicSourceFilter<"Session"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Session"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Session"> | string | null
+    audio_timeline?: JsonFilter<"Session">
+    creation_date?: DateTimeFilter<"Session"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
     premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
     uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
   }, "id">
 
-  export type SongOrderByWithAggregationInput = {
+  export type SessionOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrderInput | SortOrder
     uploaded_music_id?: SortOrderInput | SortOrder
-    content?: SortOrder
+    audio_timeline?: SortOrder
     creation_date?: SortOrder
-    _count?: SongCountOrderByAggregateInput
-    _max?: SongMaxOrderByAggregateInput
-    _min?: SongMinOrderByAggregateInput
+    _count?: SessionCountOrderByAggregateInput
+    _max?: SessionMaxOrderByAggregateInput
+    _min?: SessionMinOrderByAggregateInput
   }
 
-  export type SongScalarWhereWithAggregatesInput = {
-    AND?: SongScalarWhereWithAggregatesInput | SongScalarWhereWithAggregatesInput[]
-    OR?: SongScalarWhereWithAggregatesInput[]
-    NOT?: SongScalarWhereWithAggregatesInput | SongScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Song"> | string
-    title?: StringWithAggregatesFilter<"Song"> | string
-    user_id?: StringWithAggregatesFilter<"Song"> | string
-    musicSource?: EnumMusicSourceWithAggregatesFilter<"Song"> | $Enums.MusicSource
-    premade_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
-    uploaded_music_id?: StringNullableWithAggregatesFilter<"Song"> | string | null
-    content?: StringWithAggregatesFilter<"Song"> | string
-    creation_date?: DateTimeWithAggregatesFilter<"Song"> | Date | string
+  export type SessionScalarWhereWithAggregatesInput = {
+    AND?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
+    OR?: SessionScalarWhereWithAggregatesInput[]
+    NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Session"> | string
+    title?: StringWithAggregatesFilter<"Session"> | string
+    user_id?: StringWithAggregatesFilter<"Session"> | string
+    musicSource?: EnumMusicSourceWithAggregatesFilter<"Session"> | $Enums.MusicSource
+    premade_music_id?: StringNullableWithAggregatesFilter<"Session"> | string | null
+    uploaded_music_id?: StringNullableWithAggregatesFilter<"Session"> | string | null
+    audio_timeline?: JsonWithAggregatesFilter<"Session">
+    creation_date?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+  }
+
+  export type StickyNotesWhereInput = {
+    AND?: StickyNotesWhereInput | StickyNotesWhereInput[]
+    OR?: StickyNotesWhereInput[]
+    NOT?: StickyNotesWhereInput | StickyNotesWhereInput[]
+    id?: StringFilter<"StickyNotes"> | string
+    title?: StringFilter<"StickyNotes"> | string
+    content?: StringFilter<"StickyNotes"> | string
+    user_id?: StringFilter<"StickyNotes"> | string
+    music_id?: StringNullableFilter<"StickyNotes"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    music?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+  }
+
+  export type StickyNotesOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    user_id?: SortOrder
+    music_id?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+    music?: UploadedMusicOrderByWithRelationInput
+  }
+
+  export type StickyNotesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StickyNotesWhereInput | StickyNotesWhereInput[]
+    OR?: StickyNotesWhereInput[]
+    NOT?: StickyNotesWhereInput | StickyNotesWhereInput[]
+    title?: StringFilter<"StickyNotes"> | string
+    content?: StringFilter<"StickyNotes"> | string
+    user_id?: StringFilter<"StickyNotes"> | string
+    music_id?: StringNullableFilter<"StickyNotes"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    music?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+  }, "id">
+
+  export type StickyNotesOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    user_id?: SortOrder
+    music_id?: SortOrderInput | SortOrder
+    _count?: StickyNotesCountOrderByAggregateInput
+    _max?: StickyNotesMaxOrderByAggregateInput
+    _min?: StickyNotesMinOrderByAggregateInput
+  }
+
+  export type StickyNotesScalarWhereWithAggregatesInput = {
+    AND?: StickyNotesScalarWhereWithAggregatesInput | StickyNotesScalarWhereWithAggregatesInput[]
+    OR?: StickyNotesScalarWhereWithAggregatesInput[]
+    NOT?: StickyNotesScalarWhereWithAggregatesInput | StickyNotesScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StickyNotes"> | string
+    title?: StringWithAggregatesFilter<"StickyNotes"> | string
+    content?: StringWithAggregatesFilter<"StickyNotes"> | string
+    user_id?: StringWithAggregatesFilter<"StickyNotes"> | string
+    music_id?: StringNullableWithAggregatesFilter<"StickyNotes"> | string | null
   }
 
   export type LinkWhereInput = {
@@ -8441,7 +9789,7 @@ export namespace Prisma {
     is_public?: BoolFilter<"Link"> | boolean
     created_at?: DateTimeFilter<"Link"> | Date | string
     expires_at?: DateTimeFilter<"Link"> | Date | string
-    song?: XOR<SongScalarRelationFilter, SongWhereInput>
+    session?: XOR<SessionScalarRelationFilter, SessionWhereInput>
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
     linkPermissions?: LinkPermissionListRelationFilter
   }
@@ -8453,7 +9801,7 @@ export namespace Prisma {
     is_public?: SortOrder
     created_at?: SortOrder
     expires_at?: SortOrder
-    song?: SongOrderByWithRelationInput
+    session?: SessionOrderByWithRelationInput
     creator?: UserOrderByWithRelationInput
     linkPermissions?: LinkPermissionOrderByRelationAggregateInput
   }
@@ -8468,7 +9816,7 @@ export namespace Prisma {
     is_public?: BoolFilter<"Link"> | boolean
     created_at?: DateTimeFilter<"Link"> | Date | string
     expires_at?: DateTimeFilter<"Link"> | Date | string
-    song?: XOR<SongScalarRelationFilter, SongWhereInput>
+    session?: XOR<SessionScalarRelationFilter, SessionWhereInput>
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
     linkPermissions?: LinkPermissionListRelationFilter
   }, "link_id">
@@ -8558,7 +9906,7 @@ export namespace Prisma {
     music_name?: StringFilter<"PremadeMusic"> | string
     uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
     path?: StringFilter<"PremadeMusic"> | string
-    songs?: SongListRelationFilter
+    session?: SessionListRelationFilter
   }
 
   export type PremadeMusicOrderByWithRelationInput = {
@@ -8566,7 +9914,7 @@ export namespace Prisma {
     music_name?: SortOrder
     uploaded_date?: SortOrder
     path?: SortOrder
-    songs?: SongOrderByRelationAggregateInput
+    session?: SessionOrderByRelationAggregateInput
   }
 
   export type PremadeMusicWhereUniqueInput = Prisma.AtLeast<{
@@ -8577,7 +9925,7 @@ export namespace Prisma {
     NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
     uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
     path?: StringFilter<"PremadeMusic"> | string
-    songs?: SongListRelationFilter
+    session?: SessionListRelationFilter
   }, "music_id" | "music_name">
 
   export type PremadeMusicOrderByWithAggregationInput = {
@@ -8608,7 +9956,8 @@ export namespace Prisma {
     music_name?: StringFilter<"UploadedMusic"> | string
     uploaded_by?: StringFilter<"UploadedMusic"> | string
     path?: StringFilter<"UploadedMusic"> | string
-    songs?: SongListRelationFilter
+    session?: SessionListRelationFilter
+    stickyNotes?: StickyNotesListRelationFilter
   }
 
   export type UploadedMusicOrderByWithRelationInput = {
@@ -8616,7 +9965,8 @@ export namespace Prisma {
     music_name?: SortOrder
     uploaded_by?: SortOrder
     path?: SortOrder
-    songs?: SongOrderByRelationAggregateInput
+    session?: SessionOrderByRelationAggregateInput
+    stickyNotes?: StickyNotesOrderByRelationAggregateInput
   }
 
   export type UploadedMusicWhereUniqueInput = Prisma.AtLeast<{
@@ -8627,7 +9977,8 @@ export namespace Prisma {
     NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
     uploaded_by?: StringFilter<"UploadedMusic"> | string
     path?: StringFilter<"UploadedMusic"> | string
-    songs?: SongListRelationFilter
+    session?: SessionListRelationFilter
+    stickyNotes?: StickyNotesListRelationFilter
   }, "music_id" | "music_name">
 
   export type UploadedMusicOrderByWithAggregationInput = {
@@ -8657,9 +10008,10 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    songs?: SongCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
     links?: LinkCreateNestedManyWithoutCreatorInput
     linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8669,9 +10021,10 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    songs?: SongUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
     linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8681,9 +10034,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
     links?: LinkUpdateManyWithoutCreatorNestedInput
     linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8693,9 +10047,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
     linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8725,82 +10080,136 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SongCreateInput = {
+  export type SessionCreateInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSongsInput
-    links?: LinkCreateNestedManyWithoutSongInput
-    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
-    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+    user: UserCreateNestedOneWithoutSessionsInput
+    links?: LinkCreateNestedManyWithoutSessionInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
   }
 
-  export type SongUncheckedCreateInput = {
-    id?: string
-    title?: string
-    user_id: string
-    musicSource?: $Enums.MusicSource
-    premade_music_id?: string | null
-    uploaded_music_id?: string | null
-    content?: string
-    creation_date?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutSongInput
-  }
-
-  export type SongUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    content?: StringFieldUpdateOperationsInput | string
-    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSongsNestedInput
-    links?: LinkUpdateManyWithoutSongNestedInput
-    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
-    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
-  }
-
-  export type SongUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
-    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
-  }
-
-  export type SongCreateManyInput = {
+  export type SessionUncheckedCreateInput = {
     id?: string
     title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutSessionInput
   }
 
-  export type SongUpdateManyMutationInput = {
+  export type SessionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
+    links?: LinkUpdateManyWithoutSessionNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
   }
 
-  export type SongUncheckedUpdateManyInput = {
+  export type SessionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type SessionCreateManyInput = {
+    id?: string
+    title?: string
+    user_id: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    audio_timeline: JsonNullValueInput | InputJsonValue
+    creation_date?: Date | string
+  }
+
+  export type SessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    audio_timeline?: JsonNullValueInput | InputJsonValue
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    audio_timeline?: JsonNullValueInput | InputJsonValue
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StickyNotesCreateInput = {
+    id?: string
+    title?: string
+    content?: string
+    user: UserCreateNestedOneWithoutStickyNotesInput
+    music?: UploadedMusicCreateNestedOneWithoutStickyNotesInput
+  }
+
+  export type StickyNotesUncheckedCreateInput = {
+    id?: string
+    title?: string
+    content?: string
+    user_id: string
+    music_id?: string | null
+  }
+
+  export type StickyNotesUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutStickyNotesNestedInput
+    music?: UploadedMusicUpdateOneWithoutStickyNotesNestedInput
+  }
+
+  export type StickyNotesUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    music_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StickyNotesCreateManyInput = {
+    id?: string
+    title?: string
+    content?: string
+    user_id: string
+    music_id?: string | null
+  }
+
+  export type StickyNotesUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StickyNotesUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    music_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LinkCreateInput = {
@@ -8808,7 +10217,7 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: Date | string
     expires_at: Date | string
-    song: SongCreateNestedOneWithoutLinksInput
+    session: SessionCreateNestedOneWithoutLinksInput
     creator: UserCreateNestedOneWithoutLinksInput
     linkPermissions?: LinkPermissionCreateNestedManyWithoutUserLinkInput
   }
@@ -8828,7 +10237,7 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    song?: SongUpdateOneRequiredWithoutLinksNestedInput
+    session?: SessionUpdateOneRequiredWithoutLinksNestedInput
     creator?: UserUpdateOneRequiredWithoutLinksNestedInput
     linkPermissions?: LinkPermissionUpdateManyWithoutUserLinkNestedInput
   }
@@ -8920,7 +10329,7 @@ export namespace Prisma {
     music_name: string
     uploaded_date?: Date | string
     path: string
-    songs?: SongCreateNestedManyWithoutPremadeMusicInput
+    session?: SessionCreateNestedManyWithoutPremadeMusicInput
   }
 
   export type PremadeMusicUncheckedCreateInput = {
@@ -8928,7 +10337,7 @@ export namespace Prisma {
     music_name: string
     uploaded_date?: Date | string
     path: string
-    songs?: SongUncheckedCreateNestedManyWithoutPremadeMusicInput
+    session?: SessionUncheckedCreateNestedManyWithoutPremadeMusicInput
   }
 
   export type PremadeMusicUpdateInput = {
@@ -8936,7 +10345,7 @@ export namespace Prisma {
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
     path?: StringFieldUpdateOperationsInput | string
-    songs?: SongUpdateManyWithoutPremadeMusicNestedInput
+    session?: SessionUpdateManyWithoutPremadeMusicNestedInput
   }
 
   export type PremadeMusicUncheckedUpdateInput = {
@@ -8944,7 +10353,7 @@ export namespace Prisma {
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
     path?: StringFieldUpdateOperationsInput | string
-    songs?: SongUncheckedUpdateManyWithoutPremadeMusicNestedInput
+    session?: SessionUncheckedUpdateManyWithoutPremadeMusicNestedInput
   }
 
   export type PremadeMusicCreateManyInput = {
@@ -8973,7 +10382,8 @@ export namespace Prisma {
     music_name: string
     uploaded_by: string
     path?: string
-    songs?: SongCreateNestedManyWithoutUploadedMusicInput
+    session?: SessionCreateNestedManyWithoutUploadedMusicInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutMusicInput
   }
 
   export type UploadedMusicUncheckedCreateInput = {
@@ -8981,7 +10391,8 @@ export namespace Prisma {
     music_name: string
     uploaded_by: string
     path?: string
-    songs?: SongUncheckedCreateNestedManyWithoutUploadedMusicInput
+    session?: SessionUncheckedCreateNestedManyWithoutUploadedMusicInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutMusicInput
   }
 
   export type UploadedMusicUpdateInput = {
@@ -8989,7 +10400,8 @@ export namespace Prisma {
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
-    songs?: SongUpdateManyWithoutUploadedMusicNestedInput
+    session?: SessionUpdateManyWithoutUploadedMusicNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutMusicNestedInput
   }
 
   export type UploadedMusicUncheckedUpdateInput = {
@@ -8997,7 +10409,8 @@ export namespace Prisma {
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
-    songs?: SongUncheckedUpdateManyWithoutUploadedMusicNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUploadedMusicNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutMusicNestedInput
   }
 
   export type UploadedMusicCreateManyInput = {
@@ -9047,10 +10460,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type SongListRelationFilter = {
-    every?: SongWhereInput
-    some?: SongWhereInput
-    none?: SongWhereInput
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
   }
 
   export type LinkListRelationFilter = {
@@ -9065,7 +10478,13 @@ export namespace Prisma {
     none?: LinkPermissionWhereInput
   }
 
-  export type SongOrderByRelationAggregateInput = {
+  export type StickyNotesListRelationFilter = {
+    every?: StickyNotesWhereInput
+    some?: StickyNotesWhereInput
+    none?: StickyNotesWhereInput
+  }
+
+  export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9074,6 +10493,10 @@ export namespace Prisma {
   }
 
   export type LinkPermissionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StickyNotesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9157,6 +10580,29 @@ export namespace Prisma {
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
@@ -9178,36 +10624,34 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SongCountOrderByAggregateInput = {
+  export type SessionCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrder
     uploaded_music_id?: SortOrder
-    content?: SortOrder
+    audio_timeline?: SortOrder
     creation_date?: SortOrder
   }
 
-  export type SongMaxOrderByAggregateInput = {
+  export type SessionMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrder
     uploaded_music_id?: SortOrder
-    content?: SortOrder
     creation_date?: SortOrder
   }
 
-  export type SongMinOrderByAggregateInput = {
+  export type SessionMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     user_id?: SortOrder
     musicSource?: SortOrder
     premade_music_id?: SortOrder
     uploaded_music_id?: SortOrder
-    content?: SortOrder
     creation_date?: SortOrder
   }
 
@@ -9238,15 +10682,65 @@ export namespace Prisma {
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type StickyNotesCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    user_id?: SortOrder
+    music_id?: SortOrder
+  }
+
+  export type StickyNotesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    user_id?: SortOrder
+    music_id?: SortOrder
+  }
+
+  export type StickyNotesMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    user_id?: SortOrder
+    music_id?: SortOrder
+  }
 
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type SongScalarRelationFilter = {
-    is?: SongWhereInput
-    isNot?: SongWhereInput
+  export type SessionScalarRelationFilter = {
+    is?: SessionWhereInput
+    isNot?: SessionWhereInput
   }
 
   export type LinkCountOrderByAggregateInput = {
@@ -9352,11 +10846,11 @@ export namespace Prisma {
     path?: SortOrder
   }
 
-  export type SongCreateNestedManyWithoutUserInput = {
-    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
-    createMany?: SongCreateManyUserInputEnvelope
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  export type SessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
   export type LinkCreateNestedManyWithoutCreatorInput = {
@@ -9373,11 +10867,18 @@ export namespace Prisma {
     connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
   }
 
-  export type SongUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
-    createMany?: SongCreateManyUserInputEnvelope
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  export type StickyNotesCreateNestedManyWithoutUserInput = {
+    create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
+    createMany?: StickyNotesCreateManyUserInputEnvelope
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+  }
+
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
   export type LinkUncheckedCreateNestedManyWithoutCreatorInput = {
@@ -9394,6 +10895,13 @@ export namespace Prisma {
     connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
   }
 
+  export type StickyNotesUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
+    createMany?: StickyNotesCreateManyUserInputEnvelope
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9402,18 +10910,18 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type SongUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutUserInput | SongUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SongCreateManyUserInputEnvelope
-    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutUserInput | SongUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutUserInput | SongUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  export type SessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type LinkUpdateManyWithoutCreatorNestedInput = {
@@ -9444,18 +10952,32 @@ export namespace Prisma {
     deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
   }
 
-  export type SongUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput> | SongCreateWithoutUserInput[] | SongUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUserInput | SongCreateOrConnectWithoutUserInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutUserInput | SongUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SongCreateManyUserInputEnvelope
-    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutUserInput | SongUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutUserInput | SongUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  export type StickyNotesUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
+    upsert?: StickyNotesUpsertWithWhereUniqueWithoutUserInput | StickyNotesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StickyNotesCreateManyUserInputEnvelope
+    set?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    disconnect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    delete?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    update?: StickyNotesUpdateWithWhereUniqueWithoutUserInput | StickyNotesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StickyNotesUpdateManyWithWhereWithoutUserInput | StickyNotesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type LinkUncheckedUpdateManyWithoutCreatorNestedInput = {
@@ -9486,35 +11008,49 @@ export namespace Prisma {
     deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutSongsInput = {
-    create?: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSongsInput
+  export type StickyNotesUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
+    upsert?: StickyNotesUpsertWithWhereUniqueWithoutUserInput | StickyNotesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StickyNotesCreateManyUserInputEnvelope
+    set?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    disconnect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    delete?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    update?: StickyNotesUpdateWithWhereUniqueWithoutUserInput | StickyNotesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StickyNotesUpdateManyWithWhereWithoutUserInput | StickyNotesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutSessionsInput = {
+    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
     connect?: UserWhereUniqueInput
   }
 
-  export type LinkCreateNestedManyWithoutSongInput = {
-    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
-    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
-    createMany?: LinkCreateManySongInputEnvelope
+  export type LinkCreateNestedManyWithoutSessionInput = {
+    create?: XOR<LinkCreateWithoutSessionInput, LinkUncheckedCreateWithoutSessionInput> | LinkCreateWithoutSessionInput[] | LinkUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSessionInput | LinkCreateOrConnectWithoutSessionInput[]
+    createMany?: LinkCreateManySessionInputEnvelope
     connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
   }
 
-  export type PremadeMusicCreateNestedOneWithoutSongsInput = {
-    create?: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSongsInput
+  export type PremadeMusicCreateNestedOneWithoutSessionInput = {
+    create?: XOR<PremadeMusicCreateWithoutSessionInput, PremadeMusicUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSessionInput
     connect?: PremadeMusicWhereUniqueInput
   }
 
-  export type UploadedMusicCreateNestedOneWithoutSongsInput = {
-    create?: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSongsInput
+  export type UploadedMusicCreateNestedOneWithoutSessionInput = {
+    create?: XOR<UploadedMusicCreateWithoutSessionInput, UploadedMusicUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSessionInput
     connect?: UploadedMusicWhereUniqueInput
   }
 
-  export type LinkUncheckedCreateNestedManyWithoutSongInput = {
-    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
-    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
-    createMany?: LinkCreateManySongInputEnvelope
+  export type LinkUncheckedCreateNestedManyWithoutSessionInput = {
+    create?: XOR<LinkCreateWithoutSessionInput, LinkUncheckedCreateWithoutSessionInput> | LinkCreateWithoutSessionInput[] | LinkUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSessionInput | LinkCreateOrConnectWithoutSessionInput[]
+    createMany?: LinkCreateManySessionInputEnvelope
     connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
   }
 
@@ -9522,70 +11058,100 @@ export namespace Prisma {
     set?: $Enums.MusicSource
   }
 
-  export type UserUpdateOneRequiredWithoutSongsNestedInput = {
-    create?: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSongsInput
-    upsert?: UserUpsertWithoutSongsInput
+  export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
+    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
+    upsert?: UserUpsertWithoutSessionsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSongsInput, UserUpdateWithoutSongsInput>, UserUncheckedUpdateWithoutSongsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
   }
 
-  export type LinkUpdateManyWithoutSongNestedInput = {
-    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
-    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
-    upsert?: LinkUpsertWithWhereUniqueWithoutSongInput | LinkUpsertWithWhereUniqueWithoutSongInput[]
-    createMany?: LinkCreateManySongInputEnvelope
+  export type LinkUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<LinkCreateWithoutSessionInput, LinkUncheckedCreateWithoutSessionInput> | LinkCreateWithoutSessionInput[] | LinkUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSessionInput | LinkCreateOrConnectWithoutSessionInput[]
+    upsert?: LinkUpsertWithWhereUniqueWithoutSessionInput | LinkUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: LinkCreateManySessionInputEnvelope
     set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
     disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
     delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
     connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
-    update?: LinkUpdateWithWhereUniqueWithoutSongInput | LinkUpdateWithWhereUniqueWithoutSongInput[]
-    updateMany?: LinkUpdateManyWithWhereWithoutSongInput | LinkUpdateManyWithWhereWithoutSongInput[]
+    update?: LinkUpdateWithWhereUniqueWithoutSessionInput | LinkUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: LinkUpdateManyWithWhereWithoutSessionInput | LinkUpdateManyWithWhereWithoutSessionInput[]
     deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
   }
 
-  export type PremadeMusicUpdateOneWithoutSongsNestedInput = {
-    create?: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSongsInput
-    upsert?: PremadeMusicUpsertWithoutSongsInput
+  export type PremadeMusicUpdateOneWithoutSessionNestedInput = {
+    create?: XOR<PremadeMusicCreateWithoutSessionInput, PremadeMusicUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: PremadeMusicCreateOrConnectWithoutSessionInput
+    upsert?: PremadeMusicUpsertWithoutSessionInput
     disconnect?: PremadeMusicWhereInput | boolean
     delete?: PremadeMusicWhereInput | boolean
     connect?: PremadeMusicWhereUniqueInput
-    update?: XOR<XOR<PremadeMusicUpdateToOneWithWhereWithoutSongsInput, PremadeMusicUpdateWithoutSongsInput>, PremadeMusicUncheckedUpdateWithoutSongsInput>
+    update?: XOR<XOR<PremadeMusicUpdateToOneWithWhereWithoutSessionInput, PremadeMusicUpdateWithoutSessionInput>, PremadeMusicUncheckedUpdateWithoutSessionInput>
   }
 
-  export type UploadedMusicUpdateOneWithoutSongsNestedInput = {
-    create?: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
-    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSongsInput
-    upsert?: UploadedMusicUpsertWithoutSongsInput
+  export type UploadedMusicUpdateOneWithoutSessionNestedInput = {
+    create?: XOR<UploadedMusicCreateWithoutSessionInput, UploadedMusicUncheckedCreateWithoutSessionInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutSessionInput
+    upsert?: UploadedMusicUpsertWithoutSessionInput
     disconnect?: UploadedMusicWhereInput | boolean
     delete?: UploadedMusicWhereInput | boolean
     connect?: UploadedMusicWhereUniqueInput
-    update?: XOR<XOR<UploadedMusicUpdateToOneWithWhereWithoutSongsInput, UploadedMusicUpdateWithoutSongsInput>, UploadedMusicUncheckedUpdateWithoutSongsInput>
+    update?: XOR<XOR<UploadedMusicUpdateToOneWithWhereWithoutSessionInput, UploadedMusicUpdateWithoutSessionInput>, UploadedMusicUncheckedUpdateWithoutSessionInput>
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
-  export type LinkUncheckedUpdateManyWithoutSongNestedInput = {
-    create?: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput> | LinkCreateWithoutSongInput[] | LinkUncheckedCreateWithoutSongInput[]
-    connectOrCreate?: LinkCreateOrConnectWithoutSongInput | LinkCreateOrConnectWithoutSongInput[]
-    upsert?: LinkUpsertWithWhereUniqueWithoutSongInput | LinkUpsertWithWhereUniqueWithoutSongInput[]
-    createMany?: LinkCreateManySongInputEnvelope
+  export type LinkUncheckedUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<LinkCreateWithoutSessionInput, LinkUncheckedCreateWithoutSessionInput> | LinkCreateWithoutSessionInput[] | LinkUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutSessionInput | LinkCreateOrConnectWithoutSessionInput[]
+    upsert?: LinkUpsertWithWhereUniqueWithoutSessionInput | LinkUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: LinkCreateManySessionInputEnvelope
     set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
     disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
     delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
     connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
-    update?: LinkUpdateWithWhereUniqueWithoutSongInput | LinkUpdateWithWhereUniqueWithoutSongInput[]
-    updateMany?: LinkUpdateManyWithWhereWithoutSongInput | LinkUpdateManyWithWhereWithoutSongInput[]
+    update?: LinkUpdateWithWhereUniqueWithoutSessionInput | LinkUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: LinkUpdateManyWithWhereWithoutSessionInput | LinkUpdateManyWithWhereWithoutSessionInput[]
     deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
   }
 
-  export type SongCreateNestedOneWithoutLinksInput = {
-    create?: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
-    connectOrCreate?: SongCreateOrConnectWithoutLinksInput
-    connect?: SongWhereUniqueInput
+  export type UserCreateNestedOneWithoutStickyNotesInput = {
+    create?: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStickyNotesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UploadedMusicCreateNestedOneWithoutStickyNotesInput = {
+    create?: XOR<UploadedMusicCreateWithoutStickyNotesInput, UploadedMusicUncheckedCreateWithoutStickyNotesInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutStickyNotesInput
+    connect?: UploadedMusicWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutStickyNotesNestedInput = {
+    create?: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStickyNotesInput
+    upsert?: UserUpsertWithoutStickyNotesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStickyNotesInput, UserUpdateWithoutStickyNotesInput>, UserUncheckedUpdateWithoutStickyNotesInput>
+  }
+
+  export type UploadedMusicUpdateOneWithoutStickyNotesNestedInput = {
+    create?: XOR<UploadedMusicCreateWithoutStickyNotesInput, UploadedMusicUncheckedCreateWithoutStickyNotesInput>
+    connectOrCreate?: UploadedMusicCreateOrConnectWithoutStickyNotesInput
+    upsert?: UploadedMusicUpsertWithoutStickyNotesInput
+    disconnect?: UploadedMusicWhereInput | boolean
+    delete?: UploadedMusicWhereInput | boolean
+    connect?: UploadedMusicWhereUniqueInput
+    update?: XOR<XOR<UploadedMusicUpdateToOneWithWhereWithoutStickyNotesInput, UploadedMusicUpdateWithoutStickyNotesInput>, UploadedMusicUncheckedUpdateWithoutStickyNotesInput>
+  }
+
+  export type SessionCreateNestedOneWithoutLinksInput = {
+    create?: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: SessionCreateOrConnectWithoutLinksInput
+    connect?: SessionWhereUniqueInput
   }
 
   export type UserCreateNestedOneWithoutLinksInput = {
@@ -9612,12 +11178,12 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type SongUpdateOneRequiredWithoutLinksNestedInput = {
-    create?: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
-    connectOrCreate?: SongCreateOrConnectWithoutLinksInput
-    upsert?: SongUpsertWithoutLinksInput
-    connect?: SongWhereUniqueInput
-    update?: XOR<XOR<SongUpdateToOneWithWhereWithoutLinksInput, SongUpdateWithoutLinksInput>, SongUncheckedUpdateWithoutLinksInput>
+  export type SessionUpdateOneRequiredWithoutLinksNestedInput = {
+    create?: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: SessionCreateOrConnectWithoutLinksInput
+    upsert?: SessionUpsertWithoutLinksInput
+    connect?: SessionWhereUniqueInput
+    update?: XOR<XOR<SessionUpdateToOneWithWhereWithoutLinksInput, SessionUpdateWithoutLinksInput>, SessionUncheckedUpdateWithoutLinksInput>
   }
 
   export type UserUpdateOneRequiredWithoutLinksNestedInput = {
@@ -9684,88 +11250,130 @@ export namespace Prisma {
     update?: XOR<XOR<LinkUpdateToOneWithWhereWithoutLinkPermissionsInput, LinkUpdateWithoutLinkPermissionsInput>, LinkUncheckedUpdateWithoutLinkPermissionsInput>
   }
 
-  export type SongCreateNestedManyWithoutPremadeMusicInput = {
-    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
-    createMany?: SongCreateManyPremadeMusicInputEnvelope
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  export type SessionCreateNestedManyWithoutPremadeMusicInput = {
+    create?: XOR<SessionCreateWithoutPremadeMusicInput, SessionUncheckedCreateWithoutPremadeMusicInput> | SessionCreateWithoutPremadeMusicInput[] | SessionUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutPremadeMusicInput | SessionCreateOrConnectWithoutPremadeMusicInput[]
+    createMany?: SessionCreateManyPremadeMusicInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type SongUncheckedCreateNestedManyWithoutPremadeMusicInput = {
-    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
-    createMany?: SongCreateManyPremadeMusicInputEnvelope
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  export type SessionUncheckedCreateNestedManyWithoutPremadeMusicInput = {
+    create?: XOR<SessionCreateWithoutPremadeMusicInput, SessionUncheckedCreateWithoutPremadeMusicInput> | SessionCreateWithoutPremadeMusicInput[] | SessionUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutPremadeMusicInput | SessionCreateOrConnectWithoutPremadeMusicInput[]
+    createMany?: SessionCreateManyPremadeMusicInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type SongUpdateManyWithoutPremadeMusicNestedInput = {
-    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutPremadeMusicInput | SongUpsertWithWhereUniqueWithoutPremadeMusicInput[]
-    createMany?: SongCreateManyPremadeMusicInputEnvelope
-    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutPremadeMusicInput | SongUpdateWithWhereUniqueWithoutPremadeMusicInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutPremadeMusicInput | SongUpdateManyWithWhereWithoutPremadeMusicInput[]
-    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  export type SessionUpdateManyWithoutPremadeMusicNestedInput = {
+    create?: XOR<SessionCreateWithoutPremadeMusicInput, SessionUncheckedCreateWithoutPremadeMusicInput> | SessionCreateWithoutPremadeMusicInput[] | SessionUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutPremadeMusicInput | SessionCreateOrConnectWithoutPremadeMusicInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutPremadeMusicInput | SessionUpsertWithWhereUniqueWithoutPremadeMusicInput[]
+    createMany?: SessionCreateManyPremadeMusicInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutPremadeMusicInput | SessionUpdateWithWhereUniqueWithoutPremadeMusicInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutPremadeMusicInput | SessionUpdateManyWithWhereWithoutPremadeMusicInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type SongUncheckedUpdateManyWithoutPremadeMusicNestedInput = {
-    create?: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput> | SongCreateWithoutPremadeMusicInput[] | SongUncheckedCreateWithoutPremadeMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutPremadeMusicInput | SongCreateOrConnectWithoutPremadeMusicInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutPremadeMusicInput | SongUpsertWithWhereUniqueWithoutPremadeMusicInput[]
-    createMany?: SongCreateManyPremadeMusicInputEnvelope
-    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutPremadeMusicInput | SongUpdateWithWhereUniqueWithoutPremadeMusicInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutPremadeMusicInput | SongUpdateManyWithWhereWithoutPremadeMusicInput[]
-    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  export type SessionUncheckedUpdateManyWithoutPremadeMusicNestedInput = {
+    create?: XOR<SessionCreateWithoutPremadeMusicInput, SessionUncheckedCreateWithoutPremadeMusicInput> | SessionCreateWithoutPremadeMusicInput[] | SessionUncheckedCreateWithoutPremadeMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutPremadeMusicInput | SessionCreateOrConnectWithoutPremadeMusicInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutPremadeMusicInput | SessionUpsertWithWhereUniqueWithoutPremadeMusicInput[]
+    createMany?: SessionCreateManyPremadeMusicInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutPremadeMusicInput | SessionUpdateWithWhereUniqueWithoutPremadeMusicInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutPremadeMusicInput | SessionUpdateManyWithWhereWithoutPremadeMusicInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type SongCreateNestedManyWithoutUploadedMusicInput = {
-    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
-    createMany?: SongCreateManyUploadedMusicInputEnvelope
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  export type SessionCreateNestedManyWithoutUploadedMusicInput = {
+    create?: XOR<SessionCreateWithoutUploadedMusicInput, SessionUncheckedCreateWithoutUploadedMusicInput> | SessionCreateWithoutUploadedMusicInput[] | SessionUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUploadedMusicInput | SessionCreateOrConnectWithoutUploadedMusicInput[]
+    createMany?: SessionCreateManyUploadedMusicInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type SongUncheckedCreateNestedManyWithoutUploadedMusicInput = {
-    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
-    createMany?: SongCreateManyUploadedMusicInputEnvelope
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  export type StickyNotesCreateNestedManyWithoutMusicInput = {
+    create?: XOR<StickyNotesCreateWithoutMusicInput, StickyNotesUncheckedCreateWithoutMusicInput> | StickyNotesCreateWithoutMusicInput[] | StickyNotesUncheckedCreateWithoutMusicInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutMusicInput | StickyNotesCreateOrConnectWithoutMusicInput[]
+    createMany?: StickyNotesCreateManyMusicInputEnvelope
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
   }
 
-  export type SongUpdateManyWithoutUploadedMusicNestedInput = {
-    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutUploadedMusicInput | SongUpsertWithWhereUniqueWithoutUploadedMusicInput[]
-    createMany?: SongCreateManyUploadedMusicInputEnvelope
-    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutUploadedMusicInput | SongUpdateWithWhereUniqueWithoutUploadedMusicInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutUploadedMusicInput | SongUpdateManyWithWhereWithoutUploadedMusicInput[]
-    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  export type SessionUncheckedCreateNestedManyWithoutUploadedMusicInput = {
+    create?: XOR<SessionCreateWithoutUploadedMusicInput, SessionUncheckedCreateWithoutUploadedMusicInput> | SessionCreateWithoutUploadedMusicInput[] | SessionUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUploadedMusicInput | SessionCreateOrConnectWithoutUploadedMusicInput[]
+    createMany?: SessionCreateManyUploadedMusicInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type SongUncheckedUpdateManyWithoutUploadedMusicNestedInput = {
-    create?: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput> | SongCreateWithoutUploadedMusicInput[] | SongUncheckedCreateWithoutUploadedMusicInput[]
-    connectOrCreate?: SongCreateOrConnectWithoutUploadedMusicInput | SongCreateOrConnectWithoutUploadedMusicInput[]
-    upsert?: SongUpsertWithWhereUniqueWithoutUploadedMusicInput | SongUpsertWithWhereUniqueWithoutUploadedMusicInput[]
-    createMany?: SongCreateManyUploadedMusicInputEnvelope
-    set?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    disconnect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    delete?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
-    update?: SongUpdateWithWhereUniqueWithoutUploadedMusicInput | SongUpdateWithWhereUniqueWithoutUploadedMusicInput[]
-    updateMany?: SongUpdateManyWithWhereWithoutUploadedMusicInput | SongUpdateManyWithWhereWithoutUploadedMusicInput[]
-    deleteMany?: SongScalarWhereInput | SongScalarWhereInput[]
+  export type StickyNotesUncheckedCreateNestedManyWithoutMusicInput = {
+    create?: XOR<StickyNotesCreateWithoutMusicInput, StickyNotesUncheckedCreateWithoutMusicInput> | StickyNotesCreateWithoutMusicInput[] | StickyNotesUncheckedCreateWithoutMusicInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutMusicInput | StickyNotesCreateOrConnectWithoutMusicInput[]
+    createMany?: StickyNotesCreateManyMusicInputEnvelope
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+  }
+
+  export type SessionUpdateManyWithoutUploadedMusicNestedInput = {
+    create?: XOR<SessionCreateWithoutUploadedMusicInput, SessionUncheckedCreateWithoutUploadedMusicInput> | SessionCreateWithoutUploadedMusicInput[] | SessionUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUploadedMusicInput | SessionCreateOrConnectWithoutUploadedMusicInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUploadedMusicInput | SessionUpsertWithWhereUniqueWithoutUploadedMusicInput[]
+    createMany?: SessionCreateManyUploadedMusicInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUploadedMusicInput | SessionUpdateWithWhereUniqueWithoutUploadedMusicInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUploadedMusicInput | SessionUpdateManyWithWhereWithoutUploadedMusicInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type StickyNotesUpdateManyWithoutMusicNestedInput = {
+    create?: XOR<StickyNotesCreateWithoutMusicInput, StickyNotesUncheckedCreateWithoutMusicInput> | StickyNotesCreateWithoutMusicInput[] | StickyNotesUncheckedCreateWithoutMusicInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutMusicInput | StickyNotesCreateOrConnectWithoutMusicInput[]
+    upsert?: StickyNotesUpsertWithWhereUniqueWithoutMusicInput | StickyNotesUpsertWithWhereUniqueWithoutMusicInput[]
+    createMany?: StickyNotesCreateManyMusicInputEnvelope
+    set?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    disconnect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    delete?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    update?: StickyNotesUpdateWithWhereUniqueWithoutMusicInput | StickyNotesUpdateWithWhereUniqueWithoutMusicInput[]
+    updateMany?: StickyNotesUpdateManyWithWhereWithoutMusicInput | StickyNotesUpdateManyWithWhereWithoutMusicInput[]
+    deleteMany?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUploadedMusicNestedInput = {
+    create?: XOR<SessionCreateWithoutUploadedMusicInput, SessionUncheckedCreateWithoutUploadedMusicInput> | SessionCreateWithoutUploadedMusicInput[] | SessionUncheckedCreateWithoutUploadedMusicInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUploadedMusicInput | SessionCreateOrConnectWithoutUploadedMusicInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUploadedMusicInput | SessionUpsertWithWhereUniqueWithoutUploadedMusicInput[]
+    createMany?: SessionCreateManyUploadedMusicInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUploadedMusicInput | SessionUpdateWithWhereUniqueWithoutUploadedMusicInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUploadedMusicInput | SessionUpdateManyWithWhereWithoutUploadedMusicInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type StickyNotesUncheckedUpdateManyWithoutMusicNestedInput = {
+    create?: XOR<StickyNotesCreateWithoutMusicInput, StickyNotesUncheckedCreateWithoutMusicInput> | StickyNotesCreateWithoutMusicInput[] | StickyNotesUncheckedCreateWithoutMusicInput[]
+    connectOrCreate?: StickyNotesCreateOrConnectWithoutMusicInput | StickyNotesCreateOrConnectWithoutMusicInput[]
+    upsert?: StickyNotesUpsertWithWhereUniqueWithoutMusicInput | StickyNotesUpsertWithWhereUniqueWithoutMusicInput[]
+    createMany?: StickyNotesCreateManyMusicInputEnvelope
+    set?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    disconnect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    delete?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
+    update?: StickyNotesUpdateWithWhereUniqueWithoutMusicInput | StickyNotesUpdateWithWhereUniqueWithoutMusicInput[]
+    updateMany?: StickyNotesUpdateManyWithWhereWithoutMusicInput | StickyNotesUpdateManyWithWhereWithoutMusicInput[]
+    deleteMany?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9893,6 +11501,29 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
@@ -9907,35 +11538,35 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type SongCreateWithoutUserInput = {
+  export type SessionCreateWithoutUserInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    links?: LinkCreateNestedManyWithoutSongInput
-    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
-    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+    links?: LinkCreateNestedManyWithoutSessionInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
   }
 
-  export type SongUncheckedCreateWithoutUserInput = {
+  export type SessionUncheckedCreateWithoutUserInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+    links?: LinkUncheckedCreateNestedManyWithoutSessionInput
   }
 
-  export type SongCreateOrConnectWithoutUserInput = {
-    where: SongWhereUniqueInput
-    create: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput>
+  export type SessionCreateOrConnectWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type SongCreateManyUserInputEnvelope = {
-    data: SongCreateManyUserInput | SongCreateManyUserInput[]
+  export type SessionCreateManyUserInputEnvelope = {
+    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -9944,7 +11575,7 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: Date | string
     expires_at: Date | string
-    song: SongCreateNestedOneWithoutLinksInput
+    session: SessionCreateNestedOneWithoutLinksInput
     linkPermissions?: LinkPermissionCreateNestedManyWithoutUserLinkInput
   }
 
@@ -9989,34 +11620,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SongUpsertWithWhereUniqueWithoutUserInput = {
-    where: SongWhereUniqueInput
-    update: XOR<SongUpdateWithoutUserInput, SongUncheckedUpdateWithoutUserInput>
-    create: XOR<SongCreateWithoutUserInput, SongUncheckedCreateWithoutUserInput>
+  export type StickyNotesCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    content?: string
+    music?: UploadedMusicCreateNestedOneWithoutStickyNotesInput
   }
 
-  export type SongUpdateWithWhereUniqueWithoutUserInput = {
-    where: SongWhereUniqueInput
-    data: XOR<SongUpdateWithoutUserInput, SongUncheckedUpdateWithoutUserInput>
+  export type StickyNotesUncheckedCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    content?: string
+    music_id?: string | null
   }
 
-  export type SongUpdateManyWithWhereWithoutUserInput = {
-    where: SongScalarWhereInput
-    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutUserInput>
+  export type StickyNotesCreateOrConnectWithoutUserInput = {
+    where: StickyNotesWhereUniqueInput
+    create: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput>
   }
 
-  export type SongScalarWhereInput = {
-    AND?: SongScalarWhereInput | SongScalarWhereInput[]
-    OR?: SongScalarWhereInput[]
-    NOT?: SongScalarWhereInput | SongScalarWhereInput[]
-    id?: StringFilter<"Song"> | string
-    title?: StringFilter<"Song"> | string
-    user_id?: StringFilter<"Song"> | string
-    musicSource?: EnumMusicSourceFilter<"Song"> | $Enums.MusicSource
-    premade_music_id?: StringNullableFilter<"Song"> | string | null
-    uploaded_music_id?: StringNullableFilter<"Song"> | string | null
-    content?: StringFilter<"Song"> | string
-    creation_date?: DateTimeFilter<"Song"> | Date | string
+  export type StickyNotesCreateManyUserInputEnvelope = {
+    data: StickyNotesCreateManyUserInput | StickyNotesCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    id?: StringFilter<"Session"> | string
+    title?: StringFilter<"Session"> | string
+    user_id?: StringFilter<"Session"> | string
+    musicSource?: EnumMusicSourceFilter<"Session"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Session"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Session"> | string | null
+    audio_timeline?: JsonFilter<"Session">
+    creation_date?: DateTimeFilter<"Session"> | Date | string
   }
 
   export type LinkUpsertWithWhereUniqueWithoutCreatorInput = {
@@ -10073,7 +11728,34 @@ export namespace Prisma {
     can_view?: BoolFilter<"LinkPermission"> | boolean
   }
 
-  export type UserCreateWithoutSongsInput = {
+  export type StickyNotesUpsertWithWhereUniqueWithoutUserInput = {
+    where: StickyNotesWhereUniqueInput
+    update: XOR<StickyNotesUpdateWithoutUserInput, StickyNotesUncheckedUpdateWithoutUserInput>
+    create: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput>
+  }
+
+  export type StickyNotesUpdateWithWhereUniqueWithoutUserInput = {
+    where: StickyNotesWhereUniqueInput
+    data: XOR<StickyNotesUpdateWithoutUserInput, StickyNotesUncheckedUpdateWithoutUserInput>
+  }
+
+  export type StickyNotesUpdateManyWithWhereWithoutUserInput = {
+    where: StickyNotesScalarWhereInput
+    data: XOR<StickyNotesUpdateManyMutationInput, StickyNotesUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type StickyNotesScalarWhereInput = {
+    AND?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
+    OR?: StickyNotesScalarWhereInput[]
+    NOT?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
+    id?: StringFilter<"StickyNotes"> | string
+    title?: StringFilter<"StickyNotes"> | string
+    content?: StringFilter<"StickyNotes"> | string
+    user_id?: StringFilter<"StickyNotes"> | string
+    music_id?: StringNullableFilter<"StickyNotes"> | string | null
+  }
+
+  export type UserCreateWithoutSessionsInput = {
     id?: string
     username: string
     email: string
@@ -10082,9 +11764,10 @@ export namespace Prisma {
     updateAt?: Date | string
     links?: LinkCreateNestedManyWithoutCreatorInput
     linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutSongsInput = {
+  export type UserUncheckedCreateWithoutSessionsInput = {
     id?: string
     username: string
     email: string
@@ -10093,14 +11776,15 @@ export namespace Prisma {
     updateAt?: Date | string
     links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
     linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutSongsInput = {
+  export type UserCreateOrConnectWithoutSessionsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
+    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
   }
 
-  export type LinkCreateWithoutSongInput = {
+  export type LinkCreateWithoutSessionInput = {
     link_id?: string
     is_public?: boolean
     created_at?: Date | string
@@ -10109,7 +11793,7 @@ export namespace Prisma {
     linkPermissions?: LinkPermissionCreateNestedManyWithoutUserLinkInput
   }
 
-  export type LinkUncheckedCreateWithoutSongInput = {
+  export type LinkUncheckedCreateWithoutSessionInput = {
     link_id?: string
     created_by: string
     is_public?: boolean
@@ -10118,66 +11802,68 @@ export namespace Prisma {
     linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutUserLinkInput
   }
 
-  export type LinkCreateOrConnectWithoutSongInput = {
+  export type LinkCreateOrConnectWithoutSessionInput = {
     where: LinkWhereUniqueInput
-    create: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput>
+    create: XOR<LinkCreateWithoutSessionInput, LinkUncheckedCreateWithoutSessionInput>
   }
 
-  export type LinkCreateManySongInputEnvelope = {
-    data: LinkCreateManySongInput | LinkCreateManySongInput[]
+  export type LinkCreateManySessionInputEnvelope = {
+    data: LinkCreateManySessionInput | LinkCreateManySessionInput[]
     skipDuplicates?: boolean
   }
 
-  export type PremadeMusicCreateWithoutSongsInput = {
+  export type PremadeMusicCreateWithoutSessionInput = {
     music_id?: string
     music_name: string
     uploaded_date?: Date | string
     path: string
   }
 
-  export type PremadeMusicUncheckedCreateWithoutSongsInput = {
+  export type PremadeMusicUncheckedCreateWithoutSessionInput = {
     music_id?: string
     music_name: string
     uploaded_date?: Date | string
     path: string
   }
 
-  export type PremadeMusicCreateOrConnectWithoutSongsInput = {
+  export type PremadeMusicCreateOrConnectWithoutSessionInput = {
     where: PremadeMusicWhereUniqueInput
-    create: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+    create: XOR<PremadeMusicCreateWithoutSessionInput, PremadeMusicUncheckedCreateWithoutSessionInput>
   }
 
-  export type UploadedMusicCreateWithoutSongsInput = {
+  export type UploadedMusicCreateWithoutSessionInput = {
     music_id?: string
     music_name: string
     uploaded_by: string
     path?: string
+    stickyNotes?: StickyNotesCreateNestedManyWithoutMusicInput
   }
 
-  export type UploadedMusicUncheckedCreateWithoutSongsInput = {
+  export type UploadedMusicUncheckedCreateWithoutSessionInput = {
     music_id?: string
     music_name: string
     uploaded_by: string
     path?: string
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutMusicInput
   }
 
-  export type UploadedMusicCreateOrConnectWithoutSongsInput = {
+  export type UploadedMusicCreateOrConnectWithoutSessionInput = {
     where: UploadedMusicWhereUniqueInput
-    create: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+    create: XOR<UploadedMusicCreateWithoutSessionInput, UploadedMusicUncheckedCreateWithoutSessionInput>
   }
 
-  export type UserUpsertWithoutSongsInput = {
-    update: XOR<UserUpdateWithoutSongsInput, UserUncheckedUpdateWithoutSongsInput>
-    create: XOR<UserCreateWithoutSongsInput, UserUncheckedCreateWithoutSongsInput>
+  export type UserUpsertWithoutSessionsInput = {
+    update: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
+    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutSongsInput = {
+  export type UserUpdateToOneWithWhereWithoutSessionsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSongsInput, UserUncheckedUpdateWithoutSongsInput>
+    data: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
   }
 
-  export type UserUpdateWithoutSongsInput = {
+  export type UserUpdateWithoutSessionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -10186,9 +11872,10 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUpdateManyWithoutCreatorNestedInput
     linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutSongsInput = {
+  export type UserUncheckedUpdateWithoutSessionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -10197,99 +11884,214 @@ export namespace Prisma {
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
     linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type LinkUpsertWithWhereUniqueWithoutSongInput = {
+  export type LinkUpsertWithWhereUniqueWithoutSessionInput = {
     where: LinkWhereUniqueInput
-    update: XOR<LinkUpdateWithoutSongInput, LinkUncheckedUpdateWithoutSongInput>
-    create: XOR<LinkCreateWithoutSongInput, LinkUncheckedCreateWithoutSongInput>
+    update: XOR<LinkUpdateWithoutSessionInput, LinkUncheckedUpdateWithoutSessionInput>
+    create: XOR<LinkCreateWithoutSessionInput, LinkUncheckedCreateWithoutSessionInput>
   }
 
-  export type LinkUpdateWithWhereUniqueWithoutSongInput = {
+  export type LinkUpdateWithWhereUniqueWithoutSessionInput = {
     where: LinkWhereUniqueInput
-    data: XOR<LinkUpdateWithoutSongInput, LinkUncheckedUpdateWithoutSongInput>
+    data: XOR<LinkUpdateWithoutSessionInput, LinkUncheckedUpdateWithoutSessionInput>
   }
 
-  export type LinkUpdateManyWithWhereWithoutSongInput = {
+  export type LinkUpdateManyWithWhereWithoutSessionInput = {
     where: LinkScalarWhereInput
-    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutSongInput>
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutSessionInput>
   }
 
-  export type PremadeMusicUpsertWithoutSongsInput = {
-    update: XOR<PremadeMusicUpdateWithoutSongsInput, PremadeMusicUncheckedUpdateWithoutSongsInput>
-    create: XOR<PremadeMusicCreateWithoutSongsInput, PremadeMusicUncheckedCreateWithoutSongsInput>
+  export type PremadeMusicUpsertWithoutSessionInput = {
+    update: XOR<PremadeMusicUpdateWithoutSessionInput, PremadeMusicUncheckedUpdateWithoutSessionInput>
+    create: XOR<PremadeMusicCreateWithoutSessionInput, PremadeMusicUncheckedCreateWithoutSessionInput>
     where?: PremadeMusicWhereInput
   }
 
-  export type PremadeMusicUpdateToOneWithWhereWithoutSongsInput = {
+  export type PremadeMusicUpdateToOneWithWhereWithoutSessionInput = {
     where?: PremadeMusicWhereInput
-    data: XOR<PremadeMusicUpdateWithoutSongsInput, PremadeMusicUncheckedUpdateWithoutSongsInput>
+    data: XOR<PremadeMusicUpdateWithoutSessionInput, PremadeMusicUncheckedUpdateWithoutSessionInput>
   }
 
-  export type PremadeMusicUpdateWithoutSongsInput = {
+  export type PremadeMusicUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PremadeMusicUncheckedUpdateWithoutSongsInput = {
+  export type PremadeMusicUncheckedUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
-  export type UploadedMusicUpsertWithoutSongsInput = {
-    update: XOR<UploadedMusicUpdateWithoutSongsInput, UploadedMusicUncheckedUpdateWithoutSongsInput>
-    create: XOR<UploadedMusicCreateWithoutSongsInput, UploadedMusicUncheckedCreateWithoutSongsInput>
+  export type UploadedMusicUpsertWithoutSessionInput = {
+    update: XOR<UploadedMusicUpdateWithoutSessionInput, UploadedMusicUncheckedUpdateWithoutSessionInput>
+    create: XOR<UploadedMusicCreateWithoutSessionInput, UploadedMusicUncheckedCreateWithoutSessionInput>
     where?: UploadedMusicWhereInput
   }
 
-  export type UploadedMusicUpdateToOneWithWhereWithoutSongsInput = {
+  export type UploadedMusicUpdateToOneWithWhereWithoutSessionInput = {
     where?: UploadedMusicWhereInput
-    data: XOR<UploadedMusicUpdateWithoutSongsInput, UploadedMusicUncheckedUpdateWithoutSongsInput>
+    data: XOR<UploadedMusicUpdateWithoutSessionInput, UploadedMusicUncheckedUpdateWithoutSessionInput>
   }
 
-  export type UploadedMusicUpdateWithoutSongsInput = {
+  export type UploadedMusicUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
+    stickyNotes?: StickyNotesUpdateManyWithoutMusicNestedInput
   }
 
-  export type UploadedMusicUncheckedUpdateWithoutSongsInput = {
+  export type UploadedMusicUncheckedUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
     music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutMusicNestedInput
   }
 
-  export type SongCreateWithoutLinksInput = {
+  export type UserCreateWithoutStickyNotesInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+  }
+
+  export type UserUncheckedCreateWithoutStickyNotesInput = {
+    id?: string
+    username: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+  }
+
+  export type UserCreateOrConnectWithoutStickyNotesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
+  }
+
+  export type UploadedMusicCreateWithoutStickyNotesInput = {
+    music_id?: string
+    music_name: string
+    uploaded_by: string
+    path?: string
+    session?: SessionCreateNestedManyWithoutUploadedMusicInput
+  }
+
+  export type UploadedMusicUncheckedCreateWithoutStickyNotesInput = {
+    music_id?: string
+    music_name: string
+    uploaded_by: string
+    path?: string
+    session?: SessionUncheckedCreateNestedManyWithoutUploadedMusicInput
+  }
+
+  export type UploadedMusicCreateOrConnectWithoutStickyNotesInput = {
+    where: UploadedMusicWhereUniqueInput
+    create: XOR<UploadedMusicCreateWithoutStickyNotesInput, UploadedMusicUncheckedCreateWithoutStickyNotesInput>
+  }
+
+  export type UserUpsertWithoutStickyNotesInput = {
+    update: XOR<UserUpdateWithoutStickyNotesInput, UserUncheckedUpdateWithoutStickyNotesInput>
+    create: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStickyNotesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStickyNotesInput, UserUncheckedUpdateWithoutStickyNotesInput>
+  }
+
+  export type UserUpdateWithoutStickyNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStickyNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+  }
+
+  export type UploadedMusicUpsertWithoutStickyNotesInput = {
+    update: XOR<UploadedMusicUpdateWithoutStickyNotesInput, UploadedMusicUncheckedUpdateWithoutStickyNotesInput>
+    create: XOR<UploadedMusicCreateWithoutStickyNotesInput, UploadedMusicUncheckedCreateWithoutStickyNotesInput>
+    where?: UploadedMusicWhereInput
+  }
+
+  export type UploadedMusicUpdateToOneWithWhereWithoutStickyNotesInput = {
+    where?: UploadedMusicWhereInput
+    data: XOR<UploadedMusicUpdateWithoutStickyNotesInput, UploadedMusicUncheckedUpdateWithoutStickyNotesInput>
+  }
+
+  export type UploadedMusicUpdateWithoutStickyNotesInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    session?: SessionUpdateManyWithoutUploadedMusicNestedInput
+  }
+
+  export type UploadedMusicUncheckedUpdateWithoutStickyNotesInput = {
+    music_id?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
+    uploaded_by?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    session?: SessionUncheckedUpdateManyWithoutUploadedMusicNestedInput
+  }
+
+  export type SessionCreateWithoutLinksInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSongsInput
-    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
-    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+    user: UserCreateNestedOneWithoutSessionsInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
   }
 
-  export type SongUncheckedCreateWithoutLinksInput = {
+  export type SessionUncheckedCreateWithoutLinksInput = {
     id?: string
     title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
   }
 
-  export type SongCreateOrConnectWithoutLinksInput = {
-    where: SongWhereUniqueInput
-    create: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
+  export type SessionCreateOrConnectWithoutLinksInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
   }
 
   export type UserCreateWithoutLinksInput = {
@@ -10299,8 +12101,9 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    songs?: SongCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
     linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLinksInput = {
@@ -10310,8 +12113,9 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    songs?: SongUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLinksInput = {
@@ -10341,36 +12145,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SongUpsertWithoutLinksInput = {
-    update: XOR<SongUpdateWithoutLinksInput, SongUncheckedUpdateWithoutLinksInput>
-    create: XOR<SongCreateWithoutLinksInput, SongUncheckedCreateWithoutLinksInput>
-    where?: SongWhereInput
+  export type SessionUpsertWithoutLinksInput = {
+    update: XOR<SessionUpdateWithoutLinksInput, SessionUncheckedUpdateWithoutLinksInput>
+    create: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
+    where?: SessionWhereInput
   }
 
-  export type SongUpdateToOneWithWhereWithoutLinksInput = {
-    where?: SongWhereInput
-    data: XOR<SongUpdateWithoutLinksInput, SongUncheckedUpdateWithoutLinksInput>
+  export type SessionUpdateToOneWithWhereWithoutLinksInput = {
+    where?: SessionWhereInput
+    data: XOR<SessionUpdateWithoutLinksInput, SessionUncheckedUpdateWithoutLinksInput>
   }
 
-  export type SongUpdateWithoutLinksInput = {
+  export type SessionUpdateWithoutLinksInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSongsNestedInput
-    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
-    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
   }
 
-  export type SongUncheckedUpdateWithoutLinksInput = {
+  export type SessionUncheckedUpdateWithoutLinksInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10392,8 +12196,9 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
     linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLinksInput = {
@@ -10403,8 +12208,9 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LinkPermissionUpsertWithWhereUniqueWithoutUserLinkInput = {
@@ -10430,8 +12236,9 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    songs?: SongCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
     links?: LinkCreateNestedManyWithoutCreatorInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLinkPermissionsInput = {
@@ -10441,8 +12248,9 @@ export namespace Prisma {
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    songs?: SongUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLinkPermissionsInput = {
@@ -10455,7 +12263,7 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: Date | string
     expires_at: Date | string
-    song: SongCreateNestedOneWithoutLinksInput
+    session: SessionCreateNestedOneWithoutLinksInput
     creator: UserCreateNestedOneWithoutLinksInput
   }
 
@@ -10491,8 +12299,9 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
     links?: LinkUpdateManyWithoutCreatorNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLinkPermissionsInput = {
@@ -10502,8 +12311,9 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    songs?: SongUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LinkUpsertWithoutLinkPermissionsInput = {
@@ -10522,7 +12332,7 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    song?: SongUpdateOneRequiredWithoutLinksNestedInput
+    session?: SessionUpdateOneRequiredWithoutLinksNestedInput
     creator?: UserUpdateOneRequiredWithoutLinksNestedInput
   }
 
@@ -10535,109 +12345,149 @@ export namespace Prisma {
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SongCreateWithoutPremadeMusicInput = {
+  export type SessionCreateWithoutPremadeMusicInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSongsInput
-    links?: LinkCreateNestedManyWithoutSongInput
-    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSongsInput
+    user: UserCreateNestedOneWithoutSessionsInput
+    links?: LinkCreateNestedManyWithoutSessionInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
   }
 
-  export type SongUncheckedCreateWithoutPremadeMusicInput = {
+  export type SessionUncheckedCreateWithoutPremadeMusicInput = {
     id?: string
     title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     uploaded_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+    links?: LinkUncheckedCreateNestedManyWithoutSessionInput
   }
 
-  export type SongCreateOrConnectWithoutPremadeMusicInput = {
-    where: SongWhereUniqueInput
-    create: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput>
+  export type SessionCreateOrConnectWithoutPremadeMusicInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutPremadeMusicInput, SessionUncheckedCreateWithoutPremadeMusicInput>
   }
 
-  export type SongCreateManyPremadeMusicInputEnvelope = {
-    data: SongCreateManyPremadeMusicInput | SongCreateManyPremadeMusicInput[]
+  export type SessionCreateManyPremadeMusicInputEnvelope = {
+    data: SessionCreateManyPremadeMusicInput | SessionCreateManyPremadeMusicInput[]
     skipDuplicates?: boolean
   }
 
-  export type SongUpsertWithWhereUniqueWithoutPremadeMusicInput = {
-    where: SongWhereUniqueInput
-    update: XOR<SongUpdateWithoutPremadeMusicInput, SongUncheckedUpdateWithoutPremadeMusicInput>
-    create: XOR<SongCreateWithoutPremadeMusicInput, SongUncheckedCreateWithoutPremadeMusicInput>
+  export type SessionUpsertWithWhereUniqueWithoutPremadeMusicInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutPremadeMusicInput, SessionUncheckedUpdateWithoutPremadeMusicInput>
+    create: XOR<SessionCreateWithoutPremadeMusicInput, SessionUncheckedCreateWithoutPremadeMusicInput>
   }
 
-  export type SongUpdateWithWhereUniqueWithoutPremadeMusicInput = {
-    where: SongWhereUniqueInput
-    data: XOR<SongUpdateWithoutPremadeMusicInput, SongUncheckedUpdateWithoutPremadeMusicInput>
+  export type SessionUpdateWithWhereUniqueWithoutPremadeMusicInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutPremadeMusicInput, SessionUncheckedUpdateWithoutPremadeMusicInput>
   }
 
-  export type SongUpdateManyWithWhereWithoutPremadeMusicInput = {
-    where: SongScalarWhereInput
-    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutPremadeMusicInput>
+  export type SessionUpdateManyWithWhereWithoutPremadeMusicInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutPremadeMusicInput>
   }
 
-  export type SongCreateWithoutUploadedMusicInput = {
+  export type SessionCreateWithoutUploadedMusicInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSongsInput
-    links?: LinkCreateNestedManyWithoutSongInput
-    premadeMusic?: PremadeMusicCreateNestedOneWithoutSongsInput
+    user: UserCreateNestedOneWithoutSessionsInput
+    links?: LinkCreateNestedManyWithoutSessionInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
   }
 
-  export type SongUncheckedCreateWithoutUploadedMusicInput = {
+  export type SessionUncheckedCreateWithoutUploadedMusicInput = {
     id?: string
     title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutSongInput
+    links?: LinkUncheckedCreateNestedManyWithoutSessionInput
   }
 
-  export type SongCreateOrConnectWithoutUploadedMusicInput = {
-    where: SongWhereUniqueInput
-    create: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput>
+  export type SessionCreateOrConnectWithoutUploadedMusicInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutUploadedMusicInput, SessionUncheckedCreateWithoutUploadedMusicInput>
   }
 
-  export type SongCreateManyUploadedMusicInputEnvelope = {
-    data: SongCreateManyUploadedMusicInput | SongCreateManyUploadedMusicInput[]
+  export type SessionCreateManyUploadedMusicInputEnvelope = {
+    data: SessionCreateManyUploadedMusicInput | SessionCreateManyUploadedMusicInput[]
     skipDuplicates?: boolean
   }
 
-  export type SongUpsertWithWhereUniqueWithoutUploadedMusicInput = {
-    where: SongWhereUniqueInput
-    update: XOR<SongUpdateWithoutUploadedMusicInput, SongUncheckedUpdateWithoutUploadedMusicInput>
-    create: XOR<SongCreateWithoutUploadedMusicInput, SongUncheckedCreateWithoutUploadedMusicInput>
+  export type StickyNotesCreateWithoutMusicInput = {
+    id?: string
+    title?: string
+    content?: string
+    user: UserCreateNestedOneWithoutStickyNotesInput
   }
 
-  export type SongUpdateWithWhereUniqueWithoutUploadedMusicInput = {
-    where: SongWhereUniqueInput
-    data: XOR<SongUpdateWithoutUploadedMusicInput, SongUncheckedUpdateWithoutUploadedMusicInput>
+  export type StickyNotesUncheckedCreateWithoutMusicInput = {
+    id?: string
+    title?: string
+    content?: string
+    user_id: string
   }
 
-  export type SongUpdateManyWithWhereWithoutUploadedMusicInput = {
-    where: SongScalarWhereInput
-    data: XOR<SongUpdateManyMutationInput, SongUncheckedUpdateManyWithoutUploadedMusicInput>
+  export type StickyNotesCreateOrConnectWithoutMusicInput = {
+    where: StickyNotesWhereUniqueInput
+    create: XOR<StickyNotesCreateWithoutMusicInput, StickyNotesUncheckedCreateWithoutMusicInput>
   }
 
-  export type SongCreateManyUserInput = {
+  export type StickyNotesCreateManyMusicInputEnvelope = {
+    data: StickyNotesCreateManyMusicInput | StickyNotesCreateManyMusicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SessionUpsertWithWhereUniqueWithoutUploadedMusicInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUploadedMusicInput, SessionUncheckedUpdateWithoutUploadedMusicInput>
+    create: XOR<SessionCreateWithoutUploadedMusicInput, SessionUncheckedCreateWithoutUploadedMusicInput>
+  }
+
+  export type SessionUpdateWithWhereUniqueWithoutUploadedMusicInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUploadedMusicInput, SessionUncheckedUpdateWithoutUploadedMusicInput>
+  }
+
+  export type SessionUpdateManyWithWhereWithoutUploadedMusicInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUploadedMusicInput>
+  }
+
+  export type StickyNotesUpsertWithWhereUniqueWithoutMusicInput = {
+    where: StickyNotesWhereUniqueInput
+    update: XOR<StickyNotesUpdateWithoutMusicInput, StickyNotesUncheckedUpdateWithoutMusicInput>
+    create: XOR<StickyNotesCreateWithoutMusicInput, StickyNotesUncheckedCreateWithoutMusicInput>
+  }
+
+  export type StickyNotesUpdateWithWhereUniqueWithoutMusicInput = {
+    where: StickyNotesWhereUniqueInput
+    data: XOR<StickyNotesUpdateWithoutMusicInput, StickyNotesUncheckedUpdateWithoutMusicInput>
+  }
+
+  export type StickyNotesUpdateManyWithWhereWithoutMusicInput = {
+    where: StickyNotesScalarWhereInput
+    data: XOR<StickyNotesUpdateManyMutationInput, StickyNotesUncheckedUpdateManyWithoutMusicInput>
+  }
+
+  export type SessionCreateManyUserInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
     uploaded_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
   }
 
@@ -10655,35 +12505,42 @@ export namespace Prisma {
     can_view?: boolean
   }
 
-  export type SongUpdateWithoutUserInput = {
+  export type StickyNotesCreateManyUserInput = {
+    id?: string
+    title?: string
+    content?: string
+    music_id?: string | null
+  }
+
+  export type SessionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutSongNestedInput
-    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
-    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
+    links?: LinkUpdateManyWithoutSessionNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
   }
 
-  export type SongUncheckedUpdateWithoutUserInput = {
+  export type SessionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
+    links?: LinkUncheckedUpdateManyWithoutSessionNestedInput
   }
 
-  export type SongUncheckedUpdateManyWithoutUserInput = {
+  export type SessionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10692,7 +12549,7 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    song?: SongUpdateOneRequiredWithoutLinksNestedInput
+    session?: SessionUpdateOneRequiredWithoutLinksNestedInput
     linkPermissions?: LinkPermissionUpdateManyWithoutUserLinkNestedInput
   }
 
@@ -10731,7 +12588,28 @@ export namespace Prisma {
     can_view?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type LinkCreateManySongInput = {
+  export type StickyNotesUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    music?: UploadedMusicUpdateOneWithoutStickyNotesNestedInput
+  }
+
+  export type StickyNotesUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    music_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StickyNotesUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    music_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LinkCreateManySessionInput = {
     link_id?: string
     created_by: string
     is_public?: boolean
@@ -10739,7 +12617,7 @@ export namespace Prisma {
     expires_at: Date | string
   }
 
-  export type LinkUpdateWithoutSongInput = {
+  export type LinkUpdateWithoutSessionInput = {
     link_id?: StringFieldUpdateOperationsInput | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10748,7 +12626,7 @@ export namespace Prisma {
     linkPermissions?: LinkPermissionUpdateManyWithoutUserLinkNestedInput
   }
 
-  export type LinkUncheckedUpdateWithoutSongInput = {
+  export type LinkUncheckedUpdateWithoutSessionInput = {
     link_id?: StringFieldUpdateOperationsInput | string
     created_by?: StringFieldUpdateOperationsInput | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
@@ -10757,7 +12635,7 @@ export namespace Prisma {
     linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutUserLinkNestedInput
   }
 
-  export type LinkUncheckedUpdateManyWithoutSongInput = {
+  export type LinkUncheckedUpdateManyWithoutSessionInput = {
     link_id?: StringFieldUpdateOperationsInput | string
     created_by?: StringFieldUpdateOperationsInput | string
     is_public?: BoolFieldUpdateOperationsInput | boolean
@@ -10789,88 +12667,116 @@ export namespace Prisma {
     can_view?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type SongCreateManyPremadeMusicInput = {
+  export type SessionCreateManyPremadeMusicInput = {
     id?: string
     title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     uploaded_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
   }
 
-  export type SongUpdateWithoutPremadeMusicInput = {
+  export type SessionUpdateWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSongsNestedInput
-    links?: LinkUpdateManyWithoutSongNestedInput
-    uploadedMusic?: UploadedMusicUpdateOneWithoutSongsNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
+    links?: LinkUpdateManyWithoutSessionNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
   }
 
-  export type SongUncheckedUpdateWithoutPremadeMusicInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
-    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
-  }
-
-  export type SongUncheckedUpdateManyWithoutPremadeMusicInput = {
+  export type SessionUncheckedUpdateWithoutPremadeMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type SessionUncheckedUpdateManyWithoutPremadeMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SongCreateManyUploadedMusicInput = {
+  export type SessionCreateManyUploadedMusicInput = {
     id?: string
     title?: string
     user_id: string
     musicSource?: $Enums.MusicSource
     premade_music_id?: string | null
-    content?: string
+    audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
   }
 
-  export type SongUpdateWithoutUploadedMusicInput = {
+  export type StickyNotesCreateManyMusicInput = {
+    id?: string
+    title?: string
+    content?: string
+    user_id: string
+  }
+
+  export type SessionUpdateWithoutUploadedMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSongsNestedInput
-    links?: LinkUpdateManyWithoutSongNestedInput
-    premadeMusic?: PremadeMusicUpdateOneWithoutSongsNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
+    links?: LinkUpdateManyWithoutSessionNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
   }
 
-  export type SongUncheckedUpdateWithoutUploadedMusicInput = {
+  export type SessionUncheckedUpdateWithoutUploadedMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutSongNestedInput
+    links?: LinkUncheckedUpdateManyWithoutSessionNestedInput
   }
 
-  export type SongUncheckedUpdateManyWithoutUploadedMusicInput = {
+  export type SessionUncheckedUpdateManyWithoutUploadedMusicInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: StringFieldUpdateOperationsInput | string
+    audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StickyNotesUpdateWithoutMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutStickyNotesNestedInput
+  }
+
+  export type StickyNotesUncheckedUpdateWithoutMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StickyNotesUncheckedUpdateManyWithoutMusicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
   }
 
 

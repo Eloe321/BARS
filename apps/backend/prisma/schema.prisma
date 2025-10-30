@@ -28,25 +28,37 @@ model User {
   updateAt   DateTime @updatedAt
   
   // Relations
-  songs          Song[]
+  sessions          Session[]
   links          Link[]
   linkPermissions LinkPermission[]
+  stickyNotes       StickyNotes[]
 }
 
-model Song {
+model Session {
   id            String   @id @default(cuid())
   title         String   @default("untitled")
   user_id       String
   musicSource   MusicSource       @default(PREMADE)
   premade_music_id   String?
   uploaded_music_id  String?
-  content          String      @default("")
+  audio_timeline     Json
   creation_date DateTime @default(now())
   
   user           User            @relation(fields: [user_id], references: [id])
   links          Link[]
   premadeMusic   PremadeMusic?        @relation(fields: [premade_music_id], references: [music_id])
   uploadedMusic  UploadedMusic?       @relation(fields: [uploaded_music_id], references: [music_id])
+}
+
+model StickyNotes {
+  id         String   @id @default(cuid())
+  title     String   @default("")
+  content    String   @default("")
+  user_id    String
+  music_id   String?  
+
+  user      User      @relation(fields: [user_id], references: [id])
+  music    UploadedMusic?      @relation(fields: [music_id], references: [music_id])
 }
 
 model Link {
@@ -58,7 +70,7 @@ model Link {
   expires_at   DateTime
   
   // Relations
-  song            Song            @relation(fields: [song_id], references: [id])
+  session            Session            @relation(fields: [song_id], references: [id])
   creator         User            @relation(fields: [created_by], references: [id])
   linkPermissions LinkPermission[]
 }
@@ -81,7 +93,7 @@ model PremadeMusic {
   path          String
   
   // Relations
-  songs         Song[]
+  session         Session[]
 }
 model UploadedMusic{
   music_id      String   @id @default(cuid())
@@ -89,5 +101,6 @@ model UploadedMusic{
   uploaded_by   String
   path          String    @default("")
   // Relations
-  songs         Song[]
+  session         Session[]
+  stickyNotes     StickyNotes[]
 }

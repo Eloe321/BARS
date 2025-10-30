@@ -126,15 +126,23 @@ exports.Prisma.UserScalarFieldEnum = {
   updateAt: 'updateAt'
 };
 
-exports.Prisma.SongScalarFieldEnum = {
+exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   title: 'title',
   user_id: 'user_id',
   musicSource: 'musicSource',
   premade_music_id: 'premade_music_id',
   uploaded_music_id: 'uploaded_music_id',
-  content: 'content',
+  audio_timeline: 'audio_timeline',
   creation_date: 'creation_date'
+};
+
+exports.Prisma.StickyNotesScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  user_id: 'user_id',
+  music_id: 'music_id'
 };
 
 exports.Prisma.LinkScalarFieldEnum = {
@@ -172,9 +180,19 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -188,7 +206,8 @@ exports.MusicSource = exports.$Enums.MusicSource = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Song: 'Song',
+  Session: 'Session',
+  StickyNotes: 'StickyNotes',
   Link: 'Link',
   LinkPermission: 'LinkPermission',
   PremadeMusic: 'PremadeMusic',
