@@ -5,18 +5,22 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["public", "wced"]
 }
 
 enum MusicSource {
   PREMADE
   UPLOADED
+
+  @@schema("public")
 }
 
 model User {
@@ -32,6 +36,8 @@ model User {
   links           Link[]
   linkPermissions LinkPermission[]
   stickyNotes     StickyNotes[]
+
+  @@schema("public")
 }
 
 model Session {
@@ -48,6 +54,8 @@ model Session {
   links         Link[]
   premadeMusic  PremadeMusic?  @relation(fields: [premade_music_id], references: [music_id])
   uploadedMusic UploadedMusic? @relation(fields: [uploaded_music_id], references: [music_id])
+
+  @@schema("public")
 }
 
 model StickyNotes {
@@ -59,6 +67,8 @@ model StickyNotes {
 
   user  User           @relation(fields: [user_id], references: [id])
   music UploadedMusic? @relation(fields: [music_id], references: [music_id])
+
+  @@schema("public")
 }
 
 model Link {
@@ -73,6 +83,8 @@ model Link {
   session         Session          @relation(fields: [song_id], references: [id])
   creator         User             @relation(fields: [created_by], references: [id])
   linkPermissions LinkPermission[]
+
+  @@schema("public")
 }
 
 model LinkPermission {
@@ -84,6 +96,8 @@ model LinkPermission {
   // Relations
   link     User @relation(fields: [user_id], references: [id])
   userLink Link @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
+
+  @@schema("public")
 }
 
 model PremadeMusic {
@@ -94,6 +108,8 @@ model PremadeMusic {
 
   // Relations
   session Session[]
+
+  @@schema("public")
 }
 
 model UploadedMusic {
@@ -104,4 +120,95 @@ model UploadedMusic {
   // Relations
   session     Session[]
   stickyNotes StickyNotes[]
+
+  @@schema("public")
+}
+
+// ======================================================================
+// WCED DICTIONARY/THESAURUS SCHEMA INTEGRATION
+// ======================================================================
+
+model DictionaryEntry {
+  entryId   Int     @id @default(autoincrement()) @map("entryid")
+  word      String  @db.VarChar(64)
+  page      String? @db.VarChar(8)
+  homNumber Int?    @map("hom_number")
+
+  // Relations
+  headwords DictionaryHeadword[]
+  senses    DictionarySense[]
+
+  @@map("entry")
+  @@schema("wced")
+}
+
+model DictionaryHeadword {
+  headId         Int     @id @default(autoincrement()) @map("headid")
+  entryId        Int     @map("entryid")
+  head           String  @db.VarChar(64)
+  normalizedHead String  @map("normalized_head") @db.VarChar(64)
+  type           String? @db.VarChar(8)
+  pos            String? @db.VarChar(16) // Part of speech
+
+  // Relations
+  entry DictionaryEntry @relation(fields: [entryId], references: [entryId])
+
+  @@map("headword")
+  @@schema("wced")
+}
+
+model DictionarySense {
+  senseId    Int     @id @default(autoincrement()) @map("senseid")
+  entryId    Int     @map("entryid")
+  number     Int?
+  definition String? @db.Text
+  dialect    String? @db.VarChar(32)
+
+  // Relations
+  entry        DictionaryEntry         @relation(fields: [entryId], references: [entryId])
+  translations DictionaryTranslation[]
+  examples     DictionaryExample[]
+  crossRefs    DictionaryCrossRef[]
+
+  @@map("sense")
+  @@schema("wced")
+}
+
+model DictionaryTranslation {
+  transId     Int    @id @default(autoincrement()) @map("transid")
+  senseId     Int    @map("senseid")
+  lang        String @db.VarChar(8)
+  translation String @db.VarChar(255)
+
+  // Relations
+  sense DictionarySense @relation(fields: [senseId], references: [senseId])
+
+  @@map("translation")
+  @@schema("wced")
+}
+
+model DictionaryExample {
+  exampleId       Int     @id @default(autoincrement()) @map("exampleid")
+  senseId         Int     @map("senseid")
+  textCebuano     String  @map("text_cebuano") @db.Text
+  textTranslation String? @map("text_translation") @db.Text
+
+  // Relations
+  sense DictionarySense @relation(fields: [senseId], references: [senseId], onDelete: Cascade)
+
+  @@map("example")
+  @@schema("wced")
+}
+
+model DictionaryCrossRef {
+  xrefId     Int    @id @default(autoincrement()) @map("xrefid")
+  senseId    Int    @map("senseid")
+  targetWord String @map("target_word") @db.VarChar(64)
+  lang       String @default("ceb") @db.VarChar(8)
+
+  // Relations
+  sense DictionarySense @relation(fields: [senseId], references: [senseId])
+
+  @@map("xref")
+  @@schema("wced")
 }

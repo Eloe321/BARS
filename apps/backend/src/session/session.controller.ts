@@ -22,9 +22,9 @@ import {
   ApiQuery,
   ApiParam,
 } from '@nestjs/swagger';
-import { SongService } from './song.service';
-import { CreateSongDto } from './dto/create-song.dto';
-import { UpdateSongDto } from './dto/update-song.dto';
+import { SessionService } from './session.service';
+import { CreateSessionDto } from './dto/create-session.dto';
+import { UpdateSessionDto } from './dto/update-session.dto';
 import { JwtAuthGuard } from '../auth/strategy/jwt-auth.guard';
 
 interface RequestWithUser extends Request {
@@ -36,8 +36,8 @@ interface RequestWithUser extends Request {
 
 @ApiTags('songs')
 @Controller('songs')
-export class SongController {
-  constructor(private readonly songsService: SongService) {}
+export class SessionController {
+  constructor(private readonly sessionService: SessionService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -50,12 +50,12 @@ export class SongController {
   @ApiResponse({ status: 400, description: 'Bad request.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async create(
-    @Body() createSongDto: CreateSongDto,
+    @Body() createSessionDto: CreateSessionDto,
     @Req() req: RequestWithUser,
   ) {
     // Ensure the user_id matches the authenticated user
-    createSongDto.user_id = req.user.id;
-    return this.songsService.create(createSongDto);
+    createSessionDto.user_id = req.user.id;
+    return this.sessionService.create(createSessionDto);
   }
 
   @Get()
@@ -81,7 +81,7 @@ export class SongController {
       filters.musicSource = source;
     }
 
-    return this.songsService.findAll(filters);
+    return this.sessionService.findAll(filters);
   }
 
   @Get(':id')
@@ -93,18 +93,18 @@ export class SongController {
   @ApiResponse({ status: 404, description: 'Song not found.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async findOne(@Param('id') id: string, @Req() req: RequestWithUser) {
-    const song = await this.songsService.findOne(id);
+    const session = await this.sessionService.findOne(id);
 
-    if (!song) {
-      throw new HttpException('Song not found', HttpStatus.NOT_FOUND);
+    if (!session) {
+      throw new HttpException('Session not found', HttpStatus.NOT_FOUND);
     }
 
     // Ensure the user owns this song
-    if (song.user_id !== req.user.id) {
+    if (session.user_id !== req.user.id) {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
 
-    return song;
+    return session;
   }
 
   @Put(':id')
@@ -120,26 +120,26 @@ export class SongController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async update(
     @Param('id') id: string,
-    @Body() updateSongDto: UpdateSongDto,
+    @Body() updateSessionDto: UpdateSessionDto,
     @Req() req: RequestWithUser,
   ) {
-    // First check if the song exists and belongs to the user
-    const existingSong = await this.songsService.findOne(id);
+    // First check if the session exists and belongs to the user
+    const existingSession = await this.sessionService.findOne(id);
 
-    if (!existingSong) {
-      throw new HttpException('Song not found', HttpStatus.NOT_FOUND);
+    if (!existingSession) {
+      throw new HttpException('Session not found', HttpStatus.NOT_FOUND);
     }
 
-    if (existingSong.user_id !== req.user.id) {
+    if (existingSession.user_id !== req.user.id) {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
 
     // Remove user_id from update DTO if present to prevent ownership transfer
-    if (updateSongDto.user_id) {
-      delete updateSongDto.user_id;
+    if (updateSessionDto.user_id) {
+      delete updateSessionDto.user_id;
     }
 
-    return this.songsService.update(id, updateSongDto);
+    return this.sessionService.update(id, updateSessionDto);
   }
 
   @Delete(':id')
@@ -149,22 +149,22 @@ export class SongController {
   @ApiParam({ name: 'id', description: 'Song ID' })
   @ApiResponse({
     status: 200,
-    description: 'The song has been successfully deleted.',
+    description: 'The session has been successfully deleted.',
   })
   @ApiResponse({ status: 404, description: 'Song not found.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async remove(@Param('id') id: string, @Req() req: RequestWithUser) {
     // First check if the song exists and belongs to the user
-    const existingSong = await this.songsService.findOne(id);
+    const existingSession = await this.sessionService.findOne(id);
 
-    if (!existingSong) {
+    if (!existingSession) {
       throw new HttpException('Song not found', HttpStatus.NOT_FOUND);
     }
 
-    if (existingSong.user_id !== req.user.id) {
+    if (existingSession.user_id !== req.user.id) {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
 
-    return this.songsService.remove(id);
+    return this.sessionService.remove(id);
   }
 }

@@ -1,6 +1,6 @@
 import { MusicSource } from 'generated/prisma';
 
-export class Song {
+export class Session {
   id: string;
   user_id: string;
   title: string;

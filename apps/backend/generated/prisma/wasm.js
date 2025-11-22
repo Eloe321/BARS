@@ -175,6 +175,51 @@ exports.Prisma.UploadedMusicScalarFieldEnum = {
   path: 'path'
 };
 
+exports.Prisma.DictionaryEntryScalarFieldEnum = {
+  entryId: 'entryId',
+  word: 'word',
+  page: 'page',
+  homNumber: 'homNumber'
+};
+
+exports.Prisma.DictionaryHeadwordScalarFieldEnum = {
+  headId: 'headId',
+  entryId: 'entryId',
+  head: 'head',
+  normalizedHead: 'normalizedHead',
+  type: 'type',
+  pos: 'pos'
+};
+
+exports.Prisma.DictionarySenseScalarFieldEnum = {
+  senseId: 'senseId',
+  entryId: 'entryId',
+  number: 'number',
+  definition: 'definition',
+  dialect: 'dialect'
+};
+
+exports.Prisma.DictionaryTranslationScalarFieldEnum = {
+  transId: 'transId',
+  senseId: 'senseId',
+  lang: 'lang',
+  translation: 'translation'
+};
+
+exports.Prisma.DictionaryExampleScalarFieldEnum = {
+  exampleId: 'exampleId',
+  senseId: 'senseId',
+  textCebuano: 'textCebuano',
+  textTranslation: 'textTranslation'
+};
+
+exports.Prisma.DictionaryCrossRefScalarFieldEnum = {
+  xrefId: 'xrefId',
+  senseId: 'senseId',
+  targetWord: 'targetWord',
+  lang: 'lang'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -211,7 +256,13 @@ exports.Prisma.ModelName = {
   Link: 'Link',
   LinkPermission: 'LinkPermission',
   PremadeMusic: 'PremadeMusic',
-  UploadedMusic: 'UploadedMusic'
+  UploadedMusic: 'UploadedMusic',
+  DictionaryEntry: 'DictionaryEntry',
+  DictionaryHeadword: 'DictionaryHeadword',
+  DictionarySense: 'DictionarySense',
+  DictionaryTranslation: 'DictionaryTranslation',
+  DictionaryExample: 'DictionaryExample',
+  DictionaryCrossRef: 'DictionaryCrossRef'
 };
 
 /**

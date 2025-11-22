@@ -48,6 +48,36 @@ export type PremadeMusic = $Result.DefaultSelection<Prisma.$PremadeMusicPayload>
  * 
  */
 export type UploadedMusic = $Result.DefaultSelection<Prisma.$UploadedMusicPayload>
+/**
+ * Model DictionaryEntry
+ * 
+ */
+export type DictionaryEntry = $Result.DefaultSelection<Prisma.$DictionaryEntryPayload>
+/**
+ * Model DictionaryHeadword
+ * 
+ */
+export type DictionaryHeadword = $Result.DefaultSelection<Prisma.$DictionaryHeadwordPayload>
+/**
+ * Model DictionarySense
+ * 
+ */
+export type DictionarySense = $Result.DefaultSelection<Prisma.$DictionarySensePayload>
+/**
+ * Model DictionaryTranslation
+ * 
+ */
+export type DictionaryTranslation = $Result.DefaultSelection<Prisma.$DictionaryTranslationPayload>
+/**
+ * Model DictionaryExample
+ * 
+ */
+export type DictionaryExample = $Result.DefaultSelection<Prisma.$DictionaryExamplePayload>
+/**
+ * Model DictionaryCrossRef
+ * 
+ */
+export type DictionaryCrossRef = $Result.DefaultSelection<Prisma.$DictionaryCrossRefPayload>
 
 /**
  * Enums
@@ -260,6 +290,66 @@ export class PrismaClient<
     * ```
     */
   get uploadedMusic(): Prisma.UploadedMusicDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dictionaryEntry`: Exposes CRUD operations for the **DictionaryEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DictionaryEntries
+    * const dictionaryEntries = await prisma.dictionaryEntry.findMany()
+    * ```
+    */
+  get dictionaryEntry(): Prisma.DictionaryEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dictionaryHeadword`: Exposes CRUD operations for the **DictionaryHeadword** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DictionaryHeadwords
+    * const dictionaryHeadwords = await prisma.dictionaryHeadword.findMany()
+    * ```
+    */
+  get dictionaryHeadword(): Prisma.DictionaryHeadwordDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dictionarySense`: Exposes CRUD operations for the **DictionarySense** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DictionarySenses
+    * const dictionarySenses = await prisma.dictionarySense.findMany()
+    * ```
+    */
+  get dictionarySense(): Prisma.DictionarySenseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dictionaryTranslation`: Exposes CRUD operations for the **DictionaryTranslation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DictionaryTranslations
+    * const dictionaryTranslations = await prisma.dictionaryTranslation.findMany()
+    * ```
+    */
+  get dictionaryTranslation(): Prisma.DictionaryTranslationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dictionaryExample`: Exposes CRUD operations for the **DictionaryExample** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DictionaryExamples
+    * const dictionaryExamples = await prisma.dictionaryExample.findMany()
+    * ```
+    */
+  get dictionaryExample(): Prisma.DictionaryExampleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dictionaryCrossRef`: Exposes CRUD operations for the **DictionaryCrossRef** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DictionaryCrossRefs
+    * const dictionaryCrossRefs = await prisma.dictionaryCrossRef.findMany()
+    * ```
+    */
+  get dictionaryCrossRef(): Prisma.DictionaryCrossRefDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -706,7 +796,13 @@ export namespace Prisma {
     Link: 'Link',
     LinkPermission: 'LinkPermission',
     PremadeMusic: 'PremadeMusic',
-    UploadedMusic: 'UploadedMusic'
+    UploadedMusic: 'UploadedMusic',
+    DictionaryEntry: 'DictionaryEntry',
+    DictionaryHeadword: 'DictionaryHeadword',
+    DictionarySense: 'DictionarySense',
+    DictionaryTranslation: 'DictionaryTranslation',
+    DictionaryExample: 'DictionaryExample',
+    DictionaryCrossRef: 'DictionaryCrossRef'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -725,7 +821,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "stickyNotes" | "link" | "linkPermission" | "premadeMusic" | "uploadedMusic"
+      modelProps: "user" | "session" | "stickyNotes" | "link" | "linkPermission" | "premadeMusic" | "uploadedMusic" | "dictionaryEntry" | "dictionaryHeadword" | "dictionarySense" | "dictionaryTranslation" | "dictionaryExample" | "dictionaryCrossRef"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1247,6 +1343,450 @@ export namespace Prisma {
           }
         }
       }
+      DictionaryEntry: {
+        payload: Prisma.$DictionaryEntryPayload<ExtArgs>
+        fields: Prisma.DictionaryEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DictionaryEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DictionaryEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.DictionaryEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DictionaryEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>
+          }
+          findMany: {
+            args: Prisma.DictionaryEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>[]
+          }
+          create: {
+            args: Prisma.DictionaryEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>
+          }
+          createMany: {
+            args: Prisma.DictionaryEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DictionaryEntryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>[]
+          }
+          delete: {
+            args: Prisma.DictionaryEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>
+          }
+          update: {
+            args: Prisma.DictionaryEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.DictionaryEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DictionaryEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DictionaryEntryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>[]
+          }
+          upsert: {
+            args: Prisma.DictionaryEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.DictionaryEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDictionaryEntry>
+          }
+          groupBy: {
+            args: Prisma.DictionaryEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DictionaryEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryEntryCountAggregateOutputType> | number
+          }
+        }
+      }
+      DictionaryHeadword: {
+        payload: Prisma.$DictionaryHeadwordPayload<ExtArgs>
+        fields: Prisma.DictionaryHeadwordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DictionaryHeadwordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DictionaryHeadwordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>
+          }
+          findFirst: {
+            args: Prisma.DictionaryHeadwordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DictionaryHeadwordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>
+          }
+          findMany: {
+            args: Prisma.DictionaryHeadwordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>[]
+          }
+          create: {
+            args: Prisma.DictionaryHeadwordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>
+          }
+          createMany: {
+            args: Prisma.DictionaryHeadwordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DictionaryHeadwordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>[]
+          }
+          delete: {
+            args: Prisma.DictionaryHeadwordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>
+          }
+          update: {
+            args: Prisma.DictionaryHeadwordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>
+          }
+          deleteMany: {
+            args: Prisma.DictionaryHeadwordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DictionaryHeadwordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DictionaryHeadwordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>[]
+          }
+          upsert: {
+            args: Prisma.DictionaryHeadwordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryHeadwordPayload>
+          }
+          aggregate: {
+            args: Prisma.DictionaryHeadwordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDictionaryHeadword>
+          }
+          groupBy: {
+            args: Prisma.DictionaryHeadwordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryHeadwordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DictionaryHeadwordCountArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryHeadwordCountAggregateOutputType> | number
+          }
+        }
+      }
+      DictionarySense: {
+        payload: Prisma.$DictionarySensePayload<ExtArgs>
+        fields: Prisma.DictionarySenseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DictionarySenseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DictionarySenseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>
+          }
+          findFirst: {
+            args: Prisma.DictionarySenseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DictionarySenseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>
+          }
+          findMany: {
+            args: Prisma.DictionarySenseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>[]
+          }
+          create: {
+            args: Prisma.DictionarySenseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>
+          }
+          createMany: {
+            args: Prisma.DictionarySenseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DictionarySenseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>[]
+          }
+          delete: {
+            args: Prisma.DictionarySenseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>
+          }
+          update: {
+            args: Prisma.DictionarySenseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>
+          }
+          deleteMany: {
+            args: Prisma.DictionarySenseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DictionarySenseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DictionarySenseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>[]
+          }
+          upsert: {
+            args: Prisma.DictionarySenseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionarySensePayload>
+          }
+          aggregate: {
+            args: Prisma.DictionarySenseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDictionarySense>
+          }
+          groupBy: {
+            args: Prisma.DictionarySenseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DictionarySenseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DictionarySenseCountArgs<ExtArgs>
+            result: $Utils.Optional<DictionarySenseCountAggregateOutputType> | number
+          }
+        }
+      }
+      DictionaryTranslation: {
+        payload: Prisma.$DictionaryTranslationPayload<ExtArgs>
+        fields: Prisma.DictionaryTranslationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DictionaryTranslationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DictionaryTranslationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>
+          }
+          findFirst: {
+            args: Prisma.DictionaryTranslationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DictionaryTranslationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>
+          }
+          findMany: {
+            args: Prisma.DictionaryTranslationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>[]
+          }
+          create: {
+            args: Prisma.DictionaryTranslationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>
+          }
+          createMany: {
+            args: Prisma.DictionaryTranslationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DictionaryTranslationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>[]
+          }
+          delete: {
+            args: Prisma.DictionaryTranslationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>
+          }
+          update: {
+            args: Prisma.DictionaryTranslationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>
+          }
+          deleteMany: {
+            args: Prisma.DictionaryTranslationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DictionaryTranslationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DictionaryTranslationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>[]
+          }
+          upsert: {
+            args: Prisma.DictionaryTranslationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryTranslationPayload>
+          }
+          aggregate: {
+            args: Prisma.DictionaryTranslationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDictionaryTranslation>
+          }
+          groupBy: {
+            args: Prisma.DictionaryTranslationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryTranslationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DictionaryTranslationCountArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryTranslationCountAggregateOutputType> | number
+          }
+        }
+      }
+      DictionaryExample: {
+        payload: Prisma.$DictionaryExamplePayload<ExtArgs>
+        fields: Prisma.DictionaryExampleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DictionaryExampleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DictionaryExampleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>
+          }
+          findFirst: {
+            args: Prisma.DictionaryExampleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DictionaryExampleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>
+          }
+          findMany: {
+            args: Prisma.DictionaryExampleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>[]
+          }
+          create: {
+            args: Prisma.DictionaryExampleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>
+          }
+          createMany: {
+            args: Prisma.DictionaryExampleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DictionaryExampleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>[]
+          }
+          delete: {
+            args: Prisma.DictionaryExampleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>
+          }
+          update: {
+            args: Prisma.DictionaryExampleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>
+          }
+          deleteMany: {
+            args: Prisma.DictionaryExampleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DictionaryExampleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DictionaryExampleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>[]
+          }
+          upsert: {
+            args: Prisma.DictionaryExampleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryExamplePayload>
+          }
+          aggregate: {
+            args: Prisma.DictionaryExampleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDictionaryExample>
+          }
+          groupBy: {
+            args: Prisma.DictionaryExampleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryExampleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DictionaryExampleCountArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryExampleCountAggregateOutputType> | number
+          }
+        }
+      }
+      DictionaryCrossRef: {
+        payload: Prisma.$DictionaryCrossRefPayload<ExtArgs>
+        fields: Prisma.DictionaryCrossRefFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DictionaryCrossRefFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DictionaryCrossRefFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>
+          }
+          findFirst: {
+            args: Prisma.DictionaryCrossRefFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DictionaryCrossRefFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>
+          }
+          findMany: {
+            args: Prisma.DictionaryCrossRefFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>[]
+          }
+          create: {
+            args: Prisma.DictionaryCrossRefCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>
+          }
+          createMany: {
+            args: Prisma.DictionaryCrossRefCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DictionaryCrossRefCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>[]
+          }
+          delete: {
+            args: Prisma.DictionaryCrossRefDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>
+          }
+          update: {
+            args: Prisma.DictionaryCrossRefUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>
+          }
+          deleteMany: {
+            args: Prisma.DictionaryCrossRefDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DictionaryCrossRefUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DictionaryCrossRefUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>[]
+          }
+          upsert: {
+            args: Prisma.DictionaryCrossRefUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DictionaryCrossRefPayload>
+          }
+          aggregate: {
+            args: Prisma.DictionaryCrossRefAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDictionaryCrossRef>
+          }
+          groupBy: {
+            args: Prisma.DictionaryCrossRefGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryCrossRefGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DictionaryCrossRefCountArgs<ExtArgs>
+            result: $Utils.Optional<DictionaryCrossRefCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1338,6 +1878,12 @@ export namespace Prisma {
     linkPermission?: LinkPermissionOmit
     premadeMusic?: PremadeMusicOmit
     uploadedMusic?: UploadedMusicOmit
+    dictionaryEntry?: DictionaryEntryOmit
+    dictionaryHeadword?: DictionaryHeadwordOmit
+    dictionarySense?: DictionarySenseOmit
+    dictionaryTranslation?: DictionaryTranslationOmit
+    dictionaryExample?: DictionaryExampleOmit
+    dictionaryCrossRef?: DictionaryCrossRefOmit
   }
 
   /* Types for Logging */
@@ -1615,6 +2161,95 @@ export namespace Prisma {
    */
   export type UploadedMusicCountOutputTypeCountStickyNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StickyNotesWhereInput
+  }
+
+
+  /**
+   * Count Type DictionaryEntryCountOutputType
+   */
+
+  export type DictionaryEntryCountOutputType = {
+    headwords: number
+    senses: number
+  }
+
+  export type DictionaryEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headwords?: boolean | DictionaryEntryCountOutputTypeCountHeadwordsArgs
+    senses?: boolean | DictionaryEntryCountOutputTypeCountSensesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DictionaryEntryCountOutputType without action
+   */
+  export type DictionaryEntryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntryCountOutputType
+     */
+    select?: DictionaryEntryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryEntryCountOutputType without action
+   */
+  export type DictionaryEntryCountOutputTypeCountHeadwordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryHeadwordWhereInput
+  }
+
+  /**
+   * DictionaryEntryCountOutputType without action
+   */
+  export type DictionaryEntryCountOutputTypeCountSensesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionarySenseWhereInput
+  }
+
+
+  /**
+   * Count Type DictionarySenseCountOutputType
+   */
+
+  export type DictionarySenseCountOutputType = {
+    translations: number
+    examples: number
+    crossRefs: number
+  }
+
+  export type DictionarySenseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    translations?: boolean | DictionarySenseCountOutputTypeCountTranslationsArgs
+    examples?: boolean | DictionarySenseCountOutputTypeCountExamplesArgs
+    crossRefs?: boolean | DictionarySenseCountOutputTypeCountCrossRefsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DictionarySenseCountOutputType without action
+   */
+  export type DictionarySenseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySenseCountOutputType
+     */
+    select?: DictionarySenseCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DictionarySenseCountOutputType without action
+   */
+  export type DictionarySenseCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryTranslationWhereInput
+  }
+
+  /**
+   * DictionarySenseCountOutputType without action
+   */
+  export type DictionarySenseCountOutputTypeCountExamplesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryExampleWhereInput
+  }
+
+  /**
+   * DictionarySenseCountOutputType without action
+   */
+  export type DictionarySenseCountOutputTypeCountCrossRefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryCrossRefWhereInput
   }
 
 
@@ -9356,6 +9991,6673 @@ export namespace Prisma {
 
 
   /**
+   * Model DictionaryEntry
+   */
+
+  export type AggregateDictionaryEntry = {
+    _count: DictionaryEntryCountAggregateOutputType | null
+    _avg: DictionaryEntryAvgAggregateOutputType | null
+    _sum: DictionaryEntrySumAggregateOutputType | null
+    _min: DictionaryEntryMinAggregateOutputType | null
+    _max: DictionaryEntryMaxAggregateOutputType | null
+  }
+
+  export type DictionaryEntryAvgAggregateOutputType = {
+    entryId: number | null
+    homNumber: number | null
+  }
+
+  export type DictionaryEntrySumAggregateOutputType = {
+    entryId: number | null
+    homNumber: number | null
+  }
+
+  export type DictionaryEntryMinAggregateOutputType = {
+    entryId: number | null
+    word: string | null
+    page: string | null
+    homNumber: number | null
+  }
+
+  export type DictionaryEntryMaxAggregateOutputType = {
+    entryId: number | null
+    word: string | null
+    page: string | null
+    homNumber: number | null
+  }
+
+  export type DictionaryEntryCountAggregateOutputType = {
+    entryId: number
+    word: number
+    page: number
+    homNumber: number
+    _all: number
+  }
+
+
+  export type DictionaryEntryAvgAggregateInputType = {
+    entryId?: true
+    homNumber?: true
+  }
+
+  export type DictionaryEntrySumAggregateInputType = {
+    entryId?: true
+    homNumber?: true
+  }
+
+  export type DictionaryEntryMinAggregateInputType = {
+    entryId?: true
+    word?: true
+    page?: true
+    homNumber?: true
+  }
+
+  export type DictionaryEntryMaxAggregateInputType = {
+    entryId?: true
+    word?: true
+    page?: true
+    homNumber?: true
+  }
+
+  export type DictionaryEntryCountAggregateInputType = {
+    entryId?: true
+    word?: true
+    page?: true
+    homNumber?: true
+    _all?: true
+  }
+
+  export type DictionaryEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryEntry to aggregate.
+     */
+    where?: DictionaryEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryEntries to fetch.
+     */
+    orderBy?: DictionaryEntryOrderByWithRelationInput | DictionaryEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DictionaryEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DictionaryEntries
+    **/
+    _count?: true | DictionaryEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DictionaryEntryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DictionaryEntrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DictionaryEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DictionaryEntryMaxAggregateInputType
+  }
+
+  export type GetDictionaryEntryAggregateType<T extends DictionaryEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateDictionaryEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDictionaryEntry[P]>
+      : GetScalarType<T[P], AggregateDictionaryEntry[P]>
+  }
+
+
+
+
+  export type DictionaryEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryEntryWhereInput
+    orderBy?: DictionaryEntryOrderByWithAggregationInput | DictionaryEntryOrderByWithAggregationInput[]
+    by: DictionaryEntryScalarFieldEnum[] | DictionaryEntryScalarFieldEnum
+    having?: DictionaryEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DictionaryEntryCountAggregateInputType | true
+    _avg?: DictionaryEntryAvgAggregateInputType
+    _sum?: DictionaryEntrySumAggregateInputType
+    _min?: DictionaryEntryMinAggregateInputType
+    _max?: DictionaryEntryMaxAggregateInputType
+  }
+
+  export type DictionaryEntryGroupByOutputType = {
+    entryId: number
+    word: string
+    page: string | null
+    homNumber: number | null
+    _count: DictionaryEntryCountAggregateOutputType | null
+    _avg: DictionaryEntryAvgAggregateOutputType | null
+    _sum: DictionaryEntrySumAggregateOutputType | null
+    _min: DictionaryEntryMinAggregateOutputType | null
+    _max: DictionaryEntryMaxAggregateOutputType | null
+  }
+
+  type GetDictionaryEntryGroupByPayload<T extends DictionaryEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DictionaryEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DictionaryEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DictionaryEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], DictionaryEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DictionaryEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    entryId?: boolean
+    word?: boolean
+    page?: boolean
+    homNumber?: boolean
+    headwords?: boolean | DictionaryEntry$headwordsArgs<ExtArgs>
+    senses?: boolean | DictionaryEntry$sensesArgs<ExtArgs>
+    _count?: boolean | DictionaryEntryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryEntry"]>
+
+  export type DictionaryEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    entryId?: boolean
+    word?: boolean
+    page?: boolean
+    homNumber?: boolean
+  }, ExtArgs["result"]["dictionaryEntry"]>
+
+  export type DictionaryEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    entryId?: boolean
+    word?: boolean
+    page?: boolean
+    homNumber?: boolean
+  }, ExtArgs["result"]["dictionaryEntry"]>
+
+  export type DictionaryEntrySelectScalar = {
+    entryId?: boolean
+    word?: boolean
+    page?: boolean
+    homNumber?: boolean
+  }
+
+  export type DictionaryEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"entryId" | "word" | "page" | "homNumber", ExtArgs["result"]["dictionaryEntry"]>
+  export type DictionaryEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headwords?: boolean | DictionaryEntry$headwordsArgs<ExtArgs>
+    senses?: boolean | DictionaryEntry$sensesArgs<ExtArgs>
+    _count?: boolean | DictionaryEntryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DictionaryEntryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DictionaryEntryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DictionaryEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DictionaryEntry"
+    objects: {
+      headwords: Prisma.$DictionaryHeadwordPayload<ExtArgs>[]
+      senses: Prisma.$DictionarySensePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      entryId: number
+      word: string
+      page: string | null
+      homNumber: number | null
+    }, ExtArgs["result"]["dictionaryEntry"]>
+    composites: {}
+  }
+
+  type DictionaryEntryGetPayload<S extends boolean | null | undefined | DictionaryEntryDefaultArgs> = $Result.GetResult<Prisma.$DictionaryEntryPayload, S>
+
+  type DictionaryEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DictionaryEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DictionaryEntryCountAggregateInputType | true
+    }
+
+  export interface DictionaryEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DictionaryEntry'], meta: { name: 'DictionaryEntry' } }
+    /**
+     * Find zero or one DictionaryEntry that matches the filter.
+     * @param {DictionaryEntryFindUniqueArgs} args - Arguments to find a DictionaryEntry
+     * @example
+     * // Get one DictionaryEntry
+     * const dictionaryEntry = await prisma.dictionaryEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DictionaryEntryFindUniqueArgs>(args: SelectSubset<T, DictionaryEntryFindUniqueArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DictionaryEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DictionaryEntryFindUniqueOrThrowArgs} args - Arguments to find a DictionaryEntry
+     * @example
+     * // Get one DictionaryEntry
+     * const dictionaryEntry = await prisma.dictionaryEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DictionaryEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, DictionaryEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryEntryFindFirstArgs} args - Arguments to find a DictionaryEntry
+     * @example
+     * // Get one DictionaryEntry
+     * const dictionaryEntry = await prisma.dictionaryEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DictionaryEntryFindFirstArgs>(args?: SelectSubset<T, DictionaryEntryFindFirstArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryEntryFindFirstOrThrowArgs} args - Arguments to find a DictionaryEntry
+     * @example
+     * // Get one DictionaryEntry
+     * const dictionaryEntry = await prisma.dictionaryEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DictionaryEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, DictionaryEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DictionaryEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DictionaryEntries
+     * const dictionaryEntries = await prisma.dictionaryEntry.findMany()
+     * 
+     * // Get first 10 DictionaryEntries
+     * const dictionaryEntries = await prisma.dictionaryEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `entryId`
+     * const dictionaryEntryWithEntryIdOnly = await prisma.dictionaryEntry.findMany({ select: { entryId: true } })
+     * 
+     */
+    findMany<T extends DictionaryEntryFindManyArgs>(args?: SelectSubset<T, DictionaryEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DictionaryEntry.
+     * @param {DictionaryEntryCreateArgs} args - Arguments to create a DictionaryEntry.
+     * @example
+     * // Create one DictionaryEntry
+     * const DictionaryEntry = await prisma.dictionaryEntry.create({
+     *   data: {
+     *     // ... data to create a DictionaryEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends DictionaryEntryCreateArgs>(args: SelectSubset<T, DictionaryEntryCreateArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DictionaryEntries.
+     * @param {DictionaryEntryCreateManyArgs} args - Arguments to create many DictionaryEntries.
+     * @example
+     * // Create many DictionaryEntries
+     * const dictionaryEntry = await prisma.dictionaryEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DictionaryEntryCreateManyArgs>(args?: SelectSubset<T, DictionaryEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DictionaryEntries and returns the data saved in the database.
+     * @param {DictionaryEntryCreateManyAndReturnArgs} args - Arguments to create many DictionaryEntries.
+     * @example
+     * // Create many DictionaryEntries
+     * const dictionaryEntry = await prisma.dictionaryEntry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DictionaryEntries and only return the `entryId`
+     * const dictionaryEntryWithEntryIdOnly = await prisma.dictionaryEntry.createManyAndReturn({
+     *   select: { entryId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DictionaryEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, DictionaryEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DictionaryEntry.
+     * @param {DictionaryEntryDeleteArgs} args - Arguments to delete one DictionaryEntry.
+     * @example
+     * // Delete one DictionaryEntry
+     * const DictionaryEntry = await prisma.dictionaryEntry.delete({
+     *   where: {
+     *     // ... filter to delete one DictionaryEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DictionaryEntryDeleteArgs>(args: SelectSubset<T, DictionaryEntryDeleteArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DictionaryEntry.
+     * @param {DictionaryEntryUpdateArgs} args - Arguments to update one DictionaryEntry.
+     * @example
+     * // Update one DictionaryEntry
+     * const dictionaryEntry = await prisma.dictionaryEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DictionaryEntryUpdateArgs>(args: SelectSubset<T, DictionaryEntryUpdateArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DictionaryEntries.
+     * @param {DictionaryEntryDeleteManyArgs} args - Arguments to filter DictionaryEntries to delete.
+     * @example
+     * // Delete a few DictionaryEntries
+     * const { count } = await prisma.dictionaryEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DictionaryEntryDeleteManyArgs>(args?: SelectSubset<T, DictionaryEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DictionaryEntries
+     * const dictionaryEntry = await prisma.dictionaryEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DictionaryEntryUpdateManyArgs>(args: SelectSubset<T, DictionaryEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryEntries and returns the data updated in the database.
+     * @param {DictionaryEntryUpdateManyAndReturnArgs} args - Arguments to update many DictionaryEntries.
+     * @example
+     * // Update many DictionaryEntries
+     * const dictionaryEntry = await prisma.dictionaryEntry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DictionaryEntries and only return the `entryId`
+     * const dictionaryEntryWithEntryIdOnly = await prisma.dictionaryEntry.updateManyAndReturn({
+     *   select: { entryId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DictionaryEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, DictionaryEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DictionaryEntry.
+     * @param {DictionaryEntryUpsertArgs} args - Arguments to update or create a DictionaryEntry.
+     * @example
+     * // Update or create a DictionaryEntry
+     * const dictionaryEntry = await prisma.dictionaryEntry.upsert({
+     *   create: {
+     *     // ... data to create a DictionaryEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DictionaryEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DictionaryEntryUpsertArgs>(args: SelectSubset<T, DictionaryEntryUpsertArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DictionaryEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryEntryCountArgs} args - Arguments to filter DictionaryEntries to count.
+     * @example
+     * // Count the number of DictionaryEntries
+     * const count = await prisma.dictionaryEntry.count({
+     *   where: {
+     *     // ... the filter for the DictionaryEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends DictionaryEntryCountArgs>(
+      args?: Subset<T, DictionaryEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DictionaryEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DictionaryEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DictionaryEntryAggregateArgs>(args: Subset<T, DictionaryEntryAggregateArgs>): Prisma.PrismaPromise<GetDictionaryEntryAggregateType<T>>
+
+    /**
+     * Group by DictionaryEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DictionaryEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DictionaryEntryGroupByArgs['orderBy'] }
+        : { orderBy?: DictionaryEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DictionaryEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDictionaryEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DictionaryEntry model
+   */
+  readonly fields: DictionaryEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DictionaryEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DictionaryEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    headwords<T extends DictionaryEntry$headwordsArgs<ExtArgs> = {}>(args?: Subset<T, DictionaryEntry$headwordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    senses<T extends DictionaryEntry$sensesArgs<ExtArgs> = {}>(args?: Subset<T, DictionaryEntry$sensesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DictionaryEntry model
+   */
+  interface DictionaryEntryFieldRefs {
+    readonly entryId: FieldRef<"DictionaryEntry", 'Int'>
+    readonly word: FieldRef<"DictionaryEntry", 'String'>
+    readonly page: FieldRef<"DictionaryEntry", 'String'>
+    readonly homNumber: FieldRef<"DictionaryEntry", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DictionaryEntry findUnique
+   */
+  export type DictionaryEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryEntry to fetch.
+     */
+    where: DictionaryEntryWhereUniqueInput
+  }
+
+  /**
+   * DictionaryEntry findUniqueOrThrow
+   */
+  export type DictionaryEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryEntry to fetch.
+     */
+    where: DictionaryEntryWhereUniqueInput
+  }
+
+  /**
+   * DictionaryEntry findFirst
+   */
+  export type DictionaryEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryEntry to fetch.
+     */
+    where?: DictionaryEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryEntries to fetch.
+     */
+    orderBy?: DictionaryEntryOrderByWithRelationInput | DictionaryEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryEntries.
+     */
+    cursor?: DictionaryEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryEntries.
+     */
+    distinct?: DictionaryEntryScalarFieldEnum | DictionaryEntryScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryEntry findFirstOrThrow
+   */
+  export type DictionaryEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryEntry to fetch.
+     */
+    where?: DictionaryEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryEntries to fetch.
+     */
+    orderBy?: DictionaryEntryOrderByWithRelationInput | DictionaryEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryEntries.
+     */
+    cursor?: DictionaryEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryEntries.
+     */
+    distinct?: DictionaryEntryScalarFieldEnum | DictionaryEntryScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryEntry findMany
+   */
+  export type DictionaryEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryEntries to fetch.
+     */
+    where?: DictionaryEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryEntries to fetch.
+     */
+    orderBy?: DictionaryEntryOrderByWithRelationInput | DictionaryEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DictionaryEntries.
+     */
+    cursor?: DictionaryEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryEntries.
+     */
+    skip?: number
+    distinct?: DictionaryEntryScalarFieldEnum | DictionaryEntryScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryEntry create
+   */
+  export type DictionaryEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DictionaryEntry.
+     */
+    data: XOR<DictionaryEntryCreateInput, DictionaryEntryUncheckedCreateInput>
+  }
+
+  /**
+   * DictionaryEntry createMany
+   */
+  export type DictionaryEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DictionaryEntries.
+     */
+    data: DictionaryEntryCreateManyInput | DictionaryEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DictionaryEntry createManyAndReturn
+   */
+  export type DictionaryEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * The data used to create many DictionaryEntries.
+     */
+    data: DictionaryEntryCreateManyInput | DictionaryEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DictionaryEntry update
+   */
+  export type DictionaryEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DictionaryEntry.
+     */
+    data: XOR<DictionaryEntryUpdateInput, DictionaryEntryUncheckedUpdateInput>
+    /**
+     * Choose, which DictionaryEntry to update.
+     */
+    where: DictionaryEntryWhereUniqueInput
+  }
+
+  /**
+   * DictionaryEntry updateMany
+   */
+  export type DictionaryEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DictionaryEntries.
+     */
+    data: XOR<DictionaryEntryUpdateManyMutationInput, DictionaryEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryEntries to update
+     */
+    where?: DictionaryEntryWhereInput
+    /**
+     * Limit how many DictionaryEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryEntry updateManyAndReturn
+   */
+  export type DictionaryEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * The data used to update DictionaryEntries.
+     */
+    data: XOR<DictionaryEntryUpdateManyMutationInput, DictionaryEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryEntries to update
+     */
+    where?: DictionaryEntryWhereInput
+    /**
+     * Limit how many DictionaryEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryEntry upsert
+   */
+  export type DictionaryEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DictionaryEntry to update in case it exists.
+     */
+    where: DictionaryEntryWhereUniqueInput
+    /**
+     * In case the DictionaryEntry found by the `where` argument doesn't exist, create a new DictionaryEntry with this data.
+     */
+    create: XOR<DictionaryEntryCreateInput, DictionaryEntryUncheckedCreateInput>
+    /**
+     * In case the DictionaryEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DictionaryEntryUpdateInput, DictionaryEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * DictionaryEntry delete
+   */
+  export type DictionaryEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+    /**
+     * Filter which DictionaryEntry to delete.
+     */
+    where: DictionaryEntryWhereUniqueInput
+  }
+
+  /**
+   * DictionaryEntry deleteMany
+   */
+  export type DictionaryEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryEntries to delete
+     */
+    where?: DictionaryEntryWhereInput
+    /**
+     * Limit how many DictionaryEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryEntry.headwords
+   */
+  export type DictionaryEntry$headwordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    where?: DictionaryHeadwordWhereInput
+    orderBy?: DictionaryHeadwordOrderByWithRelationInput | DictionaryHeadwordOrderByWithRelationInput[]
+    cursor?: DictionaryHeadwordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DictionaryHeadwordScalarFieldEnum | DictionaryHeadwordScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryEntry.senses
+   */
+  export type DictionaryEntry$sensesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    where?: DictionarySenseWhereInput
+    orderBy?: DictionarySenseOrderByWithRelationInput | DictionarySenseOrderByWithRelationInput[]
+    cursor?: DictionarySenseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DictionarySenseScalarFieldEnum | DictionarySenseScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryEntry without action
+   */
+  export type DictionaryEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryEntry
+     */
+    select?: DictionaryEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryEntry
+     */
+    omit?: DictionaryEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryEntryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DictionaryHeadword
+   */
+
+  export type AggregateDictionaryHeadword = {
+    _count: DictionaryHeadwordCountAggregateOutputType | null
+    _avg: DictionaryHeadwordAvgAggregateOutputType | null
+    _sum: DictionaryHeadwordSumAggregateOutputType | null
+    _min: DictionaryHeadwordMinAggregateOutputType | null
+    _max: DictionaryHeadwordMaxAggregateOutputType | null
+  }
+
+  export type DictionaryHeadwordAvgAggregateOutputType = {
+    headId: number | null
+    entryId: number | null
+  }
+
+  export type DictionaryHeadwordSumAggregateOutputType = {
+    headId: number | null
+    entryId: number | null
+  }
+
+  export type DictionaryHeadwordMinAggregateOutputType = {
+    headId: number | null
+    entryId: number | null
+    head: string | null
+    normalizedHead: string | null
+    type: string | null
+    pos: string | null
+  }
+
+  export type DictionaryHeadwordMaxAggregateOutputType = {
+    headId: number | null
+    entryId: number | null
+    head: string | null
+    normalizedHead: string | null
+    type: string | null
+    pos: string | null
+  }
+
+  export type DictionaryHeadwordCountAggregateOutputType = {
+    headId: number
+    entryId: number
+    head: number
+    normalizedHead: number
+    type: number
+    pos: number
+    _all: number
+  }
+
+
+  export type DictionaryHeadwordAvgAggregateInputType = {
+    headId?: true
+    entryId?: true
+  }
+
+  export type DictionaryHeadwordSumAggregateInputType = {
+    headId?: true
+    entryId?: true
+  }
+
+  export type DictionaryHeadwordMinAggregateInputType = {
+    headId?: true
+    entryId?: true
+    head?: true
+    normalizedHead?: true
+    type?: true
+    pos?: true
+  }
+
+  export type DictionaryHeadwordMaxAggregateInputType = {
+    headId?: true
+    entryId?: true
+    head?: true
+    normalizedHead?: true
+    type?: true
+    pos?: true
+  }
+
+  export type DictionaryHeadwordCountAggregateInputType = {
+    headId?: true
+    entryId?: true
+    head?: true
+    normalizedHead?: true
+    type?: true
+    pos?: true
+    _all?: true
+  }
+
+  export type DictionaryHeadwordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryHeadword to aggregate.
+     */
+    where?: DictionaryHeadwordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryHeadwords to fetch.
+     */
+    orderBy?: DictionaryHeadwordOrderByWithRelationInput | DictionaryHeadwordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DictionaryHeadwordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryHeadwords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryHeadwords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DictionaryHeadwords
+    **/
+    _count?: true | DictionaryHeadwordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DictionaryHeadwordAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DictionaryHeadwordSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DictionaryHeadwordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DictionaryHeadwordMaxAggregateInputType
+  }
+
+  export type GetDictionaryHeadwordAggregateType<T extends DictionaryHeadwordAggregateArgs> = {
+        [P in keyof T & keyof AggregateDictionaryHeadword]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDictionaryHeadword[P]>
+      : GetScalarType<T[P], AggregateDictionaryHeadword[P]>
+  }
+
+
+
+
+  export type DictionaryHeadwordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryHeadwordWhereInput
+    orderBy?: DictionaryHeadwordOrderByWithAggregationInput | DictionaryHeadwordOrderByWithAggregationInput[]
+    by: DictionaryHeadwordScalarFieldEnum[] | DictionaryHeadwordScalarFieldEnum
+    having?: DictionaryHeadwordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DictionaryHeadwordCountAggregateInputType | true
+    _avg?: DictionaryHeadwordAvgAggregateInputType
+    _sum?: DictionaryHeadwordSumAggregateInputType
+    _min?: DictionaryHeadwordMinAggregateInputType
+    _max?: DictionaryHeadwordMaxAggregateInputType
+  }
+
+  export type DictionaryHeadwordGroupByOutputType = {
+    headId: number
+    entryId: number
+    head: string
+    normalizedHead: string
+    type: string | null
+    pos: string | null
+    _count: DictionaryHeadwordCountAggregateOutputType | null
+    _avg: DictionaryHeadwordAvgAggregateOutputType | null
+    _sum: DictionaryHeadwordSumAggregateOutputType | null
+    _min: DictionaryHeadwordMinAggregateOutputType | null
+    _max: DictionaryHeadwordMaxAggregateOutputType | null
+  }
+
+  type GetDictionaryHeadwordGroupByPayload<T extends DictionaryHeadwordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DictionaryHeadwordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DictionaryHeadwordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DictionaryHeadwordGroupByOutputType[P]>
+            : GetScalarType<T[P], DictionaryHeadwordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DictionaryHeadwordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    headId?: boolean
+    entryId?: boolean
+    head?: boolean
+    normalizedHead?: boolean
+    type?: boolean
+    pos?: boolean
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryHeadword"]>
+
+  export type DictionaryHeadwordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    headId?: boolean
+    entryId?: boolean
+    head?: boolean
+    normalizedHead?: boolean
+    type?: boolean
+    pos?: boolean
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryHeadword"]>
+
+  export type DictionaryHeadwordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    headId?: boolean
+    entryId?: boolean
+    head?: boolean
+    normalizedHead?: boolean
+    type?: boolean
+    pos?: boolean
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryHeadword"]>
+
+  export type DictionaryHeadwordSelectScalar = {
+    headId?: boolean
+    entryId?: boolean
+    head?: boolean
+    normalizedHead?: boolean
+    type?: boolean
+    pos?: boolean
+  }
+
+  export type DictionaryHeadwordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"headId" | "entryId" | "head" | "normalizedHead" | "type" | "pos", ExtArgs["result"]["dictionaryHeadword"]>
+  export type DictionaryHeadwordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }
+  export type DictionaryHeadwordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }
+  export type DictionaryHeadwordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $DictionaryHeadwordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DictionaryHeadword"
+    objects: {
+      entry: Prisma.$DictionaryEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      headId: number
+      entryId: number
+      head: string
+      normalizedHead: string
+      type: string | null
+      pos: string | null
+    }, ExtArgs["result"]["dictionaryHeadword"]>
+    composites: {}
+  }
+
+  type DictionaryHeadwordGetPayload<S extends boolean | null | undefined | DictionaryHeadwordDefaultArgs> = $Result.GetResult<Prisma.$DictionaryHeadwordPayload, S>
+
+  type DictionaryHeadwordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DictionaryHeadwordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DictionaryHeadwordCountAggregateInputType | true
+    }
+
+  export interface DictionaryHeadwordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DictionaryHeadword'], meta: { name: 'DictionaryHeadword' } }
+    /**
+     * Find zero or one DictionaryHeadword that matches the filter.
+     * @param {DictionaryHeadwordFindUniqueArgs} args - Arguments to find a DictionaryHeadword
+     * @example
+     * // Get one DictionaryHeadword
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DictionaryHeadwordFindUniqueArgs>(args: SelectSubset<T, DictionaryHeadwordFindUniqueArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DictionaryHeadword that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DictionaryHeadwordFindUniqueOrThrowArgs} args - Arguments to find a DictionaryHeadword
+     * @example
+     * // Get one DictionaryHeadword
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DictionaryHeadwordFindUniqueOrThrowArgs>(args: SelectSubset<T, DictionaryHeadwordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryHeadword that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryHeadwordFindFirstArgs} args - Arguments to find a DictionaryHeadword
+     * @example
+     * // Get one DictionaryHeadword
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DictionaryHeadwordFindFirstArgs>(args?: SelectSubset<T, DictionaryHeadwordFindFirstArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryHeadword that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryHeadwordFindFirstOrThrowArgs} args - Arguments to find a DictionaryHeadword
+     * @example
+     * // Get one DictionaryHeadword
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DictionaryHeadwordFindFirstOrThrowArgs>(args?: SelectSubset<T, DictionaryHeadwordFindFirstOrThrowArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DictionaryHeadwords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryHeadwordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DictionaryHeadwords
+     * const dictionaryHeadwords = await prisma.dictionaryHeadword.findMany()
+     * 
+     * // Get first 10 DictionaryHeadwords
+     * const dictionaryHeadwords = await prisma.dictionaryHeadword.findMany({ take: 10 })
+     * 
+     * // Only select the `headId`
+     * const dictionaryHeadwordWithHeadIdOnly = await prisma.dictionaryHeadword.findMany({ select: { headId: true } })
+     * 
+     */
+    findMany<T extends DictionaryHeadwordFindManyArgs>(args?: SelectSubset<T, DictionaryHeadwordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DictionaryHeadword.
+     * @param {DictionaryHeadwordCreateArgs} args - Arguments to create a DictionaryHeadword.
+     * @example
+     * // Create one DictionaryHeadword
+     * const DictionaryHeadword = await prisma.dictionaryHeadword.create({
+     *   data: {
+     *     // ... data to create a DictionaryHeadword
+     *   }
+     * })
+     * 
+     */
+    create<T extends DictionaryHeadwordCreateArgs>(args: SelectSubset<T, DictionaryHeadwordCreateArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DictionaryHeadwords.
+     * @param {DictionaryHeadwordCreateManyArgs} args - Arguments to create many DictionaryHeadwords.
+     * @example
+     * // Create many DictionaryHeadwords
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DictionaryHeadwordCreateManyArgs>(args?: SelectSubset<T, DictionaryHeadwordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DictionaryHeadwords and returns the data saved in the database.
+     * @param {DictionaryHeadwordCreateManyAndReturnArgs} args - Arguments to create many DictionaryHeadwords.
+     * @example
+     * // Create many DictionaryHeadwords
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DictionaryHeadwords and only return the `headId`
+     * const dictionaryHeadwordWithHeadIdOnly = await prisma.dictionaryHeadword.createManyAndReturn({
+     *   select: { headId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DictionaryHeadwordCreateManyAndReturnArgs>(args?: SelectSubset<T, DictionaryHeadwordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DictionaryHeadword.
+     * @param {DictionaryHeadwordDeleteArgs} args - Arguments to delete one DictionaryHeadword.
+     * @example
+     * // Delete one DictionaryHeadword
+     * const DictionaryHeadword = await prisma.dictionaryHeadword.delete({
+     *   where: {
+     *     // ... filter to delete one DictionaryHeadword
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DictionaryHeadwordDeleteArgs>(args: SelectSubset<T, DictionaryHeadwordDeleteArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DictionaryHeadword.
+     * @param {DictionaryHeadwordUpdateArgs} args - Arguments to update one DictionaryHeadword.
+     * @example
+     * // Update one DictionaryHeadword
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DictionaryHeadwordUpdateArgs>(args: SelectSubset<T, DictionaryHeadwordUpdateArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DictionaryHeadwords.
+     * @param {DictionaryHeadwordDeleteManyArgs} args - Arguments to filter DictionaryHeadwords to delete.
+     * @example
+     * // Delete a few DictionaryHeadwords
+     * const { count } = await prisma.dictionaryHeadword.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DictionaryHeadwordDeleteManyArgs>(args?: SelectSubset<T, DictionaryHeadwordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryHeadwords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryHeadwordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DictionaryHeadwords
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DictionaryHeadwordUpdateManyArgs>(args: SelectSubset<T, DictionaryHeadwordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryHeadwords and returns the data updated in the database.
+     * @param {DictionaryHeadwordUpdateManyAndReturnArgs} args - Arguments to update many DictionaryHeadwords.
+     * @example
+     * // Update many DictionaryHeadwords
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DictionaryHeadwords and only return the `headId`
+     * const dictionaryHeadwordWithHeadIdOnly = await prisma.dictionaryHeadword.updateManyAndReturn({
+     *   select: { headId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DictionaryHeadwordUpdateManyAndReturnArgs>(args: SelectSubset<T, DictionaryHeadwordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DictionaryHeadword.
+     * @param {DictionaryHeadwordUpsertArgs} args - Arguments to update or create a DictionaryHeadword.
+     * @example
+     * // Update or create a DictionaryHeadword
+     * const dictionaryHeadword = await prisma.dictionaryHeadword.upsert({
+     *   create: {
+     *     // ... data to create a DictionaryHeadword
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DictionaryHeadword we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DictionaryHeadwordUpsertArgs>(args: SelectSubset<T, DictionaryHeadwordUpsertArgs<ExtArgs>>): Prisma__DictionaryHeadwordClient<$Result.GetResult<Prisma.$DictionaryHeadwordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DictionaryHeadwords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryHeadwordCountArgs} args - Arguments to filter DictionaryHeadwords to count.
+     * @example
+     * // Count the number of DictionaryHeadwords
+     * const count = await prisma.dictionaryHeadword.count({
+     *   where: {
+     *     // ... the filter for the DictionaryHeadwords we want to count
+     *   }
+     * })
+    **/
+    count<T extends DictionaryHeadwordCountArgs>(
+      args?: Subset<T, DictionaryHeadwordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DictionaryHeadwordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DictionaryHeadword.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryHeadwordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DictionaryHeadwordAggregateArgs>(args: Subset<T, DictionaryHeadwordAggregateArgs>): Prisma.PrismaPromise<GetDictionaryHeadwordAggregateType<T>>
+
+    /**
+     * Group by DictionaryHeadword.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryHeadwordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DictionaryHeadwordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DictionaryHeadwordGroupByArgs['orderBy'] }
+        : { orderBy?: DictionaryHeadwordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DictionaryHeadwordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDictionaryHeadwordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DictionaryHeadword model
+   */
+  readonly fields: DictionaryHeadwordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DictionaryHeadword.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DictionaryHeadwordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    entry<T extends DictionaryEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DictionaryEntryDefaultArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DictionaryHeadword model
+   */
+  interface DictionaryHeadwordFieldRefs {
+    readonly headId: FieldRef<"DictionaryHeadword", 'Int'>
+    readonly entryId: FieldRef<"DictionaryHeadword", 'Int'>
+    readonly head: FieldRef<"DictionaryHeadword", 'String'>
+    readonly normalizedHead: FieldRef<"DictionaryHeadword", 'String'>
+    readonly type: FieldRef<"DictionaryHeadword", 'String'>
+    readonly pos: FieldRef<"DictionaryHeadword", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DictionaryHeadword findUnique
+   */
+  export type DictionaryHeadwordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryHeadword to fetch.
+     */
+    where: DictionaryHeadwordWhereUniqueInput
+  }
+
+  /**
+   * DictionaryHeadword findUniqueOrThrow
+   */
+  export type DictionaryHeadwordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryHeadword to fetch.
+     */
+    where: DictionaryHeadwordWhereUniqueInput
+  }
+
+  /**
+   * DictionaryHeadword findFirst
+   */
+  export type DictionaryHeadwordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryHeadword to fetch.
+     */
+    where?: DictionaryHeadwordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryHeadwords to fetch.
+     */
+    orderBy?: DictionaryHeadwordOrderByWithRelationInput | DictionaryHeadwordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryHeadwords.
+     */
+    cursor?: DictionaryHeadwordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryHeadwords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryHeadwords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryHeadwords.
+     */
+    distinct?: DictionaryHeadwordScalarFieldEnum | DictionaryHeadwordScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryHeadword findFirstOrThrow
+   */
+  export type DictionaryHeadwordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryHeadword to fetch.
+     */
+    where?: DictionaryHeadwordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryHeadwords to fetch.
+     */
+    orderBy?: DictionaryHeadwordOrderByWithRelationInput | DictionaryHeadwordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryHeadwords.
+     */
+    cursor?: DictionaryHeadwordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryHeadwords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryHeadwords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryHeadwords.
+     */
+    distinct?: DictionaryHeadwordScalarFieldEnum | DictionaryHeadwordScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryHeadword findMany
+   */
+  export type DictionaryHeadwordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryHeadwords to fetch.
+     */
+    where?: DictionaryHeadwordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryHeadwords to fetch.
+     */
+    orderBy?: DictionaryHeadwordOrderByWithRelationInput | DictionaryHeadwordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DictionaryHeadwords.
+     */
+    cursor?: DictionaryHeadwordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryHeadwords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryHeadwords.
+     */
+    skip?: number
+    distinct?: DictionaryHeadwordScalarFieldEnum | DictionaryHeadwordScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryHeadword create
+   */
+  export type DictionaryHeadwordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DictionaryHeadword.
+     */
+    data: XOR<DictionaryHeadwordCreateInput, DictionaryHeadwordUncheckedCreateInput>
+  }
+
+  /**
+   * DictionaryHeadword createMany
+   */
+  export type DictionaryHeadwordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DictionaryHeadwords.
+     */
+    data: DictionaryHeadwordCreateManyInput | DictionaryHeadwordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DictionaryHeadword createManyAndReturn
+   */
+  export type DictionaryHeadwordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * The data used to create many DictionaryHeadwords.
+     */
+    data: DictionaryHeadwordCreateManyInput | DictionaryHeadwordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryHeadword update
+   */
+  export type DictionaryHeadwordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DictionaryHeadword.
+     */
+    data: XOR<DictionaryHeadwordUpdateInput, DictionaryHeadwordUncheckedUpdateInput>
+    /**
+     * Choose, which DictionaryHeadword to update.
+     */
+    where: DictionaryHeadwordWhereUniqueInput
+  }
+
+  /**
+   * DictionaryHeadword updateMany
+   */
+  export type DictionaryHeadwordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DictionaryHeadwords.
+     */
+    data: XOR<DictionaryHeadwordUpdateManyMutationInput, DictionaryHeadwordUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryHeadwords to update
+     */
+    where?: DictionaryHeadwordWhereInput
+    /**
+     * Limit how many DictionaryHeadwords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryHeadword updateManyAndReturn
+   */
+  export type DictionaryHeadwordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * The data used to update DictionaryHeadwords.
+     */
+    data: XOR<DictionaryHeadwordUpdateManyMutationInput, DictionaryHeadwordUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryHeadwords to update
+     */
+    where?: DictionaryHeadwordWhereInput
+    /**
+     * Limit how many DictionaryHeadwords to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryHeadword upsert
+   */
+  export type DictionaryHeadwordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DictionaryHeadword to update in case it exists.
+     */
+    where: DictionaryHeadwordWhereUniqueInput
+    /**
+     * In case the DictionaryHeadword found by the `where` argument doesn't exist, create a new DictionaryHeadword with this data.
+     */
+    create: XOR<DictionaryHeadwordCreateInput, DictionaryHeadwordUncheckedCreateInput>
+    /**
+     * In case the DictionaryHeadword was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DictionaryHeadwordUpdateInput, DictionaryHeadwordUncheckedUpdateInput>
+  }
+
+  /**
+   * DictionaryHeadword delete
+   */
+  export type DictionaryHeadwordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+    /**
+     * Filter which DictionaryHeadword to delete.
+     */
+    where: DictionaryHeadwordWhereUniqueInput
+  }
+
+  /**
+   * DictionaryHeadword deleteMany
+   */
+  export type DictionaryHeadwordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryHeadwords to delete
+     */
+    where?: DictionaryHeadwordWhereInput
+    /**
+     * Limit how many DictionaryHeadwords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryHeadword without action
+   */
+  export type DictionaryHeadwordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryHeadword
+     */
+    select?: DictionaryHeadwordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryHeadword
+     */
+    omit?: DictionaryHeadwordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryHeadwordInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DictionarySense
+   */
+
+  export type AggregateDictionarySense = {
+    _count: DictionarySenseCountAggregateOutputType | null
+    _avg: DictionarySenseAvgAggregateOutputType | null
+    _sum: DictionarySenseSumAggregateOutputType | null
+    _min: DictionarySenseMinAggregateOutputType | null
+    _max: DictionarySenseMaxAggregateOutputType | null
+  }
+
+  export type DictionarySenseAvgAggregateOutputType = {
+    senseId: number | null
+    entryId: number | null
+    number: number | null
+  }
+
+  export type DictionarySenseSumAggregateOutputType = {
+    senseId: number | null
+    entryId: number | null
+    number: number | null
+  }
+
+  export type DictionarySenseMinAggregateOutputType = {
+    senseId: number | null
+    entryId: number | null
+    number: number | null
+    definition: string | null
+    dialect: string | null
+  }
+
+  export type DictionarySenseMaxAggregateOutputType = {
+    senseId: number | null
+    entryId: number | null
+    number: number | null
+    definition: string | null
+    dialect: string | null
+  }
+
+  export type DictionarySenseCountAggregateOutputType = {
+    senseId: number
+    entryId: number
+    number: number
+    definition: number
+    dialect: number
+    _all: number
+  }
+
+
+  export type DictionarySenseAvgAggregateInputType = {
+    senseId?: true
+    entryId?: true
+    number?: true
+  }
+
+  export type DictionarySenseSumAggregateInputType = {
+    senseId?: true
+    entryId?: true
+    number?: true
+  }
+
+  export type DictionarySenseMinAggregateInputType = {
+    senseId?: true
+    entryId?: true
+    number?: true
+    definition?: true
+    dialect?: true
+  }
+
+  export type DictionarySenseMaxAggregateInputType = {
+    senseId?: true
+    entryId?: true
+    number?: true
+    definition?: true
+    dialect?: true
+  }
+
+  export type DictionarySenseCountAggregateInputType = {
+    senseId?: true
+    entryId?: true
+    number?: true
+    definition?: true
+    dialect?: true
+    _all?: true
+  }
+
+  export type DictionarySenseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionarySense to aggregate.
+     */
+    where?: DictionarySenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionarySenses to fetch.
+     */
+    orderBy?: DictionarySenseOrderByWithRelationInput | DictionarySenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DictionarySenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionarySenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionarySenses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DictionarySenses
+    **/
+    _count?: true | DictionarySenseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DictionarySenseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DictionarySenseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DictionarySenseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DictionarySenseMaxAggregateInputType
+  }
+
+  export type GetDictionarySenseAggregateType<T extends DictionarySenseAggregateArgs> = {
+        [P in keyof T & keyof AggregateDictionarySense]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDictionarySense[P]>
+      : GetScalarType<T[P], AggregateDictionarySense[P]>
+  }
+
+
+
+
+  export type DictionarySenseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionarySenseWhereInput
+    orderBy?: DictionarySenseOrderByWithAggregationInput | DictionarySenseOrderByWithAggregationInput[]
+    by: DictionarySenseScalarFieldEnum[] | DictionarySenseScalarFieldEnum
+    having?: DictionarySenseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DictionarySenseCountAggregateInputType | true
+    _avg?: DictionarySenseAvgAggregateInputType
+    _sum?: DictionarySenseSumAggregateInputType
+    _min?: DictionarySenseMinAggregateInputType
+    _max?: DictionarySenseMaxAggregateInputType
+  }
+
+  export type DictionarySenseGroupByOutputType = {
+    senseId: number
+    entryId: number
+    number: number | null
+    definition: string | null
+    dialect: string | null
+    _count: DictionarySenseCountAggregateOutputType | null
+    _avg: DictionarySenseAvgAggregateOutputType | null
+    _sum: DictionarySenseSumAggregateOutputType | null
+    _min: DictionarySenseMinAggregateOutputType | null
+    _max: DictionarySenseMaxAggregateOutputType | null
+  }
+
+  type GetDictionarySenseGroupByPayload<T extends DictionarySenseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DictionarySenseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DictionarySenseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DictionarySenseGroupByOutputType[P]>
+            : GetScalarType<T[P], DictionarySenseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DictionarySenseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    senseId?: boolean
+    entryId?: boolean
+    number?: boolean
+    definition?: boolean
+    dialect?: boolean
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+    translations?: boolean | DictionarySense$translationsArgs<ExtArgs>
+    examples?: boolean | DictionarySense$examplesArgs<ExtArgs>
+    crossRefs?: boolean | DictionarySense$crossRefsArgs<ExtArgs>
+    _count?: boolean | DictionarySenseCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionarySense"]>
+
+  export type DictionarySenseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    senseId?: boolean
+    entryId?: boolean
+    number?: boolean
+    definition?: boolean
+    dialect?: boolean
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionarySense"]>
+
+  export type DictionarySenseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    senseId?: boolean
+    entryId?: boolean
+    number?: boolean
+    definition?: boolean
+    dialect?: boolean
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionarySense"]>
+
+  export type DictionarySenseSelectScalar = {
+    senseId?: boolean
+    entryId?: boolean
+    number?: boolean
+    definition?: boolean
+    dialect?: boolean
+  }
+
+  export type DictionarySenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"senseId" | "entryId" | "number" | "definition" | "dialect", ExtArgs["result"]["dictionarySense"]>
+  export type DictionarySenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+    translations?: boolean | DictionarySense$translationsArgs<ExtArgs>
+    examples?: boolean | DictionarySense$examplesArgs<ExtArgs>
+    crossRefs?: boolean | DictionarySense$crossRefsArgs<ExtArgs>
+    _count?: boolean | DictionarySenseCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DictionarySenseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }
+  export type DictionarySenseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $DictionarySensePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DictionarySense"
+    objects: {
+      entry: Prisma.$DictionaryEntryPayload<ExtArgs>
+      translations: Prisma.$DictionaryTranslationPayload<ExtArgs>[]
+      examples: Prisma.$DictionaryExamplePayload<ExtArgs>[]
+      crossRefs: Prisma.$DictionaryCrossRefPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      senseId: number
+      entryId: number
+      number: number | null
+      definition: string | null
+      dialect: string | null
+    }, ExtArgs["result"]["dictionarySense"]>
+    composites: {}
+  }
+
+  type DictionarySenseGetPayload<S extends boolean | null | undefined | DictionarySenseDefaultArgs> = $Result.GetResult<Prisma.$DictionarySensePayload, S>
+
+  type DictionarySenseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DictionarySenseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DictionarySenseCountAggregateInputType | true
+    }
+
+  export interface DictionarySenseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DictionarySense'], meta: { name: 'DictionarySense' } }
+    /**
+     * Find zero or one DictionarySense that matches the filter.
+     * @param {DictionarySenseFindUniqueArgs} args - Arguments to find a DictionarySense
+     * @example
+     * // Get one DictionarySense
+     * const dictionarySense = await prisma.dictionarySense.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DictionarySenseFindUniqueArgs>(args: SelectSubset<T, DictionarySenseFindUniqueArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DictionarySense that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DictionarySenseFindUniqueOrThrowArgs} args - Arguments to find a DictionarySense
+     * @example
+     * // Get one DictionarySense
+     * const dictionarySense = await prisma.dictionarySense.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DictionarySenseFindUniqueOrThrowArgs>(args: SelectSubset<T, DictionarySenseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionarySense that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionarySenseFindFirstArgs} args - Arguments to find a DictionarySense
+     * @example
+     * // Get one DictionarySense
+     * const dictionarySense = await prisma.dictionarySense.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DictionarySenseFindFirstArgs>(args?: SelectSubset<T, DictionarySenseFindFirstArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionarySense that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionarySenseFindFirstOrThrowArgs} args - Arguments to find a DictionarySense
+     * @example
+     * // Get one DictionarySense
+     * const dictionarySense = await prisma.dictionarySense.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DictionarySenseFindFirstOrThrowArgs>(args?: SelectSubset<T, DictionarySenseFindFirstOrThrowArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DictionarySenses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionarySenseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DictionarySenses
+     * const dictionarySenses = await prisma.dictionarySense.findMany()
+     * 
+     * // Get first 10 DictionarySenses
+     * const dictionarySenses = await prisma.dictionarySense.findMany({ take: 10 })
+     * 
+     * // Only select the `senseId`
+     * const dictionarySenseWithSenseIdOnly = await prisma.dictionarySense.findMany({ select: { senseId: true } })
+     * 
+     */
+    findMany<T extends DictionarySenseFindManyArgs>(args?: SelectSubset<T, DictionarySenseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DictionarySense.
+     * @param {DictionarySenseCreateArgs} args - Arguments to create a DictionarySense.
+     * @example
+     * // Create one DictionarySense
+     * const DictionarySense = await prisma.dictionarySense.create({
+     *   data: {
+     *     // ... data to create a DictionarySense
+     *   }
+     * })
+     * 
+     */
+    create<T extends DictionarySenseCreateArgs>(args: SelectSubset<T, DictionarySenseCreateArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DictionarySenses.
+     * @param {DictionarySenseCreateManyArgs} args - Arguments to create many DictionarySenses.
+     * @example
+     * // Create many DictionarySenses
+     * const dictionarySense = await prisma.dictionarySense.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DictionarySenseCreateManyArgs>(args?: SelectSubset<T, DictionarySenseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DictionarySenses and returns the data saved in the database.
+     * @param {DictionarySenseCreateManyAndReturnArgs} args - Arguments to create many DictionarySenses.
+     * @example
+     * // Create many DictionarySenses
+     * const dictionarySense = await prisma.dictionarySense.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DictionarySenses and only return the `senseId`
+     * const dictionarySenseWithSenseIdOnly = await prisma.dictionarySense.createManyAndReturn({
+     *   select: { senseId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DictionarySenseCreateManyAndReturnArgs>(args?: SelectSubset<T, DictionarySenseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DictionarySense.
+     * @param {DictionarySenseDeleteArgs} args - Arguments to delete one DictionarySense.
+     * @example
+     * // Delete one DictionarySense
+     * const DictionarySense = await prisma.dictionarySense.delete({
+     *   where: {
+     *     // ... filter to delete one DictionarySense
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DictionarySenseDeleteArgs>(args: SelectSubset<T, DictionarySenseDeleteArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DictionarySense.
+     * @param {DictionarySenseUpdateArgs} args - Arguments to update one DictionarySense.
+     * @example
+     * // Update one DictionarySense
+     * const dictionarySense = await prisma.dictionarySense.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DictionarySenseUpdateArgs>(args: SelectSubset<T, DictionarySenseUpdateArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DictionarySenses.
+     * @param {DictionarySenseDeleteManyArgs} args - Arguments to filter DictionarySenses to delete.
+     * @example
+     * // Delete a few DictionarySenses
+     * const { count } = await prisma.dictionarySense.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DictionarySenseDeleteManyArgs>(args?: SelectSubset<T, DictionarySenseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionarySenses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionarySenseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DictionarySenses
+     * const dictionarySense = await prisma.dictionarySense.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DictionarySenseUpdateManyArgs>(args: SelectSubset<T, DictionarySenseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionarySenses and returns the data updated in the database.
+     * @param {DictionarySenseUpdateManyAndReturnArgs} args - Arguments to update many DictionarySenses.
+     * @example
+     * // Update many DictionarySenses
+     * const dictionarySense = await prisma.dictionarySense.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DictionarySenses and only return the `senseId`
+     * const dictionarySenseWithSenseIdOnly = await prisma.dictionarySense.updateManyAndReturn({
+     *   select: { senseId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DictionarySenseUpdateManyAndReturnArgs>(args: SelectSubset<T, DictionarySenseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DictionarySense.
+     * @param {DictionarySenseUpsertArgs} args - Arguments to update or create a DictionarySense.
+     * @example
+     * // Update or create a DictionarySense
+     * const dictionarySense = await prisma.dictionarySense.upsert({
+     *   create: {
+     *     // ... data to create a DictionarySense
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DictionarySense we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DictionarySenseUpsertArgs>(args: SelectSubset<T, DictionarySenseUpsertArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DictionarySenses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionarySenseCountArgs} args - Arguments to filter DictionarySenses to count.
+     * @example
+     * // Count the number of DictionarySenses
+     * const count = await prisma.dictionarySense.count({
+     *   where: {
+     *     // ... the filter for the DictionarySenses we want to count
+     *   }
+     * })
+    **/
+    count<T extends DictionarySenseCountArgs>(
+      args?: Subset<T, DictionarySenseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DictionarySenseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DictionarySense.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionarySenseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DictionarySenseAggregateArgs>(args: Subset<T, DictionarySenseAggregateArgs>): Prisma.PrismaPromise<GetDictionarySenseAggregateType<T>>
+
+    /**
+     * Group by DictionarySense.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionarySenseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DictionarySenseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DictionarySenseGroupByArgs['orderBy'] }
+        : { orderBy?: DictionarySenseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DictionarySenseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDictionarySenseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DictionarySense model
+   */
+  readonly fields: DictionarySenseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DictionarySense.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DictionarySenseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    entry<T extends DictionaryEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DictionaryEntryDefaultArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    translations<T extends DictionarySense$translationsArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySense$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    examples<T extends DictionarySense$examplesArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySense$examplesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    crossRefs<T extends DictionarySense$crossRefsArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySense$crossRefsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DictionarySense model
+   */
+  interface DictionarySenseFieldRefs {
+    readonly senseId: FieldRef<"DictionarySense", 'Int'>
+    readonly entryId: FieldRef<"DictionarySense", 'Int'>
+    readonly number: FieldRef<"DictionarySense", 'Int'>
+    readonly definition: FieldRef<"DictionarySense", 'String'>
+    readonly dialect: FieldRef<"DictionarySense", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DictionarySense findUnique
+   */
+  export type DictionarySenseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionarySense to fetch.
+     */
+    where: DictionarySenseWhereUniqueInput
+  }
+
+  /**
+   * DictionarySense findUniqueOrThrow
+   */
+  export type DictionarySenseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionarySense to fetch.
+     */
+    where: DictionarySenseWhereUniqueInput
+  }
+
+  /**
+   * DictionarySense findFirst
+   */
+  export type DictionarySenseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionarySense to fetch.
+     */
+    where?: DictionarySenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionarySenses to fetch.
+     */
+    orderBy?: DictionarySenseOrderByWithRelationInput | DictionarySenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionarySenses.
+     */
+    cursor?: DictionarySenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionarySenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionarySenses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionarySenses.
+     */
+    distinct?: DictionarySenseScalarFieldEnum | DictionarySenseScalarFieldEnum[]
+  }
+
+  /**
+   * DictionarySense findFirstOrThrow
+   */
+  export type DictionarySenseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionarySense to fetch.
+     */
+    where?: DictionarySenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionarySenses to fetch.
+     */
+    orderBy?: DictionarySenseOrderByWithRelationInput | DictionarySenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionarySenses.
+     */
+    cursor?: DictionarySenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionarySenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionarySenses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionarySenses.
+     */
+    distinct?: DictionarySenseScalarFieldEnum | DictionarySenseScalarFieldEnum[]
+  }
+
+  /**
+   * DictionarySense findMany
+   */
+  export type DictionarySenseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionarySenses to fetch.
+     */
+    where?: DictionarySenseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionarySenses to fetch.
+     */
+    orderBy?: DictionarySenseOrderByWithRelationInput | DictionarySenseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DictionarySenses.
+     */
+    cursor?: DictionarySenseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionarySenses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionarySenses.
+     */
+    skip?: number
+    distinct?: DictionarySenseScalarFieldEnum | DictionarySenseScalarFieldEnum[]
+  }
+
+  /**
+   * DictionarySense create
+   */
+  export type DictionarySenseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DictionarySense.
+     */
+    data: XOR<DictionarySenseCreateInput, DictionarySenseUncheckedCreateInput>
+  }
+
+  /**
+   * DictionarySense createMany
+   */
+  export type DictionarySenseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DictionarySenses.
+     */
+    data: DictionarySenseCreateManyInput | DictionarySenseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DictionarySense createManyAndReturn
+   */
+  export type DictionarySenseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * The data used to create many DictionarySenses.
+     */
+    data: DictionarySenseCreateManyInput | DictionarySenseCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionarySense update
+   */
+  export type DictionarySenseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DictionarySense.
+     */
+    data: XOR<DictionarySenseUpdateInput, DictionarySenseUncheckedUpdateInput>
+    /**
+     * Choose, which DictionarySense to update.
+     */
+    where: DictionarySenseWhereUniqueInput
+  }
+
+  /**
+   * DictionarySense updateMany
+   */
+  export type DictionarySenseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DictionarySenses.
+     */
+    data: XOR<DictionarySenseUpdateManyMutationInput, DictionarySenseUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionarySenses to update
+     */
+    where?: DictionarySenseWhereInput
+    /**
+     * Limit how many DictionarySenses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionarySense updateManyAndReturn
+   */
+  export type DictionarySenseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * The data used to update DictionarySenses.
+     */
+    data: XOR<DictionarySenseUpdateManyMutationInput, DictionarySenseUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionarySenses to update
+     */
+    where?: DictionarySenseWhereInput
+    /**
+     * Limit how many DictionarySenses to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionarySense upsert
+   */
+  export type DictionarySenseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DictionarySense to update in case it exists.
+     */
+    where: DictionarySenseWhereUniqueInput
+    /**
+     * In case the DictionarySense found by the `where` argument doesn't exist, create a new DictionarySense with this data.
+     */
+    create: XOR<DictionarySenseCreateInput, DictionarySenseUncheckedCreateInput>
+    /**
+     * In case the DictionarySense was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DictionarySenseUpdateInput, DictionarySenseUncheckedUpdateInput>
+  }
+
+  /**
+   * DictionarySense delete
+   */
+  export type DictionarySenseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+    /**
+     * Filter which DictionarySense to delete.
+     */
+    where: DictionarySenseWhereUniqueInput
+  }
+
+  /**
+   * DictionarySense deleteMany
+   */
+  export type DictionarySenseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionarySenses to delete
+     */
+    where?: DictionarySenseWhereInput
+    /**
+     * Limit how many DictionarySenses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionarySense.translations
+   */
+  export type DictionarySense$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    where?: DictionaryTranslationWhereInput
+    orderBy?: DictionaryTranslationOrderByWithRelationInput | DictionaryTranslationOrderByWithRelationInput[]
+    cursor?: DictionaryTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DictionaryTranslationScalarFieldEnum | DictionaryTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * DictionarySense.examples
+   */
+  export type DictionarySense$examplesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    where?: DictionaryExampleWhereInput
+    orderBy?: DictionaryExampleOrderByWithRelationInput | DictionaryExampleOrderByWithRelationInput[]
+    cursor?: DictionaryExampleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DictionaryExampleScalarFieldEnum | DictionaryExampleScalarFieldEnum[]
+  }
+
+  /**
+   * DictionarySense.crossRefs
+   */
+  export type DictionarySense$crossRefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    where?: DictionaryCrossRefWhereInput
+    orderBy?: DictionaryCrossRefOrderByWithRelationInput | DictionaryCrossRefOrderByWithRelationInput[]
+    cursor?: DictionaryCrossRefWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DictionaryCrossRefScalarFieldEnum | DictionaryCrossRefScalarFieldEnum[]
+  }
+
+  /**
+   * DictionarySense without action
+   */
+  export type DictionarySenseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionarySense
+     */
+    select?: DictionarySenseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionarySense
+     */
+    omit?: DictionarySenseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionarySenseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DictionaryTranslation
+   */
+
+  export type AggregateDictionaryTranslation = {
+    _count: DictionaryTranslationCountAggregateOutputType | null
+    _avg: DictionaryTranslationAvgAggregateOutputType | null
+    _sum: DictionaryTranslationSumAggregateOutputType | null
+    _min: DictionaryTranslationMinAggregateOutputType | null
+    _max: DictionaryTranslationMaxAggregateOutputType | null
+  }
+
+  export type DictionaryTranslationAvgAggregateOutputType = {
+    transId: number | null
+    senseId: number | null
+  }
+
+  export type DictionaryTranslationSumAggregateOutputType = {
+    transId: number | null
+    senseId: number | null
+  }
+
+  export type DictionaryTranslationMinAggregateOutputType = {
+    transId: number | null
+    senseId: number | null
+    lang: string | null
+    translation: string | null
+  }
+
+  export type DictionaryTranslationMaxAggregateOutputType = {
+    transId: number | null
+    senseId: number | null
+    lang: string | null
+    translation: string | null
+  }
+
+  export type DictionaryTranslationCountAggregateOutputType = {
+    transId: number
+    senseId: number
+    lang: number
+    translation: number
+    _all: number
+  }
+
+
+  export type DictionaryTranslationAvgAggregateInputType = {
+    transId?: true
+    senseId?: true
+  }
+
+  export type DictionaryTranslationSumAggregateInputType = {
+    transId?: true
+    senseId?: true
+  }
+
+  export type DictionaryTranslationMinAggregateInputType = {
+    transId?: true
+    senseId?: true
+    lang?: true
+    translation?: true
+  }
+
+  export type DictionaryTranslationMaxAggregateInputType = {
+    transId?: true
+    senseId?: true
+    lang?: true
+    translation?: true
+  }
+
+  export type DictionaryTranslationCountAggregateInputType = {
+    transId?: true
+    senseId?: true
+    lang?: true
+    translation?: true
+    _all?: true
+  }
+
+  export type DictionaryTranslationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryTranslation to aggregate.
+     */
+    where?: DictionaryTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryTranslations to fetch.
+     */
+    orderBy?: DictionaryTranslationOrderByWithRelationInput | DictionaryTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DictionaryTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DictionaryTranslations
+    **/
+    _count?: true | DictionaryTranslationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DictionaryTranslationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DictionaryTranslationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DictionaryTranslationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DictionaryTranslationMaxAggregateInputType
+  }
+
+  export type GetDictionaryTranslationAggregateType<T extends DictionaryTranslationAggregateArgs> = {
+        [P in keyof T & keyof AggregateDictionaryTranslation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDictionaryTranslation[P]>
+      : GetScalarType<T[P], AggregateDictionaryTranslation[P]>
+  }
+
+
+
+
+  export type DictionaryTranslationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryTranslationWhereInput
+    orderBy?: DictionaryTranslationOrderByWithAggregationInput | DictionaryTranslationOrderByWithAggregationInput[]
+    by: DictionaryTranslationScalarFieldEnum[] | DictionaryTranslationScalarFieldEnum
+    having?: DictionaryTranslationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DictionaryTranslationCountAggregateInputType | true
+    _avg?: DictionaryTranslationAvgAggregateInputType
+    _sum?: DictionaryTranslationSumAggregateInputType
+    _min?: DictionaryTranslationMinAggregateInputType
+    _max?: DictionaryTranslationMaxAggregateInputType
+  }
+
+  export type DictionaryTranslationGroupByOutputType = {
+    transId: number
+    senseId: number
+    lang: string
+    translation: string
+    _count: DictionaryTranslationCountAggregateOutputType | null
+    _avg: DictionaryTranslationAvgAggregateOutputType | null
+    _sum: DictionaryTranslationSumAggregateOutputType | null
+    _min: DictionaryTranslationMinAggregateOutputType | null
+    _max: DictionaryTranslationMaxAggregateOutputType | null
+  }
+
+  type GetDictionaryTranslationGroupByPayload<T extends DictionaryTranslationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DictionaryTranslationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DictionaryTranslationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DictionaryTranslationGroupByOutputType[P]>
+            : GetScalarType<T[P], DictionaryTranslationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DictionaryTranslationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    transId?: boolean
+    senseId?: boolean
+    lang?: boolean
+    translation?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryTranslation"]>
+
+  export type DictionaryTranslationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    transId?: boolean
+    senseId?: boolean
+    lang?: boolean
+    translation?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryTranslation"]>
+
+  export type DictionaryTranslationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    transId?: boolean
+    senseId?: boolean
+    lang?: boolean
+    translation?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryTranslation"]>
+
+  export type DictionaryTranslationSelectScalar = {
+    transId?: boolean
+    senseId?: boolean
+    lang?: boolean
+    translation?: boolean
+  }
+
+  export type DictionaryTranslationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"transId" | "senseId" | "lang" | "translation", ExtArgs["result"]["dictionaryTranslation"]>
+  export type DictionaryTranslationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+  export type DictionaryTranslationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+  export type DictionaryTranslationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+
+  export type $DictionaryTranslationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DictionaryTranslation"
+    objects: {
+      sense: Prisma.$DictionarySensePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      transId: number
+      senseId: number
+      lang: string
+      translation: string
+    }, ExtArgs["result"]["dictionaryTranslation"]>
+    composites: {}
+  }
+
+  type DictionaryTranslationGetPayload<S extends boolean | null | undefined | DictionaryTranslationDefaultArgs> = $Result.GetResult<Prisma.$DictionaryTranslationPayload, S>
+
+  type DictionaryTranslationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DictionaryTranslationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DictionaryTranslationCountAggregateInputType | true
+    }
+
+  export interface DictionaryTranslationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DictionaryTranslation'], meta: { name: 'DictionaryTranslation' } }
+    /**
+     * Find zero or one DictionaryTranslation that matches the filter.
+     * @param {DictionaryTranslationFindUniqueArgs} args - Arguments to find a DictionaryTranslation
+     * @example
+     * // Get one DictionaryTranslation
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DictionaryTranslationFindUniqueArgs>(args: SelectSubset<T, DictionaryTranslationFindUniqueArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DictionaryTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DictionaryTranslationFindUniqueOrThrowArgs} args - Arguments to find a DictionaryTranslation
+     * @example
+     * // Get one DictionaryTranslation
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DictionaryTranslationFindUniqueOrThrowArgs>(args: SelectSubset<T, DictionaryTranslationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryTranslationFindFirstArgs} args - Arguments to find a DictionaryTranslation
+     * @example
+     * // Get one DictionaryTranslation
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DictionaryTranslationFindFirstArgs>(args?: SelectSubset<T, DictionaryTranslationFindFirstArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryTranslationFindFirstOrThrowArgs} args - Arguments to find a DictionaryTranslation
+     * @example
+     * // Get one DictionaryTranslation
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DictionaryTranslationFindFirstOrThrowArgs>(args?: SelectSubset<T, DictionaryTranslationFindFirstOrThrowArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DictionaryTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DictionaryTranslations
+     * const dictionaryTranslations = await prisma.dictionaryTranslation.findMany()
+     * 
+     * // Get first 10 DictionaryTranslations
+     * const dictionaryTranslations = await prisma.dictionaryTranslation.findMany({ take: 10 })
+     * 
+     * // Only select the `transId`
+     * const dictionaryTranslationWithTransIdOnly = await prisma.dictionaryTranslation.findMany({ select: { transId: true } })
+     * 
+     */
+    findMany<T extends DictionaryTranslationFindManyArgs>(args?: SelectSubset<T, DictionaryTranslationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DictionaryTranslation.
+     * @param {DictionaryTranslationCreateArgs} args - Arguments to create a DictionaryTranslation.
+     * @example
+     * // Create one DictionaryTranslation
+     * const DictionaryTranslation = await prisma.dictionaryTranslation.create({
+     *   data: {
+     *     // ... data to create a DictionaryTranslation
+     *   }
+     * })
+     * 
+     */
+    create<T extends DictionaryTranslationCreateArgs>(args: SelectSubset<T, DictionaryTranslationCreateArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DictionaryTranslations.
+     * @param {DictionaryTranslationCreateManyArgs} args - Arguments to create many DictionaryTranslations.
+     * @example
+     * // Create many DictionaryTranslations
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DictionaryTranslationCreateManyArgs>(args?: SelectSubset<T, DictionaryTranslationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DictionaryTranslations and returns the data saved in the database.
+     * @param {DictionaryTranslationCreateManyAndReturnArgs} args - Arguments to create many DictionaryTranslations.
+     * @example
+     * // Create many DictionaryTranslations
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DictionaryTranslations and only return the `transId`
+     * const dictionaryTranslationWithTransIdOnly = await prisma.dictionaryTranslation.createManyAndReturn({
+     *   select: { transId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DictionaryTranslationCreateManyAndReturnArgs>(args?: SelectSubset<T, DictionaryTranslationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DictionaryTranslation.
+     * @param {DictionaryTranslationDeleteArgs} args - Arguments to delete one DictionaryTranslation.
+     * @example
+     * // Delete one DictionaryTranslation
+     * const DictionaryTranslation = await prisma.dictionaryTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one DictionaryTranslation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DictionaryTranslationDeleteArgs>(args: SelectSubset<T, DictionaryTranslationDeleteArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DictionaryTranslation.
+     * @param {DictionaryTranslationUpdateArgs} args - Arguments to update one DictionaryTranslation.
+     * @example
+     * // Update one DictionaryTranslation
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DictionaryTranslationUpdateArgs>(args: SelectSubset<T, DictionaryTranslationUpdateArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DictionaryTranslations.
+     * @param {DictionaryTranslationDeleteManyArgs} args - Arguments to filter DictionaryTranslations to delete.
+     * @example
+     * // Delete a few DictionaryTranslations
+     * const { count } = await prisma.dictionaryTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DictionaryTranslationDeleteManyArgs>(args?: SelectSubset<T, DictionaryTranslationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DictionaryTranslations
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DictionaryTranslationUpdateManyArgs>(args: SelectSubset<T, DictionaryTranslationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryTranslations and returns the data updated in the database.
+     * @param {DictionaryTranslationUpdateManyAndReturnArgs} args - Arguments to update many DictionaryTranslations.
+     * @example
+     * // Update many DictionaryTranslations
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DictionaryTranslations and only return the `transId`
+     * const dictionaryTranslationWithTransIdOnly = await prisma.dictionaryTranslation.updateManyAndReturn({
+     *   select: { transId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DictionaryTranslationUpdateManyAndReturnArgs>(args: SelectSubset<T, DictionaryTranslationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DictionaryTranslation.
+     * @param {DictionaryTranslationUpsertArgs} args - Arguments to update or create a DictionaryTranslation.
+     * @example
+     * // Update or create a DictionaryTranslation
+     * const dictionaryTranslation = await prisma.dictionaryTranslation.upsert({
+     *   create: {
+     *     // ... data to create a DictionaryTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DictionaryTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DictionaryTranslationUpsertArgs>(args: SelectSubset<T, DictionaryTranslationUpsertArgs<ExtArgs>>): Prisma__DictionaryTranslationClient<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DictionaryTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryTranslationCountArgs} args - Arguments to filter DictionaryTranslations to count.
+     * @example
+     * // Count the number of DictionaryTranslations
+     * const count = await prisma.dictionaryTranslation.count({
+     *   where: {
+     *     // ... the filter for the DictionaryTranslations we want to count
+     *   }
+     * })
+    **/
+    count<T extends DictionaryTranslationCountArgs>(
+      args?: Subset<T, DictionaryTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DictionaryTranslationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DictionaryTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DictionaryTranslationAggregateArgs>(args: Subset<T, DictionaryTranslationAggregateArgs>): Prisma.PrismaPromise<GetDictionaryTranslationAggregateType<T>>
+
+    /**
+     * Group by DictionaryTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DictionaryTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DictionaryTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: DictionaryTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DictionaryTranslationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDictionaryTranslationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DictionaryTranslation model
+   */
+  readonly fields: DictionaryTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DictionaryTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DictionaryTranslationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sense<T extends DictionarySenseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySenseDefaultArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DictionaryTranslation model
+   */
+  interface DictionaryTranslationFieldRefs {
+    readonly transId: FieldRef<"DictionaryTranslation", 'Int'>
+    readonly senseId: FieldRef<"DictionaryTranslation", 'Int'>
+    readonly lang: FieldRef<"DictionaryTranslation", 'String'>
+    readonly translation: FieldRef<"DictionaryTranslation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DictionaryTranslation findUnique
+   */
+  export type DictionaryTranslationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryTranslation to fetch.
+     */
+    where: DictionaryTranslationWhereUniqueInput
+  }
+
+  /**
+   * DictionaryTranslation findUniqueOrThrow
+   */
+  export type DictionaryTranslationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryTranslation to fetch.
+     */
+    where: DictionaryTranslationWhereUniqueInput
+  }
+
+  /**
+   * DictionaryTranslation findFirst
+   */
+  export type DictionaryTranslationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryTranslation to fetch.
+     */
+    where?: DictionaryTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryTranslations to fetch.
+     */
+    orderBy?: DictionaryTranslationOrderByWithRelationInput | DictionaryTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryTranslations.
+     */
+    cursor?: DictionaryTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryTranslations.
+     */
+    distinct?: DictionaryTranslationScalarFieldEnum | DictionaryTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryTranslation findFirstOrThrow
+   */
+  export type DictionaryTranslationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryTranslation to fetch.
+     */
+    where?: DictionaryTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryTranslations to fetch.
+     */
+    orderBy?: DictionaryTranslationOrderByWithRelationInput | DictionaryTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryTranslations.
+     */
+    cursor?: DictionaryTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryTranslations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryTranslations.
+     */
+    distinct?: DictionaryTranslationScalarFieldEnum | DictionaryTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryTranslation findMany
+   */
+  export type DictionaryTranslationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryTranslations to fetch.
+     */
+    where?: DictionaryTranslationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryTranslations to fetch.
+     */
+    orderBy?: DictionaryTranslationOrderByWithRelationInput | DictionaryTranslationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DictionaryTranslations.
+     */
+    cursor?: DictionaryTranslationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryTranslations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryTranslations.
+     */
+    skip?: number
+    distinct?: DictionaryTranslationScalarFieldEnum | DictionaryTranslationScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryTranslation create
+   */
+  export type DictionaryTranslationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DictionaryTranslation.
+     */
+    data: XOR<DictionaryTranslationCreateInput, DictionaryTranslationUncheckedCreateInput>
+  }
+
+  /**
+   * DictionaryTranslation createMany
+   */
+  export type DictionaryTranslationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DictionaryTranslations.
+     */
+    data: DictionaryTranslationCreateManyInput | DictionaryTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DictionaryTranslation createManyAndReturn
+   */
+  export type DictionaryTranslationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to create many DictionaryTranslations.
+     */
+    data: DictionaryTranslationCreateManyInput | DictionaryTranslationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryTranslation update
+   */
+  export type DictionaryTranslationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DictionaryTranslation.
+     */
+    data: XOR<DictionaryTranslationUpdateInput, DictionaryTranslationUncheckedUpdateInput>
+    /**
+     * Choose, which DictionaryTranslation to update.
+     */
+    where: DictionaryTranslationWhereUniqueInput
+  }
+
+  /**
+   * DictionaryTranslation updateMany
+   */
+  export type DictionaryTranslationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DictionaryTranslations.
+     */
+    data: XOR<DictionaryTranslationUpdateManyMutationInput, DictionaryTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryTranslations to update
+     */
+    where?: DictionaryTranslationWhereInput
+    /**
+     * Limit how many DictionaryTranslations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryTranslation updateManyAndReturn
+   */
+  export type DictionaryTranslationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * The data used to update DictionaryTranslations.
+     */
+    data: XOR<DictionaryTranslationUpdateManyMutationInput, DictionaryTranslationUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryTranslations to update
+     */
+    where?: DictionaryTranslationWhereInput
+    /**
+     * Limit how many DictionaryTranslations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryTranslation upsert
+   */
+  export type DictionaryTranslationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DictionaryTranslation to update in case it exists.
+     */
+    where: DictionaryTranslationWhereUniqueInput
+    /**
+     * In case the DictionaryTranslation found by the `where` argument doesn't exist, create a new DictionaryTranslation with this data.
+     */
+    create: XOR<DictionaryTranslationCreateInput, DictionaryTranslationUncheckedCreateInput>
+    /**
+     * In case the DictionaryTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DictionaryTranslationUpdateInput, DictionaryTranslationUncheckedUpdateInput>
+  }
+
+  /**
+   * DictionaryTranslation delete
+   */
+  export type DictionaryTranslationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    /**
+     * Filter which DictionaryTranslation to delete.
+     */
+    where: DictionaryTranslationWhereUniqueInput
+  }
+
+  /**
+   * DictionaryTranslation deleteMany
+   */
+  export type DictionaryTranslationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryTranslations to delete
+     */
+    where?: DictionaryTranslationWhereInput
+    /**
+     * Limit how many DictionaryTranslations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryTranslation without action
+   */
+  export type DictionaryTranslationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DictionaryExample
+   */
+
+  export type AggregateDictionaryExample = {
+    _count: DictionaryExampleCountAggregateOutputType | null
+    _avg: DictionaryExampleAvgAggregateOutputType | null
+    _sum: DictionaryExampleSumAggregateOutputType | null
+    _min: DictionaryExampleMinAggregateOutputType | null
+    _max: DictionaryExampleMaxAggregateOutputType | null
+  }
+
+  export type DictionaryExampleAvgAggregateOutputType = {
+    exampleId: number | null
+    senseId: number | null
+  }
+
+  export type DictionaryExampleSumAggregateOutputType = {
+    exampleId: number | null
+    senseId: number | null
+  }
+
+  export type DictionaryExampleMinAggregateOutputType = {
+    exampleId: number | null
+    senseId: number | null
+    textCebuano: string | null
+    textTranslation: string | null
+  }
+
+  export type DictionaryExampleMaxAggregateOutputType = {
+    exampleId: number | null
+    senseId: number | null
+    textCebuano: string | null
+    textTranslation: string | null
+  }
+
+  export type DictionaryExampleCountAggregateOutputType = {
+    exampleId: number
+    senseId: number
+    textCebuano: number
+    textTranslation: number
+    _all: number
+  }
+
+
+  export type DictionaryExampleAvgAggregateInputType = {
+    exampleId?: true
+    senseId?: true
+  }
+
+  export type DictionaryExampleSumAggregateInputType = {
+    exampleId?: true
+    senseId?: true
+  }
+
+  export type DictionaryExampleMinAggregateInputType = {
+    exampleId?: true
+    senseId?: true
+    textCebuano?: true
+    textTranslation?: true
+  }
+
+  export type DictionaryExampleMaxAggregateInputType = {
+    exampleId?: true
+    senseId?: true
+    textCebuano?: true
+    textTranslation?: true
+  }
+
+  export type DictionaryExampleCountAggregateInputType = {
+    exampleId?: true
+    senseId?: true
+    textCebuano?: true
+    textTranslation?: true
+    _all?: true
+  }
+
+  export type DictionaryExampleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryExample to aggregate.
+     */
+    where?: DictionaryExampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryExamples to fetch.
+     */
+    orderBy?: DictionaryExampleOrderByWithRelationInput | DictionaryExampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DictionaryExampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryExamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryExamples.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DictionaryExamples
+    **/
+    _count?: true | DictionaryExampleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DictionaryExampleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DictionaryExampleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DictionaryExampleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DictionaryExampleMaxAggregateInputType
+  }
+
+  export type GetDictionaryExampleAggregateType<T extends DictionaryExampleAggregateArgs> = {
+        [P in keyof T & keyof AggregateDictionaryExample]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDictionaryExample[P]>
+      : GetScalarType<T[P], AggregateDictionaryExample[P]>
+  }
+
+
+
+
+  export type DictionaryExampleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryExampleWhereInput
+    orderBy?: DictionaryExampleOrderByWithAggregationInput | DictionaryExampleOrderByWithAggregationInput[]
+    by: DictionaryExampleScalarFieldEnum[] | DictionaryExampleScalarFieldEnum
+    having?: DictionaryExampleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DictionaryExampleCountAggregateInputType | true
+    _avg?: DictionaryExampleAvgAggregateInputType
+    _sum?: DictionaryExampleSumAggregateInputType
+    _min?: DictionaryExampleMinAggregateInputType
+    _max?: DictionaryExampleMaxAggregateInputType
+  }
+
+  export type DictionaryExampleGroupByOutputType = {
+    exampleId: number
+    senseId: number
+    textCebuano: string
+    textTranslation: string | null
+    _count: DictionaryExampleCountAggregateOutputType | null
+    _avg: DictionaryExampleAvgAggregateOutputType | null
+    _sum: DictionaryExampleSumAggregateOutputType | null
+    _min: DictionaryExampleMinAggregateOutputType | null
+    _max: DictionaryExampleMaxAggregateOutputType | null
+  }
+
+  type GetDictionaryExampleGroupByPayload<T extends DictionaryExampleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DictionaryExampleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DictionaryExampleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DictionaryExampleGroupByOutputType[P]>
+            : GetScalarType<T[P], DictionaryExampleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DictionaryExampleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    exampleId?: boolean
+    senseId?: boolean
+    textCebuano?: boolean
+    textTranslation?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryExample"]>
+
+  export type DictionaryExampleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    exampleId?: boolean
+    senseId?: boolean
+    textCebuano?: boolean
+    textTranslation?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryExample"]>
+
+  export type DictionaryExampleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    exampleId?: boolean
+    senseId?: boolean
+    textCebuano?: boolean
+    textTranslation?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryExample"]>
+
+  export type DictionaryExampleSelectScalar = {
+    exampleId?: boolean
+    senseId?: boolean
+    textCebuano?: boolean
+    textTranslation?: boolean
+  }
+
+  export type DictionaryExampleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"exampleId" | "senseId" | "textCebuano" | "textTranslation", ExtArgs["result"]["dictionaryExample"]>
+  export type DictionaryExampleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+  export type DictionaryExampleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+  export type DictionaryExampleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+
+  export type $DictionaryExamplePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DictionaryExample"
+    objects: {
+      sense: Prisma.$DictionarySensePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      exampleId: number
+      senseId: number
+      textCebuano: string
+      textTranslation: string | null
+    }, ExtArgs["result"]["dictionaryExample"]>
+    composites: {}
+  }
+
+  type DictionaryExampleGetPayload<S extends boolean | null | undefined | DictionaryExampleDefaultArgs> = $Result.GetResult<Prisma.$DictionaryExamplePayload, S>
+
+  type DictionaryExampleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DictionaryExampleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DictionaryExampleCountAggregateInputType | true
+    }
+
+  export interface DictionaryExampleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DictionaryExample'], meta: { name: 'DictionaryExample' } }
+    /**
+     * Find zero or one DictionaryExample that matches the filter.
+     * @param {DictionaryExampleFindUniqueArgs} args - Arguments to find a DictionaryExample
+     * @example
+     * // Get one DictionaryExample
+     * const dictionaryExample = await prisma.dictionaryExample.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DictionaryExampleFindUniqueArgs>(args: SelectSubset<T, DictionaryExampleFindUniqueArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DictionaryExample that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DictionaryExampleFindUniqueOrThrowArgs} args - Arguments to find a DictionaryExample
+     * @example
+     * // Get one DictionaryExample
+     * const dictionaryExample = await prisma.dictionaryExample.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DictionaryExampleFindUniqueOrThrowArgs>(args: SelectSubset<T, DictionaryExampleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryExample that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryExampleFindFirstArgs} args - Arguments to find a DictionaryExample
+     * @example
+     * // Get one DictionaryExample
+     * const dictionaryExample = await prisma.dictionaryExample.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DictionaryExampleFindFirstArgs>(args?: SelectSubset<T, DictionaryExampleFindFirstArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryExample that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryExampleFindFirstOrThrowArgs} args - Arguments to find a DictionaryExample
+     * @example
+     * // Get one DictionaryExample
+     * const dictionaryExample = await prisma.dictionaryExample.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DictionaryExampleFindFirstOrThrowArgs>(args?: SelectSubset<T, DictionaryExampleFindFirstOrThrowArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DictionaryExamples that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryExampleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DictionaryExamples
+     * const dictionaryExamples = await prisma.dictionaryExample.findMany()
+     * 
+     * // Get first 10 DictionaryExamples
+     * const dictionaryExamples = await prisma.dictionaryExample.findMany({ take: 10 })
+     * 
+     * // Only select the `exampleId`
+     * const dictionaryExampleWithExampleIdOnly = await prisma.dictionaryExample.findMany({ select: { exampleId: true } })
+     * 
+     */
+    findMany<T extends DictionaryExampleFindManyArgs>(args?: SelectSubset<T, DictionaryExampleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DictionaryExample.
+     * @param {DictionaryExampleCreateArgs} args - Arguments to create a DictionaryExample.
+     * @example
+     * // Create one DictionaryExample
+     * const DictionaryExample = await prisma.dictionaryExample.create({
+     *   data: {
+     *     // ... data to create a DictionaryExample
+     *   }
+     * })
+     * 
+     */
+    create<T extends DictionaryExampleCreateArgs>(args: SelectSubset<T, DictionaryExampleCreateArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DictionaryExamples.
+     * @param {DictionaryExampleCreateManyArgs} args - Arguments to create many DictionaryExamples.
+     * @example
+     * // Create many DictionaryExamples
+     * const dictionaryExample = await prisma.dictionaryExample.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DictionaryExampleCreateManyArgs>(args?: SelectSubset<T, DictionaryExampleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DictionaryExamples and returns the data saved in the database.
+     * @param {DictionaryExampleCreateManyAndReturnArgs} args - Arguments to create many DictionaryExamples.
+     * @example
+     * // Create many DictionaryExamples
+     * const dictionaryExample = await prisma.dictionaryExample.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DictionaryExamples and only return the `exampleId`
+     * const dictionaryExampleWithExampleIdOnly = await prisma.dictionaryExample.createManyAndReturn({
+     *   select: { exampleId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DictionaryExampleCreateManyAndReturnArgs>(args?: SelectSubset<T, DictionaryExampleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DictionaryExample.
+     * @param {DictionaryExampleDeleteArgs} args - Arguments to delete one DictionaryExample.
+     * @example
+     * // Delete one DictionaryExample
+     * const DictionaryExample = await prisma.dictionaryExample.delete({
+     *   where: {
+     *     // ... filter to delete one DictionaryExample
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DictionaryExampleDeleteArgs>(args: SelectSubset<T, DictionaryExampleDeleteArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DictionaryExample.
+     * @param {DictionaryExampleUpdateArgs} args - Arguments to update one DictionaryExample.
+     * @example
+     * // Update one DictionaryExample
+     * const dictionaryExample = await prisma.dictionaryExample.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DictionaryExampleUpdateArgs>(args: SelectSubset<T, DictionaryExampleUpdateArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DictionaryExamples.
+     * @param {DictionaryExampleDeleteManyArgs} args - Arguments to filter DictionaryExamples to delete.
+     * @example
+     * // Delete a few DictionaryExamples
+     * const { count } = await prisma.dictionaryExample.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DictionaryExampleDeleteManyArgs>(args?: SelectSubset<T, DictionaryExampleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryExamples.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryExampleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DictionaryExamples
+     * const dictionaryExample = await prisma.dictionaryExample.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DictionaryExampleUpdateManyArgs>(args: SelectSubset<T, DictionaryExampleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryExamples and returns the data updated in the database.
+     * @param {DictionaryExampleUpdateManyAndReturnArgs} args - Arguments to update many DictionaryExamples.
+     * @example
+     * // Update many DictionaryExamples
+     * const dictionaryExample = await prisma.dictionaryExample.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DictionaryExamples and only return the `exampleId`
+     * const dictionaryExampleWithExampleIdOnly = await prisma.dictionaryExample.updateManyAndReturn({
+     *   select: { exampleId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DictionaryExampleUpdateManyAndReturnArgs>(args: SelectSubset<T, DictionaryExampleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DictionaryExample.
+     * @param {DictionaryExampleUpsertArgs} args - Arguments to update or create a DictionaryExample.
+     * @example
+     * // Update or create a DictionaryExample
+     * const dictionaryExample = await prisma.dictionaryExample.upsert({
+     *   create: {
+     *     // ... data to create a DictionaryExample
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DictionaryExample we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DictionaryExampleUpsertArgs>(args: SelectSubset<T, DictionaryExampleUpsertArgs<ExtArgs>>): Prisma__DictionaryExampleClient<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DictionaryExamples.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryExampleCountArgs} args - Arguments to filter DictionaryExamples to count.
+     * @example
+     * // Count the number of DictionaryExamples
+     * const count = await prisma.dictionaryExample.count({
+     *   where: {
+     *     // ... the filter for the DictionaryExamples we want to count
+     *   }
+     * })
+    **/
+    count<T extends DictionaryExampleCountArgs>(
+      args?: Subset<T, DictionaryExampleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DictionaryExampleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DictionaryExample.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryExampleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DictionaryExampleAggregateArgs>(args: Subset<T, DictionaryExampleAggregateArgs>): Prisma.PrismaPromise<GetDictionaryExampleAggregateType<T>>
+
+    /**
+     * Group by DictionaryExample.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryExampleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DictionaryExampleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DictionaryExampleGroupByArgs['orderBy'] }
+        : { orderBy?: DictionaryExampleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DictionaryExampleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDictionaryExampleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DictionaryExample model
+   */
+  readonly fields: DictionaryExampleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DictionaryExample.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DictionaryExampleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sense<T extends DictionarySenseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySenseDefaultArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DictionaryExample model
+   */
+  interface DictionaryExampleFieldRefs {
+    readonly exampleId: FieldRef<"DictionaryExample", 'Int'>
+    readonly senseId: FieldRef<"DictionaryExample", 'Int'>
+    readonly textCebuano: FieldRef<"DictionaryExample", 'String'>
+    readonly textTranslation: FieldRef<"DictionaryExample", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DictionaryExample findUnique
+   */
+  export type DictionaryExampleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryExample to fetch.
+     */
+    where: DictionaryExampleWhereUniqueInput
+  }
+
+  /**
+   * DictionaryExample findUniqueOrThrow
+   */
+  export type DictionaryExampleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryExample to fetch.
+     */
+    where: DictionaryExampleWhereUniqueInput
+  }
+
+  /**
+   * DictionaryExample findFirst
+   */
+  export type DictionaryExampleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryExample to fetch.
+     */
+    where?: DictionaryExampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryExamples to fetch.
+     */
+    orderBy?: DictionaryExampleOrderByWithRelationInput | DictionaryExampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryExamples.
+     */
+    cursor?: DictionaryExampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryExamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryExamples.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryExamples.
+     */
+    distinct?: DictionaryExampleScalarFieldEnum | DictionaryExampleScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryExample findFirstOrThrow
+   */
+  export type DictionaryExampleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryExample to fetch.
+     */
+    where?: DictionaryExampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryExamples to fetch.
+     */
+    orderBy?: DictionaryExampleOrderByWithRelationInput | DictionaryExampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryExamples.
+     */
+    cursor?: DictionaryExampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryExamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryExamples.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryExamples.
+     */
+    distinct?: DictionaryExampleScalarFieldEnum | DictionaryExampleScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryExample findMany
+   */
+  export type DictionaryExampleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryExamples to fetch.
+     */
+    where?: DictionaryExampleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryExamples to fetch.
+     */
+    orderBy?: DictionaryExampleOrderByWithRelationInput | DictionaryExampleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DictionaryExamples.
+     */
+    cursor?: DictionaryExampleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryExamples from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryExamples.
+     */
+    skip?: number
+    distinct?: DictionaryExampleScalarFieldEnum | DictionaryExampleScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryExample create
+   */
+  export type DictionaryExampleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DictionaryExample.
+     */
+    data: XOR<DictionaryExampleCreateInput, DictionaryExampleUncheckedCreateInput>
+  }
+
+  /**
+   * DictionaryExample createMany
+   */
+  export type DictionaryExampleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DictionaryExamples.
+     */
+    data: DictionaryExampleCreateManyInput | DictionaryExampleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DictionaryExample createManyAndReturn
+   */
+  export type DictionaryExampleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * The data used to create many DictionaryExamples.
+     */
+    data: DictionaryExampleCreateManyInput | DictionaryExampleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryExample update
+   */
+  export type DictionaryExampleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DictionaryExample.
+     */
+    data: XOR<DictionaryExampleUpdateInput, DictionaryExampleUncheckedUpdateInput>
+    /**
+     * Choose, which DictionaryExample to update.
+     */
+    where: DictionaryExampleWhereUniqueInput
+  }
+
+  /**
+   * DictionaryExample updateMany
+   */
+  export type DictionaryExampleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DictionaryExamples.
+     */
+    data: XOR<DictionaryExampleUpdateManyMutationInput, DictionaryExampleUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryExamples to update
+     */
+    where?: DictionaryExampleWhereInput
+    /**
+     * Limit how many DictionaryExamples to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryExample updateManyAndReturn
+   */
+  export type DictionaryExampleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * The data used to update DictionaryExamples.
+     */
+    data: XOR<DictionaryExampleUpdateManyMutationInput, DictionaryExampleUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryExamples to update
+     */
+    where?: DictionaryExampleWhereInput
+    /**
+     * Limit how many DictionaryExamples to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryExample upsert
+   */
+  export type DictionaryExampleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DictionaryExample to update in case it exists.
+     */
+    where: DictionaryExampleWhereUniqueInput
+    /**
+     * In case the DictionaryExample found by the `where` argument doesn't exist, create a new DictionaryExample with this data.
+     */
+    create: XOR<DictionaryExampleCreateInput, DictionaryExampleUncheckedCreateInput>
+    /**
+     * In case the DictionaryExample was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DictionaryExampleUpdateInput, DictionaryExampleUncheckedUpdateInput>
+  }
+
+  /**
+   * DictionaryExample delete
+   */
+  export type DictionaryExampleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+    /**
+     * Filter which DictionaryExample to delete.
+     */
+    where: DictionaryExampleWhereUniqueInput
+  }
+
+  /**
+   * DictionaryExample deleteMany
+   */
+  export type DictionaryExampleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryExamples to delete
+     */
+    where?: DictionaryExampleWhereInput
+    /**
+     * Limit how many DictionaryExamples to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryExample without action
+   */
+  export type DictionaryExampleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryExample
+     */
+    select?: DictionaryExampleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryExample
+     */
+    omit?: DictionaryExampleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryExampleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DictionaryCrossRef
+   */
+
+  export type AggregateDictionaryCrossRef = {
+    _count: DictionaryCrossRefCountAggregateOutputType | null
+    _avg: DictionaryCrossRefAvgAggregateOutputType | null
+    _sum: DictionaryCrossRefSumAggregateOutputType | null
+    _min: DictionaryCrossRefMinAggregateOutputType | null
+    _max: DictionaryCrossRefMaxAggregateOutputType | null
+  }
+
+  export type DictionaryCrossRefAvgAggregateOutputType = {
+    xrefId: number | null
+    senseId: number | null
+  }
+
+  export type DictionaryCrossRefSumAggregateOutputType = {
+    xrefId: number | null
+    senseId: number | null
+  }
+
+  export type DictionaryCrossRefMinAggregateOutputType = {
+    xrefId: number | null
+    senseId: number | null
+    targetWord: string | null
+    lang: string | null
+  }
+
+  export type DictionaryCrossRefMaxAggregateOutputType = {
+    xrefId: number | null
+    senseId: number | null
+    targetWord: string | null
+    lang: string | null
+  }
+
+  export type DictionaryCrossRefCountAggregateOutputType = {
+    xrefId: number
+    senseId: number
+    targetWord: number
+    lang: number
+    _all: number
+  }
+
+
+  export type DictionaryCrossRefAvgAggregateInputType = {
+    xrefId?: true
+    senseId?: true
+  }
+
+  export type DictionaryCrossRefSumAggregateInputType = {
+    xrefId?: true
+    senseId?: true
+  }
+
+  export type DictionaryCrossRefMinAggregateInputType = {
+    xrefId?: true
+    senseId?: true
+    targetWord?: true
+    lang?: true
+  }
+
+  export type DictionaryCrossRefMaxAggregateInputType = {
+    xrefId?: true
+    senseId?: true
+    targetWord?: true
+    lang?: true
+  }
+
+  export type DictionaryCrossRefCountAggregateInputType = {
+    xrefId?: true
+    senseId?: true
+    targetWord?: true
+    lang?: true
+    _all?: true
+  }
+
+  export type DictionaryCrossRefAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryCrossRef to aggregate.
+     */
+    where?: DictionaryCrossRefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryCrossRefs to fetch.
+     */
+    orderBy?: DictionaryCrossRefOrderByWithRelationInput | DictionaryCrossRefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DictionaryCrossRefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryCrossRefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryCrossRefs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DictionaryCrossRefs
+    **/
+    _count?: true | DictionaryCrossRefCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DictionaryCrossRefAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DictionaryCrossRefSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DictionaryCrossRefMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DictionaryCrossRefMaxAggregateInputType
+  }
+
+  export type GetDictionaryCrossRefAggregateType<T extends DictionaryCrossRefAggregateArgs> = {
+        [P in keyof T & keyof AggregateDictionaryCrossRef]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDictionaryCrossRef[P]>
+      : GetScalarType<T[P], AggregateDictionaryCrossRef[P]>
+  }
+
+
+
+
+  export type DictionaryCrossRefGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryCrossRefWhereInput
+    orderBy?: DictionaryCrossRefOrderByWithAggregationInput | DictionaryCrossRefOrderByWithAggregationInput[]
+    by: DictionaryCrossRefScalarFieldEnum[] | DictionaryCrossRefScalarFieldEnum
+    having?: DictionaryCrossRefScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DictionaryCrossRefCountAggregateInputType | true
+    _avg?: DictionaryCrossRefAvgAggregateInputType
+    _sum?: DictionaryCrossRefSumAggregateInputType
+    _min?: DictionaryCrossRefMinAggregateInputType
+    _max?: DictionaryCrossRefMaxAggregateInputType
+  }
+
+  export type DictionaryCrossRefGroupByOutputType = {
+    xrefId: number
+    senseId: number
+    targetWord: string
+    lang: string
+    _count: DictionaryCrossRefCountAggregateOutputType | null
+    _avg: DictionaryCrossRefAvgAggregateOutputType | null
+    _sum: DictionaryCrossRefSumAggregateOutputType | null
+    _min: DictionaryCrossRefMinAggregateOutputType | null
+    _max: DictionaryCrossRefMaxAggregateOutputType | null
+  }
+
+  type GetDictionaryCrossRefGroupByPayload<T extends DictionaryCrossRefGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DictionaryCrossRefGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DictionaryCrossRefGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DictionaryCrossRefGroupByOutputType[P]>
+            : GetScalarType<T[P], DictionaryCrossRefGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DictionaryCrossRefSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    xrefId?: boolean
+    senseId?: boolean
+    targetWord?: boolean
+    lang?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryCrossRef"]>
+
+  export type DictionaryCrossRefSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    xrefId?: boolean
+    senseId?: boolean
+    targetWord?: boolean
+    lang?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryCrossRef"]>
+
+  export type DictionaryCrossRefSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    xrefId?: boolean
+    senseId?: boolean
+    targetWord?: boolean
+    lang?: boolean
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dictionaryCrossRef"]>
+
+  export type DictionaryCrossRefSelectScalar = {
+    xrefId?: boolean
+    senseId?: boolean
+    targetWord?: boolean
+    lang?: boolean
+  }
+
+  export type DictionaryCrossRefOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"xrefId" | "senseId" | "targetWord" | "lang", ExtArgs["result"]["dictionaryCrossRef"]>
+  export type DictionaryCrossRefInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+  export type DictionaryCrossRefIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+  export type DictionaryCrossRefIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sense?: boolean | DictionarySenseDefaultArgs<ExtArgs>
+  }
+
+  export type $DictionaryCrossRefPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DictionaryCrossRef"
+    objects: {
+      sense: Prisma.$DictionarySensePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      xrefId: number
+      senseId: number
+      targetWord: string
+      lang: string
+    }, ExtArgs["result"]["dictionaryCrossRef"]>
+    composites: {}
+  }
+
+  type DictionaryCrossRefGetPayload<S extends boolean | null | undefined | DictionaryCrossRefDefaultArgs> = $Result.GetResult<Prisma.$DictionaryCrossRefPayload, S>
+
+  type DictionaryCrossRefCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DictionaryCrossRefFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DictionaryCrossRefCountAggregateInputType | true
+    }
+
+  export interface DictionaryCrossRefDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DictionaryCrossRef'], meta: { name: 'DictionaryCrossRef' } }
+    /**
+     * Find zero or one DictionaryCrossRef that matches the filter.
+     * @param {DictionaryCrossRefFindUniqueArgs} args - Arguments to find a DictionaryCrossRef
+     * @example
+     * // Get one DictionaryCrossRef
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DictionaryCrossRefFindUniqueArgs>(args: SelectSubset<T, DictionaryCrossRefFindUniqueArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DictionaryCrossRef that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DictionaryCrossRefFindUniqueOrThrowArgs} args - Arguments to find a DictionaryCrossRef
+     * @example
+     * // Get one DictionaryCrossRef
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DictionaryCrossRefFindUniqueOrThrowArgs>(args: SelectSubset<T, DictionaryCrossRefFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryCrossRef that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryCrossRefFindFirstArgs} args - Arguments to find a DictionaryCrossRef
+     * @example
+     * // Get one DictionaryCrossRef
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DictionaryCrossRefFindFirstArgs>(args?: SelectSubset<T, DictionaryCrossRefFindFirstArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DictionaryCrossRef that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryCrossRefFindFirstOrThrowArgs} args - Arguments to find a DictionaryCrossRef
+     * @example
+     * // Get one DictionaryCrossRef
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DictionaryCrossRefFindFirstOrThrowArgs>(args?: SelectSubset<T, DictionaryCrossRefFindFirstOrThrowArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DictionaryCrossRefs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryCrossRefFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DictionaryCrossRefs
+     * const dictionaryCrossRefs = await prisma.dictionaryCrossRef.findMany()
+     * 
+     * // Get first 10 DictionaryCrossRefs
+     * const dictionaryCrossRefs = await prisma.dictionaryCrossRef.findMany({ take: 10 })
+     * 
+     * // Only select the `xrefId`
+     * const dictionaryCrossRefWithXrefIdOnly = await prisma.dictionaryCrossRef.findMany({ select: { xrefId: true } })
+     * 
+     */
+    findMany<T extends DictionaryCrossRefFindManyArgs>(args?: SelectSubset<T, DictionaryCrossRefFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DictionaryCrossRef.
+     * @param {DictionaryCrossRefCreateArgs} args - Arguments to create a DictionaryCrossRef.
+     * @example
+     * // Create one DictionaryCrossRef
+     * const DictionaryCrossRef = await prisma.dictionaryCrossRef.create({
+     *   data: {
+     *     // ... data to create a DictionaryCrossRef
+     *   }
+     * })
+     * 
+     */
+    create<T extends DictionaryCrossRefCreateArgs>(args: SelectSubset<T, DictionaryCrossRefCreateArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DictionaryCrossRefs.
+     * @param {DictionaryCrossRefCreateManyArgs} args - Arguments to create many DictionaryCrossRefs.
+     * @example
+     * // Create many DictionaryCrossRefs
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DictionaryCrossRefCreateManyArgs>(args?: SelectSubset<T, DictionaryCrossRefCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DictionaryCrossRefs and returns the data saved in the database.
+     * @param {DictionaryCrossRefCreateManyAndReturnArgs} args - Arguments to create many DictionaryCrossRefs.
+     * @example
+     * // Create many DictionaryCrossRefs
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DictionaryCrossRefs and only return the `xrefId`
+     * const dictionaryCrossRefWithXrefIdOnly = await prisma.dictionaryCrossRef.createManyAndReturn({
+     *   select: { xrefId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DictionaryCrossRefCreateManyAndReturnArgs>(args?: SelectSubset<T, DictionaryCrossRefCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DictionaryCrossRef.
+     * @param {DictionaryCrossRefDeleteArgs} args - Arguments to delete one DictionaryCrossRef.
+     * @example
+     * // Delete one DictionaryCrossRef
+     * const DictionaryCrossRef = await prisma.dictionaryCrossRef.delete({
+     *   where: {
+     *     // ... filter to delete one DictionaryCrossRef
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DictionaryCrossRefDeleteArgs>(args: SelectSubset<T, DictionaryCrossRefDeleteArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DictionaryCrossRef.
+     * @param {DictionaryCrossRefUpdateArgs} args - Arguments to update one DictionaryCrossRef.
+     * @example
+     * // Update one DictionaryCrossRef
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DictionaryCrossRefUpdateArgs>(args: SelectSubset<T, DictionaryCrossRefUpdateArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DictionaryCrossRefs.
+     * @param {DictionaryCrossRefDeleteManyArgs} args - Arguments to filter DictionaryCrossRefs to delete.
+     * @example
+     * // Delete a few DictionaryCrossRefs
+     * const { count } = await prisma.dictionaryCrossRef.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DictionaryCrossRefDeleteManyArgs>(args?: SelectSubset<T, DictionaryCrossRefDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryCrossRefs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryCrossRefUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DictionaryCrossRefs
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DictionaryCrossRefUpdateManyArgs>(args: SelectSubset<T, DictionaryCrossRefUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DictionaryCrossRefs and returns the data updated in the database.
+     * @param {DictionaryCrossRefUpdateManyAndReturnArgs} args - Arguments to update many DictionaryCrossRefs.
+     * @example
+     * // Update many DictionaryCrossRefs
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DictionaryCrossRefs and only return the `xrefId`
+     * const dictionaryCrossRefWithXrefIdOnly = await prisma.dictionaryCrossRef.updateManyAndReturn({
+     *   select: { xrefId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DictionaryCrossRefUpdateManyAndReturnArgs>(args: SelectSubset<T, DictionaryCrossRefUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DictionaryCrossRef.
+     * @param {DictionaryCrossRefUpsertArgs} args - Arguments to update or create a DictionaryCrossRef.
+     * @example
+     * // Update or create a DictionaryCrossRef
+     * const dictionaryCrossRef = await prisma.dictionaryCrossRef.upsert({
+     *   create: {
+     *     // ... data to create a DictionaryCrossRef
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DictionaryCrossRef we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DictionaryCrossRefUpsertArgs>(args: SelectSubset<T, DictionaryCrossRefUpsertArgs<ExtArgs>>): Prisma__DictionaryCrossRefClient<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DictionaryCrossRefs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryCrossRefCountArgs} args - Arguments to filter DictionaryCrossRefs to count.
+     * @example
+     * // Count the number of DictionaryCrossRefs
+     * const count = await prisma.dictionaryCrossRef.count({
+     *   where: {
+     *     // ... the filter for the DictionaryCrossRefs we want to count
+     *   }
+     * })
+    **/
+    count<T extends DictionaryCrossRefCountArgs>(
+      args?: Subset<T, DictionaryCrossRefCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DictionaryCrossRefCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DictionaryCrossRef.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryCrossRefAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DictionaryCrossRefAggregateArgs>(args: Subset<T, DictionaryCrossRefAggregateArgs>): Prisma.PrismaPromise<GetDictionaryCrossRefAggregateType<T>>
+
+    /**
+     * Group by DictionaryCrossRef.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DictionaryCrossRefGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DictionaryCrossRefGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DictionaryCrossRefGroupByArgs['orderBy'] }
+        : { orderBy?: DictionaryCrossRefGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DictionaryCrossRefGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDictionaryCrossRefGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DictionaryCrossRef model
+   */
+  readonly fields: DictionaryCrossRefFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DictionaryCrossRef.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DictionaryCrossRefClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sense<T extends DictionarySenseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySenseDefaultArgs<ExtArgs>>): Prisma__DictionarySenseClient<$Result.GetResult<Prisma.$DictionarySensePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DictionaryCrossRef model
+   */
+  interface DictionaryCrossRefFieldRefs {
+    readonly xrefId: FieldRef<"DictionaryCrossRef", 'Int'>
+    readonly senseId: FieldRef<"DictionaryCrossRef", 'Int'>
+    readonly targetWord: FieldRef<"DictionaryCrossRef", 'String'>
+    readonly lang: FieldRef<"DictionaryCrossRef", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DictionaryCrossRef findUnique
+   */
+  export type DictionaryCrossRefFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryCrossRef to fetch.
+     */
+    where: DictionaryCrossRefWhereUniqueInput
+  }
+
+  /**
+   * DictionaryCrossRef findUniqueOrThrow
+   */
+  export type DictionaryCrossRefFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryCrossRef to fetch.
+     */
+    where: DictionaryCrossRefWhereUniqueInput
+  }
+
+  /**
+   * DictionaryCrossRef findFirst
+   */
+  export type DictionaryCrossRefFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryCrossRef to fetch.
+     */
+    where?: DictionaryCrossRefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryCrossRefs to fetch.
+     */
+    orderBy?: DictionaryCrossRefOrderByWithRelationInput | DictionaryCrossRefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryCrossRefs.
+     */
+    cursor?: DictionaryCrossRefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryCrossRefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryCrossRefs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryCrossRefs.
+     */
+    distinct?: DictionaryCrossRefScalarFieldEnum | DictionaryCrossRefScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryCrossRef findFirstOrThrow
+   */
+  export type DictionaryCrossRefFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryCrossRef to fetch.
+     */
+    where?: DictionaryCrossRefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryCrossRefs to fetch.
+     */
+    orderBy?: DictionaryCrossRefOrderByWithRelationInput | DictionaryCrossRefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DictionaryCrossRefs.
+     */
+    cursor?: DictionaryCrossRefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryCrossRefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryCrossRefs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DictionaryCrossRefs.
+     */
+    distinct?: DictionaryCrossRefScalarFieldEnum | DictionaryCrossRefScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryCrossRef findMany
+   */
+  export type DictionaryCrossRefFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * Filter, which DictionaryCrossRefs to fetch.
+     */
+    where?: DictionaryCrossRefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DictionaryCrossRefs to fetch.
+     */
+    orderBy?: DictionaryCrossRefOrderByWithRelationInput | DictionaryCrossRefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DictionaryCrossRefs.
+     */
+    cursor?: DictionaryCrossRefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DictionaryCrossRefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DictionaryCrossRefs.
+     */
+    skip?: number
+    distinct?: DictionaryCrossRefScalarFieldEnum | DictionaryCrossRefScalarFieldEnum[]
+  }
+
+  /**
+   * DictionaryCrossRef create
+   */
+  export type DictionaryCrossRefCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DictionaryCrossRef.
+     */
+    data: XOR<DictionaryCrossRefCreateInput, DictionaryCrossRefUncheckedCreateInput>
+  }
+
+  /**
+   * DictionaryCrossRef createMany
+   */
+  export type DictionaryCrossRefCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DictionaryCrossRefs.
+     */
+    data: DictionaryCrossRefCreateManyInput | DictionaryCrossRefCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DictionaryCrossRef createManyAndReturn
+   */
+  export type DictionaryCrossRefCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * The data used to create many DictionaryCrossRefs.
+     */
+    data: DictionaryCrossRefCreateManyInput | DictionaryCrossRefCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryCrossRef update
+   */
+  export type DictionaryCrossRefUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DictionaryCrossRef.
+     */
+    data: XOR<DictionaryCrossRefUpdateInput, DictionaryCrossRefUncheckedUpdateInput>
+    /**
+     * Choose, which DictionaryCrossRef to update.
+     */
+    where: DictionaryCrossRefWhereUniqueInput
+  }
+
+  /**
+   * DictionaryCrossRef updateMany
+   */
+  export type DictionaryCrossRefUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DictionaryCrossRefs.
+     */
+    data: XOR<DictionaryCrossRefUpdateManyMutationInput, DictionaryCrossRefUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryCrossRefs to update
+     */
+    where?: DictionaryCrossRefWhereInput
+    /**
+     * Limit how many DictionaryCrossRefs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryCrossRef updateManyAndReturn
+   */
+  export type DictionaryCrossRefUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * The data used to update DictionaryCrossRefs.
+     */
+    data: XOR<DictionaryCrossRefUpdateManyMutationInput, DictionaryCrossRefUncheckedUpdateManyInput>
+    /**
+     * Filter which DictionaryCrossRefs to update
+     */
+    where?: DictionaryCrossRefWhereInput
+    /**
+     * Limit how many DictionaryCrossRefs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DictionaryCrossRef upsert
+   */
+  export type DictionaryCrossRefUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DictionaryCrossRef to update in case it exists.
+     */
+    where: DictionaryCrossRefWhereUniqueInput
+    /**
+     * In case the DictionaryCrossRef found by the `where` argument doesn't exist, create a new DictionaryCrossRef with this data.
+     */
+    create: XOR<DictionaryCrossRefCreateInput, DictionaryCrossRefUncheckedCreateInput>
+    /**
+     * In case the DictionaryCrossRef was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DictionaryCrossRefUpdateInput, DictionaryCrossRefUncheckedUpdateInput>
+  }
+
+  /**
+   * DictionaryCrossRef delete
+   */
+  export type DictionaryCrossRefDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+    /**
+     * Filter which DictionaryCrossRef to delete.
+     */
+    where: DictionaryCrossRefWhereUniqueInput
+  }
+
+  /**
+   * DictionaryCrossRef deleteMany
+   */
+  export type DictionaryCrossRefDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DictionaryCrossRefs to delete
+     */
+    where?: DictionaryCrossRefWhereInput
+    /**
+     * Limit how many DictionaryCrossRefs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DictionaryCrossRef without action
+   */
+  export type DictionaryCrossRefDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryCrossRef
+     */
+    select?: DictionaryCrossRefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryCrossRef
+     */
+    omit?: DictionaryCrossRefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryCrossRefInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9446,6 +16748,69 @@ export namespace Prisma {
   };
 
   export type UploadedMusicScalarFieldEnum = (typeof UploadedMusicScalarFieldEnum)[keyof typeof UploadedMusicScalarFieldEnum]
+
+
+  export const DictionaryEntryScalarFieldEnum: {
+    entryId: 'entryId',
+    word: 'word',
+    page: 'page',
+    homNumber: 'homNumber'
+  };
+
+  export type DictionaryEntryScalarFieldEnum = (typeof DictionaryEntryScalarFieldEnum)[keyof typeof DictionaryEntryScalarFieldEnum]
+
+
+  export const DictionaryHeadwordScalarFieldEnum: {
+    headId: 'headId',
+    entryId: 'entryId',
+    head: 'head',
+    normalizedHead: 'normalizedHead',
+    type: 'type',
+    pos: 'pos'
+  };
+
+  export type DictionaryHeadwordScalarFieldEnum = (typeof DictionaryHeadwordScalarFieldEnum)[keyof typeof DictionaryHeadwordScalarFieldEnum]
+
+
+  export const DictionarySenseScalarFieldEnum: {
+    senseId: 'senseId',
+    entryId: 'entryId',
+    number: 'number',
+    definition: 'definition',
+    dialect: 'dialect'
+  };
+
+  export type DictionarySenseScalarFieldEnum = (typeof DictionarySenseScalarFieldEnum)[keyof typeof DictionarySenseScalarFieldEnum]
+
+
+  export const DictionaryTranslationScalarFieldEnum: {
+    transId: 'transId',
+    senseId: 'senseId',
+    lang: 'lang',
+    translation: 'translation'
+  };
+
+  export type DictionaryTranslationScalarFieldEnum = (typeof DictionaryTranslationScalarFieldEnum)[keyof typeof DictionaryTranslationScalarFieldEnum]
+
+
+  export const DictionaryExampleScalarFieldEnum: {
+    exampleId: 'exampleId',
+    senseId: 'senseId',
+    textCebuano: 'textCebuano',
+    textTranslation: 'textTranslation'
+  };
+
+  export type DictionaryExampleScalarFieldEnum = (typeof DictionaryExampleScalarFieldEnum)[keyof typeof DictionaryExampleScalarFieldEnum]
+
+
+  export const DictionaryCrossRefScalarFieldEnum: {
+    xrefId: 'xrefId',
+    senseId: 'senseId',
+    targetWord: 'targetWord',
+    lang: 'lang'
+  };
+
+  export type DictionaryCrossRefScalarFieldEnum = (typeof DictionaryCrossRefScalarFieldEnum)[keyof typeof DictionaryCrossRefScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9567,6 +16932,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -9999,6 +17378,345 @@ export namespace Prisma {
     music_name?: StringWithAggregatesFilter<"UploadedMusic"> | string
     uploaded_by?: StringWithAggregatesFilter<"UploadedMusic"> | string
     path?: StringWithAggregatesFilter<"UploadedMusic"> | string
+  }
+
+  export type DictionaryEntryWhereInput = {
+    AND?: DictionaryEntryWhereInput | DictionaryEntryWhereInput[]
+    OR?: DictionaryEntryWhereInput[]
+    NOT?: DictionaryEntryWhereInput | DictionaryEntryWhereInput[]
+    entryId?: IntFilter<"DictionaryEntry"> | number
+    word?: StringFilter<"DictionaryEntry"> | string
+    page?: StringNullableFilter<"DictionaryEntry"> | string | null
+    homNumber?: IntNullableFilter<"DictionaryEntry"> | number | null
+    headwords?: DictionaryHeadwordListRelationFilter
+    senses?: DictionarySenseListRelationFilter
+  }
+
+  export type DictionaryEntryOrderByWithRelationInput = {
+    entryId?: SortOrder
+    word?: SortOrder
+    page?: SortOrderInput | SortOrder
+    homNumber?: SortOrderInput | SortOrder
+    headwords?: DictionaryHeadwordOrderByRelationAggregateInput
+    senses?: DictionarySenseOrderByRelationAggregateInput
+  }
+
+  export type DictionaryEntryWhereUniqueInput = Prisma.AtLeast<{
+    entryId?: number
+    AND?: DictionaryEntryWhereInput | DictionaryEntryWhereInput[]
+    OR?: DictionaryEntryWhereInput[]
+    NOT?: DictionaryEntryWhereInput | DictionaryEntryWhereInput[]
+    word?: StringFilter<"DictionaryEntry"> | string
+    page?: StringNullableFilter<"DictionaryEntry"> | string | null
+    homNumber?: IntNullableFilter<"DictionaryEntry"> | number | null
+    headwords?: DictionaryHeadwordListRelationFilter
+    senses?: DictionarySenseListRelationFilter
+  }, "entryId">
+
+  export type DictionaryEntryOrderByWithAggregationInput = {
+    entryId?: SortOrder
+    word?: SortOrder
+    page?: SortOrderInput | SortOrder
+    homNumber?: SortOrderInput | SortOrder
+    _count?: DictionaryEntryCountOrderByAggregateInput
+    _avg?: DictionaryEntryAvgOrderByAggregateInput
+    _max?: DictionaryEntryMaxOrderByAggregateInput
+    _min?: DictionaryEntryMinOrderByAggregateInput
+    _sum?: DictionaryEntrySumOrderByAggregateInput
+  }
+
+  export type DictionaryEntryScalarWhereWithAggregatesInput = {
+    AND?: DictionaryEntryScalarWhereWithAggregatesInput | DictionaryEntryScalarWhereWithAggregatesInput[]
+    OR?: DictionaryEntryScalarWhereWithAggregatesInput[]
+    NOT?: DictionaryEntryScalarWhereWithAggregatesInput | DictionaryEntryScalarWhereWithAggregatesInput[]
+    entryId?: IntWithAggregatesFilter<"DictionaryEntry"> | number
+    word?: StringWithAggregatesFilter<"DictionaryEntry"> | string
+    page?: StringNullableWithAggregatesFilter<"DictionaryEntry"> | string | null
+    homNumber?: IntNullableWithAggregatesFilter<"DictionaryEntry"> | number | null
+  }
+
+  export type DictionaryHeadwordWhereInput = {
+    AND?: DictionaryHeadwordWhereInput | DictionaryHeadwordWhereInput[]
+    OR?: DictionaryHeadwordWhereInput[]
+    NOT?: DictionaryHeadwordWhereInput | DictionaryHeadwordWhereInput[]
+    headId?: IntFilter<"DictionaryHeadword"> | number
+    entryId?: IntFilter<"DictionaryHeadword"> | number
+    head?: StringFilter<"DictionaryHeadword"> | string
+    normalizedHead?: StringFilter<"DictionaryHeadword"> | string
+    type?: StringNullableFilter<"DictionaryHeadword"> | string | null
+    pos?: StringNullableFilter<"DictionaryHeadword"> | string | null
+    entry?: XOR<DictionaryEntryScalarRelationFilter, DictionaryEntryWhereInput>
+  }
+
+  export type DictionaryHeadwordOrderByWithRelationInput = {
+    headId?: SortOrder
+    entryId?: SortOrder
+    head?: SortOrder
+    normalizedHead?: SortOrder
+    type?: SortOrderInput | SortOrder
+    pos?: SortOrderInput | SortOrder
+    entry?: DictionaryEntryOrderByWithRelationInput
+  }
+
+  export type DictionaryHeadwordWhereUniqueInput = Prisma.AtLeast<{
+    headId?: number
+    AND?: DictionaryHeadwordWhereInput | DictionaryHeadwordWhereInput[]
+    OR?: DictionaryHeadwordWhereInput[]
+    NOT?: DictionaryHeadwordWhereInput | DictionaryHeadwordWhereInput[]
+    entryId?: IntFilter<"DictionaryHeadword"> | number
+    head?: StringFilter<"DictionaryHeadword"> | string
+    normalizedHead?: StringFilter<"DictionaryHeadword"> | string
+    type?: StringNullableFilter<"DictionaryHeadword"> | string | null
+    pos?: StringNullableFilter<"DictionaryHeadword"> | string | null
+    entry?: XOR<DictionaryEntryScalarRelationFilter, DictionaryEntryWhereInput>
+  }, "headId">
+
+  export type DictionaryHeadwordOrderByWithAggregationInput = {
+    headId?: SortOrder
+    entryId?: SortOrder
+    head?: SortOrder
+    normalizedHead?: SortOrder
+    type?: SortOrderInput | SortOrder
+    pos?: SortOrderInput | SortOrder
+    _count?: DictionaryHeadwordCountOrderByAggregateInput
+    _avg?: DictionaryHeadwordAvgOrderByAggregateInput
+    _max?: DictionaryHeadwordMaxOrderByAggregateInput
+    _min?: DictionaryHeadwordMinOrderByAggregateInput
+    _sum?: DictionaryHeadwordSumOrderByAggregateInput
+  }
+
+  export type DictionaryHeadwordScalarWhereWithAggregatesInput = {
+    AND?: DictionaryHeadwordScalarWhereWithAggregatesInput | DictionaryHeadwordScalarWhereWithAggregatesInput[]
+    OR?: DictionaryHeadwordScalarWhereWithAggregatesInput[]
+    NOT?: DictionaryHeadwordScalarWhereWithAggregatesInput | DictionaryHeadwordScalarWhereWithAggregatesInput[]
+    headId?: IntWithAggregatesFilter<"DictionaryHeadword"> | number
+    entryId?: IntWithAggregatesFilter<"DictionaryHeadword"> | number
+    head?: StringWithAggregatesFilter<"DictionaryHeadword"> | string
+    normalizedHead?: StringWithAggregatesFilter<"DictionaryHeadword"> | string
+    type?: StringNullableWithAggregatesFilter<"DictionaryHeadword"> | string | null
+    pos?: StringNullableWithAggregatesFilter<"DictionaryHeadword"> | string | null
+  }
+
+  export type DictionarySenseWhereInput = {
+    AND?: DictionarySenseWhereInput | DictionarySenseWhereInput[]
+    OR?: DictionarySenseWhereInput[]
+    NOT?: DictionarySenseWhereInput | DictionarySenseWhereInput[]
+    senseId?: IntFilter<"DictionarySense"> | number
+    entryId?: IntFilter<"DictionarySense"> | number
+    number?: IntNullableFilter<"DictionarySense"> | number | null
+    definition?: StringNullableFilter<"DictionarySense"> | string | null
+    dialect?: StringNullableFilter<"DictionarySense"> | string | null
+    entry?: XOR<DictionaryEntryScalarRelationFilter, DictionaryEntryWhereInput>
+    translations?: DictionaryTranslationListRelationFilter
+    examples?: DictionaryExampleListRelationFilter
+    crossRefs?: DictionaryCrossRefListRelationFilter
+  }
+
+  export type DictionarySenseOrderByWithRelationInput = {
+    senseId?: SortOrder
+    entryId?: SortOrder
+    number?: SortOrderInput | SortOrder
+    definition?: SortOrderInput | SortOrder
+    dialect?: SortOrderInput | SortOrder
+    entry?: DictionaryEntryOrderByWithRelationInput
+    translations?: DictionaryTranslationOrderByRelationAggregateInput
+    examples?: DictionaryExampleOrderByRelationAggregateInput
+    crossRefs?: DictionaryCrossRefOrderByRelationAggregateInput
+  }
+
+  export type DictionarySenseWhereUniqueInput = Prisma.AtLeast<{
+    senseId?: number
+    AND?: DictionarySenseWhereInput | DictionarySenseWhereInput[]
+    OR?: DictionarySenseWhereInput[]
+    NOT?: DictionarySenseWhereInput | DictionarySenseWhereInput[]
+    entryId?: IntFilter<"DictionarySense"> | number
+    number?: IntNullableFilter<"DictionarySense"> | number | null
+    definition?: StringNullableFilter<"DictionarySense"> | string | null
+    dialect?: StringNullableFilter<"DictionarySense"> | string | null
+    entry?: XOR<DictionaryEntryScalarRelationFilter, DictionaryEntryWhereInput>
+    translations?: DictionaryTranslationListRelationFilter
+    examples?: DictionaryExampleListRelationFilter
+    crossRefs?: DictionaryCrossRefListRelationFilter
+  }, "senseId">
+
+  export type DictionarySenseOrderByWithAggregationInput = {
+    senseId?: SortOrder
+    entryId?: SortOrder
+    number?: SortOrderInput | SortOrder
+    definition?: SortOrderInput | SortOrder
+    dialect?: SortOrderInput | SortOrder
+    _count?: DictionarySenseCountOrderByAggregateInput
+    _avg?: DictionarySenseAvgOrderByAggregateInput
+    _max?: DictionarySenseMaxOrderByAggregateInput
+    _min?: DictionarySenseMinOrderByAggregateInput
+    _sum?: DictionarySenseSumOrderByAggregateInput
+  }
+
+  export type DictionarySenseScalarWhereWithAggregatesInput = {
+    AND?: DictionarySenseScalarWhereWithAggregatesInput | DictionarySenseScalarWhereWithAggregatesInput[]
+    OR?: DictionarySenseScalarWhereWithAggregatesInput[]
+    NOT?: DictionarySenseScalarWhereWithAggregatesInput | DictionarySenseScalarWhereWithAggregatesInput[]
+    senseId?: IntWithAggregatesFilter<"DictionarySense"> | number
+    entryId?: IntWithAggregatesFilter<"DictionarySense"> | number
+    number?: IntNullableWithAggregatesFilter<"DictionarySense"> | number | null
+    definition?: StringNullableWithAggregatesFilter<"DictionarySense"> | string | null
+    dialect?: StringNullableWithAggregatesFilter<"DictionarySense"> | string | null
+  }
+
+  export type DictionaryTranslationWhereInput = {
+    AND?: DictionaryTranslationWhereInput | DictionaryTranslationWhereInput[]
+    OR?: DictionaryTranslationWhereInput[]
+    NOT?: DictionaryTranslationWhereInput | DictionaryTranslationWhereInput[]
+    transId?: IntFilter<"DictionaryTranslation"> | number
+    senseId?: IntFilter<"DictionaryTranslation"> | number
+    lang?: StringFilter<"DictionaryTranslation"> | string
+    translation?: StringFilter<"DictionaryTranslation"> | string
+    sense?: XOR<DictionarySenseScalarRelationFilter, DictionarySenseWhereInput>
+  }
+
+  export type DictionaryTranslationOrderByWithRelationInput = {
+    transId?: SortOrder
+    senseId?: SortOrder
+    lang?: SortOrder
+    translation?: SortOrder
+    sense?: DictionarySenseOrderByWithRelationInput
+  }
+
+  export type DictionaryTranslationWhereUniqueInput = Prisma.AtLeast<{
+    transId?: number
+    AND?: DictionaryTranslationWhereInput | DictionaryTranslationWhereInput[]
+    OR?: DictionaryTranslationWhereInput[]
+    NOT?: DictionaryTranslationWhereInput | DictionaryTranslationWhereInput[]
+    senseId?: IntFilter<"DictionaryTranslation"> | number
+    lang?: StringFilter<"DictionaryTranslation"> | string
+    translation?: StringFilter<"DictionaryTranslation"> | string
+    sense?: XOR<DictionarySenseScalarRelationFilter, DictionarySenseWhereInput>
+  }, "transId">
+
+  export type DictionaryTranslationOrderByWithAggregationInput = {
+    transId?: SortOrder
+    senseId?: SortOrder
+    lang?: SortOrder
+    translation?: SortOrder
+    _count?: DictionaryTranslationCountOrderByAggregateInput
+    _avg?: DictionaryTranslationAvgOrderByAggregateInput
+    _max?: DictionaryTranslationMaxOrderByAggregateInput
+    _min?: DictionaryTranslationMinOrderByAggregateInput
+    _sum?: DictionaryTranslationSumOrderByAggregateInput
+  }
+
+  export type DictionaryTranslationScalarWhereWithAggregatesInput = {
+    AND?: DictionaryTranslationScalarWhereWithAggregatesInput | DictionaryTranslationScalarWhereWithAggregatesInput[]
+    OR?: DictionaryTranslationScalarWhereWithAggregatesInput[]
+    NOT?: DictionaryTranslationScalarWhereWithAggregatesInput | DictionaryTranslationScalarWhereWithAggregatesInput[]
+    transId?: IntWithAggregatesFilter<"DictionaryTranslation"> | number
+    senseId?: IntWithAggregatesFilter<"DictionaryTranslation"> | number
+    lang?: StringWithAggregatesFilter<"DictionaryTranslation"> | string
+    translation?: StringWithAggregatesFilter<"DictionaryTranslation"> | string
+  }
+
+  export type DictionaryExampleWhereInput = {
+    AND?: DictionaryExampleWhereInput | DictionaryExampleWhereInput[]
+    OR?: DictionaryExampleWhereInput[]
+    NOT?: DictionaryExampleWhereInput | DictionaryExampleWhereInput[]
+    exampleId?: IntFilter<"DictionaryExample"> | number
+    senseId?: IntFilter<"DictionaryExample"> | number
+    textCebuano?: StringFilter<"DictionaryExample"> | string
+    textTranslation?: StringNullableFilter<"DictionaryExample"> | string | null
+    sense?: XOR<DictionarySenseScalarRelationFilter, DictionarySenseWhereInput>
+  }
+
+  export type DictionaryExampleOrderByWithRelationInput = {
+    exampleId?: SortOrder
+    senseId?: SortOrder
+    textCebuano?: SortOrder
+    textTranslation?: SortOrderInput | SortOrder
+    sense?: DictionarySenseOrderByWithRelationInput
+  }
+
+  export type DictionaryExampleWhereUniqueInput = Prisma.AtLeast<{
+    exampleId?: number
+    AND?: DictionaryExampleWhereInput | DictionaryExampleWhereInput[]
+    OR?: DictionaryExampleWhereInput[]
+    NOT?: DictionaryExampleWhereInput | DictionaryExampleWhereInput[]
+    senseId?: IntFilter<"DictionaryExample"> | number
+    textCebuano?: StringFilter<"DictionaryExample"> | string
+    textTranslation?: StringNullableFilter<"DictionaryExample"> | string | null
+    sense?: XOR<DictionarySenseScalarRelationFilter, DictionarySenseWhereInput>
+  }, "exampleId">
+
+  export type DictionaryExampleOrderByWithAggregationInput = {
+    exampleId?: SortOrder
+    senseId?: SortOrder
+    textCebuano?: SortOrder
+    textTranslation?: SortOrderInput | SortOrder
+    _count?: DictionaryExampleCountOrderByAggregateInput
+    _avg?: DictionaryExampleAvgOrderByAggregateInput
+    _max?: DictionaryExampleMaxOrderByAggregateInput
+    _min?: DictionaryExampleMinOrderByAggregateInput
+    _sum?: DictionaryExampleSumOrderByAggregateInput
+  }
+
+  export type DictionaryExampleScalarWhereWithAggregatesInput = {
+    AND?: DictionaryExampleScalarWhereWithAggregatesInput | DictionaryExampleScalarWhereWithAggregatesInput[]
+    OR?: DictionaryExampleScalarWhereWithAggregatesInput[]
+    NOT?: DictionaryExampleScalarWhereWithAggregatesInput | DictionaryExampleScalarWhereWithAggregatesInput[]
+    exampleId?: IntWithAggregatesFilter<"DictionaryExample"> | number
+    senseId?: IntWithAggregatesFilter<"DictionaryExample"> | number
+    textCebuano?: StringWithAggregatesFilter<"DictionaryExample"> | string
+    textTranslation?: StringNullableWithAggregatesFilter<"DictionaryExample"> | string | null
+  }
+
+  export type DictionaryCrossRefWhereInput = {
+    AND?: DictionaryCrossRefWhereInput | DictionaryCrossRefWhereInput[]
+    OR?: DictionaryCrossRefWhereInput[]
+    NOT?: DictionaryCrossRefWhereInput | DictionaryCrossRefWhereInput[]
+    xrefId?: IntFilter<"DictionaryCrossRef"> | number
+    senseId?: IntFilter<"DictionaryCrossRef"> | number
+    targetWord?: StringFilter<"DictionaryCrossRef"> | string
+    lang?: StringFilter<"DictionaryCrossRef"> | string
+    sense?: XOR<DictionarySenseScalarRelationFilter, DictionarySenseWhereInput>
+  }
+
+  export type DictionaryCrossRefOrderByWithRelationInput = {
+    xrefId?: SortOrder
+    senseId?: SortOrder
+    targetWord?: SortOrder
+    lang?: SortOrder
+    sense?: DictionarySenseOrderByWithRelationInput
+  }
+
+  export type DictionaryCrossRefWhereUniqueInput = Prisma.AtLeast<{
+    xrefId?: number
+    AND?: DictionaryCrossRefWhereInput | DictionaryCrossRefWhereInput[]
+    OR?: DictionaryCrossRefWhereInput[]
+    NOT?: DictionaryCrossRefWhereInput | DictionaryCrossRefWhereInput[]
+    senseId?: IntFilter<"DictionaryCrossRef"> | number
+    targetWord?: StringFilter<"DictionaryCrossRef"> | string
+    lang?: StringFilter<"DictionaryCrossRef"> | string
+    sense?: XOR<DictionarySenseScalarRelationFilter, DictionarySenseWhereInput>
+  }, "xrefId">
+
+  export type DictionaryCrossRefOrderByWithAggregationInput = {
+    xrefId?: SortOrder
+    senseId?: SortOrder
+    targetWord?: SortOrder
+    lang?: SortOrder
+    _count?: DictionaryCrossRefCountOrderByAggregateInput
+    _avg?: DictionaryCrossRefAvgOrderByAggregateInput
+    _max?: DictionaryCrossRefMaxOrderByAggregateInput
+    _min?: DictionaryCrossRefMinOrderByAggregateInput
+    _sum?: DictionaryCrossRefSumOrderByAggregateInput
+  }
+
+  export type DictionaryCrossRefScalarWhereWithAggregatesInput = {
+    AND?: DictionaryCrossRefScalarWhereWithAggregatesInput | DictionaryCrossRefScalarWhereWithAggregatesInput[]
+    OR?: DictionaryCrossRefScalarWhereWithAggregatesInput[]
+    NOT?: DictionaryCrossRefScalarWhereWithAggregatesInput | DictionaryCrossRefScalarWhereWithAggregatesInput[]
+    xrefId?: IntWithAggregatesFilter<"DictionaryCrossRef"> | number
+    senseId?: IntWithAggregatesFilter<"DictionaryCrossRef"> | number
+    targetWord?: StringWithAggregatesFilter<"DictionaryCrossRef"> | string
+    lang?: StringWithAggregatesFilter<"DictionaryCrossRef"> | string
   }
 
   export type UserCreateInput = {
@@ -10434,6 +18152,318 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
   }
 
+  export type DictionaryEntryCreateInput = {
+    word: string
+    page?: string | null
+    homNumber?: number | null
+    headwords?: DictionaryHeadwordCreateNestedManyWithoutEntryInput
+    senses?: DictionarySenseCreateNestedManyWithoutEntryInput
+  }
+
+  export type DictionaryEntryUncheckedCreateInput = {
+    entryId?: number
+    word: string
+    page?: string | null
+    homNumber?: number | null
+    headwords?: DictionaryHeadwordUncheckedCreateNestedManyWithoutEntryInput
+    senses?: DictionarySenseUncheckedCreateNestedManyWithoutEntryInput
+  }
+
+  export type DictionaryEntryUpdateInput = {
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    headwords?: DictionaryHeadwordUpdateManyWithoutEntryNestedInput
+    senses?: DictionarySenseUpdateManyWithoutEntryNestedInput
+  }
+
+  export type DictionaryEntryUncheckedUpdateInput = {
+    entryId?: IntFieldUpdateOperationsInput | number
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    headwords?: DictionaryHeadwordUncheckedUpdateManyWithoutEntryNestedInput
+    senses?: DictionarySenseUncheckedUpdateManyWithoutEntryNestedInput
+  }
+
+  export type DictionaryEntryCreateManyInput = {
+    entryId?: number
+    word: string
+    page?: string | null
+    homNumber?: number | null
+  }
+
+  export type DictionaryEntryUpdateManyMutationInput = {
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type DictionaryEntryUncheckedUpdateManyInput = {
+    entryId?: IntFieldUpdateOperationsInput | number
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type DictionaryHeadwordCreateInput = {
+    head: string
+    normalizedHead: string
+    type?: string | null
+    pos?: string | null
+    entry: DictionaryEntryCreateNestedOneWithoutHeadwordsInput
+  }
+
+  export type DictionaryHeadwordUncheckedCreateInput = {
+    headId?: number
+    entryId: number
+    head: string
+    normalizedHead: string
+    type?: string | null
+    pos?: string | null
+  }
+
+  export type DictionaryHeadwordUpdateInput = {
+    head?: StringFieldUpdateOperationsInput | string
+    normalizedHead?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    pos?: NullableStringFieldUpdateOperationsInput | string | null
+    entry?: DictionaryEntryUpdateOneRequiredWithoutHeadwordsNestedInput
+  }
+
+  export type DictionaryHeadwordUncheckedUpdateInput = {
+    headId?: IntFieldUpdateOperationsInput | number
+    entryId?: IntFieldUpdateOperationsInput | number
+    head?: StringFieldUpdateOperationsInput | string
+    normalizedHead?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    pos?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryHeadwordCreateManyInput = {
+    headId?: number
+    entryId: number
+    head: string
+    normalizedHead: string
+    type?: string | null
+    pos?: string | null
+  }
+
+  export type DictionaryHeadwordUpdateManyMutationInput = {
+    head?: StringFieldUpdateOperationsInput | string
+    normalizedHead?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    pos?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryHeadwordUncheckedUpdateManyInput = {
+    headId?: IntFieldUpdateOperationsInput | number
+    entryId?: IntFieldUpdateOperationsInput | number
+    head?: StringFieldUpdateOperationsInput | string
+    normalizedHead?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    pos?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionarySenseCreateInput = {
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    entry: DictionaryEntryCreateNestedOneWithoutSensesInput
+    translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
+    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseUncheckedCreateInput = {
+    senseId?: number
+    entryId: number
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
+    examples?: DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseUpdateInput = {
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
+    translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
+    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseUncheckedUpdateInput = {
+    senseId?: IntFieldUpdateOperationsInput | number
+    entryId?: IntFieldUpdateOperationsInput | number
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
+    examples?: DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseCreateManyInput = {
+    senseId?: number
+    entryId: number
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+  }
+
+  export type DictionarySenseUpdateManyMutationInput = {
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionarySenseUncheckedUpdateManyInput = {
+    senseId?: IntFieldUpdateOperationsInput | number
+    entryId?: IntFieldUpdateOperationsInput | number
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryTranslationCreateInput = {
+    lang: string
+    translation: string
+    sense: DictionarySenseCreateNestedOneWithoutTranslationsInput
+  }
+
+  export type DictionaryTranslationUncheckedCreateInput = {
+    transId?: number
+    senseId: number
+    lang: string
+    translation: string
+  }
+
+  export type DictionaryTranslationUpdateInput = {
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+    sense?: DictionarySenseUpdateOneRequiredWithoutTranslationsNestedInput
+  }
+
+  export type DictionaryTranslationUncheckedUpdateInput = {
+    transId?: IntFieldUpdateOperationsInput | number
+    senseId?: IntFieldUpdateOperationsInput | number
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryTranslationCreateManyInput = {
+    transId?: number
+    senseId: number
+    lang: string
+    translation: string
+  }
+
+  export type DictionaryTranslationUpdateManyMutationInput = {
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryTranslationUncheckedUpdateManyInput = {
+    transId?: IntFieldUpdateOperationsInput | number
+    senseId?: IntFieldUpdateOperationsInput | number
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryExampleCreateInput = {
+    textCebuano: string
+    textTranslation?: string | null
+    sense: DictionarySenseCreateNestedOneWithoutExamplesInput
+  }
+
+  export type DictionaryExampleUncheckedCreateInput = {
+    exampleId?: number
+    senseId: number
+    textCebuano: string
+    textTranslation?: string | null
+  }
+
+  export type DictionaryExampleUpdateInput = {
+    textCebuano?: StringFieldUpdateOperationsInput | string
+    textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+    sense?: DictionarySenseUpdateOneRequiredWithoutExamplesNestedInput
+  }
+
+  export type DictionaryExampleUncheckedUpdateInput = {
+    exampleId?: IntFieldUpdateOperationsInput | number
+    senseId?: IntFieldUpdateOperationsInput | number
+    textCebuano?: StringFieldUpdateOperationsInput | string
+    textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryExampleCreateManyInput = {
+    exampleId?: number
+    senseId: number
+    textCebuano: string
+    textTranslation?: string | null
+  }
+
+  export type DictionaryExampleUpdateManyMutationInput = {
+    textCebuano?: StringFieldUpdateOperationsInput | string
+    textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryExampleUncheckedUpdateManyInput = {
+    exampleId?: IntFieldUpdateOperationsInput | number
+    senseId?: IntFieldUpdateOperationsInput | number
+    textCebuano?: StringFieldUpdateOperationsInput | string
+    textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryCrossRefCreateInput = {
+    targetWord: string
+    lang?: string
+    sense: DictionarySenseCreateNestedOneWithoutCrossRefsInput
+  }
+
+  export type DictionaryCrossRefUncheckedCreateInput = {
+    xrefId?: number
+    senseId: number
+    targetWord: string
+    lang?: string
+  }
+
+  export type DictionaryCrossRefUpdateInput = {
+    targetWord?: StringFieldUpdateOperationsInput | string
+    lang?: StringFieldUpdateOperationsInput | string
+    sense?: DictionarySenseUpdateOneRequiredWithoutCrossRefsNestedInput
+  }
+
+  export type DictionaryCrossRefUncheckedUpdateInput = {
+    xrefId?: IntFieldUpdateOperationsInput | number
+    senseId?: IntFieldUpdateOperationsInput | number
+    targetWord?: StringFieldUpdateOperationsInput | string
+    lang?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryCrossRefCreateManyInput = {
+    xrefId?: number
+    senseId: number
+    targetWord: string
+    lang?: string
+  }
+
+  export type DictionaryCrossRefUpdateManyMutationInput = {
+    targetWord?: StringFieldUpdateOperationsInput | string
+    lang?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryCrossRefUncheckedUpdateManyInput = {
+    xrefId?: IntFieldUpdateOperationsInput | number
+    senseId?: IntFieldUpdateOperationsInput | number
+    targetWord?: StringFieldUpdateOperationsInput | string
+    lang?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -10844,6 +18874,317 @@ export namespace Prisma {
     music_name?: SortOrder
     uploaded_by?: SortOrder
     path?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DictionaryHeadwordListRelationFilter = {
+    every?: DictionaryHeadwordWhereInput
+    some?: DictionaryHeadwordWhereInput
+    none?: DictionaryHeadwordWhereInput
+  }
+
+  export type DictionarySenseListRelationFilter = {
+    every?: DictionarySenseWhereInput
+    some?: DictionarySenseWhereInput
+    none?: DictionarySenseWhereInput
+  }
+
+  export type DictionaryHeadwordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DictionarySenseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DictionaryEntryCountOrderByAggregateInput = {
+    entryId?: SortOrder
+    word?: SortOrder
+    page?: SortOrder
+    homNumber?: SortOrder
+  }
+
+  export type DictionaryEntryAvgOrderByAggregateInput = {
+    entryId?: SortOrder
+    homNumber?: SortOrder
+  }
+
+  export type DictionaryEntryMaxOrderByAggregateInput = {
+    entryId?: SortOrder
+    word?: SortOrder
+    page?: SortOrder
+    homNumber?: SortOrder
+  }
+
+  export type DictionaryEntryMinOrderByAggregateInput = {
+    entryId?: SortOrder
+    word?: SortOrder
+    page?: SortOrder
+    homNumber?: SortOrder
+  }
+
+  export type DictionaryEntrySumOrderByAggregateInput = {
+    entryId?: SortOrder
+    homNumber?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DictionaryEntryScalarRelationFilter = {
+    is?: DictionaryEntryWhereInput
+    isNot?: DictionaryEntryWhereInput
+  }
+
+  export type DictionaryHeadwordCountOrderByAggregateInput = {
+    headId?: SortOrder
+    entryId?: SortOrder
+    head?: SortOrder
+    normalizedHead?: SortOrder
+    type?: SortOrder
+    pos?: SortOrder
+  }
+
+  export type DictionaryHeadwordAvgOrderByAggregateInput = {
+    headId?: SortOrder
+    entryId?: SortOrder
+  }
+
+  export type DictionaryHeadwordMaxOrderByAggregateInput = {
+    headId?: SortOrder
+    entryId?: SortOrder
+    head?: SortOrder
+    normalizedHead?: SortOrder
+    type?: SortOrder
+    pos?: SortOrder
+  }
+
+  export type DictionaryHeadwordMinOrderByAggregateInput = {
+    headId?: SortOrder
+    entryId?: SortOrder
+    head?: SortOrder
+    normalizedHead?: SortOrder
+    type?: SortOrder
+    pos?: SortOrder
+  }
+
+  export type DictionaryHeadwordSumOrderByAggregateInput = {
+    headId?: SortOrder
+    entryId?: SortOrder
+  }
+
+  export type DictionaryTranslationListRelationFilter = {
+    every?: DictionaryTranslationWhereInput
+    some?: DictionaryTranslationWhereInput
+    none?: DictionaryTranslationWhereInput
+  }
+
+  export type DictionaryExampleListRelationFilter = {
+    every?: DictionaryExampleWhereInput
+    some?: DictionaryExampleWhereInput
+    none?: DictionaryExampleWhereInput
+  }
+
+  export type DictionaryCrossRefListRelationFilter = {
+    every?: DictionaryCrossRefWhereInput
+    some?: DictionaryCrossRefWhereInput
+    none?: DictionaryCrossRefWhereInput
+  }
+
+  export type DictionaryTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DictionaryExampleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DictionaryCrossRefOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DictionarySenseCountOrderByAggregateInput = {
+    senseId?: SortOrder
+    entryId?: SortOrder
+    number?: SortOrder
+    definition?: SortOrder
+    dialect?: SortOrder
+  }
+
+  export type DictionarySenseAvgOrderByAggregateInput = {
+    senseId?: SortOrder
+    entryId?: SortOrder
+    number?: SortOrder
+  }
+
+  export type DictionarySenseMaxOrderByAggregateInput = {
+    senseId?: SortOrder
+    entryId?: SortOrder
+    number?: SortOrder
+    definition?: SortOrder
+    dialect?: SortOrder
+  }
+
+  export type DictionarySenseMinOrderByAggregateInput = {
+    senseId?: SortOrder
+    entryId?: SortOrder
+    number?: SortOrder
+    definition?: SortOrder
+    dialect?: SortOrder
+  }
+
+  export type DictionarySenseSumOrderByAggregateInput = {
+    senseId?: SortOrder
+    entryId?: SortOrder
+    number?: SortOrder
+  }
+
+  export type DictionarySenseScalarRelationFilter = {
+    is?: DictionarySenseWhereInput
+    isNot?: DictionarySenseWhereInput
+  }
+
+  export type DictionaryTranslationCountOrderByAggregateInput = {
+    transId?: SortOrder
+    senseId?: SortOrder
+    lang?: SortOrder
+    translation?: SortOrder
+  }
+
+  export type DictionaryTranslationAvgOrderByAggregateInput = {
+    transId?: SortOrder
+    senseId?: SortOrder
+  }
+
+  export type DictionaryTranslationMaxOrderByAggregateInput = {
+    transId?: SortOrder
+    senseId?: SortOrder
+    lang?: SortOrder
+    translation?: SortOrder
+  }
+
+  export type DictionaryTranslationMinOrderByAggregateInput = {
+    transId?: SortOrder
+    senseId?: SortOrder
+    lang?: SortOrder
+    translation?: SortOrder
+  }
+
+  export type DictionaryTranslationSumOrderByAggregateInput = {
+    transId?: SortOrder
+    senseId?: SortOrder
+  }
+
+  export type DictionaryExampleCountOrderByAggregateInput = {
+    exampleId?: SortOrder
+    senseId?: SortOrder
+    textCebuano?: SortOrder
+    textTranslation?: SortOrder
+  }
+
+  export type DictionaryExampleAvgOrderByAggregateInput = {
+    exampleId?: SortOrder
+    senseId?: SortOrder
+  }
+
+  export type DictionaryExampleMaxOrderByAggregateInput = {
+    exampleId?: SortOrder
+    senseId?: SortOrder
+    textCebuano?: SortOrder
+    textTranslation?: SortOrder
+  }
+
+  export type DictionaryExampleMinOrderByAggregateInput = {
+    exampleId?: SortOrder
+    senseId?: SortOrder
+    textCebuano?: SortOrder
+    textTranslation?: SortOrder
+  }
+
+  export type DictionaryExampleSumOrderByAggregateInput = {
+    exampleId?: SortOrder
+    senseId?: SortOrder
+  }
+
+  export type DictionaryCrossRefCountOrderByAggregateInput = {
+    xrefId?: SortOrder
+    senseId?: SortOrder
+    targetWord?: SortOrder
+    lang?: SortOrder
+  }
+
+  export type DictionaryCrossRefAvgOrderByAggregateInput = {
+    xrefId?: SortOrder
+    senseId?: SortOrder
+  }
+
+  export type DictionaryCrossRefMaxOrderByAggregateInput = {
+    xrefId?: SortOrder
+    senseId?: SortOrder
+    targetWord?: SortOrder
+    lang?: SortOrder
+  }
+
+  export type DictionaryCrossRefMinOrderByAggregateInput = {
+    xrefId?: SortOrder
+    senseId?: SortOrder
+    targetWord?: SortOrder
+    lang?: SortOrder
+  }
+
+  export type DictionaryCrossRefSumOrderByAggregateInput = {
+    xrefId?: SortOrder
+    senseId?: SortOrder
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -11376,6 +19717,302 @@ export namespace Prisma {
     deleteMany?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
   }
 
+  export type DictionaryHeadwordCreateNestedManyWithoutEntryInput = {
+    create?: XOR<DictionaryHeadwordCreateWithoutEntryInput, DictionaryHeadwordUncheckedCreateWithoutEntryInput> | DictionaryHeadwordCreateWithoutEntryInput[] | DictionaryHeadwordUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionaryHeadwordCreateOrConnectWithoutEntryInput | DictionaryHeadwordCreateOrConnectWithoutEntryInput[]
+    createMany?: DictionaryHeadwordCreateManyEntryInputEnvelope
+    connect?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+  }
+
+  export type DictionarySenseCreateNestedManyWithoutEntryInput = {
+    create?: XOR<DictionarySenseCreateWithoutEntryInput, DictionarySenseUncheckedCreateWithoutEntryInput> | DictionarySenseCreateWithoutEntryInput[] | DictionarySenseUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutEntryInput | DictionarySenseCreateOrConnectWithoutEntryInput[]
+    createMany?: DictionarySenseCreateManyEntryInputEnvelope
+    connect?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+  }
+
+  export type DictionaryHeadwordUncheckedCreateNestedManyWithoutEntryInput = {
+    create?: XOR<DictionaryHeadwordCreateWithoutEntryInput, DictionaryHeadwordUncheckedCreateWithoutEntryInput> | DictionaryHeadwordCreateWithoutEntryInput[] | DictionaryHeadwordUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionaryHeadwordCreateOrConnectWithoutEntryInput | DictionaryHeadwordCreateOrConnectWithoutEntryInput[]
+    createMany?: DictionaryHeadwordCreateManyEntryInputEnvelope
+    connect?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+  }
+
+  export type DictionarySenseUncheckedCreateNestedManyWithoutEntryInput = {
+    create?: XOR<DictionarySenseCreateWithoutEntryInput, DictionarySenseUncheckedCreateWithoutEntryInput> | DictionarySenseCreateWithoutEntryInput[] | DictionarySenseUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutEntryInput | DictionarySenseCreateOrConnectWithoutEntryInput[]
+    createMany?: DictionarySenseCreateManyEntryInputEnvelope
+    connect?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type DictionaryHeadwordUpdateManyWithoutEntryNestedInput = {
+    create?: XOR<DictionaryHeadwordCreateWithoutEntryInput, DictionaryHeadwordUncheckedCreateWithoutEntryInput> | DictionaryHeadwordCreateWithoutEntryInput[] | DictionaryHeadwordUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionaryHeadwordCreateOrConnectWithoutEntryInput | DictionaryHeadwordCreateOrConnectWithoutEntryInput[]
+    upsert?: DictionaryHeadwordUpsertWithWhereUniqueWithoutEntryInput | DictionaryHeadwordUpsertWithWhereUniqueWithoutEntryInput[]
+    createMany?: DictionaryHeadwordCreateManyEntryInputEnvelope
+    set?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    disconnect?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    delete?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    connect?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    update?: DictionaryHeadwordUpdateWithWhereUniqueWithoutEntryInput | DictionaryHeadwordUpdateWithWhereUniqueWithoutEntryInput[]
+    updateMany?: DictionaryHeadwordUpdateManyWithWhereWithoutEntryInput | DictionaryHeadwordUpdateManyWithWhereWithoutEntryInput[]
+    deleteMany?: DictionaryHeadwordScalarWhereInput | DictionaryHeadwordScalarWhereInput[]
+  }
+
+  export type DictionarySenseUpdateManyWithoutEntryNestedInput = {
+    create?: XOR<DictionarySenseCreateWithoutEntryInput, DictionarySenseUncheckedCreateWithoutEntryInput> | DictionarySenseCreateWithoutEntryInput[] | DictionarySenseUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutEntryInput | DictionarySenseCreateOrConnectWithoutEntryInput[]
+    upsert?: DictionarySenseUpsertWithWhereUniqueWithoutEntryInput | DictionarySenseUpsertWithWhereUniqueWithoutEntryInput[]
+    createMany?: DictionarySenseCreateManyEntryInputEnvelope
+    set?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    disconnect?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    delete?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    connect?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    update?: DictionarySenseUpdateWithWhereUniqueWithoutEntryInput | DictionarySenseUpdateWithWhereUniqueWithoutEntryInput[]
+    updateMany?: DictionarySenseUpdateManyWithWhereWithoutEntryInput | DictionarySenseUpdateManyWithWhereWithoutEntryInput[]
+    deleteMany?: DictionarySenseScalarWhereInput | DictionarySenseScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type DictionaryHeadwordUncheckedUpdateManyWithoutEntryNestedInput = {
+    create?: XOR<DictionaryHeadwordCreateWithoutEntryInput, DictionaryHeadwordUncheckedCreateWithoutEntryInput> | DictionaryHeadwordCreateWithoutEntryInput[] | DictionaryHeadwordUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionaryHeadwordCreateOrConnectWithoutEntryInput | DictionaryHeadwordCreateOrConnectWithoutEntryInput[]
+    upsert?: DictionaryHeadwordUpsertWithWhereUniqueWithoutEntryInput | DictionaryHeadwordUpsertWithWhereUniqueWithoutEntryInput[]
+    createMany?: DictionaryHeadwordCreateManyEntryInputEnvelope
+    set?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    disconnect?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    delete?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    connect?: DictionaryHeadwordWhereUniqueInput | DictionaryHeadwordWhereUniqueInput[]
+    update?: DictionaryHeadwordUpdateWithWhereUniqueWithoutEntryInput | DictionaryHeadwordUpdateWithWhereUniqueWithoutEntryInput[]
+    updateMany?: DictionaryHeadwordUpdateManyWithWhereWithoutEntryInput | DictionaryHeadwordUpdateManyWithWhereWithoutEntryInput[]
+    deleteMany?: DictionaryHeadwordScalarWhereInput | DictionaryHeadwordScalarWhereInput[]
+  }
+
+  export type DictionarySenseUncheckedUpdateManyWithoutEntryNestedInput = {
+    create?: XOR<DictionarySenseCreateWithoutEntryInput, DictionarySenseUncheckedCreateWithoutEntryInput> | DictionarySenseCreateWithoutEntryInput[] | DictionarySenseUncheckedCreateWithoutEntryInput[]
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutEntryInput | DictionarySenseCreateOrConnectWithoutEntryInput[]
+    upsert?: DictionarySenseUpsertWithWhereUniqueWithoutEntryInput | DictionarySenseUpsertWithWhereUniqueWithoutEntryInput[]
+    createMany?: DictionarySenseCreateManyEntryInputEnvelope
+    set?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    disconnect?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    delete?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    connect?: DictionarySenseWhereUniqueInput | DictionarySenseWhereUniqueInput[]
+    update?: DictionarySenseUpdateWithWhereUniqueWithoutEntryInput | DictionarySenseUpdateWithWhereUniqueWithoutEntryInput[]
+    updateMany?: DictionarySenseUpdateManyWithWhereWithoutEntryInput | DictionarySenseUpdateManyWithWhereWithoutEntryInput[]
+    deleteMany?: DictionarySenseScalarWhereInput | DictionarySenseScalarWhereInput[]
+  }
+
+  export type DictionaryEntryCreateNestedOneWithoutHeadwordsInput = {
+    create?: XOR<DictionaryEntryCreateWithoutHeadwordsInput, DictionaryEntryUncheckedCreateWithoutHeadwordsInput>
+    connectOrCreate?: DictionaryEntryCreateOrConnectWithoutHeadwordsInput
+    connect?: DictionaryEntryWhereUniqueInput
+  }
+
+  export type DictionaryEntryUpdateOneRequiredWithoutHeadwordsNestedInput = {
+    create?: XOR<DictionaryEntryCreateWithoutHeadwordsInput, DictionaryEntryUncheckedCreateWithoutHeadwordsInput>
+    connectOrCreate?: DictionaryEntryCreateOrConnectWithoutHeadwordsInput
+    upsert?: DictionaryEntryUpsertWithoutHeadwordsInput
+    connect?: DictionaryEntryWhereUniqueInput
+    update?: XOR<XOR<DictionaryEntryUpdateToOneWithWhereWithoutHeadwordsInput, DictionaryEntryUpdateWithoutHeadwordsInput>, DictionaryEntryUncheckedUpdateWithoutHeadwordsInput>
+  }
+
+  export type DictionaryEntryCreateNestedOneWithoutSensesInput = {
+    create?: XOR<DictionaryEntryCreateWithoutSensesInput, DictionaryEntryUncheckedCreateWithoutSensesInput>
+    connectOrCreate?: DictionaryEntryCreateOrConnectWithoutSensesInput
+    connect?: DictionaryEntryWhereUniqueInput
+  }
+
+  export type DictionaryTranslationCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
+    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+  }
+
+  export type DictionaryExampleCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryExampleCreateManySenseInputEnvelope
+    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+  }
+
+  export type DictionaryCrossRefCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput> | DictionaryCrossRefCreateWithoutSenseInput[] | DictionaryCrossRefUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryCrossRefCreateOrConnectWithoutSenseInput | DictionaryCrossRefCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryCrossRefCreateManySenseInputEnvelope
+    connect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+  }
+
+  export type DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
+    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+  }
+
+  export type DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryExampleCreateManySenseInputEnvelope
+    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+  }
+
+  export type DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput> | DictionaryCrossRefCreateWithoutSenseInput[] | DictionaryCrossRefUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryCrossRefCreateOrConnectWithoutSenseInput | DictionaryCrossRefCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryCrossRefCreateManySenseInputEnvelope
+    connect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+  }
+
+  export type DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput = {
+    create?: XOR<DictionaryEntryCreateWithoutSensesInput, DictionaryEntryUncheckedCreateWithoutSensesInput>
+    connectOrCreate?: DictionaryEntryCreateOrConnectWithoutSensesInput
+    upsert?: DictionaryEntryUpsertWithoutSensesInput
+    connect?: DictionaryEntryWhereUniqueInput
+    update?: XOR<XOR<DictionaryEntryUpdateToOneWithWhereWithoutSensesInput, DictionaryEntryUpdateWithoutSensesInput>, DictionaryEntryUncheckedUpdateWithoutSensesInput>
+  }
+
+  export type DictionaryTranslationUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
+    set?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    disconnect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    delete?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    update?: DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryTranslationUpdateManyWithWhereWithoutSenseInput | DictionaryTranslationUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryTranslationScalarWhereInput | DictionaryTranslationScalarWhereInput[]
+  }
+
+  export type DictionaryExampleUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput | DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryExampleCreateManySenseInputEnvelope
+    set?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    disconnect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    delete?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    update?: DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput | DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryExampleUpdateManyWithWhereWithoutSenseInput | DictionaryExampleUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
+  }
+
+  export type DictionaryCrossRefUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput> | DictionaryCrossRefCreateWithoutSenseInput[] | DictionaryCrossRefUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryCrossRefCreateOrConnectWithoutSenseInput | DictionaryCrossRefCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryCrossRefUpsertWithWhereUniqueWithoutSenseInput | DictionaryCrossRefUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryCrossRefCreateManySenseInputEnvelope
+    set?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    disconnect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    delete?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    connect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    update?: DictionaryCrossRefUpdateWithWhereUniqueWithoutSenseInput | DictionaryCrossRefUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryCrossRefUpdateManyWithWhereWithoutSenseInput | DictionaryCrossRefUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryCrossRefScalarWhereInput | DictionaryCrossRefScalarWhereInput[]
+  }
+
+  export type DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
+    set?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    disconnect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    delete?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    update?: DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryTranslationUpdateManyWithWhereWithoutSenseInput | DictionaryTranslationUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryTranslationScalarWhereInput | DictionaryTranslationScalarWhereInput[]
+  }
+
+  export type DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput | DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryExampleCreateManySenseInputEnvelope
+    set?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    disconnect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    delete?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    update?: DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput | DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryExampleUpdateManyWithWhereWithoutSenseInput | DictionaryExampleUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
+  }
+
+  export type DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput> | DictionaryCrossRefCreateWithoutSenseInput[] | DictionaryCrossRefUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryCrossRefCreateOrConnectWithoutSenseInput | DictionaryCrossRefCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryCrossRefUpsertWithWhereUniqueWithoutSenseInput | DictionaryCrossRefUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryCrossRefCreateManySenseInputEnvelope
+    set?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    disconnect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    delete?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    connect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+    update?: DictionaryCrossRefUpdateWithWhereUniqueWithoutSenseInput | DictionaryCrossRefUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryCrossRefUpdateManyWithWhereWithoutSenseInput | DictionaryCrossRefUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryCrossRefScalarWhereInput | DictionaryCrossRefScalarWhereInput[]
+  }
+
+  export type DictionarySenseCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<DictionarySenseCreateWithoutTranslationsInput, DictionarySenseUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutTranslationsInput
+    connect?: DictionarySenseWhereUniqueInput
+  }
+
+  export type DictionarySenseUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<DictionarySenseCreateWithoutTranslationsInput, DictionarySenseUncheckedCreateWithoutTranslationsInput>
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutTranslationsInput
+    upsert?: DictionarySenseUpsertWithoutTranslationsInput
+    connect?: DictionarySenseWhereUniqueInput
+    update?: XOR<XOR<DictionarySenseUpdateToOneWithWhereWithoutTranslationsInput, DictionarySenseUpdateWithoutTranslationsInput>, DictionarySenseUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type DictionarySenseCreateNestedOneWithoutExamplesInput = {
+    create?: XOR<DictionarySenseCreateWithoutExamplesInput, DictionarySenseUncheckedCreateWithoutExamplesInput>
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutExamplesInput
+    connect?: DictionarySenseWhereUniqueInput
+  }
+
+  export type DictionarySenseUpdateOneRequiredWithoutExamplesNestedInput = {
+    create?: XOR<DictionarySenseCreateWithoutExamplesInput, DictionarySenseUncheckedCreateWithoutExamplesInput>
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutExamplesInput
+    upsert?: DictionarySenseUpsertWithoutExamplesInput
+    connect?: DictionarySenseWhereUniqueInput
+    update?: XOR<XOR<DictionarySenseUpdateToOneWithWhereWithoutExamplesInput, DictionarySenseUpdateWithoutExamplesInput>, DictionarySenseUncheckedUpdateWithoutExamplesInput>
+  }
+
+  export type DictionarySenseCreateNestedOneWithoutCrossRefsInput = {
+    create?: XOR<DictionarySenseCreateWithoutCrossRefsInput, DictionarySenseUncheckedCreateWithoutCrossRefsInput>
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutCrossRefsInput
+    connect?: DictionarySenseWhereUniqueInput
+  }
+
+  export type DictionarySenseUpdateOneRequiredWithoutCrossRefsNestedInput = {
+    create?: XOR<DictionarySenseCreateWithoutCrossRefsInput, DictionarySenseUncheckedCreateWithoutCrossRefsInput>
+    connectOrCreate?: DictionarySenseCreateOrConnectWithoutCrossRefsInput
+    upsert?: DictionarySenseUpsertWithoutCrossRefsInput
+    connect?: DictionarySenseWhereUniqueInput
+    update?: XOR<XOR<DictionarySenseUpdateToOneWithWhereWithoutCrossRefsInput, DictionarySenseUpdateWithoutCrossRefsInput>, DictionarySenseUncheckedUpdateWithoutCrossRefsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -11536,6 +20173,60 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -12481,6 +21172,510 @@ export namespace Prisma {
     data: XOR<StickyNotesUpdateManyMutationInput, StickyNotesUncheckedUpdateManyWithoutMusicInput>
   }
 
+  export type DictionaryHeadwordCreateWithoutEntryInput = {
+    head: string
+    normalizedHead: string
+    type?: string | null
+    pos?: string | null
+  }
+
+  export type DictionaryHeadwordUncheckedCreateWithoutEntryInput = {
+    headId?: number
+    head: string
+    normalizedHead: string
+    type?: string | null
+    pos?: string | null
+  }
+
+  export type DictionaryHeadwordCreateOrConnectWithoutEntryInput = {
+    where: DictionaryHeadwordWhereUniqueInput
+    create: XOR<DictionaryHeadwordCreateWithoutEntryInput, DictionaryHeadwordUncheckedCreateWithoutEntryInput>
+  }
+
+  export type DictionaryHeadwordCreateManyEntryInputEnvelope = {
+    data: DictionaryHeadwordCreateManyEntryInput | DictionaryHeadwordCreateManyEntryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DictionarySenseCreateWithoutEntryInput = {
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
+    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseUncheckedCreateWithoutEntryInput = {
+    senseId?: number
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
+    examples?: DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseCreateOrConnectWithoutEntryInput = {
+    where: DictionarySenseWhereUniqueInput
+    create: XOR<DictionarySenseCreateWithoutEntryInput, DictionarySenseUncheckedCreateWithoutEntryInput>
+  }
+
+  export type DictionarySenseCreateManyEntryInputEnvelope = {
+    data: DictionarySenseCreateManyEntryInput | DictionarySenseCreateManyEntryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DictionaryHeadwordUpsertWithWhereUniqueWithoutEntryInput = {
+    where: DictionaryHeadwordWhereUniqueInput
+    update: XOR<DictionaryHeadwordUpdateWithoutEntryInput, DictionaryHeadwordUncheckedUpdateWithoutEntryInput>
+    create: XOR<DictionaryHeadwordCreateWithoutEntryInput, DictionaryHeadwordUncheckedCreateWithoutEntryInput>
+  }
+
+  export type DictionaryHeadwordUpdateWithWhereUniqueWithoutEntryInput = {
+    where: DictionaryHeadwordWhereUniqueInput
+    data: XOR<DictionaryHeadwordUpdateWithoutEntryInput, DictionaryHeadwordUncheckedUpdateWithoutEntryInput>
+  }
+
+  export type DictionaryHeadwordUpdateManyWithWhereWithoutEntryInput = {
+    where: DictionaryHeadwordScalarWhereInput
+    data: XOR<DictionaryHeadwordUpdateManyMutationInput, DictionaryHeadwordUncheckedUpdateManyWithoutEntryInput>
+  }
+
+  export type DictionaryHeadwordScalarWhereInput = {
+    AND?: DictionaryHeadwordScalarWhereInput | DictionaryHeadwordScalarWhereInput[]
+    OR?: DictionaryHeadwordScalarWhereInput[]
+    NOT?: DictionaryHeadwordScalarWhereInput | DictionaryHeadwordScalarWhereInput[]
+    headId?: IntFilter<"DictionaryHeadword"> | number
+    entryId?: IntFilter<"DictionaryHeadword"> | number
+    head?: StringFilter<"DictionaryHeadword"> | string
+    normalizedHead?: StringFilter<"DictionaryHeadword"> | string
+    type?: StringNullableFilter<"DictionaryHeadword"> | string | null
+    pos?: StringNullableFilter<"DictionaryHeadword"> | string | null
+  }
+
+  export type DictionarySenseUpsertWithWhereUniqueWithoutEntryInput = {
+    where: DictionarySenseWhereUniqueInput
+    update: XOR<DictionarySenseUpdateWithoutEntryInput, DictionarySenseUncheckedUpdateWithoutEntryInput>
+    create: XOR<DictionarySenseCreateWithoutEntryInput, DictionarySenseUncheckedCreateWithoutEntryInput>
+  }
+
+  export type DictionarySenseUpdateWithWhereUniqueWithoutEntryInput = {
+    where: DictionarySenseWhereUniqueInput
+    data: XOR<DictionarySenseUpdateWithoutEntryInput, DictionarySenseUncheckedUpdateWithoutEntryInput>
+  }
+
+  export type DictionarySenseUpdateManyWithWhereWithoutEntryInput = {
+    where: DictionarySenseScalarWhereInput
+    data: XOR<DictionarySenseUpdateManyMutationInput, DictionarySenseUncheckedUpdateManyWithoutEntryInput>
+  }
+
+  export type DictionarySenseScalarWhereInput = {
+    AND?: DictionarySenseScalarWhereInput | DictionarySenseScalarWhereInput[]
+    OR?: DictionarySenseScalarWhereInput[]
+    NOT?: DictionarySenseScalarWhereInput | DictionarySenseScalarWhereInput[]
+    senseId?: IntFilter<"DictionarySense"> | number
+    entryId?: IntFilter<"DictionarySense"> | number
+    number?: IntNullableFilter<"DictionarySense"> | number | null
+    definition?: StringNullableFilter<"DictionarySense"> | string | null
+    dialect?: StringNullableFilter<"DictionarySense"> | string | null
+  }
+
+  export type DictionaryEntryCreateWithoutHeadwordsInput = {
+    word: string
+    page?: string | null
+    homNumber?: number | null
+    senses?: DictionarySenseCreateNestedManyWithoutEntryInput
+  }
+
+  export type DictionaryEntryUncheckedCreateWithoutHeadwordsInput = {
+    entryId?: number
+    word: string
+    page?: string | null
+    homNumber?: number | null
+    senses?: DictionarySenseUncheckedCreateNestedManyWithoutEntryInput
+  }
+
+  export type DictionaryEntryCreateOrConnectWithoutHeadwordsInput = {
+    where: DictionaryEntryWhereUniqueInput
+    create: XOR<DictionaryEntryCreateWithoutHeadwordsInput, DictionaryEntryUncheckedCreateWithoutHeadwordsInput>
+  }
+
+  export type DictionaryEntryUpsertWithoutHeadwordsInput = {
+    update: XOR<DictionaryEntryUpdateWithoutHeadwordsInput, DictionaryEntryUncheckedUpdateWithoutHeadwordsInput>
+    create: XOR<DictionaryEntryCreateWithoutHeadwordsInput, DictionaryEntryUncheckedCreateWithoutHeadwordsInput>
+    where?: DictionaryEntryWhereInput
+  }
+
+  export type DictionaryEntryUpdateToOneWithWhereWithoutHeadwordsInput = {
+    where?: DictionaryEntryWhereInput
+    data: XOR<DictionaryEntryUpdateWithoutHeadwordsInput, DictionaryEntryUncheckedUpdateWithoutHeadwordsInput>
+  }
+
+  export type DictionaryEntryUpdateWithoutHeadwordsInput = {
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    senses?: DictionarySenseUpdateManyWithoutEntryNestedInput
+  }
+
+  export type DictionaryEntryUncheckedUpdateWithoutHeadwordsInput = {
+    entryId?: IntFieldUpdateOperationsInput | number
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    senses?: DictionarySenseUncheckedUpdateManyWithoutEntryNestedInput
+  }
+
+  export type DictionaryEntryCreateWithoutSensesInput = {
+    word: string
+    page?: string | null
+    homNumber?: number | null
+    headwords?: DictionaryHeadwordCreateNestedManyWithoutEntryInput
+  }
+
+  export type DictionaryEntryUncheckedCreateWithoutSensesInput = {
+    entryId?: number
+    word: string
+    page?: string | null
+    homNumber?: number | null
+    headwords?: DictionaryHeadwordUncheckedCreateNestedManyWithoutEntryInput
+  }
+
+  export type DictionaryEntryCreateOrConnectWithoutSensesInput = {
+    where: DictionaryEntryWhereUniqueInput
+    create: XOR<DictionaryEntryCreateWithoutSensesInput, DictionaryEntryUncheckedCreateWithoutSensesInput>
+  }
+
+  export type DictionaryTranslationCreateWithoutSenseInput = {
+    lang: string
+    translation: string
+  }
+
+  export type DictionaryTranslationUncheckedCreateWithoutSenseInput = {
+    transId?: number
+    lang: string
+    translation: string
+  }
+
+  export type DictionaryTranslationCreateOrConnectWithoutSenseInput = {
+    where: DictionaryTranslationWhereUniqueInput
+    create: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryTranslationCreateManySenseInputEnvelope = {
+    data: DictionaryTranslationCreateManySenseInput | DictionaryTranslationCreateManySenseInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DictionaryExampleCreateWithoutSenseInput = {
+    textCebuano: string
+    textTranslation?: string | null
+  }
+
+  export type DictionaryExampleUncheckedCreateWithoutSenseInput = {
+    exampleId?: number
+    textCebuano: string
+    textTranslation?: string | null
+  }
+
+  export type DictionaryExampleCreateOrConnectWithoutSenseInput = {
+    where: DictionaryExampleWhereUniqueInput
+    create: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryExampleCreateManySenseInputEnvelope = {
+    data: DictionaryExampleCreateManySenseInput | DictionaryExampleCreateManySenseInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DictionaryCrossRefCreateWithoutSenseInput = {
+    targetWord: string
+    lang?: string
+  }
+
+  export type DictionaryCrossRefUncheckedCreateWithoutSenseInput = {
+    xrefId?: number
+    targetWord: string
+    lang?: string
+  }
+
+  export type DictionaryCrossRefCreateOrConnectWithoutSenseInput = {
+    where: DictionaryCrossRefWhereUniqueInput
+    create: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryCrossRefCreateManySenseInputEnvelope = {
+    data: DictionaryCrossRefCreateManySenseInput | DictionaryCrossRefCreateManySenseInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DictionaryEntryUpsertWithoutSensesInput = {
+    update: XOR<DictionaryEntryUpdateWithoutSensesInput, DictionaryEntryUncheckedUpdateWithoutSensesInput>
+    create: XOR<DictionaryEntryCreateWithoutSensesInput, DictionaryEntryUncheckedCreateWithoutSensesInput>
+    where?: DictionaryEntryWhereInput
+  }
+
+  export type DictionaryEntryUpdateToOneWithWhereWithoutSensesInput = {
+    where?: DictionaryEntryWhereInput
+    data: XOR<DictionaryEntryUpdateWithoutSensesInput, DictionaryEntryUncheckedUpdateWithoutSensesInput>
+  }
+
+  export type DictionaryEntryUpdateWithoutSensesInput = {
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    headwords?: DictionaryHeadwordUpdateManyWithoutEntryNestedInput
+  }
+
+  export type DictionaryEntryUncheckedUpdateWithoutSensesInput = {
+    entryId?: IntFieldUpdateOperationsInput | number
+    word?: StringFieldUpdateOperationsInput | string
+    page?: NullableStringFieldUpdateOperationsInput | string | null
+    homNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    headwords?: DictionaryHeadwordUncheckedUpdateManyWithoutEntryNestedInput
+  }
+
+  export type DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryTranslationWhereUniqueInput
+    update: XOR<DictionaryTranslationUpdateWithoutSenseInput, DictionaryTranslationUncheckedUpdateWithoutSenseInput>
+    create: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryTranslationWhereUniqueInput
+    data: XOR<DictionaryTranslationUpdateWithoutSenseInput, DictionaryTranslationUncheckedUpdateWithoutSenseInput>
+  }
+
+  export type DictionaryTranslationUpdateManyWithWhereWithoutSenseInput = {
+    where: DictionaryTranslationScalarWhereInput
+    data: XOR<DictionaryTranslationUpdateManyMutationInput, DictionaryTranslationUncheckedUpdateManyWithoutSenseInput>
+  }
+
+  export type DictionaryTranslationScalarWhereInput = {
+    AND?: DictionaryTranslationScalarWhereInput | DictionaryTranslationScalarWhereInput[]
+    OR?: DictionaryTranslationScalarWhereInput[]
+    NOT?: DictionaryTranslationScalarWhereInput | DictionaryTranslationScalarWhereInput[]
+    transId?: IntFilter<"DictionaryTranslation"> | number
+    senseId?: IntFilter<"DictionaryTranslation"> | number
+    lang?: StringFilter<"DictionaryTranslation"> | string
+    translation?: StringFilter<"DictionaryTranslation"> | string
+  }
+
+  export type DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryExampleWhereUniqueInput
+    update: XOR<DictionaryExampleUpdateWithoutSenseInput, DictionaryExampleUncheckedUpdateWithoutSenseInput>
+    create: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryExampleWhereUniqueInput
+    data: XOR<DictionaryExampleUpdateWithoutSenseInput, DictionaryExampleUncheckedUpdateWithoutSenseInput>
+  }
+
+  export type DictionaryExampleUpdateManyWithWhereWithoutSenseInput = {
+    where: DictionaryExampleScalarWhereInput
+    data: XOR<DictionaryExampleUpdateManyMutationInput, DictionaryExampleUncheckedUpdateManyWithoutSenseInput>
+  }
+
+  export type DictionaryExampleScalarWhereInput = {
+    AND?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
+    OR?: DictionaryExampleScalarWhereInput[]
+    NOT?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
+    exampleId?: IntFilter<"DictionaryExample"> | number
+    senseId?: IntFilter<"DictionaryExample"> | number
+    textCebuano?: StringFilter<"DictionaryExample"> | string
+    textTranslation?: StringNullableFilter<"DictionaryExample"> | string | null
+  }
+
+  export type DictionaryCrossRefUpsertWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryCrossRefWhereUniqueInput
+    update: XOR<DictionaryCrossRefUpdateWithoutSenseInput, DictionaryCrossRefUncheckedUpdateWithoutSenseInput>
+    create: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryCrossRefUpdateWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryCrossRefWhereUniqueInput
+    data: XOR<DictionaryCrossRefUpdateWithoutSenseInput, DictionaryCrossRefUncheckedUpdateWithoutSenseInput>
+  }
+
+  export type DictionaryCrossRefUpdateManyWithWhereWithoutSenseInput = {
+    where: DictionaryCrossRefScalarWhereInput
+    data: XOR<DictionaryCrossRefUpdateManyMutationInput, DictionaryCrossRefUncheckedUpdateManyWithoutSenseInput>
+  }
+
+  export type DictionaryCrossRefScalarWhereInput = {
+    AND?: DictionaryCrossRefScalarWhereInput | DictionaryCrossRefScalarWhereInput[]
+    OR?: DictionaryCrossRefScalarWhereInput[]
+    NOT?: DictionaryCrossRefScalarWhereInput | DictionaryCrossRefScalarWhereInput[]
+    xrefId?: IntFilter<"DictionaryCrossRef"> | number
+    senseId?: IntFilter<"DictionaryCrossRef"> | number
+    targetWord?: StringFilter<"DictionaryCrossRef"> | string
+    lang?: StringFilter<"DictionaryCrossRef"> | string
+  }
+
+  export type DictionarySenseCreateWithoutTranslationsInput = {
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    entry: DictionaryEntryCreateNestedOneWithoutSensesInput
+    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseUncheckedCreateWithoutTranslationsInput = {
+    senseId?: number
+    entryId: number
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    examples?: DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseCreateOrConnectWithoutTranslationsInput = {
+    where: DictionarySenseWhereUniqueInput
+    create: XOR<DictionarySenseCreateWithoutTranslationsInput, DictionarySenseUncheckedCreateWithoutTranslationsInput>
+  }
+
+  export type DictionarySenseUpsertWithoutTranslationsInput = {
+    update: XOR<DictionarySenseUpdateWithoutTranslationsInput, DictionarySenseUncheckedUpdateWithoutTranslationsInput>
+    create: XOR<DictionarySenseCreateWithoutTranslationsInput, DictionarySenseUncheckedCreateWithoutTranslationsInput>
+    where?: DictionarySenseWhereInput
+  }
+
+  export type DictionarySenseUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: DictionarySenseWhereInput
+    data: XOR<DictionarySenseUpdateWithoutTranslationsInput, DictionarySenseUncheckedUpdateWithoutTranslationsInput>
+  }
+
+  export type DictionarySenseUpdateWithoutTranslationsInput = {
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
+    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseUncheckedUpdateWithoutTranslationsInput = {
+    senseId?: IntFieldUpdateOperationsInput | number
+    entryId?: IntFieldUpdateOperationsInput | number
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    examples?: DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseCreateWithoutExamplesInput = {
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    entry: DictionaryEntryCreateNestedOneWithoutSensesInput
+    translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseUncheckedCreateWithoutExamplesInput = {
+    senseId?: number
+    entryId: number
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
+    crossRefs?: DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseCreateOrConnectWithoutExamplesInput = {
+    where: DictionarySenseWhereUniqueInput
+    create: XOR<DictionarySenseCreateWithoutExamplesInput, DictionarySenseUncheckedCreateWithoutExamplesInput>
+  }
+
+  export type DictionarySenseUpsertWithoutExamplesInput = {
+    update: XOR<DictionarySenseUpdateWithoutExamplesInput, DictionarySenseUncheckedUpdateWithoutExamplesInput>
+    create: XOR<DictionarySenseCreateWithoutExamplesInput, DictionarySenseUncheckedCreateWithoutExamplesInput>
+    where?: DictionarySenseWhereInput
+  }
+
+  export type DictionarySenseUpdateToOneWithWhereWithoutExamplesInput = {
+    where?: DictionarySenseWhereInput
+    data: XOR<DictionarySenseUpdateWithoutExamplesInput, DictionarySenseUncheckedUpdateWithoutExamplesInput>
+  }
+
+  export type DictionarySenseUpdateWithoutExamplesInput = {
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
+    translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseUncheckedUpdateWithoutExamplesInput = {
+    senseId?: IntFieldUpdateOperationsInput | number
+    entryId?: IntFieldUpdateOperationsInput | number
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseCreateWithoutCrossRefsInput = {
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    entry: DictionaryEntryCreateNestedOneWithoutSensesInput
+    translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
+    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseUncheckedCreateWithoutCrossRefsInput = {
+    senseId?: number
+    entryId: number
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
+    examples?: DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput
+  }
+
+  export type DictionarySenseCreateOrConnectWithoutCrossRefsInput = {
+    where: DictionarySenseWhereUniqueInput
+    create: XOR<DictionarySenseCreateWithoutCrossRefsInput, DictionarySenseUncheckedCreateWithoutCrossRefsInput>
+  }
+
+  export type DictionarySenseUpsertWithoutCrossRefsInput = {
+    update: XOR<DictionarySenseUpdateWithoutCrossRefsInput, DictionarySenseUncheckedUpdateWithoutCrossRefsInput>
+    create: XOR<DictionarySenseCreateWithoutCrossRefsInput, DictionarySenseUncheckedCreateWithoutCrossRefsInput>
+    where?: DictionarySenseWhereInput
+  }
+
+  export type DictionarySenseUpdateToOneWithWhereWithoutCrossRefsInput = {
+    where?: DictionarySenseWhereInput
+    data: XOR<DictionarySenseUpdateWithoutCrossRefsInput, DictionarySenseUncheckedUpdateWithoutCrossRefsInput>
+  }
+
+  export type DictionarySenseUpdateWithoutCrossRefsInput = {
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
+    translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
+    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseUncheckedUpdateWithoutCrossRefsInput = {
+    senseId?: IntFieldUpdateOperationsInput | number
+    entryId?: IntFieldUpdateOperationsInput | number
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
+    examples?: DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput
+  }
+
   export type SessionCreateManyUserInput = {
     id?: string
     title?: string
@@ -12777,6 +21972,139 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryHeadwordCreateManyEntryInput = {
+    headId?: number
+    head: string
+    normalizedHead: string
+    type?: string | null
+    pos?: string | null
+  }
+
+  export type DictionarySenseCreateManyEntryInput = {
+    senseId?: number
+    number?: number | null
+    definition?: string | null
+    dialect?: string | null
+  }
+
+  export type DictionaryHeadwordUpdateWithoutEntryInput = {
+    head?: StringFieldUpdateOperationsInput | string
+    normalizedHead?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    pos?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryHeadwordUncheckedUpdateWithoutEntryInput = {
+    headId?: IntFieldUpdateOperationsInput | number
+    head?: StringFieldUpdateOperationsInput | string
+    normalizedHead?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    pos?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryHeadwordUncheckedUpdateManyWithoutEntryInput = {
+    headId?: IntFieldUpdateOperationsInput | number
+    head?: StringFieldUpdateOperationsInput | string
+    normalizedHead?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    pos?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionarySenseUpdateWithoutEntryInput = {
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
+    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseUncheckedUpdateWithoutEntryInput = {
+    senseId?: IntFieldUpdateOperationsInput | number
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
+    examples?: DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput
+    crossRefs?: DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput
+  }
+
+  export type DictionarySenseUncheckedUpdateManyWithoutEntryInput = {
+    senseId?: IntFieldUpdateOperationsInput | number
+    number?: NullableIntFieldUpdateOperationsInput | number | null
+    definition?: NullableStringFieldUpdateOperationsInput | string | null
+    dialect?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryTranslationCreateManySenseInput = {
+    transId?: number
+    lang: string
+    translation: string
+  }
+
+  export type DictionaryExampleCreateManySenseInput = {
+    exampleId?: number
+    textCebuano: string
+    textTranslation?: string | null
+  }
+
+  export type DictionaryCrossRefCreateManySenseInput = {
+    xrefId?: number
+    targetWord: string
+    lang?: string
+  }
+
+  export type DictionaryTranslationUpdateWithoutSenseInput = {
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryTranslationUncheckedUpdateWithoutSenseInput = {
+    transId?: IntFieldUpdateOperationsInput | number
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryTranslationUncheckedUpdateManyWithoutSenseInput = {
+    transId?: IntFieldUpdateOperationsInput | number
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryExampleUpdateWithoutSenseInput = {
+    textCebuano?: StringFieldUpdateOperationsInput | string
+    textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryExampleUncheckedUpdateWithoutSenseInput = {
+    exampleId?: IntFieldUpdateOperationsInput | number
+    textCebuano?: StringFieldUpdateOperationsInput | string
+    textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryExampleUncheckedUpdateManyWithoutSenseInput = {
+    exampleId?: IntFieldUpdateOperationsInput | number
+    textCebuano?: StringFieldUpdateOperationsInput | string
+    textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryCrossRefUpdateWithoutSenseInput = {
+    targetWord?: StringFieldUpdateOperationsInput | string
+    lang?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryCrossRefUncheckedUpdateWithoutSenseInput = {
+    xrefId?: IntFieldUpdateOperationsInput | number
+    targetWord?: StringFieldUpdateOperationsInput | string
+    lang?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryCrossRefUncheckedUpdateManyWithoutSenseInput = {
+    xrefId?: IntFieldUpdateOperationsInput | number
+    targetWord?: StringFieldUpdateOperationsInput | string
+    lang?: StringFieldUpdateOperationsInput | string
   }
 
 
