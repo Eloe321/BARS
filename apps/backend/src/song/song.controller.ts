@@ -43,17 +43,13 @@ export class SongController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Create a new song' })
-  @ApiResponse({
-    status: 201,
-    description: 'The song has been successfully created.',
-  })
-  @ApiResponse({ status: 400, description: 'Bad request.' })
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 201, description: 'Song created successfully' })
+  @ApiResponse({ status: 400, description: 'Bad request' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   async create(
     @Body() createSongDto: CreateSongDto,
     @Req() req: RequestWithUser,
   ) {
-    // Ensure the user_id matches the authenticated user
     createSongDto.user_id = req.user.id;
     return this.songsService.create(createSongDto);
   }
@@ -62,11 +58,8 @@ export class SongController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Get all songs for the current user' })
-  @ApiResponse({
-    status: 200,
-    description: 'Return all songs for the current user.',
-  })
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 200, description: 'Songs retrieved successfully' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   @ApiQuery({ name: 'source', required: false, enum: ['PREMADE', 'UPLOADED'] })
   async findAll(@Req() req: RequestWithUser, @Query('source') source?: string) {
     if (!req.user) {
@@ -87,11 +80,11 @@ export class SongController {
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Get a song by id' })
+  @ApiOperation({ summary: 'Get a song by ID' })
   @ApiParam({ name: 'id', description: 'Song ID' })
-  @ApiResponse({ status: 200, description: 'Return the song.' })
-  @ApiResponse({ status: 404, description: 'Song not found.' })
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 200, description: 'Song retrieved successfully' })
+  @ApiResponse({ status: 404, description: 'Song not found' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   async findOne(@Param('id') id: string, @Req() req: RequestWithUser) {
     const song = await this.songsService.findOne(id);
 

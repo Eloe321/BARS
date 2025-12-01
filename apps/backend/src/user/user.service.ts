@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DatabaseService } from 'src/database/database.service';
+import { UserEntity } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 export const roundsOfHashing = 10;
@@ -19,18 +20,23 @@ export class UserService {
 
     createUserDto.password = hashedPassword;
 
-    return this.databaseService.user.create({
+    const user = await this.databaseService.user.create({
       data: createUserDto,
     });
+
+    return new UserEntity(user);
   }
 
   async findAll() {
-    return await this.databaseService.user.findMany({});
+    const users = await this.databaseService.user.findMany({});
+    return users.map(user => new UserEntity(user));
   }
 
   async findOne(id: string) {
-    return await this.databaseService.user.findUnique({ where: { id } });
+    const user = await this.databaseService.user.findUnique({ where: { id } });
+    return user ? new UserEntity(user) : null;
   }
+
   async findUserByUsername(username: string) {
     return await this.databaseService.user.findUnique({ where: { username } });
   }
@@ -43,15 +49,19 @@ export class UserService {
         roundsOfHashing,
       );
     }
-    return await this.databaseService.user.update({
+    const user = await this.databaseService.user.update({
       where: { id },
       data: updateUserDto,
     });
+
+    return new UserEntity(user);
   }
 
   async remove(id: string) {
-    return await this.databaseService.user.delete({
+    const user = await this.databaseService.user.delete({
       where: { id },
     });
+
+    return new UserEntity(user);
   }
 }

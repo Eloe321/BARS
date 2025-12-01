@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import {
   Controller,
   Req,
@@ -20,6 +18,8 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiTags,
+  ApiOperation,
+  ApiResponse,
 } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/strategy/jwt-auth.guard';
@@ -36,54 +36,67 @@ export class UserController {
   constructor(private readonly usersService: UserService) {}
 
   @Post()
-  @ApiCreatedResponse({ type: Promise<UserEntity> })
-  async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
-    return new UserEntity(await this.usersService.create(createUserDto));
+  @ApiOperation({ summary: 'Create a new user' })
+  @ApiCreatedResponse({ type: UserEntity })
+  @ApiResponse({ status: 201, description: 'User created successfully' })
+  async create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOkResponse({ type: Promise<UserEntity>, isArray: true })
+  @ApiOperation({ summary: 'Get all users' })
+  @ApiOkResponse({ type: UserEntity, isArray: true })
+  @ApiResponse({ status: 200, description: 'Users retrieved successfully' })
   async findAll() {
-    const users = await this.usersService.findAll();
-    return users.map((user) => new UserEntity(user));
+    return this.usersService.findAll();
   }
 
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get current authenticated user' })
   @ApiOkResponse({ type: UserEntity })
+  @ApiResponse({ status: 200, description: 'User retrieved successfully' })
   getMe(@Req() req: RequestWithUser) {
-    // The JWT strategy already attaches the user to the request
-    return new UserEntity(req.user);
+    return req.user;
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOkResponse({ type: Promise<UserEntity> })
+  @ApiOperation({ summary: 'Get user by ID' })
+  @ApiOkResponse({ type: UserEntity })
+  @ApiResponse({ status: 200, description: 'User retrieved successfully' })
+  @ApiResponse({ status: 404, description: 'User not found' })
   async findOne(@Param('id') id: string) {
     const user = await this.usersService.findOne(id);
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found`);
     }
-    return new UserEntity(user);
+    return user;
   }
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: Promise<UserEntity> })
+  @ApiOperation({ summary: 'Update user by ID' })
+  @ApiOkResponse({ type: UserEntity })
+  @ApiResponse({ status: 200, description: 'User updated successfully' })
+  @ApiResponse({ status: 404, description: 'User not found' })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return new UserEntity(await this.usersService.update(id, updateUserDto));
+    return this.usersService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOkResponse({ type: Promise<UserEntity> })
+  @ApiOperation({ summary: 'Delete user by ID' })
+  @ApiOkResponse({ type: UserEntity })
+  @ApiResponse({ status: 200, description: 'User deleted successfully' })
+  @ApiResponse({ status: 404, description: 'User not found' })
   async remove(@Param('id') id: string) {
-    return new UserEntity(await this.usersService.remove(id));
+    return this.usersService.remove(id);
   }
 }
