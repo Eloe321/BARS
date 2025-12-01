@@ -2,11 +2,12 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+import { HttpExceptionFilter, AllExceptionsFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Environment-based CORS configuration
   const isDevelopment = process.env.NODE_ENV !== 'production';
 
   app.enableCors({
@@ -17,8 +18,21 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+  // Global exception filters (order matters: specific to general)
+  app.useGlobalFilters(
+    new HttpExceptionFilter(),
+    new AllExceptionsFilter(),
+  );
+
+  // Global pipes and interceptors
+  app.useGlobalPipes(new ValidationPipe({ 
+    whitelist: true,
+    transform: true,
+  }));
+  app.useGlobalInterceptors(
+    new ClassSerializerInterceptor(app.get(Reflector)),
+    new TransformInterceptor(),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('BARS')

@@ -1,11 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { SearchDictionaryDto } from './dto/search-dictionary.dto';
-import { DictionarySearchResponseDto } from './dto/dictionary-response.dto';
 import { DictionarySearchResultDto } from './dto/dictionary-search-result.dto';
-import { DictionaryDetailResponseDto } from './dto/dictionary-detail-response.dto';
 import { DictionaryEntry } from './entities/dictionary-entry.entity';
 import { DictionaryXmlParser } from './dictionary-xml.parser';
+import { PaginatedResponseDto } from '../common/dto/base-response.dto';
 
 @Injectable()
 export class DictionaryService {
@@ -14,7 +13,7 @@ export class DictionaryService {
     private xmlParser: DictionaryXmlParser,
   ) {}
 
-  async search(searchDto: SearchDictionaryDto): Promise<DictionarySearchResponseDto> {
+  async search(searchDto: SearchDictionaryDto): Promise<PaginatedResponseDto<DictionarySearchResultDto>> {
     const { query, searchType, page = 1, limit = 10 } = searchDto;
     const skip = (page - 1) * limit;
 
@@ -102,18 +101,18 @@ export class DictionaryService {
     // Convert to search result DTOs
     const results = paginatedEntries.map(entry => this.mapToSearchResult(entry));
 
-    const totalPages = Math.ceil(total / limit);
-
     return {
-      results,
-      total,
-      page,
-      limit,
-      totalPages,
+      items: results,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
     };
   }
 
-  async findByWord(word: string): Promise<DictionaryDetailResponseDto> {
+  async findByWord(word: string): Promise<{ entry: DictionaryEntry; mergedSupplementaryEntries: number[] }> {
     // Find main entry
     const heads = await this.db.wced_head.findMany({
       where: {
@@ -199,7 +198,7 @@ export class DictionaryService {
     };
   }
 
-  async findByEntryId(entryId: number): Promise<DictionaryDetailResponseDto> {
+  async findByEntryId(entryId: number): Promise<{ entry: DictionaryEntry; mergedSupplementaryEntries: number[] }> {
     const mainEntry = await this.db.wced_entry.findUnique({
       where: { entryid: entryId },
       include: {

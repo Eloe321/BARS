@@ -100,7 +100,7 @@ function BinisayaFoundCard({ entry, isGettingEntry }: { entry: BinisayaFoundResu
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-semibold">Generated Verse</span>
                   <Button
-                    className="bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4] text-white "
+                    className="bg-gradient-to-r from-[#1e3a5f] to-[#64ffda] text-white hover:from-[#1a3456] hover:to-[#5ae6c4]"
                     onClick={() => {
                       if (generatedVerse) {
                         navigator.clipboard.writeText(generatedVerse);

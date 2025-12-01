@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { BaseResponseDto } from '../../common/dto/base-response.dto';
 import { DictionaryEntry } from '../entities/dictionary-entry.entity';
 
-export class DictionaryDetailResponseDto {
+export class DictionaryDetailDataDto {
   @ApiProperty({ 
     description: 'Complete entry with all supplementary entries merged',
     type: DictionaryEntry
@@ -15,3 +16,5 @@ export class DictionaryDetailResponseDto {
   })
   mergedSupplementaryEntries: number[];
 }
+
+export class DictionaryDetailResponseDto extends BaseResponseDto<DictionaryDetailDataDto> {}

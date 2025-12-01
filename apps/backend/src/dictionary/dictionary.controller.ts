@@ -17,8 +17,9 @@ import {
 } from '@nestjs/swagger';
 import { DictionaryService } from './dictionary.service';
 import { SearchDictionaryDto } from './dto/search-dictionary.dto';
-import { DictionarySearchResponseDto } from './dto/dictionary-response.dto';
-import { DictionaryDetailResponseDto } from './dto/dictionary-detail-response.dto';
+import { DictionarySearchResultDto } from './dto/dictionary-search-result.dto';
+import { DictionaryEntry } from './entities/dictionary-entry.entity';
+import { PaginatedResponseDto, BaseResponseDto } from '../common/dto/base-response.dto';
 
 @ApiTags('dictionary')
 @Controller('dictionary')
@@ -33,7 +34,6 @@ export class DictionaryController {
   @ApiResponse({
     status: 200,
     description: 'Search results returned successfully',
-    type: DictionarySearchResponseDto,
   })
   @ApiResponse({ status: 400, description: 'Bad request - invalid parameters' })
   @ApiQuery({ name: 'query', description: 'Search term', example: 'buang' })
@@ -48,15 +48,8 @@ export class DictionaryController {
   @ApiQuery({ name: 'limit', required: false, description: 'Results per page', example: 10 })
   async search(
     @Query(new ValidationPipe({ transform: true })) searchDto: SearchDictionaryDto,
-  ): Promise<DictionarySearchResponseDto> {
-    try {
-      return await this.dictionaryService.search(searchDto);
-    } catch (error) {
-      throw new HttpException(
-        error.message || 'Failed to search dictionary',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
+  ): Promise<PaginatedResponseDto<DictionarySearchResultDto>> {
+    return await this.dictionaryService.search(searchDto);
   }
 
   @Get('entry/:id')
@@ -68,12 +61,11 @@ export class DictionaryController {
   @ApiResponse({
     status: 200,
     description: 'Entry found with supplementary entries merged',
-    type: DictionaryDetailResponseDto,
   })
   @ApiResponse({ status: 404, description: 'Entry not found' })
   async findByEntryId(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<DictionaryDetailResponseDto> {
+  ): Promise<{ entry: DictionaryEntry; mergedSupplementaryEntries: number[] }> {
     return await this.dictionaryService.findByEntryId(id);
   }
 
@@ -86,10 +78,9 @@ export class DictionaryController {
   @ApiResponse({
     status: 200,
     description: 'Entry found with supplementary entries merged',
-    type: DictionaryDetailResponseDto,
   })
   @ApiResponse({ status: 404, description: 'Word not found' })
-  async findByWord(@Param('word') word: string): Promise<DictionaryDetailResponseDto> {
+  async findByWord(@Param('word') word: string): Promise<{ entry: DictionaryEntry; mergedSupplementaryEntries: number[] }> {
     return await this.dictionaryService.findByWord(word);
   }
 }
