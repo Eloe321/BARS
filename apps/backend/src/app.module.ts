@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { SongModule } from './song/song.module';
 import { MusicModule } from './music/music.module';
 import { LinkModule } from './link/link.module';
+import { DictionaryModule } from './dictionary/dictionary.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { LinkModule } from './link/link.module';
     SongModule,
     MusicModule,
     LinkModule,
+    DictionaryModule,
   ],
   controllers: [],
   providers: [],
