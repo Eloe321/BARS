@@ -117,34 +117,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  username: 'username',
-  email: 'email',
-  password: 'password',
-  createAt: 'createAt',
-  updateAt: 'updateAt'
-};
-
-exports.Prisma.SessionScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  user_id: 'user_id',
-  musicSource: 'musicSource',
-  premade_music_id: 'premade_music_id',
-  uploaded_music_id: 'uploaded_music_id',
-  audio_timeline: 'audio_timeline',
-  creation_date: 'creation_date'
-};
-
-exports.Prisma.StickyNotesScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  content: 'content',
-  user_id: 'user_id',
-  music_id: 'music_id'
-};
-
 exports.Prisma.LinkScalarFieldEnum = {
   link_id: 'link_id',
   song_id: 'song_id',
@@ -163,16 +135,56 @@ exports.Prisma.LinkPermissionScalarFieldEnum = {
 
 exports.Prisma.PremadeMusicScalarFieldEnum = {
   music_id: 'music_id',
-  music_name: 'music_name',
   uploaded_date: 'uploaded_date',
+  music_name: 'music_name',
   path: 'path'
+};
+
+exports.Prisma.SongScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  creation_date: 'creation_date',
+  musicSource: 'musicSource',
+  premade_music_id: 'premade_music_id',
+  uploaded_music_id: 'uploaded_music_id',
+  content: 'content',
+  title: 'title'
 };
 
 exports.Prisma.UploadedMusicScalarFieldEnum = {
   music_id: 'music_id',
-  music_name: 'music_name',
   uploaded_by: 'uploaded_by',
+  music_name: 'music_name',
   path: 'path'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  username: 'username'
+};
+
+exports.Prisma.Wced_entryScalarFieldEnum = {
+  entryid: 'entryid',
+  word: 'word',
+  page: 'page',
+  entry: 'entry'
+};
+
+exports.Prisma.Wced_headScalarFieldEnum = {
+  entryid: 'entryid',
+  head: 'head',
+  normalized_head: 'normalized_head',
+  type: 'type',
+  pos: 'pos'
+};
+
+exports.Prisma.Wced_translationScalarFieldEnum = {
+  entryid: 'entryid',
+  translation: 'translation'
 };
 
 exports.Prisma.SortOrder = {
@@ -180,19 +192,9 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
-};
-
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -205,13 +207,15 @@ exports.MusicSource = exports.$Enums.MusicSource = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Session: 'Session',
-  StickyNotes: 'StickyNotes',
   Link: 'Link',
   LinkPermission: 'LinkPermission',
   PremadeMusic: 'PremadeMusic',
-  UploadedMusic: 'UploadedMusic'
+  Song: 'Song',
+  UploadedMusic: 'UploadedMusic',
+  User: 'User',
+  wced_entry: 'wced_entry',
+  wced_head: 'wced_head',
+  wced_translation: 'wced_translation'
 };
 
 /**

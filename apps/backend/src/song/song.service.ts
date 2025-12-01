@@ -19,8 +19,8 @@ export class SongService {
     const songs = await this.db.song.findMany({
       where: filters,
       include: {
-        premadeMusic: true,
-        uploadedMusic: true,
+        PremadeMusic: true,
+        UploadedMusic: true,
       },
     });
     return songs.map((song) => this.mapToEntity(song));
@@ -30,8 +30,8 @@ export class SongService {
     const song = await this.db.song.findUnique({
       where: { id },
       include: {
-        premadeMusic: true,
-        uploadedMusic: true,
+        PremadeMusic: true,
+        UploadedMusic: true,
       },
     });
     if (!song) {
@@ -45,8 +45,8 @@ export class SongService {
       where: { id },
       data: updateSongDto,
       include: {
-        premadeMusic: true,
-        uploadedMusic: true,
+        PremadeMusic: true,
+        UploadedMusic: true,
       },
     });
     return this.mapToEntity(song);
@@ -56,8 +56,8 @@ export class SongService {
     const song = await this.db.song.delete({
       where: { id },
       include: {
-        premadeMusic: true,
-        uploadedMusic: true,
+        PremadeMusic: true,
+        UploadedMusic: true,
       },
     });
     return this.mapToEntity(song);

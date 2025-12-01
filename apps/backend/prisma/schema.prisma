@@ -1,106 +1,131 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["public", "wced"]
+}
+
+model Link {
+  link_id        String           @id @default(dbgenerated("(gen_random_uuid())::text"))
+  song_id        String
+  created_by     String
+  is_public      Boolean          @default(false)
+  created_at     DateTime         @default(now())
+  expires_at     DateTime
+  User           User             @relation(fields: [created_by], references: [id])
+  Song           Song             @relation(fields: [song_id], references: [id])
+  LinkPermission LinkPermission[]
+
+  @@schema("public")
+}
+
+model LinkPermission {
+  link_permission_id String  @id @default(dbgenerated("(gen_random_uuid())::text"))
+  link_id            String
+  user_id            String
+  can_view           Boolean @default(true)
+  Link               Link    @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
+  User               User    @relation(fields: [user_id], references: [id])
+
+  @@schema("public")
+}
+
+model PremadeMusic {
+  music_id      String   @id @default(dbgenerated("(gen_random_uuid())::text"))
+  uploaded_date DateTime @default(now())
+  music_name    String   @unique
+  path          String
+  Song          Song[]
+
+  @@schema("public")
+}
+
+model Song {
+  id                String         @id @default(dbgenerated("(gen_random_uuid())::text"))
+  user_id           String
+  creation_date     DateTime       @default(now())
+  musicSource       MusicSource    @default(PREMADE)
+  premade_music_id  String?
+  uploaded_music_id String?
+  content           String         @default("")
+  title             String         @default("untitled")
+  Link              Link[]
+  PremadeMusic      PremadeMusic?  @relation(fields: [premade_music_id], references: [music_id])
+  UploadedMusic     UploadedMusic? @relation(fields: [uploaded_music_id], references: [music_id])
+  User              User           @relation(fields: [user_id], references: [id])
+
+  @@schema("public")
+}
+
+model UploadedMusic {
+  music_id    String @id @default(dbgenerated("(gen_random_uuid())::text"))
+  uploaded_by String
+  music_name  String @unique
+  path        String @default("")
+  Song        Song[]
+
+  @@schema("public")
+}
+
+model User {
+  id             String           @id @default(dbgenerated("(gen_random_uuid())::text"))
+  email          String           @unique
+  password       String
+  createAt       DateTime         @default(now())
+  updateAt       DateTime?
+  username       String           @unique
+  Link           Link[]
+  LinkPermission LinkPermission[]
+  Song           Song[]
+
+  @@schema("public")
+}
+
+model wced_entry {
+  entryid          Int                @id @default(autoincrement())
+  word             String             @default("") @db.VarChar(64)
+  page             String             @default("") @db.VarChar(4)
+  entry            String             @default("")
+  wced_head        wced_head[]
+  wced_translation wced_translation[]
+
+  @@index([word], map: "word")
+  @@schema("wced")
+}
+
+model wced_head {
+  entryid         Int
+  head            String     @default("") @db.VarChar(64)
+  normalized_head String     @default("") @db.VarChar(64)
+  type            String     @default("") @db.VarChar(6)
+  pos             String     @default("") @db.VarChar(6)
+  wced_entry      wced_entry @relation(fields: [entryid], references: [entryid], onDelete: Cascade, map: "fk_wced_head_entry")
+
+  @@id([entryid, head])
+  @@index([head], map: "head")
+  @@index([entryid], map: "idx_wced_head_entryid")
+  @@schema("wced")
+}
+
+model wced_translation {
+  entryid     Int
+  translation String     @default("") @db.VarChar(64)
+  wced_entry  wced_entry @relation(fields: [entryid], references: [entryid], onDelete: Cascade, map: "fk_wced_translation_entry")
+
+  @@id([entryid, translation])
+  @@index([entryid], map: "idx_wced_translation_entryid")
+  @@index([translation], map: "translation")
+  @@schema("wced")
 }
 
 enum MusicSource {
   PREMADE
   UPLOADED
-}
 
-model User {
-  id         String   @id @default(cuid())
-  username   String   @unique
-  email      String   @unique
-  password   String
-  createAt   DateTime @default(now())
-  updateAt   DateTime @updatedAt
-  
-  // Relations
-  sessions          Session[]
-  links          Link[]
-  linkPermissions LinkPermission[]
-  stickyNotes       StickyNotes[]
-}
-
-model Session {
-  id            String   @id @default(cuid())
-  title         String   @default("untitled")
-  user_id       String
-  musicSource   MusicSource       @default(PREMADE)
-  premade_music_id   String?
-  uploaded_music_id  String?
-  audio_timeline     Json
-  creation_date DateTime @default(now())
-  
-  user           User            @relation(fields: [user_id], references: [id])
-  links          Link[]
-  premadeMusic   PremadeMusic?        @relation(fields: [premade_music_id], references: [music_id])
-  uploadedMusic  UploadedMusic?       @relation(fields: [uploaded_music_id], references: [music_id])
-}
-
-model StickyNotes {
-  id         String   @id @default(cuid())
-  title     String   @default("")
-  content    String   @default("")
-  user_id    String
-  music_id   String?  
-
-  user      User      @relation(fields: [user_id], references: [id])
-  music    UploadedMusic?      @relation(fields: [music_id], references: [music_id])
-}
-
-model Link {
-  link_id      String   @id @default(cuid())
-  song_id      String
-  created_by   String   // user_id
-  is_public    Boolean  @default(false)
-  created_at   DateTime @default(now())
-  expires_at   DateTime
-  
-  // Relations
-  session            Session            @relation(fields: [song_id], references: [id])
-  creator         User            @relation(fields: [created_by], references: [id])
-  linkPermissions LinkPermission[]
-}
-
-model LinkPermission {
-  link_permission_id String  @id @default(cuid())
-  link_id           String
-  user_id           String
-  can_view          Boolean @default(true)
-  
-  // Relations
-  link User  @relation(fields: [user_id], references: [id])
-  userLink Link @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
-}
-
-model PremadeMusic {
-  music_id      String   @id @default(cuid())
-  music_name    String    @unique
-  uploaded_date DateTime @default(now())
-  path          String
-  
-  // Relations
-  session         Session[]
-}
-model UploadedMusic{
-  music_id      String   @id @default(cuid())
-  music_name    String  @unique
-  uploaded_by   String
-  path          String    @default("")
-  // Relations
-  session         Session[]
-  stickyNotes     StickyNotes[]
+  @@schema("public")
 }
