@@ -3,14 +3,9 @@ import {
   Catch,
   ArgumentsHost,
   HttpException,
-  HttpStatus,
 } from '@nestjs/common';
 import { Response } from 'express';
 
-/**
- * Global exception filter to format all HTTP exceptions consistently
- * Returns errors in a standardized format with message and error details
- */
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
@@ -19,49 +14,43 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status = exception.getStatus();
     const exceptionResponse = exception.getResponse();
 
-    // Extract error message(s) from exception
     const message =
       typeof exceptionResponse === 'string'
         ? exceptionResponse
         : (exceptionResponse as any).message || 'An error occurred';
 
-    // Build standardized error response
+    const errorCode = this.getErrorCode(status);
+
     const errorResponse = {
-      message: Array.isArray(message) ? message[0] : message,
+      message: Array.isArray(message) ? 'Validation failed' : message,
       error: {
         statusCode: status,
+        errorCode,
         timestamp: new Date().toISOString(),
-        details: Array.isArray(message) ? message : [message],
+        ...(Array.isArray(message) ? { details: message } : {}),
       },
     };
 
     response.status(status).json(errorResponse);
   }
-}
 
-/**
- * Catch-all exception filter for non-HTTP exceptions
- * Handles unexpected errors with 500 status
- */
-@Catch()
-export class AllExceptionsFilter implements ExceptionFilter {
-  catch(exception: unknown, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    
-    const status = HttpStatus.INTERNAL_SERVER_ERROR;
-    const message =
-      exception instanceof Error ? exception.message : 'Internal server error';
-
-    const errorResponse = {
-      message,
-      error: {
-        statusCode: status,
-        timestamp: new Date().toISOString(),
-        details: [message],
-      },
+  private getErrorCode(status: number): string {
+    const errorCodeMap: Record<number, string> = {
+      400: 'BAD_REQUEST',
+      401: 'UNAUTHORIZED',
+      403: 'FORBIDDEN',
+      404: 'NOT_FOUND',
+      408: 'REQUEST_TIMEOUT',
+      409: 'CONFLICT',
+      422: 'UNPROCESSABLE_ENTITY',
+      429: 'TOO_MANY_REQUESTS',
+      500: 'INTERNAL_SERVER_ERROR',
+      502: 'BAD_GATEWAY',
+      503: 'SERVICE_UNAVAILABLE',
+      504: 'GATEWAY_TIMEOUT',
     };
 
-    response.status(status).json(errorResponse);
+    return errorCodeMap[status] || 'UNKNOWN_ERROR';
   }
 }
+

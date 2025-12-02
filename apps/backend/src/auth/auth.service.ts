@@ -1,11 +1,5 @@
 //src/auth/auth.service.ts
-import {
-  Injectable,
-  NotFoundException,
-  UnauthorizedException,
-  ConflictException,
-  BadRequestException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { JwtService } from '@nestjs/jwt';
 import { AuthEntity } from './entity/auth.entity';
@@ -13,6 +7,11 @@ import { UserEntity } from '../user/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { RegisterDto } from './dto/register.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
+import {
+  AuthenticationException,
+  ResourceNotFoundException,
+  ConflictException,
+} from '../common/exceptions/domain.exceptions';
 
 const REFRESH_TOKEN_EXPIRY = '7d';
 const roundsOfHashing = 10;
@@ -75,12 +74,12 @@ export class AuthService {
       },
     });
     if (!user) {
-      throw new NotFoundException(`No user found for email: ${email}`);
+      throw new ResourceNotFoundException('User', email);
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid password');
+      throw new AuthenticationException('Invalid credentials');
     }
 
     const accessToken = this.generateAccessToken(user.id);
@@ -101,7 +100,7 @@ export class AuthService {
       });
 
       if (!user) {
-        throw new UnauthorizedException('User not found');
+        throw new ResourceNotFoundException('User', payload.userId);
       }
 
       const newAccessToken = this.generateAccessToken(user.id);
@@ -112,7 +111,7 @@ export class AuthService {
         refreshToken: newRefreshToken,
       };
     } catch (error) {
-      throw new UnauthorizedException('Invalid or expired refresh token');
+      throw new AuthenticationException('Invalid or expired refresh token');
     }
   }
 
@@ -122,7 +121,7 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new ResourceNotFoundException('User', userId);
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -131,7 +130,7 @@ export class AuthService {
     );
 
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Current password is incorrect');
+      throw new AuthenticationException('Current password is incorrect');
     }
 
     const hashedPassword = await bcrypt.hash(
@@ -153,7 +152,7 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new UnauthorizedException('Invalid token');
+      throw new AuthenticationException('Invalid token');
     }
 
     return new UserEntity(user);

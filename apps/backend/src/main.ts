@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
-import { HttpExceptionFilter, AllExceptionsFilter } from './common/filters/http-exception.filter';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,16 +18,15 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Global exception filters (order matters: specific to general)
-  app.useGlobalFilters(
-    new HttpExceptionFilter(),
-    new AllExceptionsFilter(),
-  );
+  // Global filters
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   // Global pipes and interceptors
   app.useGlobalPipes(new ValidationPipe({ 
     whitelist: true,
     transform: true,
+    forbidNonWhitelisted: true,
+    stopAtFirstError: false,
   }));
   app.useGlobalInterceptors(
     new ClassSerializerInterceptor(app.get(Reflector)),
