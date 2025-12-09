@@ -1,215 +1,181 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
-    previewFeatures = ["multiSchema"]
-
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
-   provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
   schemas  = ["public", "wced"]
 }
 
-enum MusicSource {
-  PREMADE
-  UPLOADED
-  
-  @@schema("public")
-}
-
 model User {
-  id         String   @id @default(cuid())
-  username   String   @unique
-  email      String   @unique
-  password   String
-  createAt   DateTime @default(now())
-  updateAt   DateTime @updatedAt
-  
-  // Relations
-  sessions          Session[]
-  links          Link[]
+  id              String           @id @default(cuid())
+  email           String           @unique
+  password        String
+  createAt        DateTime         @default(now())
+  updateAt        DateTime         @updatedAt
+  username        String           @unique
+  links           Link[]
   linkPermissions LinkPermission[]
-  stickyNotes       StickyNotes[]
-  
+  sessions        Session[]
+  stickyNotes     StickyNotes[]
+
   @@schema("public")
 }
 
 model Session {
-  id            String   @id @default(cuid())
-  title         String   @default("untitled")
-  user_id       String
-  musicSource   MusicSource       @default(PREMADE)
-  premade_music_id   String?
-  uploaded_music_id  String?
-  audio_timeline     Json
-  creation_date DateTime @default(now())
-  
-  user           User            @relation(fields: [user_id], references: [id])
-  links          Link[]
-  premadeMusic   PremadeMusic?        @relation(fields: [premade_music_id], references: [music_id])
-  uploadedMusic  UploadedMusic?       @relation(fields: [uploaded_music_id], references: [music_id])
-  
+  id                String         @id @default(cuid())
+  title             String         @default("untitled")
+  user_id           String
+  musicSource       MusicSource    @default(PREMADE)
+  premade_music_id  String?
+  uploaded_music_id String?
+  audio_timeline    Json
+  creation_date     DateTime       @default(now())
+  links             Link[]
+  premadeMusic      PremadeMusic?  @relation(fields: [premade_music_id], references: [music_id])
+  uploadedMusic     UploadedMusic? @relation(fields: [uploaded_music_id], references: [music_id])
+  user              User           @relation(fields: [user_id], references: [id])
+
   @@schema("public")
 }
 
 model StickyNotes {
-  id         String   @id @default(cuid())
-  title     String   @default("")
-  content    String   @default("")
-  user_id    String
-  music_id   String?  
+  id       String         @id @default(cuid())
+  title    String         @default("")
+  content  String         @default("")
+  user_id  String
+  music_id String?
+  music    UploadedMusic? @relation(fields: [music_id], references: [music_id])
+  user     User           @relation(fields: [user_id], references: [id])
 
-  user      User      @relation(fields: [user_id], references: [id])
-  music    UploadedMusic?      @relation(fields: [music_id], references: [music_id])
-  
   @@schema("public")
 }
 
 model Link {
-  link_id      String   @id @default(cuid())
-  song_id      String
-  created_by   String   // user_id
-  is_public    Boolean  @default(false)
-  created_at   DateTime @default(now())
-  expires_at   DateTime
-  
-  // Relations
-  session            Session            @relation(fields: [song_id], references: [id])
-  creator         User            @relation(fields: [created_by], references: [id])
+  link_id         String           @id @default(cuid())
+  song_id         String
+  created_by      String
+  is_public       Boolean          @default(false)
+  created_at      DateTime         @default(now())
+  expires_at      DateTime
+  creator         User             @relation(fields: [created_by], references: [id])
+  session         Session          @relation(fields: [song_id], references: [id])
   linkPermissions LinkPermission[]
-  
+
   @@schema("public")
 }
 
 model LinkPermission {
   link_permission_id String  @id @default(cuid())
-  link_id           String
-  user_id           String
-  can_view          Boolean @default(true)
-  
-  // Relations
-  link User  @relation(fields: [user_id], references: [id])
-  userLink Link @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
-  
+  link_id            String
+  user_id            String
+  can_view           Boolean @default(true)
+  userLink           Link    @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
+  link               User    @relation(fields: [user_id], references: [id])
+
   @@schema("public")
 }
 
 model PremadeMusic {
-  music_id      String   @id @default(cuid())
+  music_id      String    @id @default(cuid())
+  uploaded_date DateTime  @default(now())
   music_name    String    @unique
-  uploaded_date DateTime @default(now())
   path          String
-  
-  // Relations
-  session         Session[]
-  
+  session       Session[]
+
   @@schema("public")
 }
 
-model UploadedMusic{
-  music_id      String   @id @default(cuid())
-  music_name    String  @unique
-  uploaded_by   String
-  path          String    @default("")
-  // Relations
-  session         Session[]
-  stickyNotes     StickyNotes[]
-  
+model UploadedMusic {
+  music_id    String        @id @default(cuid())
+  uploaded_by String
+  music_name  String        @unique
+  path        String        @default("")
+  session     Session[]
+  stickyNotes StickyNotes[]
+
   @@schema("public")
 }
-
-// ======================================================================
-// WCED DICTIONARY/THESAURUS SCHEMA INTEGRATION
-// ======================================================================
 
 model DictionaryEntry {
-  entryId    Int    @id @default(autoincrement()) @map("entryid")
-  word       String @db.VarChar(64)
-  page       String? @db.VarChar(8)
-  homNumber  Int?   @map("hom_number")
-  
-  // Relations
-  headwords  DictionaryHeadword[]
-  senses     DictionarySense[]
-  
+  entryId   Int                  @id @default(autoincrement()) @map("entryid")
+  word      String               @db.VarChar(64)
+  page      String?              @db.VarChar(8)
+  homNumber Int?                 @map("hom_number")
+  headwords DictionaryHeadword[]
+  senses    DictionarySense[]
+
   @@map("entry")
   @@schema("wced")
 }
 
 model DictionaryHeadword {
-  headId         Int    @id @default(autoincrement()) @map("headid")
-  entryId        Int    @map("entryid")
-  head           String @db.VarChar(64)
-  normalizedHead String @map("normalized_head") @db.VarChar(64)
-  type           String? @db.VarChar(8)
-  pos            String? @db.VarChar(16) // Part of speech
-  
-  // Relations
-  entry    DictionaryEntry @relation(fields: [entryId], references: [entryId])
-  
+  headId         Int             @id @default(autoincrement()) @map("headid")
+  entryId        Int             @map("entryid")
+  head           String          @db.VarChar(64)
+  normalizedHead String          @map("normalized_head") @db.VarChar(64)
+  type           String?         @db.VarChar(8)
+  pos            String?         @db.VarChar(16)
+  entry          DictionaryEntry @relation(fields: [entryId], references: [entryId])
+
   @@map("headword")
   @@schema("wced")
 }
 
 model DictionarySense {
-  senseId    Int     @id @default(autoincrement()) @map("senseid")
-  entryId    Int     @map("entryid")
-  number     Int?
-  definition String? @db.Text
-  dialect    String? @db.VarChar(32)
-  
-  // Relations
-  entry        DictionaryEntry       @relation(fields: [entryId], references: [entryId])
-  translations DictionaryTranslation[]
+  senseId      Int                     @id @default(autoincrement()) @map("senseid")
+  entryId      Int                     @map("entryid")
+  number       Int?
+  definition   String?
+  dialect      String?                 @db.VarChar(32)
   examples     DictionaryExample[]
+  entry        DictionaryEntry         @relation(fields: [entryId], references: [entryId])
+  translations DictionaryTranslation[]
   crossRefs    DictionaryCrossRef[]
-  
+
   @@map("sense")
   @@schema("wced")
 }
 
 model DictionaryTranslation {
-  transId     Int    @id @default(autoincrement()) @map("transid")
-  senseId     Int    @map("senseid")
-  lang        String @db.VarChar(8)
-  translation String @db.VarChar(255)
-  
-  // Relations
-  sense DictionarySense @relation(fields: [senseId], references: [senseId])
-  
+  transId     Int             @id @default(autoincrement()) @map("transid")
+  senseId     Int             @map("senseid")
+  lang        String          @db.VarChar(8)
+  translation String          @db.VarChar(255)
+  sense       DictionarySense @relation(fields: [senseId], references: [senseId])
+
   @@map("translation")
   @@schema("wced")
 }
 
 model DictionaryExample {
-  exampleId        Int     @id @default(autoincrement()) @map("exampleid")
-  senseId          Int     @map("senseid")
-  textCebuano      String  @map("text_cebuano") @db.Text
-  textTranslation  String? @map("text_translation") @db.Text
-  
-  // Relations
-  sense DictionarySense @relation(fields: [senseId], references: [senseId], onDelete: Cascade)
-  
+  exampleId       Int             @id @default(autoincrement()) @map("exampleid")
+  senseId         Int             @map("senseid")
+  textCebuano     String          @map("text_cebuano")
+  textTranslation String?         @map("text_translation")
+  sense           DictionarySense @relation(fields: [senseId], references: [senseId], onDelete: Cascade)
+
   @@map("example")
   @@schema("wced")
 }
 
 model DictionaryCrossRef {
-  xrefId     Int    @id @default(autoincrement()) @map("xrefid")
-  senseId    Int    @map("senseid")
-  targetWord String @map("target_word") @db.VarChar(64)
-  lang       String @default("ceb") @db.VarChar(8)
-  
-  // Relations
-  sense DictionarySense @relation(fields: [senseId], references: [senseId])
-  
+  xrefId     Int             @id @default(autoincrement()) @map("xrefid")
+  senseId    Int             @map("senseid")
+  targetWord String          @map("target_word") @db.VarChar(64)
+  lang       String          @default("ceb") @db.VarChar(8)
+  sense      DictionarySense @relation(fields: [senseId], references: [senseId])
+
   @@map("xref")
   @@schema("wced")
+}
+
+enum MusicSource {
+  PREMADE
+  UPLOADED
+
+  @@schema("public")
 }

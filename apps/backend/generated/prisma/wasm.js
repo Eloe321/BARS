@@ -119,11 +119,11 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  username: 'username',
   email: 'email',
   password: 'password',
   createAt: 'createAt',
-  updateAt: 'updateAt'
+  updateAt: 'updateAt',
+  username: 'username'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
@@ -163,15 +163,15 @@ exports.Prisma.LinkPermissionScalarFieldEnum = {
 
 exports.Prisma.PremadeMusicScalarFieldEnum = {
   music_id: 'music_id',
-  music_name: 'music_name',
   uploaded_date: 'uploaded_date',
+  music_name: 'music_name',
   path: 'path'
 };
 
 exports.Prisma.UploadedMusicScalarFieldEnum = {
   music_id: 'music_id',
-  music_name: 'music_name',
   uploaded_by: 'uploaded_by',
+  music_name: 'music_name',
   path: 'path'
 };
 

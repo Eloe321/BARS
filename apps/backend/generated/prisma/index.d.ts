@@ -1978,16 +1978,16 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    sessions: number
     links: number
     linkPermissions: number
+    sessions: number
     stickyNotes: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     links?: boolean | UserCountOutputTypeCountLinksArgs
     linkPermissions?: boolean | UserCountOutputTypeCountLinkPermissionsArgs
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     stickyNotes?: boolean | UserCountOutputTypeCountStickyNotesArgs
   }
 
@@ -2005,13 +2005,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LinkWhereInput
   }
@@ -2021,6 +2014,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountLinkPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LinkPermissionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
   }
 
   /**
@@ -2209,14 +2209,14 @@ export namespace Prisma {
    */
 
   export type DictionarySenseCountOutputType = {
-    translations: number
     examples: number
+    translations: number
     crossRefs: number
   }
 
   export type DictionarySenseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    translations?: boolean | DictionarySenseCountOutputTypeCountTranslationsArgs
     examples?: boolean | DictionarySenseCountOutputTypeCountExamplesArgs
+    translations?: boolean | DictionarySenseCountOutputTypeCountTranslationsArgs
     crossRefs?: boolean | DictionarySenseCountOutputTypeCountCrossRefsArgs
   }
 
@@ -2234,15 +2234,15 @@ export namespace Prisma {
   /**
    * DictionarySenseCountOutputType without action
    */
-  export type DictionarySenseCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DictionaryTranslationWhereInput
+  export type DictionarySenseCountOutputTypeCountExamplesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryExampleWhereInput
   }
 
   /**
    * DictionarySenseCountOutputType without action
    */
-  export type DictionarySenseCountOutputTypeCountExamplesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DictionaryExampleWhereInput
+  export type DictionarySenseCountOutputTypeCountTranslationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DictionaryTranslationWhereInput
   }
 
   /**
@@ -2269,58 +2269,58 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: string | null
-    username: string | null
     email: string | null
     password: string | null
     createAt: Date | null
     updateAt: Date | null
+    username: string | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
-    username: string | null
     email: string | null
     password: string | null
     createAt: Date | null
     updateAt: Date | null
+    username: string | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
-    username: number
     email: number
     password: number
     createAt: number
     updateAt: number
+    username: number
     _all: number
   }
 
 
   export type UserMinAggregateInputType = {
     id?: true
-    username?: true
     email?: true
     password?: true
     createAt?: true
     updateAt?: true
+    username?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
-    username?: true
     email?: true
     password?: true
     createAt?: true
     updateAt?: true
+    username?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
-    username?: true
     email?: true
     password?: true
     createAt?: true
     updateAt?: true
+    username?: true
     _all?: true
   }
 
@@ -2398,11 +2398,11 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    username: string
     email: string
     password: string
     createAt: Date
     updateAt: Date
+    username: string
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2424,50 +2424,50 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    username?: boolean
     email?: boolean
     password?: boolean
     createAt?: boolean
     updateAt?: boolean
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
+    username?: boolean
     links?: boolean | User$linksArgs<ExtArgs>
     linkPermissions?: boolean | User$linkPermissionsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     stickyNotes?: boolean | User$stickyNotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    username?: boolean
     email?: boolean
     password?: boolean
     createAt?: boolean
     updateAt?: boolean
+    username?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    username?: boolean
     email?: boolean
     password?: boolean
     createAt?: boolean
     updateAt?: boolean
+    username?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
-    username?: boolean
     email?: boolean
     password?: boolean
     createAt?: boolean
     updateAt?: boolean
+    username?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "createAt" | "updateAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "createAt" | "updateAt" | "username", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
     links?: boolean | User$linksArgs<ExtArgs>
     linkPermissions?: boolean | User$linkPermissionsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     stickyNotes?: boolean | User$stickyNotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2477,18 +2477,18 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      sessions: Prisma.$SessionPayload<ExtArgs>[]
       links: Prisma.$LinkPayload<ExtArgs>[]
       linkPermissions: Prisma.$LinkPermissionPayload<ExtArgs>[]
+      sessions: Prisma.$SessionPayload<ExtArgs>[]
       stickyNotes: Prisma.$StickyNotesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      username: string
       email: string
       password: string
       createAt: Date
       updateAt: Date
+      username: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2883,9 +2883,9 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     links<T extends User$linksArgs<ExtArgs> = {}>(args?: Subset<T, User$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     linkPermissions<T extends User$linkPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, User$linkPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     stickyNotes<T extends User$stickyNotesArgs<ExtArgs> = {}>(args?: Subset<T, User$stickyNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StickyNotesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2917,11 +2917,11 @@ export namespace Prisma {
    */
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
-    readonly username: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly createAt: FieldRef<"User", 'DateTime'>
     readonly updateAt: FieldRef<"User", 'DateTime'>
+    readonly username: FieldRef<"User", 'String'>
   }
     
 
@@ -3310,30 +3310,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.sessions
-   */
-  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Session
-     */
-    select?: SessionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Session
-     */
-    omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
-    where?: SessionWhereInput
-    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
-    cursor?: SessionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
-  }
-
-  /**
    * User.links
    */
   export type User$linksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3379,6 +3355,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LinkPermissionScalarFieldEnum | LinkPermissionScalarFieldEnum[]
+  }
+
+  /**
+   * User.sessions
+   */
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -3608,10 +3608,10 @@ export namespace Prisma {
     uploaded_music_id?: boolean
     audio_timeline?: boolean
     creation_date?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     links?: boolean | Session$linksArgs<ExtArgs>
     premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
     uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | SessionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -3624,9 +3624,9 @@ export namespace Prisma {
     uploaded_music_id?: boolean
     audio_timeline?: boolean
     creation_date?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
     uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3638,9 +3638,9 @@ export namespace Prisma {
     uploaded_music_id?: boolean
     audio_timeline?: boolean
     creation_date?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
     uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectScalar = {
@@ -3656,30 +3656,30 @@ export namespace Prisma {
 
   export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "user_id" | "musicSource" | "premade_music_id" | "uploaded_music_id" | "audio_timeline" | "creation_date", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     links?: boolean | Session$linksArgs<ExtArgs>
     premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
     uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | SessionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
     uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type SessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     premadeMusic?: boolean | Session$premadeMusicArgs<ExtArgs>
     uploadedMusic?: boolean | Session$uploadedMusicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $SessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Session"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       links: Prisma.$LinkPayload<ExtArgs>[]
       premadeMusic: Prisma.$PremadeMusicPayload<ExtArgs> | null
       uploadedMusic: Prisma.$UploadedMusicPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4084,10 +4084,10 @@ export namespace Prisma {
    */
   export interface Prisma__SessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     links<T extends Session$linksArgs<ExtArgs> = {}>(args?: Subset<T, Session$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     premadeMusic<T extends Session$premadeMusicArgs<ExtArgs> = {}>(args?: Subset<T, Session$premadeMusicArgs<ExtArgs>>): Prisma__PremadeMusicClient<$Result.GetResult<Prisma.$PremadeMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     uploadedMusic<T extends Session$uploadedMusicArgs<ExtArgs> = {}>(args?: Subset<T, Session$uploadedMusicArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4765,8 +4765,8 @@ export namespace Prisma {
     content?: boolean
     user_id?: boolean
     music_id?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     music?: boolean | StickyNotes$musicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stickyNotes"]>
 
   export type StickyNotesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4775,8 +4775,8 @@ export namespace Prisma {
     content?: boolean
     user_id?: boolean
     music_id?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     music?: boolean | StickyNotes$musicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stickyNotes"]>
 
   export type StickyNotesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4785,8 +4785,8 @@ export namespace Prisma {
     content?: boolean
     user_id?: boolean
     music_id?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     music?: boolean | StickyNotes$musicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stickyNotes"]>
 
   export type StickyNotesSelectScalar = {
@@ -4799,23 +4799,23 @@ export namespace Prisma {
 
   export type StickyNotesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "user_id" | "music_id", ExtArgs["result"]["stickyNotes"]>
   export type StickyNotesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     music?: boolean | StickyNotes$musicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type StickyNotesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     music?: boolean | StickyNotes$musicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type StickyNotesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     music?: boolean | StickyNotes$musicArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $StickyNotesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StickyNotes"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       music: Prisma.$UploadedMusicPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5217,8 +5217,8 @@ export namespace Prisma {
    */
   export interface Prisma__StickyNotesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     music<T extends StickyNotes$musicArgs<ExtArgs> = {}>(args?: Subset<T, StickyNotes$musicArgs<ExtArgs>>): Prisma__UploadedMusicClient<$Result.GetResult<Prisma.$UploadedMusicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5858,8 +5858,8 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: boolean
     expires_at?: boolean
-    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     linkPermissions?: boolean | Link$linkPermissionsArgs<ExtArgs>
     _count?: boolean | LinkCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
@@ -5871,8 +5871,8 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: boolean
     expires_at?: boolean
-    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
 
   export type LinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5882,8 +5882,8 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: boolean
     expires_at?: boolean
-    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["link"]>
 
   export type LinkSelectScalar = {
@@ -5897,25 +5897,25 @@ export namespace Prisma {
 
   export type LinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"link_id" | "song_id" | "created_by" | "is_public" | "created_at" | "expires_at", ExtArgs["result"]["link"]>
   export type LinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
     linkPermissions?: boolean | Link$linkPermissionsArgs<ExtArgs>
     _count?: boolean | LinkCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LinkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
   }
   export type LinkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    session?: boolean | SessionDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    session?: boolean | SessionDefaultArgs<ExtArgs>
   }
 
   export type $LinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Link"
     objects: {
-      session: Prisma.$SessionPayload<ExtArgs>
       creator: Prisma.$UserPayload<ExtArgs>
+      session: Prisma.$SessionPayload<ExtArgs>
       linkPermissions: Prisma.$LinkPermissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6319,8 +6319,8 @@ export namespace Prisma {
    */
   export interface Prisma__LinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    session<T extends SessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SessionDefaultArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    session<T extends SessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SessionDefaultArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     linkPermissions<T extends Link$linkPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, Link$linkPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6951,8 +6951,8 @@ export namespace Prisma {
     link_id?: boolean
     user_id?: boolean
     can_view?: boolean
-    link?: boolean | UserDefaultArgs<ExtArgs>
     userLink?: boolean | LinkDefaultArgs<ExtArgs>
+    link?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["linkPermission"]>
 
   export type LinkPermissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6960,8 +6960,8 @@ export namespace Prisma {
     link_id?: boolean
     user_id?: boolean
     can_view?: boolean
-    link?: boolean | UserDefaultArgs<ExtArgs>
     userLink?: boolean | LinkDefaultArgs<ExtArgs>
+    link?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["linkPermission"]>
 
   export type LinkPermissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6969,8 +6969,8 @@ export namespace Prisma {
     link_id?: boolean
     user_id?: boolean
     can_view?: boolean
-    link?: boolean | UserDefaultArgs<ExtArgs>
     userLink?: boolean | LinkDefaultArgs<ExtArgs>
+    link?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["linkPermission"]>
 
   export type LinkPermissionSelectScalar = {
@@ -6982,23 +6982,23 @@ export namespace Prisma {
 
   export type LinkPermissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"link_permission_id" | "link_id" | "user_id" | "can_view", ExtArgs["result"]["linkPermission"]>
   export type LinkPermissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    link?: boolean | UserDefaultArgs<ExtArgs>
     userLink?: boolean | LinkDefaultArgs<ExtArgs>
+    link?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LinkPermissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    link?: boolean | UserDefaultArgs<ExtArgs>
     userLink?: boolean | LinkDefaultArgs<ExtArgs>
+    link?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LinkPermissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    link?: boolean | UserDefaultArgs<ExtArgs>
     userLink?: boolean | LinkDefaultArgs<ExtArgs>
+    link?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $LinkPermissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LinkPermission"
     objects: {
-      link: Prisma.$UserPayload<ExtArgs>
       userLink: Prisma.$LinkPayload<ExtArgs>
+      link: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       link_permission_id: string
@@ -7399,8 +7399,8 @@ export namespace Prisma {
    */
   export interface Prisma__LinkPermissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    link<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     userLink<T extends LinkDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LinkDefaultArgs<ExtArgs>>): Prisma__LinkClient<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    link<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7860,22 +7860,22 @@ export namespace Prisma {
 
   export type PremadeMusicMinAggregateOutputType = {
     music_id: string | null
-    music_name: string | null
     uploaded_date: Date | null
+    music_name: string | null
     path: string | null
   }
 
   export type PremadeMusicMaxAggregateOutputType = {
     music_id: string | null
-    music_name: string | null
     uploaded_date: Date | null
+    music_name: string | null
     path: string | null
   }
 
   export type PremadeMusicCountAggregateOutputType = {
     music_id: number
-    music_name: number
     uploaded_date: number
+    music_name: number
     path: number
     _all: number
   }
@@ -7883,22 +7883,22 @@ export namespace Prisma {
 
   export type PremadeMusicMinAggregateInputType = {
     music_id?: true
-    music_name?: true
     uploaded_date?: true
+    music_name?: true
     path?: true
   }
 
   export type PremadeMusicMaxAggregateInputType = {
     music_id?: true
-    music_name?: true
     uploaded_date?: true
+    music_name?: true
     path?: true
   }
 
   export type PremadeMusicCountAggregateInputType = {
     music_id?: true
-    music_name?: true
     uploaded_date?: true
+    music_name?: true
     path?: true
     _all?: true
   }
@@ -7977,8 +7977,8 @@ export namespace Prisma {
 
   export type PremadeMusicGroupByOutputType = {
     music_id: string
-    music_name: string
     uploaded_date: Date
+    music_name: string
     path: string
     _count: PremadeMusicCountAggregateOutputType | null
     _min: PremadeMusicMinAggregateOutputType | null
@@ -8001,8 +8001,8 @@ export namespace Prisma {
 
   export type PremadeMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
-    music_name?: boolean
     uploaded_date?: boolean
+    music_name?: boolean
     path?: boolean
     session?: boolean | PremadeMusic$sessionArgs<ExtArgs>
     _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
@@ -8010,26 +8010,26 @@ export namespace Prisma {
 
   export type PremadeMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
-    music_name?: boolean
     uploaded_date?: boolean
+    music_name?: boolean
     path?: boolean
   }, ExtArgs["result"]["premadeMusic"]>
 
   export type PremadeMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
-    music_name?: boolean
     uploaded_date?: boolean
+    music_name?: boolean
     path?: boolean
   }, ExtArgs["result"]["premadeMusic"]>
 
   export type PremadeMusicSelectScalar = {
     music_id?: boolean
-    music_name?: boolean
     uploaded_date?: boolean
+    music_name?: boolean
     path?: boolean
   }
 
-  export type PremadeMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "uploaded_date" | "path", ExtArgs["result"]["premadeMusic"]>
+  export type PremadeMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "uploaded_date" | "music_name" | "path", ExtArgs["result"]["premadeMusic"]>
   export type PremadeMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     session?: boolean | PremadeMusic$sessionArgs<ExtArgs>
     _count?: boolean | PremadeMusicCountOutputTypeDefaultArgs<ExtArgs>
@@ -8044,8 +8044,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       music_id: string
-      music_name: string
       uploaded_date: Date
+      music_name: string
       path: string
     }, ExtArgs["result"]["premadeMusic"]>
     composites: {}
@@ -8472,8 +8472,8 @@ export namespace Prisma {
    */
   interface PremadeMusicFieldRefs {
     readonly music_id: FieldRef<"PremadeMusic", 'String'>
-    readonly music_name: FieldRef<"PremadeMusic", 'String'>
     readonly uploaded_date: FieldRef<"PremadeMusic", 'DateTime'>
+    readonly music_name: FieldRef<"PremadeMusic", 'String'>
     readonly path: FieldRef<"PremadeMusic", 'String'>
   }
     
@@ -8917,22 +8917,22 @@ export namespace Prisma {
 
   export type UploadedMusicMinAggregateOutputType = {
     music_id: string | null
-    music_name: string | null
     uploaded_by: string | null
+    music_name: string | null
     path: string | null
   }
 
   export type UploadedMusicMaxAggregateOutputType = {
     music_id: string | null
-    music_name: string | null
     uploaded_by: string | null
+    music_name: string | null
     path: string | null
   }
 
   export type UploadedMusicCountAggregateOutputType = {
     music_id: number
-    music_name: number
     uploaded_by: number
+    music_name: number
     path: number
     _all: number
   }
@@ -8940,22 +8940,22 @@ export namespace Prisma {
 
   export type UploadedMusicMinAggregateInputType = {
     music_id?: true
-    music_name?: true
     uploaded_by?: true
+    music_name?: true
     path?: true
   }
 
   export type UploadedMusicMaxAggregateInputType = {
     music_id?: true
-    music_name?: true
     uploaded_by?: true
+    music_name?: true
     path?: true
   }
 
   export type UploadedMusicCountAggregateInputType = {
     music_id?: true
-    music_name?: true
     uploaded_by?: true
+    music_name?: true
     path?: true
     _all?: true
   }
@@ -9034,8 +9034,8 @@ export namespace Prisma {
 
   export type UploadedMusicGroupByOutputType = {
     music_id: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path: string
     _count: UploadedMusicCountAggregateOutputType | null
     _min: UploadedMusicMinAggregateOutputType | null
@@ -9058,8 +9058,8 @@ export namespace Prisma {
 
   export type UploadedMusicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
-    music_name?: boolean
     uploaded_by?: boolean
+    music_name?: boolean
     path?: boolean
     session?: boolean | UploadedMusic$sessionArgs<ExtArgs>
     stickyNotes?: boolean | UploadedMusic$stickyNotesArgs<ExtArgs>
@@ -9068,26 +9068,26 @@ export namespace Prisma {
 
   export type UploadedMusicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
-    music_name?: boolean
     uploaded_by?: boolean
+    music_name?: boolean
     path?: boolean
   }, ExtArgs["result"]["uploadedMusic"]>
 
   export type UploadedMusicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     music_id?: boolean
-    music_name?: boolean
     uploaded_by?: boolean
+    music_name?: boolean
     path?: boolean
   }, ExtArgs["result"]["uploadedMusic"]>
 
   export type UploadedMusicSelectScalar = {
     music_id?: boolean
-    music_name?: boolean
     uploaded_by?: boolean
+    music_name?: boolean
     path?: boolean
   }
 
-  export type UploadedMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "music_name" | "uploaded_by" | "path", ExtArgs["result"]["uploadedMusic"]>
+  export type UploadedMusicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"music_id" | "uploaded_by" | "music_name" | "path", ExtArgs["result"]["uploadedMusic"]>
   export type UploadedMusicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     session?: boolean | UploadedMusic$sessionArgs<ExtArgs>
     stickyNotes?: boolean | UploadedMusic$stickyNotesArgs<ExtArgs>
@@ -9104,8 +9104,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       music_id: string
-      music_name: string
       uploaded_by: string
+      music_name: string
       path: string
     }, ExtArgs["result"]["uploadedMusic"]>
     composites: {}
@@ -9533,8 +9533,8 @@ export namespace Prisma {
    */
   interface UploadedMusicFieldRefs {
     readonly music_id: FieldRef<"UploadedMusic", 'String'>
-    readonly music_name: FieldRef<"UploadedMusic", 'String'>
     readonly uploaded_by: FieldRef<"UploadedMusic", 'String'>
+    readonly music_name: FieldRef<"UploadedMusic", 'String'>
     readonly path: FieldRef<"UploadedMusic", 'String'>
   }
     
@@ -12428,9 +12428,9 @@ export namespace Prisma {
     number?: boolean
     definition?: boolean
     dialect?: boolean
+    examples?: boolean | DictionarySense$examplesArgs<ExtArgs>
     entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
     translations?: boolean | DictionarySense$translationsArgs<ExtArgs>
-    examples?: boolean | DictionarySense$examplesArgs<ExtArgs>
     crossRefs?: boolean | DictionarySense$crossRefsArgs<ExtArgs>
     _count?: boolean | DictionarySenseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dictionarySense"]>
@@ -12463,9 +12463,9 @@ export namespace Prisma {
 
   export type DictionarySenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"senseId" | "entryId" | "number" | "definition" | "dialect", ExtArgs["result"]["dictionarySense"]>
   export type DictionarySenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    examples?: boolean | DictionarySense$examplesArgs<ExtArgs>
     entry?: boolean | DictionaryEntryDefaultArgs<ExtArgs>
     translations?: boolean | DictionarySense$translationsArgs<ExtArgs>
-    examples?: boolean | DictionarySense$examplesArgs<ExtArgs>
     crossRefs?: boolean | DictionarySense$crossRefsArgs<ExtArgs>
     _count?: boolean | DictionarySenseCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -12479,9 +12479,9 @@ export namespace Prisma {
   export type $DictionarySensePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DictionarySense"
     objects: {
+      examples: Prisma.$DictionaryExamplePayload<ExtArgs>[]
       entry: Prisma.$DictionaryEntryPayload<ExtArgs>
       translations: Prisma.$DictionaryTranslationPayload<ExtArgs>[]
-      examples: Prisma.$DictionaryExamplePayload<ExtArgs>[]
       crossRefs: Prisma.$DictionaryCrossRefPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -12884,9 +12884,9 @@ export namespace Prisma {
    */
   export interface Prisma__DictionarySenseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    examples<T extends DictionarySense$examplesArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySense$examplesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     entry<T extends DictionaryEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DictionaryEntryDefaultArgs<ExtArgs>>): Prisma__DictionaryEntryClient<$Result.GetResult<Prisma.$DictionaryEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     translations<T extends DictionarySense$translationsArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySense$translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryTranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    examples<T extends DictionarySense$examplesArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySense$examplesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryExamplePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     crossRefs<T extends DictionarySense$crossRefsArgs<ExtArgs> = {}>(args?: Subset<T, DictionarySense$crossRefsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DictionaryCrossRefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -13318,30 +13318,6 @@ export namespace Prisma {
   }
 
   /**
-   * DictionarySense.translations
-   */
-  export type DictionarySense$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DictionaryTranslation
-     */
-    select?: DictionaryTranslationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DictionaryTranslation
-     */
-    omit?: DictionaryTranslationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DictionaryTranslationInclude<ExtArgs> | null
-    where?: DictionaryTranslationWhereInput
-    orderBy?: DictionaryTranslationOrderByWithRelationInput | DictionaryTranslationOrderByWithRelationInput[]
-    cursor?: DictionaryTranslationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DictionaryTranslationScalarFieldEnum | DictionaryTranslationScalarFieldEnum[]
-  }
-
-  /**
    * DictionarySense.examples
    */
   export type DictionarySense$examplesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13363,6 +13339,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DictionaryExampleScalarFieldEnum | DictionaryExampleScalarFieldEnum[]
+  }
+
+  /**
+   * DictionarySense.translations
+   */
+  export type DictionarySense$translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DictionaryTranslation
+     */
+    select?: DictionaryTranslationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DictionaryTranslation
+     */
+    omit?: DictionaryTranslationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DictionaryTranslationInclude<ExtArgs> | null
+    where?: DictionaryTranslationWhereInput
+    orderBy?: DictionaryTranslationOrderByWithRelationInput | DictionaryTranslationOrderByWithRelationInput[]
+    cursor?: DictionaryTranslationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DictionaryTranslationScalarFieldEnum | DictionaryTranslationScalarFieldEnum[]
   }
 
   /**
@@ -16673,11 +16673,11 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    username: 'username',
     email: 'email',
     password: 'password',
     createAt: 'createAt',
-    updateAt: 'updateAt'
+    updateAt: 'updateAt',
+    username: 'username'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -16732,8 +16732,8 @@ export namespace Prisma {
 
   export const PremadeMusicScalarFieldEnum: {
     music_id: 'music_id',
-    music_name: 'music_name',
     uploaded_date: 'uploaded_date',
+    music_name: 'music_name',
     path: 'path'
   };
 
@@ -16742,8 +16742,8 @@ export namespace Prisma {
 
   export const UploadedMusicScalarFieldEnum: {
     music_id: 'music_id',
-    music_name: 'music_name',
     uploaded_by: 'uploaded_by',
+    music_name: 'music_name',
     path: 'path'
   };
 
@@ -16957,53 +16957,53 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    username?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     createAt?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
-    sessions?: SessionListRelationFilter
+    username?: StringFilter<"User"> | string
     links?: LinkListRelationFilter
     linkPermissions?: LinkPermissionListRelationFilter
+    sessions?: SessionListRelationFilter
     stickyNotes?: StickyNotesListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    username?: SortOrder
     email?: SortOrder
     password?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
-    sessions?: SessionOrderByRelationAggregateInput
+    username?: SortOrder
     links?: LinkOrderByRelationAggregateInput
     linkPermissions?: LinkPermissionOrderByRelationAggregateInput
+    sessions?: SessionOrderByRelationAggregateInput
     stickyNotes?: StickyNotesOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    username?: string
     email?: string
+    username?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     createAt?: DateTimeFilter<"User"> | Date | string
     updateAt?: DateTimeFilter<"User"> | Date | string
-    sessions?: SessionListRelationFilter
     links?: LinkListRelationFilter
     linkPermissions?: LinkPermissionListRelationFilter
+    sessions?: SessionListRelationFilter
     stickyNotes?: StickyNotesListRelationFilter
-  }, "id" | "username" | "email">
+  }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    username?: SortOrder
     email?: SortOrder
     password?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
+    username?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -17014,11 +17014,11 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    username?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     createAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updateAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    username?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type SessionWhereInput = {
@@ -17033,10 +17033,10 @@ export namespace Prisma {
     uploaded_music_id?: StringNullableFilter<"Session"> | string | null
     audio_timeline?: JsonFilter<"Session">
     creation_date?: DateTimeFilter<"Session"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
     premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
     uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type SessionOrderByWithRelationInput = {
@@ -17048,10 +17048,10 @@ export namespace Prisma {
     uploaded_music_id?: SortOrderInput | SortOrder
     audio_timeline?: SortOrder
     creation_date?: SortOrder
-    user?: UserOrderByWithRelationInput
     links?: LinkOrderByRelationAggregateInput
     premadeMusic?: PremadeMusicOrderByWithRelationInput
     uploadedMusic?: UploadedMusicOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type SessionWhereUniqueInput = Prisma.AtLeast<{
@@ -17066,10 +17066,10 @@ export namespace Prisma {
     uploaded_music_id?: StringNullableFilter<"Session"> | string | null
     audio_timeline?: JsonFilter<"Session">
     creation_date?: DateTimeFilter<"Session"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     links?: LinkListRelationFilter
     premadeMusic?: XOR<PremadeMusicNullableScalarRelationFilter, PremadeMusicWhereInput> | null
     uploadedMusic?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type SessionOrderByWithAggregationInput = {
@@ -17109,8 +17109,8 @@ export namespace Prisma {
     content?: StringFilter<"StickyNotes"> | string
     user_id?: StringFilter<"StickyNotes"> | string
     music_id?: StringNullableFilter<"StickyNotes"> | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     music?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type StickyNotesOrderByWithRelationInput = {
@@ -17119,8 +17119,8 @@ export namespace Prisma {
     content?: SortOrder
     user_id?: SortOrder
     music_id?: SortOrderInput | SortOrder
-    user?: UserOrderByWithRelationInput
     music?: UploadedMusicOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type StickyNotesWhereUniqueInput = Prisma.AtLeast<{
@@ -17132,8 +17132,8 @@ export namespace Prisma {
     content?: StringFilter<"StickyNotes"> | string
     user_id?: StringFilter<"StickyNotes"> | string
     music_id?: StringNullableFilter<"StickyNotes"> | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     music?: XOR<UploadedMusicNullableScalarRelationFilter, UploadedMusicWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type StickyNotesOrderByWithAggregationInput = {
@@ -17168,8 +17168,8 @@ export namespace Prisma {
     is_public?: BoolFilter<"Link"> | boolean
     created_at?: DateTimeFilter<"Link"> | Date | string
     expires_at?: DateTimeFilter<"Link"> | Date | string
-    session?: XOR<SessionScalarRelationFilter, SessionWhereInput>
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    session?: XOR<SessionScalarRelationFilter, SessionWhereInput>
     linkPermissions?: LinkPermissionListRelationFilter
   }
 
@@ -17180,8 +17180,8 @@ export namespace Prisma {
     is_public?: SortOrder
     created_at?: SortOrder
     expires_at?: SortOrder
-    session?: SessionOrderByWithRelationInput
     creator?: UserOrderByWithRelationInput
+    session?: SessionOrderByWithRelationInput
     linkPermissions?: LinkPermissionOrderByRelationAggregateInput
   }
 
@@ -17195,8 +17195,8 @@ export namespace Prisma {
     is_public?: BoolFilter<"Link"> | boolean
     created_at?: DateTimeFilter<"Link"> | Date | string
     expires_at?: DateTimeFilter<"Link"> | Date | string
-    session?: XOR<SessionScalarRelationFilter, SessionWhereInput>
     creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    session?: XOR<SessionScalarRelationFilter, SessionWhereInput>
     linkPermissions?: LinkPermissionListRelationFilter
   }, "link_id">
 
@@ -17232,8 +17232,8 @@ export namespace Prisma {
     link_id?: StringFilter<"LinkPermission"> | string
     user_id?: StringFilter<"LinkPermission"> | string
     can_view?: BoolFilter<"LinkPermission"> | boolean
-    link?: XOR<UserScalarRelationFilter, UserWhereInput>
     userLink?: XOR<LinkScalarRelationFilter, LinkWhereInput>
+    link?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type LinkPermissionOrderByWithRelationInput = {
@@ -17241,8 +17241,8 @@ export namespace Prisma {
     link_id?: SortOrder
     user_id?: SortOrder
     can_view?: SortOrder
-    link?: UserOrderByWithRelationInput
     userLink?: LinkOrderByWithRelationInput
+    link?: UserOrderByWithRelationInput
   }
 
   export type LinkPermissionWhereUniqueInput = Prisma.AtLeast<{
@@ -17253,8 +17253,8 @@ export namespace Prisma {
     link_id?: StringFilter<"LinkPermission"> | string
     user_id?: StringFilter<"LinkPermission"> | string
     can_view?: BoolFilter<"LinkPermission"> | boolean
-    link?: XOR<UserScalarRelationFilter, UserWhereInput>
     userLink?: XOR<LinkScalarRelationFilter, LinkWhereInput>
+    link?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "link_permission_id">
 
   export type LinkPermissionOrderByWithAggregationInput = {
@@ -17282,16 +17282,16 @@ export namespace Prisma {
     OR?: PremadeMusicWhereInput[]
     NOT?: PremadeMusicWhereInput | PremadeMusicWhereInput[]
     music_id?: StringFilter<"PremadeMusic"> | string
-    music_name?: StringFilter<"PremadeMusic"> | string
     uploaded_date?: DateTimeFilter<"PremadeMusic"> | Date | string
+    music_name?: StringFilter<"PremadeMusic"> | string
     path?: StringFilter<"PremadeMusic"> | string
     session?: SessionListRelationFilter
   }
 
   export type PremadeMusicOrderByWithRelationInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_date?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
     session?: SessionOrderByRelationAggregateInput
   }
@@ -17309,8 +17309,8 @@ export namespace Prisma {
 
   export type PremadeMusicOrderByWithAggregationInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_date?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
     _count?: PremadeMusicCountOrderByAggregateInput
     _max?: PremadeMusicMaxOrderByAggregateInput
@@ -17322,8 +17322,8 @@ export namespace Prisma {
     OR?: PremadeMusicScalarWhereWithAggregatesInput[]
     NOT?: PremadeMusicScalarWhereWithAggregatesInput | PremadeMusicScalarWhereWithAggregatesInput[]
     music_id?: StringWithAggregatesFilter<"PremadeMusic"> | string
-    music_name?: StringWithAggregatesFilter<"PremadeMusic"> | string
     uploaded_date?: DateTimeWithAggregatesFilter<"PremadeMusic"> | Date | string
+    music_name?: StringWithAggregatesFilter<"PremadeMusic"> | string
     path?: StringWithAggregatesFilter<"PremadeMusic"> | string
   }
 
@@ -17332,8 +17332,8 @@ export namespace Prisma {
     OR?: UploadedMusicWhereInput[]
     NOT?: UploadedMusicWhereInput | UploadedMusicWhereInput[]
     music_id?: StringFilter<"UploadedMusic"> | string
-    music_name?: StringFilter<"UploadedMusic"> | string
     uploaded_by?: StringFilter<"UploadedMusic"> | string
+    music_name?: StringFilter<"UploadedMusic"> | string
     path?: StringFilter<"UploadedMusic"> | string
     session?: SessionListRelationFilter
     stickyNotes?: StickyNotesListRelationFilter
@@ -17341,8 +17341,8 @@ export namespace Prisma {
 
   export type UploadedMusicOrderByWithRelationInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_by?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
     session?: SessionOrderByRelationAggregateInput
     stickyNotes?: StickyNotesOrderByRelationAggregateInput
@@ -17362,8 +17362,8 @@ export namespace Prisma {
 
   export type UploadedMusicOrderByWithAggregationInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_by?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
     _count?: UploadedMusicCountOrderByAggregateInput
     _max?: UploadedMusicMaxOrderByAggregateInput
@@ -17375,8 +17375,8 @@ export namespace Prisma {
     OR?: UploadedMusicScalarWhereWithAggregatesInput[]
     NOT?: UploadedMusicScalarWhereWithAggregatesInput | UploadedMusicScalarWhereWithAggregatesInput[]
     music_id?: StringWithAggregatesFilter<"UploadedMusic"> | string
-    music_name?: StringWithAggregatesFilter<"UploadedMusic"> | string
     uploaded_by?: StringWithAggregatesFilter<"UploadedMusic"> | string
+    music_name?: StringWithAggregatesFilter<"UploadedMusic"> | string
     path?: StringWithAggregatesFilter<"UploadedMusic"> | string
   }
 
@@ -17506,9 +17506,9 @@ export namespace Prisma {
     number?: IntNullableFilter<"DictionarySense"> | number | null
     definition?: StringNullableFilter<"DictionarySense"> | string | null
     dialect?: StringNullableFilter<"DictionarySense"> | string | null
+    examples?: DictionaryExampleListRelationFilter
     entry?: XOR<DictionaryEntryScalarRelationFilter, DictionaryEntryWhereInput>
     translations?: DictionaryTranslationListRelationFilter
-    examples?: DictionaryExampleListRelationFilter
     crossRefs?: DictionaryCrossRefListRelationFilter
   }
 
@@ -17518,9 +17518,9 @@ export namespace Prisma {
     number?: SortOrderInput | SortOrder
     definition?: SortOrderInput | SortOrder
     dialect?: SortOrderInput | SortOrder
+    examples?: DictionaryExampleOrderByRelationAggregateInput
     entry?: DictionaryEntryOrderByWithRelationInput
     translations?: DictionaryTranslationOrderByRelationAggregateInput
-    examples?: DictionaryExampleOrderByRelationAggregateInput
     crossRefs?: DictionaryCrossRefOrderByRelationAggregateInput
   }
 
@@ -17533,9 +17533,9 @@ export namespace Prisma {
     number?: IntNullableFilter<"DictionarySense"> | number | null
     definition?: StringNullableFilter<"DictionarySense"> | string | null
     dialect?: StringNullableFilter<"DictionarySense"> | string | null
+    examples?: DictionaryExampleListRelationFilter
     entry?: XOR<DictionaryEntryScalarRelationFilter, DictionaryEntryWhereInput>
     translations?: DictionaryTranslationListRelationFilter
-    examples?: DictionaryExampleListRelationFilter
     crossRefs?: DictionaryCrossRefListRelationFilter
   }, "senseId">
 
@@ -17721,81 +17721,81 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    username: string
     email: string
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
+    username: string
     links?: LinkCreateNestedManyWithoutCreatorInput
     linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
     stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
-    username: string
     email: string
     password: string
     createAt?: Date | string
     updateAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    username: string
     links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
     linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
+    username?: StringFieldUpdateOperationsInput | string
     links?: LinkUpdateManyWithoutCreatorNestedInput
     linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
     stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    username?: StringFieldUpdateOperationsInput | string
     links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
     linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
-    username: string
     email: string
     password: string
     createAt?: Date | string
     updateAt?: Date | string
+    username: string
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
   }
 
   export type SessionCreateInput = {
@@ -17804,10 +17804,10 @@ export namespace Prisma {
     musicSource?: $Enums.MusicSource
     audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSessionsInput
     links?: LinkCreateNestedManyWithoutSessionInput
     premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
     uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
+    user: UserCreateNestedOneWithoutSessionsInput
   }
 
   export type SessionUncheckedCreateInput = {
@@ -17828,10 +17828,10 @@ export namespace Prisma {
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
     links?: LinkUpdateManyWithoutSessionNestedInput
     premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
     uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
   export type SessionUncheckedUpdateInput = {
@@ -17880,8 +17880,8 @@ export namespace Prisma {
     id?: string
     title?: string
     content?: string
-    user: UserCreateNestedOneWithoutStickyNotesInput
     music?: UploadedMusicCreateNestedOneWithoutStickyNotesInput
+    user: UserCreateNestedOneWithoutStickyNotesInput
   }
 
   export type StickyNotesUncheckedCreateInput = {
@@ -17896,8 +17896,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutStickyNotesNestedInput
     music?: UploadedMusicUpdateOneWithoutStickyNotesNestedInput
+    user?: UserUpdateOneRequiredWithoutStickyNotesNestedInput
   }
 
   export type StickyNotesUncheckedUpdateInput = {
@@ -17935,8 +17935,8 @@ export namespace Prisma {
     is_public?: boolean
     created_at?: Date | string
     expires_at: Date | string
-    session: SessionCreateNestedOneWithoutLinksInput
     creator: UserCreateNestedOneWithoutLinksInput
+    session: SessionCreateNestedOneWithoutLinksInput
     linkPermissions?: LinkPermissionCreateNestedManyWithoutUserLinkInput
   }
 
@@ -17955,8 +17955,8 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    session?: SessionUpdateOneRequiredWithoutLinksNestedInput
     creator?: UserUpdateOneRequiredWithoutLinksNestedInput
+    session?: SessionUpdateOneRequiredWithoutLinksNestedInput
     linkPermissions?: LinkPermissionUpdateManyWithoutUserLinkNestedInput
   }
 
@@ -17998,8 +17998,8 @@ export namespace Prisma {
   export type LinkPermissionCreateInput = {
     link_permission_id?: string
     can_view?: boolean
-    link: UserCreateNestedOneWithoutLinkPermissionsInput
     userLink: LinkCreateNestedOneWithoutLinkPermissionsInput
+    link: UserCreateNestedOneWithoutLinkPermissionsInput
   }
 
   export type LinkPermissionUncheckedCreateInput = {
@@ -18012,8 +18012,8 @@ export namespace Prisma {
   export type LinkPermissionUpdateInput = {
     link_permission_id?: StringFieldUpdateOperationsInput | string
     can_view?: BoolFieldUpdateOperationsInput | boolean
-    link?: UserUpdateOneRequiredWithoutLinkPermissionsNestedInput
     userLink?: LinkUpdateOneRequiredWithoutLinkPermissionsNestedInput
+    link?: UserUpdateOneRequiredWithoutLinkPermissionsNestedInput
   }
 
   export type LinkPermissionUncheckedUpdateInput = {
@@ -18044,61 +18044,61 @@ export namespace Prisma {
 
   export type PremadeMusicCreateInput = {
     music_id?: string
-    music_name: string
     uploaded_date?: Date | string
+    music_name: string
     path: string
     session?: SessionCreateNestedManyWithoutPremadeMusicInput
   }
 
   export type PremadeMusicUncheckedCreateInput = {
     music_id?: string
-    music_name: string
     uploaded_date?: Date | string
+    music_name: string
     path: string
     session?: SessionUncheckedCreateNestedManyWithoutPremadeMusicInput
   }
 
   export type PremadeMusicUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     session?: SessionUpdateManyWithoutPremadeMusicNestedInput
   }
 
   export type PremadeMusicUncheckedUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     session?: SessionUncheckedUpdateManyWithoutPremadeMusicNestedInput
   }
 
   export type PremadeMusicCreateManyInput = {
     music_id?: string
-    music_name: string
     uploaded_date?: Date | string
+    music_name: string
     path: string
   }
 
   export type PremadeMusicUpdateManyMutationInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
   export type PremadeMusicUncheckedUpdateManyInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
   export type UploadedMusicCreateInput = {
     music_id?: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path?: string
     session?: SessionCreateNestedManyWithoutUploadedMusicInput
     stickyNotes?: StickyNotesCreateNestedManyWithoutMusicInput
@@ -18106,8 +18106,8 @@ export namespace Prisma {
 
   export type UploadedMusicUncheckedCreateInput = {
     music_id?: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path?: string
     session?: SessionUncheckedCreateNestedManyWithoutUploadedMusicInput
     stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutMusicInput
@@ -18115,8 +18115,8 @@ export namespace Prisma {
 
   export type UploadedMusicUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     session?: SessionUpdateManyWithoutUploadedMusicNestedInput
     stickyNotes?: StickyNotesUpdateManyWithoutMusicNestedInput
@@ -18124,8 +18124,8 @@ export namespace Prisma {
 
   export type UploadedMusicUncheckedUpdateInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     session?: SessionUncheckedUpdateManyWithoutUploadedMusicNestedInput
     stickyNotes?: StickyNotesUncheckedUpdateManyWithoutMusicNestedInput
@@ -18133,22 +18133,22 @@ export namespace Prisma {
 
   export type UploadedMusicCreateManyInput = {
     music_id?: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path?: string
   }
 
   export type UploadedMusicUpdateManyMutationInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
   export type UploadedMusicUncheckedUpdateManyInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
@@ -18269,9 +18269,9 @@ export namespace Prisma {
     number?: number | null
     definition?: string | null
     dialect?: string | null
+    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
     entry: DictionaryEntryCreateNestedOneWithoutSensesInput
     translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
-    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
     crossRefs?: DictionaryCrossRefCreateNestedManyWithoutSenseInput
   }
 
@@ -18281,8 +18281,8 @@ export namespace Prisma {
     number?: number | null
     definition?: string | null
     dialect?: string | null
-    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
     examples?: DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput
+    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
     crossRefs?: DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput
   }
 
@@ -18290,9 +18290,9 @@ export namespace Prisma {
     number?: NullableIntFieldUpdateOperationsInput | number | null
     definition?: NullableStringFieldUpdateOperationsInput | string | null
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
     entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
     translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
-    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
     crossRefs?: DictionaryCrossRefUpdateManyWithoutSenseNestedInput
   }
 
@@ -18302,8 +18302,8 @@ export namespace Prisma {
     number?: NullableIntFieldUpdateOperationsInput | number | null
     definition?: NullableStringFieldUpdateOperationsInput | string | null
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
-    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
     examples?: DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput
+    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
     crossRefs?: DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput
   }
 
@@ -18490,12 +18490,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type SessionListRelationFilter = {
-    every?: SessionWhereInput
-    some?: SessionWhereInput
-    none?: SessionWhereInput
-  }
-
   export type LinkListRelationFilter = {
     every?: LinkWhereInput
     some?: LinkWhereInput
@@ -18508,14 +18502,16 @@ export namespace Prisma {
     none?: LinkPermissionWhereInput
   }
 
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
+  }
+
   export type StickyNotesListRelationFilter = {
     every?: StickyNotesWhereInput
     some?: StickyNotesWhereInput
     none?: StickyNotesWhereInput
-  }
-
-  export type SessionOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type LinkOrderByRelationAggregateInput = {
@@ -18526,35 +18522,39 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type SessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type StickyNotesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
     email?: SortOrder
     password?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
+    username?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
     email?: SortOrder
     password?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
+    username?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
     email?: SortOrder
     password?: SortOrder
     createAt?: SortOrder
     updateAt?: SortOrder
+    username?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -18634,11 +18634,6 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
   export type PremadeMusicNullableScalarRelationFilter = {
     is?: PremadeMusicWhereInput | null
     isNot?: PremadeMusicWhereInput | null
@@ -18647,6 +18642,11 @@ export namespace Prisma {
   export type UploadedMusicNullableScalarRelationFilter = {
     is?: UploadedMusicWhereInput | null
     isNot?: UploadedMusicWhereInput | null
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type SortOrderInput = {
@@ -18836,43 +18836,43 @@ export namespace Prisma {
 
   export type PremadeMusicCountOrderByAggregateInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_date?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
   }
 
   export type PremadeMusicMaxOrderByAggregateInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_date?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
   }
 
   export type PremadeMusicMinOrderByAggregateInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_date?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
   }
 
   export type UploadedMusicCountOrderByAggregateInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_by?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
   }
 
   export type UploadedMusicMaxOrderByAggregateInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_by?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
   }
 
   export type UploadedMusicMinOrderByAggregateInput = {
     music_id?: SortOrder
-    music_name?: SortOrder
     uploaded_by?: SortOrder
+    music_name?: SortOrder
     path?: SortOrder
   }
 
@@ -19023,16 +19023,16 @@ export namespace Prisma {
     entryId?: SortOrder
   }
 
-  export type DictionaryTranslationListRelationFilter = {
-    every?: DictionaryTranslationWhereInput
-    some?: DictionaryTranslationWhereInput
-    none?: DictionaryTranslationWhereInput
-  }
-
   export type DictionaryExampleListRelationFilter = {
     every?: DictionaryExampleWhereInput
     some?: DictionaryExampleWhereInput
     none?: DictionaryExampleWhereInput
+  }
+
+  export type DictionaryTranslationListRelationFilter = {
+    every?: DictionaryTranslationWhereInput
+    some?: DictionaryTranslationWhereInput
+    none?: DictionaryTranslationWhereInput
   }
 
   export type DictionaryCrossRefListRelationFilter = {
@@ -19041,11 +19041,11 @@ export namespace Prisma {
     none?: DictionaryCrossRefWhereInput
   }
 
-  export type DictionaryTranslationOrderByRelationAggregateInput = {
+  export type DictionaryExampleOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type DictionaryExampleOrderByRelationAggregateInput = {
+  export type DictionaryTranslationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19187,13 +19187,6 @@ export namespace Prisma {
     senseId?: SortOrder
   }
 
-  export type SessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
   export type LinkCreateNestedManyWithoutCreatorInput = {
     create?: XOR<LinkCreateWithoutCreatorInput, LinkUncheckedCreateWithoutCreatorInput> | LinkCreateWithoutCreatorInput[] | LinkUncheckedCreateWithoutCreatorInput[]
     connectOrCreate?: LinkCreateOrConnectWithoutCreatorInput | LinkCreateOrConnectWithoutCreatorInput[]
@@ -19208,18 +19201,18 @@ export namespace Prisma {
     connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
   }
 
+  export type SessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
   export type StickyNotesCreateNestedManyWithoutUserInput = {
     create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
     connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
     createMany?: StickyNotesCreateManyUserInputEnvelope
     connect?: StickyNotesWhereUniqueInput | StickyNotesWhereUniqueInput[]
-  }
-
-  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
   export type LinkUncheckedCreateNestedManyWithoutCreatorInput = {
@@ -19236,6 +19229,13 @@ export namespace Prisma {
     connect?: LinkPermissionWhereUniqueInput | LinkPermissionWhereUniqueInput[]
   }
 
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
   export type StickyNotesUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
     connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
@@ -19249,20 +19249,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type SessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type LinkUpdateManyWithoutCreatorNestedInput = {
@@ -19293,6 +19279,20 @@ export namespace Prisma {
     deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
   }
 
+  export type SessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
   export type StickyNotesUpdateManyWithoutUserNestedInput = {
     create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
     connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
@@ -19305,20 +19305,6 @@ export namespace Prisma {
     update?: StickyNotesUpdateWithWhereUniqueWithoutUserInput | StickyNotesUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: StickyNotesUpdateManyWithWhereWithoutUserInput | StickyNotesUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type LinkUncheckedUpdateManyWithoutCreatorNestedInput = {
@@ -19349,6 +19335,20 @@ export namespace Prisma {
     deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
   }
 
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
   export type StickyNotesUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<StickyNotesCreateWithoutUserInput, StickyNotesUncheckedCreateWithoutUserInput> | StickyNotesCreateWithoutUserInput[] | StickyNotesUncheckedCreateWithoutUserInput[]
     connectOrCreate?: StickyNotesCreateOrConnectWithoutUserInput | StickyNotesCreateOrConnectWithoutUserInput[]
@@ -19361,12 +19361,6 @@ export namespace Prisma {
     update?: StickyNotesUpdateWithWhereUniqueWithoutUserInput | StickyNotesUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: StickyNotesUpdateManyWithWhereWithoutUserInput | StickyNotesUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: StickyNotesScalarWhereInput | StickyNotesScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutSessionsInput = {
-    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
-    connect?: UserWhereUniqueInput
   }
 
   export type LinkCreateNestedManyWithoutSessionInput = {
@@ -19388,6 +19382,12 @@ export namespace Prisma {
     connect?: UploadedMusicWhereUniqueInput
   }
 
+  export type UserCreateNestedOneWithoutSessionsInput = {
+    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type LinkUncheckedCreateNestedManyWithoutSessionInput = {
     create?: XOR<LinkCreateWithoutSessionInput, LinkUncheckedCreateWithoutSessionInput> | LinkCreateWithoutSessionInput[] | LinkUncheckedCreateWithoutSessionInput[]
     connectOrCreate?: LinkCreateOrConnectWithoutSessionInput | LinkCreateOrConnectWithoutSessionInput[]
@@ -19397,14 +19397,6 @@ export namespace Prisma {
 
   export type EnumMusicSourceFieldUpdateOperationsInput = {
     set?: $Enums.MusicSource
-  }
-
-  export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
-    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
-    upsert?: UserUpsertWithoutSessionsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
   }
 
   export type LinkUpdateManyWithoutSessionNestedInput = {
@@ -19441,6 +19433,14 @@ export namespace Prisma {
     update?: XOR<XOR<UploadedMusicUpdateToOneWithWhereWithoutSessionInput, UploadedMusicUpdateWithoutSessionInput>, UploadedMusicUncheckedUpdateWithoutSessionInput>
   }
 
+  export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
+    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
+    upsert?: UserUpsertWithoutSessionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -19459,24 +19459,16 @@ export namespace Prisma {
     deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutStickyNotesInput = {
-    create?: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutStickyNotesInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type UploadedMusicCreateNestedOneWithoutStickyNotesInput = {
     create?: XOR<UploadedMusicCreateWithoutStickyNotesInput, UploadedMusicUncheckedCreateWithoutStickyNotesInput>
     connectOrCreate?: UploadedMusicCreateOrConnectWithoutStickyNotesInput
     connect?: UploadedMusicWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutStickyNotesNestedInput = {
+  export type UserCreateNestedOneWithoutStickyNotesInput = {
     create?: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
     connectOrCreate?: UserCreateOrConnectWithoutStickyNotesInput
-    upsert?: UserUpsertWithoutStickyNotesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStickyNotesInput, UserUpdateWithoutStickyNotesInput>, UserUncheckedUpdateWithoutStickyNotesInput>
   }
 
   export type UploadedMusicUpdateOneWithoutStickyNotesNestedInput = {
@@ -19489,16 +19481,24 @@ export namespace Prisma {
     update?: XOR<XOR<UploadedMusicUpdateToOneWithWhereWithoutStickyNotesInput, UploadedMusicUpdateWithoutStickyNotesInput>, UploadedMusicUncheckedUpdateWithoutStickyNotesInput>
   }
 
-  export type SessionCreateNestedOneWithoutLinksInput = {
-    create?: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
-    connectOrCreate?: SessionCreateOrConnectWithoutLinksInput
-    connect?: SessionWhereUniqueInput
+  export type UserUpdateOneRequiredWithoutStickyNotesNestedInput = {
+    create?: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStickyNotesInput
+    upsert?: UserUpsertWithoutStickyNotesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStickyNotesInput, UserUpdateWithoutStickyNotesInput>, UserUncheckedUpdateWithoutStickyNotesInput>
   }
 
   export type UserCreateNestedOneWithoutLinksInput = {
     create?: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
     connectOrCreate?: UserCreateOrConnectWithoutLinksInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type SessionCreateNestedOneWithoutLinksInput = {
+    create?: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: SessionCreateOrConnectWithoutLinksInput
+    connect?: SessionWhereUniqueInput
   }
 
   export type LinkPermissionCreateNestedManyWithoutUserLinkInput = {
@@ -19519,20 +19519,20 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type SessionUpdateOneRequiredWithoutLinksNestedInput = {
-    create?: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
-    connectOrCreate?: SessionCreateOrConnectWithoutLinksInput
-    upsert?: SessionUpsertWithoutLinksInput
-    connect?: SessionWhereUniqueInput
-    update?: XOR<XOR<SessionUpdateToOneWithWhereWithoutLinksInput, SessionUpdateWithoutLinksInput>, SessionUncheckedUpdateWithoutLinksInput>
-  }
-
   export type UserUpdateOneRequiredWithoutLinksNestedInput = {
     create?: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
     connectOrCreate?: UserCreateOrConnectWithoutLinksInput
     upsert?: UserUpsertWithoutLinksInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinksInput, UserUpdateWithoutLinksInput>, UserUncheckedUpdateWithoutLinksInput>
+  }
+
+  export type SessionUpdateOneRequiredWithoutLinksNestedInput = {
+    create?: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
+    connectOrCreate?: SessionCreateOrConnectWithoutLinksInput
+    upsert?: SessionUpsertWithoutLinksInput
+    connect?: SessionWhereUniqueInput
+    update?: XOR<XOR<SessionUpdateToOneWithWhereWithoutLinksInput, SessionUpdateWithoutLinksInput>, SessionUncheckedUpdateWithoutLinksInput>
   }
 
   export type LinkPermissionUpdateManyWithoutUserLinkNestedInput = {
@@ -19563,24 +19563,16 @@ export namespace Prisma {
     deleteMany?: LinkPermissionScalarWhereInput | LinkPermissionScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutLinkPermissionsInput = {
-    create?: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLinkPermissionsInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type LinkCreateNestedOneWithoutLinkPermissionsInput = {
     create?: XOR<LinkCreateWithoutLinkPermissionsInput, LinkUncheckedCreateWithoutLinkPermissionsInput>
     connectOrCreate?: LinkCreateOrConnectWithoutLinkPermissionsInput
     connect?: LinkWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutLinkPermissionsNestedInput = {
+  export type UserCreateNestedOneWithoutLinkPermissionsInput = {
     create?: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutLinkPermissionsInput
-    upsert?: UserUpsertWithoutLinkPermissionsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinkPermissionsInput, UserUpdateWithoutLinkPermissionsInput>, UserUncheckedUpdateWithoutLinkPermissionsInput>
   }
 
   export type LinkUpdateOneRequiredWithoutLinkPermissionsNestedInput = {
@@ -19589,6 +19581,14 @@ export namespace Prisma {
     upsert?: LinkUpsertWithoutLinkPermissionsInput
     connect?: LinkWhereUniqueInput
     update?: XOR<XOR<LinkUpdateToOneWithWhereWithoutLinkPermissionsInput, LinkUpdateWithoutLinkPermissionsInput>, LinkUncheckedUpdateWithoutLinkPermissionsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutLinkPermissionsNestedInput = {
+    create?: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLinkPermissionsInput
+    upsert?: UserUpsertWithoutLinkPermissionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLinkPermissionsInput, UserUpdateWithoutLinkPermissionsInput>, UserUncheckedUpdateWithoutLinkPermissionsInput>
   }
 
   export type SessionCreateNestedManyWithoutPremadeMusicInput = {
@@ -19831,6 +19831,13 @@ export namespace Prisma {
     update?: XOR<XOR<DictionaryEntryUpdateToOneWithWhereWithoutHeadwordsInput, DictionaryEntryUpdateWithoutHeadwordsInput>, DictionaryEntryUncheckedUpdateWithoutHeadwordsInput>
   }
 
+  export type DictionaryExampleCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryExampleCreateManySenseInputEnvelope
+    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+  }
+
   export type DictionaryEntryCreateNestedOneWithoutSensesInput = {
     create?: XOR<DictionaryEntryCreateWithoutSensesInput, DictionaryEntryUncheckedCreateWithoutSensesInput>
     connectOrCreate?: DictionaryEntryCreateOrConnectWithoutSensesInput
@@ -19844,25 +19851,11 @@ export namespace Prisma {
     connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
   }
 
-  export type DictionaryExampleCreateNestedManyWithoutSenseInput = {
-    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
-    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
-    createMany?: DictionaryExampleCreateManySenseInputEnvelope
-    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
-  }
-
   export type DictionaryCrossRefCreateNestedManyWithoutSenseInput = {
     create?: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput> | DictionaryCrossRefCreateWithoutSenseInput[] | DictionaryCrossRefUncheckedCreateWithoutSenseInput[]
     connectOrCreate?: DictionaryCrossRefCreateOrConnectWithoutSenseInput | DictionaryCrossRefCreateOrConnectWithoutSenseInput[]
     createMany?: DictionaryCrossRefCreateManySenseInputEnvelope
     connect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
-  }
-
-  export type DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput = {
-    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
-    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
-    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
-    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
   }
 
   export type DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput = {
@@ -19872,11 +19865,32 @@ export namespace Prisma {
     connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
   }
 
+  export type DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput = {
+    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
+    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
+    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+  }
+
   export type DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput = {
     create?: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput> | DictionaryCrossRefCreateWithoutSenseInput[] | DictionaryCrossRefUncheckedCreateWithoutSenseInput[]
     connectOrCreate?: DictionaryCrossRefCreateOrConnectWithoutSenseInput | DictionaryCrossRefCreateOrConnectWithoutSenseInput[]
     createMany?: DictionaryCrossRefCreateManySenseInputEnvelope
     connect?: DictionaryCrossRefWhereUniqueInput | DictionaryCrossRefWhereUniqueInput[]
+  }
+
+  export type DictionaryExampleUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput | DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryExampleCreateManySenseInputEnvelope
+    set?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    disconnect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    delete?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
+    update?: DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput | DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryExampleUpdateManyWithWhereWithoutSenseInput | DictionaryExampleUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
   }
 
   export type DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput = {
@@ -19901,20 +19915,6 @@ export namespace Prisma {
     deleteMany?: DictionaryTranslationScalarWhereInput | DictionaryTranslationScalarWhereInput[]
   }
 
-  export type DictionaryExampleUpdateManyWithoutSenseNestedInput = {
-    create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
-    connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
-    upsert?: DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput | DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput[]
-    createMany?: DictionaryExampleCreateManySenseInputEnvelope
-    set?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
-    disconnect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
-    delete?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
-    connect?: DictionaryExampleWhereUniqueInput | DictionaryExampleWhereUniqueInput[]
-    update?: DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput | DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput[]
-    updateMany?: DictionaryExampleUpdateManyWithWhereWithoutSenseInput | DictionaryExampleUpdateManyWithWhereWithoutSenseInput[]
-    deleteMany?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
-  }
-
   export type DictionaryCrossRefUpdateManyWithoutSenseNestedInput = {
     create?: XOR<DictionaryCrossRefCreateWithoutSenseInput, DictionaryCrossRefUncheckedCreateWithoutSenseInput> | DictionaryCrossRefCreateWithoutSenseInput[] | DictionaryCrossRefUncheckedCreateWithoutSenseInput[]
     connectOrCreate?: DictionaryCrossRefCreateOrConnectWithoutSenseInput | DictionaryCrossRefCreateOrConnectWithoutSenseInput[]
@@ -19929,20 +19929,6 @@ export namespace Prisma {
     deleteMany?: DictionaryCrossRefScalarWhereInput | DictionaryCrossRefScalarWhereInput[]
   }
 
-  export type DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput = {
-    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
-    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
-    upsert?: DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput[]
-    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
-    set?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
-    disconnect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
-    delete?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
-    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
-    update?: DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput[]
-    updateMany?: DictionaryTranslationUpdateManyWithWhereWithoutSenseInput | DictionaryTranslationUpdateManyWithWhereWithoutSenseInput[]
-    deleteMany?: DictionaryTranslationScalarWhereInput | DictionaryTranslationScalarWhereInput[]
-  }
-
   export type DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput = {
     create?: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput> | DictionaryExampleCreateWithoutSenseInput[] | DictionaryExampleUncheckedCreateWithoutSenseInput[]
     connectOrCreate?: DictionaryExampleCreateOrConnectWithoutSenseInput | DictionaryExampleCreateOrConnectWithoutSenseInput[]
@@ -19955,6 +19941,20 @@ export namespace Prisma {
     update?: DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput | DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput[]
     updateMany?: DictionaryExampleUpdateManyWithWhereWithoutSenseInput | DictionaryExampleUpdateManyWithWhereWithoutSenseInput[]
     deleteMany?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
+  }
+
+  export type DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput = {
+    create?: XOR<DictionaryTranslationCreateWithoutSenseInput, DictionaryTranslationUncheckedCreateWithoutSenseInput> | DictionaryTranslationCreateWithoutSenseInput[] | DictionaryTranslationUncheckedCreateWithoutSenseInput[]
+    connectOrCreate?: DictionaryTranslationCreateOrConnectWithoutSenseInput | DictionaryTranslationCreateOrConnectWithoutSenseInput[]
+    upsert?: DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpsertWithWhereUniqueWithoutSenseInput[]
+    createMany?: DictionaryTranslationCreateManySenseInputEnvelope
+    set?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    disconnect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    delete?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    connect?: DictionaryTranslationWhereUniqueInput | DictionaryTranslationWhereUniqueInput[]
+    update?: DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput | DictionaryTranslationUpdateWithWhereUniqueWithoutSenseInput[]
+    updateMany?: DictionaryTranslationUpdateManyWithWhereWithoutSenseInput | DictionaryTranslationUpdateManyWithWhereWithoutSenseInput[]
+    deleteMany?: DictionaryTranslationScalarWhereInput | DictionaryTranslationScalarWhereInput[]
   }
 
   export type DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput = {
@@ -20229,38 +20229,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type SessionCreateWithoutUserInput = {
-    id?: string
-    title?: string
-    musicSource?: $Enums.MusicSource
-    audio_timeline: JsonNullValueInput | InputJsonValue
-    creation_date?: Date | string
-    links?: LinkCreateNestedManyWithoutSessionInput
-    premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
-    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
-  }
-
-  export type SessionUncheckedCreateWithoutUserInput = {
-    id?: string
-    title?: string
-    musicSource?: $Enums.MusicSource
-    premade_music_id?: string | null
-    uploaded_music_id?: string | null
-    audio_timeline: JsonNullValueInput | InputJsonValue
-    creation_date?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutSessionInput
-  }
-
-  export type SessionCreateOrConnectWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SessionCreateManyUserInputEnvelope = {
-    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type LinkCreateWithoutCreatorInput = {
     link_id?: string
     is_public?: boolean
@@ -20311,6 +20279,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SessionCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    audio_timeline: JsonNullValueInput | InputJsonValue
+    creation_date?: Date | string
+    links?: LinkCreateNestedManyWithoutSessionInput
+    premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
+    uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
+  }
+
+  export type SessionUncheckedCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    audio_timeline: JsonNullValueInput | InputJsonValue
+    creation_date?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type SessionCreateOrConnectWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SessionCreateManyUserInputEnvelope = {
+    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type StickyNotesCreateWithoutUserInput = {
     id?: string
     title?: string
@@ -20333,36 +20333,6 @@ export namespace Prisma {
   export type StickyNotesCreateManyUserInputEnvelope = {
     data: StickyNotesCreateManyUserInput | StickyNotesCreateManyUserInput[]
     skipDuplicates?: boolean
-  }
-
-  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type SessionUpdateManyWithWhereWithoutUserInput = {
-    where: SessionScalarWhereInput
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type SessionScalarWhereInput = {
-    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    OR?: SessionScalarWhereInput[]
-    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    id?: StringFilter<"Session"> | string
-    title?: StringFilter<"Session"> | string
-    user_id?: StringFilter<"Session"> | string
-    musicSource?: EnumMusicSourceFilter<"Session"> | $Enums.MusicSource
-    premade_music_id?: StringNullableFilter<"Session"> | string | null
-    uploaded_music_id?: StringNullableFilter<"Session"> | string | null
-    audio_timeline?: JsonFilter<"Session">
-    creation_date?: DateTimeFilter<"Session"> | Date | string
   }
 
   export type LinkUpsertWithWhereUniqueWithoutCreatorInput = {
@@ -20419,6 +20389,36 @@ export namespace Prisma {
     can_view?: BoolFilter<"LinkPermission"> | boolean
   }
 
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    id?: StringFilter<"Session"> | string
+    title?: StringFilter<"Session"> | string
+    user_id?: StringFilter<"Session"> | string
+    musicSource?: EnumMusicSourceFilter<"Session"> | $Enums.MusicSource
+    premade_music_id?: StringNullableFilter<"Session"> | string | null
+    uploaded_music_id?: StringNullableFilter<"Session"> | string | null
+    audio_timeline?: JsonFilter<"Session">
+    creation_date?: DateTimeFilter<"Session"> | Date | string
+  }
+
   export type StickyNotesUpsertWithWhereUniqueWithoutUserInput = {
     where: StickyNotesWhereUniqueInput
     update: XOR<StickyNotesUpdateWithoutUserInput, StickyNotesUncheckedUpdateWithoutUserInput>
@@ -20444,35 +20444,6 @@ export namespace Prisma {
     content?: StringFilter<"StickyNotes"> | string
     user_id?: StringFilter<"StickyNotes"> | string
     music_id?: StringNullableFilter<"StickyNotes"> | string | null
-  }
-
-  export type UserCreateWithoutSessionsInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    links?: LinkCreateNestedManyWithoutCreatorInput
-    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
-    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutSessionsInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
-    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
-    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutSessionsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
   }
 
   export type LinkCreateWithoutSessionInput = {
@@ -20505,15 +20476,15 @@ export namespace Prisma {
 
   export type PremadeMusicCreateWithoutSessionInput = {
     music_id?: string
-    music_name: string
     uploaded_date?: Date | string
+    music_name: string
     path: string
   }
 
   export type PremadeMusicUncheckedCreateWithoutSessionInput = {
     music_id?: string
-    music_name: string
     uploaded_date?: Date | string
+    music_name: string
     path: string
   }
 
@@ -20524,16 +20495,16 @@ export namespace Prisma {
 
   export type UploadedMusicCreateWithoutSessionInput = {
     music_id?: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path?: string
     stickyNotes?: StickyNotesCreateNestedManyWithoutMusicInput
   }
 
   export type UploadedMusicUncheckedCreateWithoutSessionInput = {
     music_id?: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path?: string
     stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutMusicInput
   }
@@ -20543,39 +20514,33 @@ export namespace Prisma {
     create: XOR<UploadedMusicCreateWithoutSessionInput, UploadedMusicUncheckedCreateWithoutSessionInput>
   }
 
-  export type UserUpsertWithoutSessionsInput = {
-    update: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
+  export type UserCreateWithoutSessionsInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    links?: LinkCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSessionsInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSessionsInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSessionsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
-  }
-
-  export type UserUpdateWithoutSessionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutCreatorNestedInput
-    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
-    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSessionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
-    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
-    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LinkUpsertWithWhereUniqueWithoutSessionInput = {
@@ -20607,15 +20572,15 @@ export namespace Prisma {
 
   export type PremadeMusicUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
   export type PremadeMusicUncheckedUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
   }
 
@@ -20632,61 +20597,67 @@ export namespace Prisma {
 
   export type UploadedMusicUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     stickyNotes?: StickyNotesUpdateManyWithoutMusicNestedInput
   }
 
   export type UploadedMusicUncheckedUpdateWithoutSessionInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     stickyNotes?: StickyNotesUncheckedUpdateManyWithoutMusicNestedInput
   }
 
-  export type UserCreateWithoutStickyNotesInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    links?: LinkCreateNestedManyWithoutCreatorInput
-    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+  export type UserUpsertWithoutSessionsInput = {
+    update: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
+    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    where?: UserWhereInput
   }
 
-  export type UserUncheckedCreateWithoutStickyNotesInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
-    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+  export type UserUpdateToOneWithWhereWithoutSessionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
   }
 
-  export type UserCreateOrConnectWithoutStickyNotesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
+  export type UserUpdateWithoutSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    links?: LinkUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UploadedMusicCreateWithoutStickyNotesInput = {
     music_id?: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path?: string
     session?: SessionCreateNestedManyWithoutUploadedMusicInput
   }
 
   export type UploadedMusicUncheckedCreateWithoutStickyNotesInput = {
     music_id?: string
-    music_name: string
     uploaded_by: string
+    music_name: string
     path?: string
     session?: SessionUncheckedCreateNestedManyWithoutUploadedMusicInput
   }
@@ -20696,39 +20667,33 @@ export namespace Prisma {
     create: XOR<UploadedMusicCreateWithoutStickyNotesInput, UploadedMusicUncheckedCreateWithoutStickyNotesInput>
   }
 
-  export type UserUpsertWithoutStickyNotesInput = {
-    update: XOR<UserUpdateWithoutStickyNotesInput, UserUncheckedUpdateWithoutStickyNotesInput>
+  export type UserCreateWithoutStickyNotesInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    links?: LinkCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutStickyNotesInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutStickyNotesInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutStickyNotesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutStickyNotesInput, UserUncheckedUpdateWithoutStickyNotesInput>
-  }
-
-  export type UserUpdateWithoutStickyNotesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    links?: LinkUpdateManyWithoutCreatorNestedInput
-    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutStickyNotesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
-    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
   }
 
   export type UploadedMusicUpsertWithoutStickyNotesInput = {
@@ -20744,18 +20709,82 @@ export namespace Prisma {
 
   export type UploadedMusicUpdateWithoutStickyNotesInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     session?: SessionUpdateManyWithoutUploadedMusicNestedInput
   }
 
   export type UploadedMusicUncheckedUpdateWithoutStickyNotesInput = {
     music_id?: StringFieldUpdateOperationsInput | string
-    music_name?: StringFieldUpdateOperationsInput | string
     uploaded_by?: StringFieldUpdateOperationsInput | string
+    music_name?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     session?: SessionUncheckedUpdateManyWithoutUploadedMusicNestedInput
+  }
+
+  export type UserUpsertWithoutStickyNotesInput = {
+    update: XOR<UserUpdateWithoutStickyNotesInput, UserUncheckedUpdateWithoutStickyNotesInput>
+    create: XOR<UserCreateWithoutStickyNotesInput, UserUncheckedCreateWithoutStickyNotesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStickyNotesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStickyNotesInput, UserUncheckedUpdateWithoutStickyNotesInput>
+  }
+
+  export type UserUpdateWithoutStickyNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    links?: LinkUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStickyNotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutLinksInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLinksInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLinksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
   }
 
   export type SessionCreateWithoutLinksInput = {
@@ -20764,9 +20793,9 @@ export namespace Prisma {
     musicSource?: $Enums.MusicSource
     audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSessionsInput
     premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
     uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
+    user: UserCreateNestedOneWithoutSessionsInput
   }
 
   export type SessionUncheckedCreateWithoutLinksInput = {
@@ -20783,35 +20812,6 @@ export namespace Prisma {
   export type SessionCreateOrConnectWithoutLinksInput = {
     where: SessionWhereUniqueInput
     create: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
-  }
-
-  export type UserCreateWithoutLinksInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    linkPermissions?: LinkPermissionCreateNestedManyWithoutLinkInput
-    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutLinksInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    linkPermissions?: LinkPermissionUncheckedCreateNestedManyWithoutLinkInput
-    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutLinksInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
   }
 
   export type LinkPermissionCreateWithoutUserLinkInput = {
@@ -20836,6 +20836,41 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserUpsertWithoutLinksInput = {
+    update: XOR<UserUpdateWithoutLinksInput, UserUncheckedUpdateWithoutLinksInput>
+    create: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLinksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLinksInput, UserUncheckedUpdateWithoutLinksInput>
+  }
+
+  export type UserUpdateWithoutLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type SessionUpsertWithoutLinksInput = {
     update: XOR<SessionUpdateWithoutLinksInput, SessionUncheckedUpdateWithoutLinksInput>
     create: XOR<SessionCreateWithoutLinksInput, SessionUncheckedCreateWithoutLinksInput>
@@ -20853,9 +20888,9 @@ export namespace Prisma {
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
     premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
     uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
   export type SessionUncheckedUpdateWithoutLinksInput = {
@@ -20867,41 +20902,6 @@ export namespace Prisma {
     uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
     audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserUpsertWithoutLinksInput = {
-    update: XOR<UserUpdateWithoutLinksInput, UserUncheckedUpdateWithoutLinksInput>
-    create: XOR<UserCreateWithoutLinksInput, UserUncheckedCreateWithoutLinksInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutLinksInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLinksInput, UserUncheckedUpdateWithoutLinksInput>
-  }
-
-  export type UserUpdateWithoutLinksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    linkPermissions?: LinkPermissionUpdateManyWithoutLinkNestedInput
-    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutLinksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    linkPermissions?: LinkPermissionUncheckedUpdateManyWithoutLinkNestedInput
-    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LinkPermissionUpsertWithWhereUniqueWithoutUserLinkInput = {
@@ -20920,42 +20920,13 @@ export namespace Prisma {
     data: XOR<LinkPermissionUpdateManyMutationInput, LinkPermissionUncheckedUpdateManyWithoutUserLinkInput>
   }
 
-  export type UserCreateWithoutLinkPermissionsInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    links?: LinkCreateNestedManyWithoutCreatorInput
-    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutLinkPermissionsInput = {
-    id?: string
-    username: string
-    email: string
-    password: string
-    createAt?: Date | string
-    updateAt?: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
-    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutLinkPermissionsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
-  }
-
   export type LinkCreateWithoutLinkPermissionsInput = {
     link_id?: string
     is_public?: boolean
     created_at?: Date | string
     expires_at: Date | string
-    session: SessionCreateNestedOneWithoutLinksInput
     creator: UserCreateNestedOneWithoutLinksInput
+    session: SessionCreateNestedOneWithoutLinksInput
   }
 
   export type LinkUncheckedCreateWithoutLinkPermissionsInput = {
@@ -20972,39 +20943,33 @@ export namespace Prisma {
     create: XOR<LinkCreateWithoutLinkPermissionsInput, LinkUncheckedCreateWithoutLinkPermissionsInput>
   }
 
-  export type UserUpsertWithoutLinkPermissionsInput = {
-    update: XOR<UserUpdateWithoutLinkPermissionsInput, UserUncheckedUpdateWithoutLinkPermissionsInput>
+  export type UserCreateWithoutLinkPermissionsInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    links?: LinkCreateNestedManyWithoutCreatorInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    stickyNotes?: StickyNotesCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLinkPermissionsInput = {
+    id?: string
+    email: string
+    password: string
+    createAt?: Date | string
+    updateAt?: Date | string
+    username: string
+    links?: LinkUncheckedCreateNestedManyWithoutCreatorInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    stickyNotes?: StickyNotesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLinkPermissionsInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutLinkPermissionsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLinkPermissionsInput, UserUncheckedUpdateWithoutLinkPermissionsInput>
-  }
-
-  export type UserUpdateWithoutLinkPermissionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    links?: LinkUpdateManyWithoutCreatorNestedInput
-    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutLinkPermissionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
-    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LinkUpsertWithoutLinkPermissionsInput = {
@@ -21023,8 +20988,8 @@ export namespace Prisma {
     is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    session?: SessionUpdateOneRequiredWithoutLinksNestedInput
     creator?: UserUpdateOneRequiredWithoutLinksNestedInput
+    session?: SessionUpdateOneRequiredWithoutLinksNestedInput
   }
 
   export type LinkUncheckedUpdateWithoutLinkPermissionsInput = {
@@ -21036,15 +21001,50 @@ export namespace Prisma {
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserUpsertWithoutLinkPermissionsInput = {
+    update: XOR<UserUpdateWithoutLinkPermissionsInput, UserUncheckedUpdateWithoutLinkPermissionsInput>
+    create: XOR<UserCreateWithoutLinkPermissionsInput, UserUncheckedCreateWithoutLinkPermissionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLinkPermissionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLinkPermissionsInput, UserUncheckedUpdateWithoutLinkPermissionsInput>
+  }
+
+  export type UserUpdateWithoutLinkPermissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    links?: LinkUpdateManyWithoutCreatorNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    stickyNotes?: StickyNotesUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLinkPermissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    username?: StringFieldUpdateOperationsInput | string
+    links?: LinkUncheckedUpdateManyWithoutCreatorNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    stickyNotes?: StickyNotesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type SessionCreateWithoutPremadeMusicInput = {
     id?: string
     title?: string
     musicSource?: $Enums.MusicSource
     audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSessionsInput
     links?: LinkCreateNestedManyWithoutSessionInput
     uploadedMusic?: UploadedMusicCreateNestedOneWithoutSessionInput
+    user: UserCreateNestedOneWithoutSessionsInput
   }
 
   export type SessionUncheckedCreateWithoutPremadeMusicInput = {
@@ -21090,9 +21090,9 @@ export namespace Prisma {
     musicSource?: $Enums.MusicSource
     audio_timeline: JsonNullValueInput | InputJsonValue
     creation_date?: Date | string
-    user: UserCreateNestedOneWithoutSessionsInput
     links?: LinkCreateNestedManyWithoutSessionInput
     premadeMusic?: PremadeMusicCreateNestedOneWithoutSessionInput
+    user: UserCreateNestedOneWithoutSessionsInput
   }
 
   export type SessionUncheckedCreateWithoutUploadedMusicInput = {
@@ -21201,8 +21201,8 @@ export namespace Prisma {
     number?: number | null
     definition?: string | null
     dialect?: string | null
-    translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
     examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
+    translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
     crossRefs?: DictionaryCrossRefCreateNestedManyWithoutSenseInput
   }
 
@@ -21211,8 +21211,8 @@ export namespace Prisma {
     number?: number | null
     definition?: string | null
     dialect?: string | null
-    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
     examples?: DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput
+    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
     crossRefs?: DictionaryCrossRefUncheckedCreateNestedManyWithoutSenseInput
   }
 
@@ -21327,6 +21327,27 @@ export namespace Prisma {
     senses?: DictionarySenseUncheckedUpdateManyWithoutEntryNestedInput
   }
 
+  export type DictionaryExampleCreateWithoutSenseInput = {
+    textCebuano: string
+    textTranslation?: string | null
+  }
+
+  export type DictionaryExampleUncheckedCreateWithoutSenseInput = {
+    exampleId?: number
+    textCebuano: string
+    textTranslation?: string | null
+  }
+
+  export type DictionaryExampleCreateOrConnectWithoutSenseInput = {
+    where: DictionaryExampleWhereUniqueInput
+    create: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryExampleCreateManySenseInputEnvelope = {
+    data: DictionaryExampleCreateManySenseInput | DictionaryExampleCreateManySenseInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DictionaryEntryCreateWithoutSensesInput = {
     word: string
     page?: string | null
@@ -21368,27 +21389,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DictionaryExampleCreateWithoutSenseInput = {
-    textCebuano: string
-    textTranslation?: string | null
-  }
-
-  export type DictionaryExampleUncheckedCreateWithoutSenseInput = {
-    exampleId?: number
-    textCebuano: string
-    textTranslation?: string | null
-  }
-
-  export type DictionaryExampleCreateOrConnectWithoutSenseInput = {
-    where: DictionaryExampleWhereUniqueInput
-    create: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput>
-  }
-
-  export type DictionaryExampleCreateManySenseInputEnvelope = {
-    data: DictionaryExampleCreateManySenseInput | DictionaryExampleCreateManySenseInput[]
-    skipDuplicates?: boolean
-  }
-
   export type DictionaryCrossRefCreateWithoutSenseInput = {
     targetWord: string
     lang?: string
@@ -21408,6 +21408,32 @@ export namespace Prisma {
   export type DictionaryCrossRefCreateManySenseInputEnvelope = {
     data: DictionaryCrossRefCreateManySenseInput | DictionaryCrossRefCreateManySenseInput[]
     skipDuplicates?: boolean
+  }
+
+  export type DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryExampleWhereUniqueInput
+    update: XOR<DictionaryExampleUpdateWithoutSenseInput, DictionaryExampleUncheckedUpdateWithoutSenseInput>
+    create: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput>
+  }
+
+  export type DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput = {
+    where: DictionaryExampleWhereUniqueInput
+    data: XOR<DictionaryExampleUpdateWithoutSenseInput, DictionaryExampleUncheckedUpdateWithoutSenseInput>
+  }
+
+  export type DictionaryExampleUpdateManyWithWhereWithoutSenseInput = {
+    where: DictionaryExampleScalarWhereInput
+    data: XOR<DictionaryExampleUpdateManyMutationInput, DictionaryExampleUncheckedUpdateManyWithoutSenseInput>
+  }
+
+  export type DictionaryExampleScalarWhereInput = {
+    AND?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
+    OR?: DictionaryExampleScalarWhereInput[]
+    NOT?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
+    exampleId?: IntFilter<"DictionaryExample"> | number
+    senseId?: IntFilter<"DictionaryExample"> | number
+    textCebuano?: StringFilter<"DictionaryExample"> | string
+    textTranslation?: StringNullableFilter<"DictionaryExample"> | string | null
   }
 
   export type DictionaryEntryUpsertWithoutSensesInput = {
@@ -21462,32 +21488,6 @@ export namespace Prisma {
     translation?: StringFilter<"DictionaryTranslation"> | string
   }
 
-  export type DictionaryExampleUpsertWithWhereUniqueWithoutSenseInput = {
-    where: DictionaryExampleWhereUniqueInput
-    update: XOR<DictionaryExampleUpdateWithoutSenseInput, DictionaryExampleUncheckedUpdateWithoutSenseInput>
-    create: XOR<DictionaryExampleCreateWithoutSenseInput, DictionaryExampleUncheckedCreateWithoutSenseInput>
-  }
-
-  export type DictionaryExampleUpdateWithWhereUniqueWithoutSenseInput = {
-    where: DictionaryExampleWhereUniqueInput
-    data: XOR<DictionaryExampleUpdateWithoutSenseInput, DictionaryExampleUncheckedUpdateWithoutSenseInput>
-  }
-
-  export type DictionaryExampleUpdateManyWithWhereWithoutSenseInput = {
-    where: DictionaryExampleScalarWhereInput
-    data: XOR<DictionaryExampleUpdateManyMutationInput, DictionaryExampleUncheckedUpdateManyWithoutSenseInput>
-  }
-
-  export type DictionaryExampleScalarWhereInput = {
-    AND?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
-    OR?: DictionaryExampleScalarWhereInput[]
-    NOT?: DictionaryExampleScalarWhereInput | DictionaryExampleScalarWhereInput[]
-    exampleId?: IntFilter<"DictionaryExample"> | number
-    senseId?: IntFilter<"DictionaryExample"> | number
-    textCebuano?: StringFilter<"DictionaryExample"> | string
-    textTranslation?: StringNullableFilter<"DictionaryExample"> | string | null
-  }
-
   export type DictionaryCrossRefUpsertWithWhereUniqueWithoutSenseInput = {
     where: DictionaryCrossRefWhereUniqueInput
     update: XOR<DictionaryCrossRefUpdateWithoutSenseInput, DictionaryCrossRefUncheckedUpdateWithoutSenseInput>
@@ -21518,8 +21518,8 @@ export namespace Prisma {
     number?: number | null
     definition?: string | null
     dialect?: string | null
-    entry: DictionaryEntryCreateNestedOneWithoutSensesInput
     examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
+    entry: DictionaryEntryCreateNestedOneWithoutSensesInput
     crossRefs?: DictionaryCrossRefCreateNestedManyWithoutSenseInput
   }
 
@@ -21553,8 +21553,8 @@ export namespace Prisma {
     number?: NullableIntFieldUpdateOperationsInput | number | null
     definition?: NullableStringFieldUpdateOperationsInput | string | null
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
-    entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
     examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
+    entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
     crossRefs?: DictionaryCrossRefUpdateManyWithoutSenseNestedInput
   }
 
@@ -21626,9 +21626,9 @@ export namespace Prisma {
     number?: number | null
     definition?: string | null
     dialect?: string | null
+    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
     entry: DictionaryEntryCreateNestedOneWithoutSensesInput
     translations?: DictionaryTranslationCreateNestedManyWithoutSenseInput
-    examples?: DictionaryExampleCreateNestedManyWithoutSenseInput
   }
 
   export type DictionarySenseUncheckedCreateWithoutCrossRefsInput = {
@@ -21637,8 +21637,8 @@ export namespace Prisma {
     number?: number | null
     definition?: string | null
     dialect?: string | null
-    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
     examples?: DictionaryExampleUncheckedCreateNestedManyWithoutSenseInput
+    translations?: DictionaryTranslationUncheckedCreateNestedManyWithoutSenseInput
   }
 
   export type DictionarySenseCreateOrConnectWithoutCrossRefsInput = {
@@ -21661,9 +21661,9 @@ export namespace Prisma {
     number?: NullableIntFieldUpdateOperationsInput | number | null
     definition?: NullableStringFieldUpdateOperationsInput | string | null
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
+    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
     entry?: DictionaryEntryUpdateOneRequiredWithoutSensesNestedInput
     translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
-    examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
   }
 
   export type DictionarySenseUncheckedUpdateWithoutCrossRefsInput = {
@@ -21672,18 +21672,8 @@ export namespace Prisma {
     number?: NullableIntFieldUpdateOperationsInput | number | null
     definition?: NullableStringFieldUpdateOperationsInput | string | null
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
-    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
     examples?: DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput
-  }
-
-  export type SessionCreateManyUserInput = {
-    id?: string
-    title?: string
-    musicSource?: $Enums.MusicSource
-    premade_music_id?: string | null
-    uploaded_music_id?: string | null
-    audio_timeline: JsonNullValueInput | InputJsonValue
-    creation_date?: Date | string
+    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
   }
 
   export type LinkCreateManyCreatorInput = {
@@ -21700,43 +21690,21 @@ export namespace Prisma {
     can_view?: boolean
   }
 
+  export type SessionCreateManyUserInput = {
+    id?: string
+    title?: string
+    musicSource?: $Enums.MusicSource
+    premade_music_id?: string | null
+    uploaded_music_id?: string | null
+    audio_timeline: JsonNullValueInput | InputJsonValue
+    creation_date?: Date | string
+  }
+
   export type StickyNotesCreateManyUserInput = {
     id?: string
     title?: string
     content?: string
     music_id?: string | null
-  }
-
-  export type SessionUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    audio_timeline?: JsonNullValueInput | InputJsonValue
-    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutSessionNestedInput
-    premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
-    uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
-  }
-
-  export type SessionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    audio_timeline?: JsonNullValueInput | InputJsonValue
-    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutSessionNestedInput
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
-    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
-    audio_timeline?: JsonNullValueInput | InputJsonValue
-    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LinkUpdateWithoutCreatorInput = {
@@ -21781,6 +21749,38 @@ export namespace Prisma {
     link_permission_id?: StringFieldUpdateOperationsInput | string
     link_id?: StringFieldUpdateOperationsInput | string
     can_view?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SessionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    audio_timeline?: JsonNullValueInput | InputJsonValue
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUpdateManyWithoutSessionNestedInput
+    premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
+    uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
+  }
+
+  export type SessionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    audio_timeline?: JsonNullValueInput | InputJsonValue
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
+    premade_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    uploaded_music_id?: NullableStringFieldUpdateOperationsInput | string | null
+    audio_timeline?: JsonNullValueInput | InputJsonValue
+    creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StickyNotesUpdateWithoutUserInput = {
@@ -21878,9 +21878,9 @@ export namespace Prisma {
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
     links?: LinkUpdateManyWithoutSessionNestedInput
     uploadedMusic?: UploadedMusicUpdateOneWithoutSessionNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
   export type SessionUncheckedUpdateWithoutPremadeMusicInput = {
@@ -21927,9 +21927,9 @@ export namespace Prisma {
     musicSource?: EnumMusicSourceFieldUpdateOperationsInput | $Enums.MusicSource
     audio_timeline?: JsonNullValueInput | InputJsonValue
     creation_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
     links?: LinkUpdateManyWithoutSessionNestedInput
     premadeMusic?: PremadeMusicUpdateOneWithoutSessionNestedInput
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
   export type SessionUncheckedUpdateWithoutUploadedMusicInput = {
@@ -22016,8 +22016,8 @@ export namespace Prisma {
     number?: NullableIntFieldUpdateOperationsInput | number | null
     definition?: NullableStringFieldUpdateOperationsInput | string | null
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
-    translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
     examples?: DictionaryExampleUpdateManyWithoutSenseNestedInput
+    translations?: DictionaryTranslationUpdateManyWithoutSenseNestedInput
     crossRefs?: DictionaryCrossRefUpdateManyWithoutSenseNestedInput
   }
 
@@ -22026,8 +22026,8 @@ export namespace Prisma {
     number?: NullableIntFieldUpdateOperationsInput | number | null
     definition?: NullableStringFieldUpdateOperationsInput | string | null
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
-    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
     examples?: DictionaryExampleUncheckedUpdateManyWithoutSenseNestedInput
+    translations?: DictionaryTranslationUncheckedUpdateManyWithoutSenseNestedInput
     crossRefs?: DictionaryCrossRefUncheckedUpdateManyWithoutSenseNestedInput
   }
 
@@ -22038,39 +22038,22 @@ export namespace Prisma {
     dialect?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type DictionaryTranslationCreateManySenseInput = {
-    transId?: number
-    lang: string
-    translation: string
-  }
-
   export type DictionaryExampleCreateManySenseInput = {
     exampleId?: number
     textCebuano: string
     textTranslation?: string | null
   }
 
+  export type DictionaryTranslationCreateManySenseInput = {
+    transId?: number
+    lang: string
+    translation: string
+  }
+
   export type DictionaryCrossRefCreateManySenseInput = {
     xrefId?: number
     targetWord: string
     lang?: string
-  }
-
-  export type DictionaryTranslationUpdateWithoutSenseInput = {
-    lang?: StringFieldUpdateOperationsInput | string
-    translation?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type DictionaryTranslationUncheckedUpdateWithoutSenseInput = {
-    transId?: IntFieldUpdateOperationsInput | number
-    lang?: StringFieldUpdateOperationsInput | string
-    translation?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type DictionaryTranslationUncheckedUpdateManyWithoutSenseInput = {
-    transId?: IntFieldUpdateOperationsInput | number
-    lang?: StringFieldUpdateOperationsInput | string
-    translation?: StringFieldUpdateOperationsInput | string
   }
 
   export type DictionaryExampleUpdateWithoutSenseInput = {
@@ -22088,6 +22071,23 @@ export namespace Prisma {
     exampleId?: IntFieldUpdateOperationsInput | number
     textCebuano?: StringFieldUpdateOperationsInput | string
     textTranslation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DictionaryTranslationUpdateWithoutSenseInput = {
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryTranslationUncheckedUpdateWithoutSenseInput = {
+    transId?: IntFieldUpdateOperationsInput | number
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DictionaryTranslationUncheckedUpdateManyWithoutSenseInput = {
+    transId?: IntFieldUpdateOperationsInput | number
+    lang?: StringFieldUpdateOperationsInput | string
+    translation?: StringFieldUpdateOperationsInput | string
   }
 
   export type DictionaryCrossRefUpdateWithoutSenseInput = {

@@ -1,5 +1,6 @@
 import { put } from "@vercel/blob";
 import { type NextRequest, NextResponse } from "next/server";
+import { MusicService } from "@/lib/services/music.service";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -55,28 +56,21 @@ export async function POST(request: NextRequest) {
       });
 
       //Put logic to save to database here
-      const dbResponse = await fetch("http://localhost:3306/music/uploaded", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify({
-          music_name: blob.contentDisposition.split("filename=")[1],
+      const fileName =
+        blob.contentDisposition.split("filename=")[1] || filename;
+
+      const dbData = await MusicService.createUploadedMusic(
+        {
+          music_name: fileName,
           uploaded_by: request.headers.get("user-id") || "",
           path: blob.url,
-        }),
-      });
-
-      if (!dbResponse.ok) {
-        throw new Error("Failed to save to database");
-      }
-
-      const dbData = await dbResponse.json();
+        },
+        token || ""
+      );
 
       return NextResponse.json({
         url: blob.url,
-        filename: blob.contentDisposition.split("filename=")[1],
+        filename: fileName,
         size: file.size,
       });
     };

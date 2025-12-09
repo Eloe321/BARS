@@ -2,6 +2,7 @@ import { list } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { formatMusicName } from "@/components/functions/formatMusicName";
+import { FilesService } from "@/lib/services/files.service";
 
 interface MP3File {
   url: string;
@@ -52,26 +53,8 @@ async function fetchBlobFiles(prefix: string): Promise<MP3File[]> {
 // Function to fetch files from database
 async function fetchDatabaseFiles(token: string) {
   try {
-    const [uploadedResponse, premadeResponse] = await Promise.all([
-      fetch("http://localhost:3306/music/uploaded", {
-        headers: {
-          Authorization: token,
-        },
-      }),
-      fetch("http://localhost:3306/music/premade"),
-    ]);
-
-    if (!uploadedResponse.ok || !premadeResponse.ok) {
-      throw new Error("Failed to fetch from database");
-    }
-
-    const uploadedData = await uploadedResponse.json();
-    const premadeData = await premadeResponse.json();
-
-    return {
-      uploaded: uploadedData as DatabaseFile[],
-      premade: premadeData as DatabaseFile[],
-    };
+    const result = await FilesService.getAllDatabaseFiles(token);
+    return result;
   } catch (error) {
     console.error("Error fetching database files:", error);
     return { uploaded: [], premade: [] };

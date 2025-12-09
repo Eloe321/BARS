@@ -1,33 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3306";
+import { SongsService } from "@/lib/services/songs.service";
 
 export async function POST(request: NextRequest) {
   try {
     const token = request.headers.get("authorization");
     const body = await request.json();
 
-    const response = await fetch(`${BACKEND_URL}/songs`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token || "",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return NextResponse.json(data, { status: response.status });
-    }
+    const data = await SongsService.createSong(body, token || "");
 
     return NextResponse.json(data, { status: 201 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    const message = error.response?.data || {
+      message: "Internal Server Error",
+    };
+    return NextResponse.json(message, { status });
   }
 }
 
@@ -37,29 +24,15 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const source = searchParams.get("source");
 
-    const url = new URL(`${BACKEND_URL}/songs`);
-    if (source) {
-      url.searchParams.append("source", source);
-    }
-
-    const response = await fetch(url, {
-      headers: {
-        Authorization: token || "",
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return NextResponse.json(data, { status: response.status });
-    }
+    const data = await SongsService.getSongs(token || "", source || undefined);
 
     return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    const message = error.response?.data || {
+      message: "Internal Server Error",
+    };
+    return NextResponse.json(message, { status });
   }
 }
 
@@ -77,27 +50,15 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const response = await fetch(`${BACKEND_URL}/songs/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token || "",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return NextResponse.json(data, { status: response.status });
-    }
+    const data = await SongsService.updateSong(id, body, token || "");
 
     return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    const message = error.response?.data || {
+      message: "Internal Server Error",
+    };
+    return NextResponse.json(message, { status });
   }
 }
 
@@ -114,23 +75,14 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const response = await fetch(`${BACKEND_URL}/songs/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: token || "",
-      },
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      return NextResponse.json(data, { status: response.status });
-    }
+    await SongsService.deleteSong(id, token || "");
 
     return new NextResponse(null, { status: 204 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    const message = error.response?.data || {
+      message: "Internal Server Error",
+    };
+    return NextResponse.json(message, { status });
   }
 }

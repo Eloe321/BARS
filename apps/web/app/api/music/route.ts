@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3306";
+import { MusicService } from "@/lib/services/music.service";
 
 // Handler for POST /api/music?type=uploaded
 export async function POST(request: NextRequest) {
@@ -17,27 +16,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const response = await fetch(`${BACKEND_URL}/music/uploaded`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token || "",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return NextResponse.json(data, { status: response.status });
-    }
+    const data = await MusicService.createUploadedMusic(body, token || "");
 
     return NextResponse.json(data, { status: 201 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    const message = error.response?.data || {
+      message: "Internal Server Error",
+    };
+    return NextResponse.json(message, { status });
   }
 }
 
@@ -59,27 +46,27 @@ export async function GET(request: NextRequest) {
     console.log("MusicId:", MusicId);
     console.log("Name:", name);
 
-    let endpoint = "";
+    let data;
 
-    // Determine the endpoint based on query parameters
+    // Determine the service method based on query parameters
     if (type === "uploaded") {
       if (MusicId) {
         console.log("using endpoint 1");
-        endpoint = `/music/uploaded/${MusicId}`;
+        data = await MusicService.getUploadedMusicById(MusicId, token || "");
       } else if (name) {
         console.log("using endpoint 2");
-        endpoint = `/music/uploaded/name/${name}`;
+        data = await MusicService.getUploadedMusicByName(name, token || "");
       } else {
         console.log("using endpoint 3");
-        endpoint = "/music/uploaded";
+        data = await MusicService.getAllUploadedMusic(token || "");
       }
     } else if (type === "premade") {
       if (MusicId) {
-        endpoint = `/music/premade/${MusicId}`;
+        data = await MusicService.getPremadeMusicById(MusicId);
       } else if (name) {
-        endpoint = `/music/premade/name/${name}`;
+        data = await MusicService.getPremadeMusicByName(name);
       } else {
-        endpoint = "/music/premade";
+        data = await MusicService.getAllPremadeMusic();
       }
     } else {
       return NextResponse.json(
@@ -87,24 +74,14 @@ export async function GET(request: NextRequest) {
         { status: 400 }
       );
     }
-    const response = await fetch(`${BACKEND_URL}${endpoint}`, {
-      headers: {
-        Authorization: token || "",
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return NextResponse.json(data, { status: response.status });
-    }
 
     return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    const message = error.response?.data || {
+      message: "Internal Server Error",
+    };
+    return NextResponse.json(message, { status });
   }
 }
 
@@ -130,23 +107,14 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const response = await fetch(`${BACKEND_URL}/music/uploaded/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: token || "",
-      },
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      return NextResponse.json(data, { status: response.status });
-    }
+    await MusicService.deleteUploadedMusic(id, token || "");
 
     return new NextResponse(null, { status: 204 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    const status = error.response?.status || 500;
+    const message = error.response?.data || {
+      message: "Internal Server Error",
+    };
+    return NextResponse.json(message, { status });
   }
 }
